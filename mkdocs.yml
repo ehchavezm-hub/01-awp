@@ -90,23 +90,23 @@ nav:
   - Introducción y visión general:
       - ¿Qué es AWP? (Insight-AWP): introduccion/que-es-awp-insight.md
       - Visión general del CII: introduccion/vision-general-cii.md
-      - Presentación de introducción (2022, en español): introduccion/presentacion-awp-2022.md
+      - Presentación de introducción (2022, original en español): introduccion/presentacion-awp-2022.md
       - Resumen COAA de buenas prácticas (2016): introduccion/resumen-coaa-2016.md
       - Práctica recomendada (Omega 365, 2025): introduccion/practica-recomendada-omega-365.md
   - Guías de inicio rápido:
-      - Quick Start Guide (PDF): guias/quick-start-guide-pdf.md
-      - Quick Start Guide (web): guias/quick-start-guide-web.md
+      - Guía de inicio rápido (PDF): guias/quick-start-guide-pdf.md
+      - Guía de inicio rápido (web): guias/quick-start-guide-web.md
   - Procedimientos AWP-IM-WFP (2017):
-      - 1.0 Advanced Work Packaging: procedimientos/1-advanced-work-packaging.md
-      - 2.0 Information Management: procedimientos/2-information-management.md
-      - 3.0 Workface Planning: procedimientos/3-workface-planning.md
+      - 1.0 Empaquetamiento avanzado del trabajo (AWP): procedimientos/1-advanced-work-packaging.md
+      - 2.0 Gestión de la información (IM): procedimientos/2-information-management.md
+      - 3.0 Planificación del frente de trabajo (WFP): procedimientos/3-workface-planning.md
   - Formación (CII):
-      - AWP Education Primer: formacion/education-primer.md
-      - AWP Education Framework (2020): formacion/education-framework.md
+      - Introducción a AWP (CII): formacion/education-primer.md
+      - Marco educativo de AWP (CII, 2020): formacion/education-framework.md
       - Curso integrado de AWP (2023): formacion/curso-awp-2023.md
   - Terminología y referencia:
       - Glosario de siglas y términos: referencia/glosario.md
-      - Siglas y definiciones del CII (original): referencia/siglas-y-definiciones-cii.md
+      - Siglas y definiciones del CII: referencia/siglas-y-definiciones-cii.md
   - Comparaciones:
       - AWP y Lean Construction: comparaciones/awp-vs-lean-construction.md
   - Acerca de esta web:

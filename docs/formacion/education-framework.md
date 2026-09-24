@@ -20,7 +20,7 @@
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8Tcufj0gUdEMXdYMvy9rF2EGAOQxPEjRbb2tK2tBVyGpp_S3qh2Kk5c4Z82VmlKMqTfmKtR9IQmXe3ktHfkNdSYt-c4c1qic4-gcQayARw5CeW3o0eGiT6y0WS2jdEzy1Ovv-5CA=w1040-h361-v0?authuser=0)
 
-**Comunidad para el avance de los negocios de AWP (CBA: *Community for Business Advancement*)**
+**Comunidad para el avance de los negocios (CBA: *Community for Business Advancement*) de Advanced Work Packaging**
 
 **Marco educativo de AWP (*AWP Education Framework*)**
 Versión 1.0, publicada en agosto de 2020. Elaborado por el Subcomité de Educación y Difusión de AWP.
@@ -35,7 +35,7 @@ Versión 1.0, publicada en agosto de 2020. Elaborado por el Subcomité de Educac
 
 ### Definición del CII
 
-El CII define AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) como “el flujo de proceso general de todos los paquetes de trabajo detallados (paquetes de trabajo de construcción, de ingeniería y de instalación). AWP es un proceso planificado y ejecutable que abarca el trabajo en un proyecto EPC (*Engineering, Procurement and Construction*, ingeniería, compras y construcción), desde la planificación inicial y hasta la ingeniería de detalle y la ejecución de la construcción. AWP proporciona el marco para una construcción productiva y progresiva y presupone la existencia de un plan de ejecución de la construcción”.
+El CII (*Construction Industry Institute*, Instituto de la Industria de la Construcción) define AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) como “el flujo de proceso general de todos los paquetes de trabajo detallados (paquetes de trabajo de construcción, de ingeniería y de instalación). AWP es un proceso planificado y ejecutable que abarca el trabajo en un proyecto EPC (*Engineering, Procurement and Construction*, ingeniería, compras y construcción), desde la planificación inicial y hasta la ingeniería de detalle y la ejecución de la construcción. AWP proporciona el marco para una construcción productiva y progresiva y presupone la existencia de un plan de ejecución de la construcción”.
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9YaYs4xRGcHxrT8pQOOO8Jq-f7bU5LYYZMzAL5-UY3V02Fydv3EiqJ3I2dfBX1NfH5_wqwBesXFcznAhwiXPCyJjmQ64oZWjP0JAa0DXQAm0CdduHhvs2tbqlFc-W3nHrc1H2nag=w1280-h720-v0?authuser=0)
 
@@ -213,7 +213,7 @@ Sin AWP, la construcción fuera de secuencia desperdicia tiempo y dinero (normal
 | 2013 | La COAA y el CII anuncian conjuntamente el modelo AWP. |
 | 2015 | Definición y requisitos de AWP como buena práctica en el RT-319. |
 | 2017 | AWP entra en las primeras etapas de la globalización. |
-| 2020 | Informes del CII: estándares de datos de EWP, PWP y AWP. |
+| 2020 | Informes del CII: estándares de datos de EWP, PWP (*Procurement Work Package*, paquete de trabajo de compras) y AWP. |
 
 La palabra “publicado” aparece suelta en el diagrama sin que se pueda saber a qué hito corresponde.
 

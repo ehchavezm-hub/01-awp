@@ -20,7 +20,7 @@
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-6MXaPDZYNLuKiZ2_K59myMheRH2KwhijNCCEdH87CpIRo335dq2kKGKgjl_bOwvHVzEWoP6SfHVfoF_1X5RAkFwPh7QBC-4iYV3oKYLXuH1WU7Qgj8JBFBB_IaJDiMsT-VHVnjg=w383-h133-v0?authuser=0)
 
-**Comunidad del CII para el avance de los negocios (CBA: *Community for Business Advancement*)**
+**Comunidad del CII (*Construction Industry Institute*, Instituto de la Industria de la Construcción) para el avance de los negocios (CBA: *Community for Business Advancement*)**
 
 ## Introducción a AWP (AWP Education Primer)
 
@@ -264,7 +264,7 @@ La conversión solo conservó fragmentos de cada hito de la línea de tiempo (a 
 | 2013 | … anuncian conjuntamente el modelo AWP |
 | 2015 | AWP como buena práctica |
 | 2017 | Primeras etapas de la globalización |
-| 2020 | Estándares de datos de EWP, PWP, SWP y AWP |
+| 2020 | Estándares de datos de EWP, PWP (*Procurement Work Package*, paquete de trabajo de compras), SWP y AWP |
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-WWjyUQZ3qvEhConOVF5LGs-Zt24eOo2W7LGyr49XXJ_7uQaDGCRFEqf2qsTvr2GntWsF8LoRIAkViOnuVkcfFUYu8-S2bbalNdqvgIm16t2fKqUKm0T1eJS27Or9dPVTqqBf_pg=w1015-h571-v0?authuser=0)
 

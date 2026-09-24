@@ -16,7 +16,7 @@
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_kYpoN9m3a-iYs5SWp0E8rZSBk5PHbLrzq-7pjqVNeC8YtmlEtk8VJvrnTXyNFq5B_RmStrafrNKDAtRZvbGP8uCn0gK6mCgXS9oao6FikJYHCvHacMBN6NG-c2cL0mFKfs5zrrw=w501-h146-v0?authuser=0)
 
-Preparado por el Grupo de Trabajo Conjunto AWP + Lean del CII. Autores principales: Dan Fauchier y Lloyd Rankin.
+Preparado por el Grupo de Trabajo Conjunto AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) + Lean del CII (*Construction Industry Institute*, Instituto de la Industria de la Construcción). Autores principales: Dan Fauchier y Lloyd Rankin.
 Fecha de revisión: 10 de febrero de 2023.
 
 ## Advanced Work Packaging (AWP) y Lean Construction: comparación de enfoques

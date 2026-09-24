@@ -103,7 +103,7 @@ Elementos que muestra el diagrama de la diapositiva:
 - Herramientas
 - Requisitos técnicos de materiales y equipos permanentes
 - Programa de adquisiciones
-- Advanced Work Packaging (AWP): EWPs, CWPs, IWPs y PWPs
+- Advanced Work Packaging (AWP): EWPs, CWPs, IWPs (*Installation Work Packages*, paquetes de trabajo de instalación) y PWPs
 - Tecnología (plataformas, BIM [*Building Information Modeling*, modelado de información de construcción], sistema de codificación)
 - WBS
 - Plan semanal de los paquetes

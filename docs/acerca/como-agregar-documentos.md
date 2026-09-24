@@ -36,7 +36,7 @@ Esta web se genera con [MkDocs](https://www.mkdocs.org/) y el tema [Material for
 
     ```yaml
       - Formación (CII):
-          - AWP Education Primer: formacion/education-primer.md
+          - Introducción a AWP (CII): formacion/education-primer.md
           - Taller de AWP 2026: formacion/taller-awp-2026.md   # ← línea nueva
     ```
 
@@ -49,6 +49,16 @@ Esta web se genera con [MkDocs](https://www.mkdocs.org/) y el tema [Material for
 
 !!! warning "Si el menú no incluye el documento"
     La web se construye en modo estricto: si un archivo de `docs/` no está en `nav:`, o si un enlace apunta a una página que no existe, la publicación falla y la web anterior sigue en línea. El error aparece en la pestaña **Actions**.
+
+## Documentos en inglés
+
+Las páginas de esta web se publican en español. Si el documento nuevo está en inglés:
+
+- Traduce **solo la copia** que está en `docs/`; el archivo original de la raíz no se modifica.
+- Mantén las siglas técnicas en inglés (AWP, CWP, IWP, EWP, IFC, RFI…). La primera vez que aparezca cada una en el documento, añade entre paréntesis su nombre completo en inglés y en español; por ejemplo: CWP (*Construction Work Package*, paquete de trabajo de construcción).
+- Usa la terminología del [glosario](../referencia/glosario.md), en especial su tabla de equivalencias, para que todos los documentos digan lo mismo de la misma forma.
+- Si el documento cita textualmente a otra organización (por ejemplo, una definición del CII), tradúcela también e indica que es una traducción.
+- Indica en el recuadro “Documento fuente” del inicio de la página que es una traducción y de qué archivo proviene.
 
 ## Agregar siglas al glosario
 
