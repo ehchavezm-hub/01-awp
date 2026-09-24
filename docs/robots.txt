@@ -1,0 +1,3 @@
+# Web interna de consulta: se bloquea a todos los buscadores.
+User-agent: *
+Disallow: /
