@@ -259,3 +259,38 @@
 - **Tipografía:** Arial, igual que en la plantilla.
 - **Otra paleta:** cambiar a otra de las 20 paletas es inmediato, porque los colores están centralizados en el script generador.
 - **Logos:** la plantilla no incluye logos. Si se desea el logo de la empresa, hay que añadir el archivo de imagen al repositorio.
+
+---
+
+## Presentación completa (`implementacion_awp.pptx`)
+
+La presentación completa tiene las 122 láminas de esta estructura, en el mismo orden y con la misma numeración (el número aparece en el pie de cada lámina). Cada lámina lleva en sus notas del orador la explicación ampliada y el documento fuente.
+
+### Ajustes respecto de la estructura aprobada
+
+| # | Cambio | Motivo |
+|---|---|---|
+| 7 | Diseño "dato clave" en lugar de diagrama de tendencia | Las fuentes no traen la serie histórica de productividad |
+| 51 | Título: "…de la definición a la liberación" | El hito de interfaz del curso 2023 es la liberación del EWP |
+| 53 | Título: "El contratista de Ingeniería prepara los EWP; Construcción los revisa" | Afirmación más precisa según el curso 2023 |
+| 57 | Título: "Construcción define los CWP; quién los redacta depende del contrato" | El curso 2023 indica que depende del modelo de contratación |
+| 73 | Códigos de demora como ejemplo ilustrativo | La tabla original del Procedimiento 3.0 no se conservó en la conversión |
+| 76 | Diseño "antes/después" (hasta y desde el 70 % de avance) | Evita repetir la comparación de la lámina 23 |
+| 92 | Título: "El Construction Manager es dueño de AWP en la obra" | Resume sus cinco funciones del curso 2023 |
+| 95 | Matriz RACI presentada como propuesta | Es una síntesis de varias fuentes, no una tabla de una sola |
+| 98 | Fechas de ejemplo ilustrativas | Muestran cómo un atraso del EWP se amplifica en el CWP |
+| 99 | Título: "En campo, mida IWP listos, restricciones cerradas y plan cumplido" | Nombra los KPI concretos |
+| 113 | Título: "Gatear, caminar, correr: implemente por etapas" | Añade la conclusión |
+
+### Cómo regenerar
+
+```bash
+pip install python-pptx Pillow
+python presentacion/generar_presentacion.py      # crea presentacion/implementacion_awp.pptx
+```
+
+- `presentacion/awp/diseno.py`: paleta de la plantilla (AECOM), diseños de lámina y verificador de ajuste de texto (usa las fuentes Liberation, equivalentes métricos de Arial).
+- `presentacion/awp/especiales.py`: diagramas a medida (jerarquía, Gantt de liberación, look-ahead, código WBS, organigrama, tool time, cierre).
+- `presentacion/awp/contenido_a.py`, `contenido_b.py`, `contenido_c.py`: textos y notas del orador de los módulos M0–M4, M5–M8 y M9–M13.
+- `presentacion/generar_iconos.js`: regenera los íconos de `presentacion/assets/iconos` (Font Awesome 6 vía react-icons).
+- Para cambiar de paleta, edite las constantes de color al inicio de `diseno.py`.
