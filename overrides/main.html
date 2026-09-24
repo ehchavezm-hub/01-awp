@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <!-- Web interna: pide a Google y a los demás buscadores que no la indexen
+       ni sigan sus enlaces. La web sigue accesible para quien tenga el enlace. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+{% endblock %}
