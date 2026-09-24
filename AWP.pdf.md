@@ -1,0 +1,2 @@
+
+![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9Al4kUtzGztHwhzB-HqGfUasKK-6EdT3SUEK_UHF3fLXhQoX4rSqMqZVtgwFojNQWmc9pYJGLkJodS3afrURw8RrJGdfvs_1uAYZCcfQfC5GhYYBEwUobnZVJZxjZ6SjnNOGpi=w1940-h1082-v0?authuser=0)
