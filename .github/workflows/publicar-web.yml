@@ -1,0 +1,53 @@
+name: Publicar web en GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  # Permite lanzar la publicación a mano desde la pestaña Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo una publicación a la vez; si llega un cambio nuevo, se cancela la anterior.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar MkDocs y Material
+        run: pip install -r requirements.txt
+
+      - name: Construir la web (falla si hay errores o enlaces rotos)
+        run: mkdocs build --strict
+
+      - name: Preparar la web para GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: despliegue
+        uses: actions/deploy-pages@v4
