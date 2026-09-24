@@ -32,13 +32,13 @@ Esta web reúne los documentos del repositorio, organizados por tema. Usa el **b
 
     Los 7 componentes básicos para poner en marcha AWP en un proyecto.
 
-    [:octicons-arrow-right-24: Quick Start Guide](guias/quick-start-guide-pdf.md)
+    [:octicons-arrow-right-24: Guía de inicio rápido](guias/quick-start-guide-pdf.md)
 
 -   :material-clipboard-list-outline: **Procedimientos AWP-IM-WFP**
 
     ---
 
-    Los tres procedimientos de implementación de Insight-AWP (2017): AWP, Information Management y Workface Planning.
+    Los tres procedimientos de implementación de Insight-AWP (2017): AWP, gestión de la información (IM) y planificación del frente de trabajo (WFP).
 
     [:octicons-arrow-right-24: Ver procedimientos](procedimientos/1-advanced-work-packaging.md)
 
@@ -70,10 +70,10 @@ Esta web reúne los documentos del repositorio, organizados por tema. Usa el **b
 
 ## Por dónde empezar
 
-1. **Si eres nuevo en AWP:** [¿Qué es AWP?](introduccion/que-es-awp-insight.md), luego la [presentación en español](introduccion/presentacion-awp-2022.md) y después el [Education Primer](formacion/education-primer.md).
-2. **Para profundizar:** el [Education Framework](formacion/education-framework.md) y el [curso integrado 2023](formacion/curso-awp-2023.md), con el [glosario](referencia/glosario.md) a mano.
-3. **Para implementar:** la [Quick Start Guide](guias/quick-start-guide-pdf.md) y los procedimientos [1.0](procedimientos/1-advanced-work-packaging.md), [2.0](procedimientos/2-information-management.md) y [3.0](procedimientos/3-workface-planning.md).
+1. **Si eres nuevo en AWP:** [¿Qué es AWP?](introduccion/que-es-awp-insight.md), luego la [presentación en español](introduccion/presentacion-awp-2022.md) y después la [introducción a AWP del CII](formacion/education-primer.md).
+2. **Para profundizar:** el [marco educativo de AWP del CII](formacion/education-framework.md) y el [curso integrado 2023](formacion/curso-awp-2023.md), con el [glosario](referencia/glosario.md) a mano.
+3. **Para implementar:** la [guía de inicio rápido](guias/quick-start-guide-pdf.md) y los procedimientos [1.0](procedimientos/1-advanced-work-packaging.md), [2.0](procedimientos/2-information-management.md) y [3.0](procedimientos/3-workface-planning.md).
 4. **Para contrastar:** [AWP y Lean Construction](comparaciones/awp-vs-lean-construction.md) y el [artículo de Omega 365](introduccion/practica-recomendada-omega-365.md).
 
 !!! note "Sobre los documentos"
-    Casi todos los documentos están en **inglés** y son conversiones automáticas de PDF y páginas web. Los tres procedimientos AWP-IM-WFP (2017) ya están traducidos al español. Por eso algunas listas y tablas se perdieron en la conversión. El [índice de fuentes](acerca/indice-de-fuentes.md) resume cada documento y señala las diferencias y vacíos entre ellos.
+    Los documentos originales están casi todos en **inglés** (salvo la presentación de 2022) y son conversiones automáticas de PDF y páginas web. En esta web se publican **traducidos al español**; los archivos originales se conservan sin cambios en la raíz del repositorio. Las siglas técnicas se mantienen en inglés y, la primera vez que aparecen en cada documento, se indica su nombre completo en inglés y en español. En la conversión se perdieron algunas listas y tablas: cada página lo señala donde ocurre, y el [índice de fuentes](acerca/indice-de-fuentes.md) resume cada documento y las diferencias y vacíos entre ellos.

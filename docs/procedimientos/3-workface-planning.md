@@ -1,4 +1,4 @@
-# Procedimiento 3.0: Workface Planning (Insight-AWP 2017)
+# Procedimiento 3.0: planificación del frente de trabajo, WFP (Insight-AWP, 2017)
 
 <div data-search-exclude markdown>
 
@@ -50,7 +50,7 @@ Estos tres procedimientos principales se apoyan en un conjunto de plantillas y p
 15. Alineamiento diario
 16. Subcontratistas
 17. Entrega (*turnover*)
-18. Estudios de tiempo en herramienta (*tool time*)
+18. Estudios de tiempo con herramientas (*tool time*)
 19. Auditorías
 20. Mantenimiento del procedimiento
 
@@ -106,7 +106,7 @@ El coordinador de WFP es responsable de apoyar la ejecución de este procedimien
 
 **CWA** (*Construction Work Area*, área de trabajo de construcción): división geográfica del trabajo definida por Construcción. Incluye todas las disciplinas, con excepción de los cables y las obras subterráneas, que también se dividen en áreas de trabajo, pero a lo largo de todo el proyecto. Cada CWA tiene límites definidos por la agrupación lógica del trabajo y se convierte en una actividad del cronograma de nivel 2.
 
-**CWP** (*Construction Work Package*, paquete de trabajo de construcción): parte de una CWA correspondiente a una sola disciplina, que define una división lógica del trabajo de construcción de menos de 40 000 horas-hombre. Un CWP es un componente de la WBS (*Work Breakdown Structure*, estructura de desglose del trabajo), una sola actividad de nivel 3 del cronograma del proyecto y el producto final de un único EWP y un único PWP cuando se prepara para construcción. El trabajo se divide de modo que los CWPs no se superpongan y puedan usarse como límites contractuales del trabajo. Los planificadores del frente de trabajo (*Workface Planners*) dividen cada CWP en una serie de IWPs.
+**CWP** (*Construction Work Package*, paquete de trabajo de construcción): parte de una CWA correspondiente a una sola disciplina, que define una división lógica del trabajo de construcción de menos de 40 000 horas-hombre. Un CWP es un componente de la WBS (*Work Breakdown Structure*, estructura de desglose del trabajo), una sola actividad de nivel 3 del cronograma del proyecto y el producto final de un único EWP (*Engineering Work Package*, paquete de trabajo de ingeniería) y un único PWP (*Procurement Work Package*, paquete de trabajo de compras) cuando se prepara para construcción. El trabajo se divide de modo que los CWPs no se superpongan y puedan usarse como límites contractuales del trabajo. Los planificadores del frente de trabajo (*Workface Planners*) dividen cada CWP en una serie de IWPs (*Installation Work Packages*, paquetes de trabajo de instalación).
 
 **EWP** (*Engineering Work Package*, paquete de trabajo de ingeniería): entregable de ingeniería de una sola disciplina que contiene todos los datos de ingeniería necesarios para un único CWP: alcance del trabajo, planos, datos del proveedor, lista de materiales y especificaciones, tanto en PDF como en archivos electrónicos del modelo 3D. Los EWPs se desarrollan de forma secuencial para cumplir con los elementos de la ruta de construcción, lo que facilita la compra secuencial y la ejecución de los CWPs. Un EWP se representa en el cronograma como una sola actividad de nivel 3.
 
@@ -617,11 +617,11 @@ A criterio del equipo de comisionamiento y puesta en marcha, los planificadores 
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-7heOCwuTMwKFDqLc3HmfMtyzeA3rWnciDOlNcFsOLxnEI0EhctO-6AwtP8SKpmZ-qcR034G3jny4CKBX_E5Hr7098JLGc_w-SaTaUOMxLWUJv00S3cwEjGComPcnNFK82QDl00g=w395-h327-v0?authuser=0)
 
-## 18. Estudios de tiempo en herramienta (tool time)
+## 18. Estudios de tiempo con herramientas (tool time)
 
-Para ayudar a medir el efecto de Workface Planning, el equipo de gestión de la construcción encargará a terceros estudios de tiempo en herramienta (*tool time*) cada dos o tres meses durante todo el proyecto.
+Para ayudar a medir el efecto de Workface Planning, el equipo de gestión de la construcción encargará a terceros estudios de tiempo con herramientas (*tool time*) cada dos o tres meses durante todo el proyecto.
 
-El estudio de tiempo en herramienta (*Time on Tools*) es un proceso sistemático que obtiene una instantánea numérica de los niveles de actividad de los trabajadores de oficio en un proyecto de construcción. En los últimos 40 años, una gran variedad de organizaciones lo ha aplicado en proyectos de construcción de todo el mundo, y es la plataforma universal para la ingeniería industrial y para el análisis y la mejora de la productividad.
+El estudio de tiempo con herramientas (*Time on Tools*) es un proceso sistemático que obtiene una instantánea numérica de los niveles de actividad de los trabajadores de oficio en un proyecto de construcción. En los últimos 40 años, una gran variedad de organizaciones lo ha aplicado en proyectos de construcción de todo el mundo, y es la plataforma universal para la ingeniería industrial y para el análisis y la mejora de la productividad.
 
 Los resultados muestran los niveles promedio de actividad de los trabajadores de oficio para todas las observaciones, en todas las empresas y áreas.
 

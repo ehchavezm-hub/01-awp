@@ -1,4 +1,4 @@
-# Procedimiento 2.0: Information Management (Insight-AWP 2017)
+# Procedimiento 2.0: gestión de la información, IM (Insight-AWP, 2017)
 
 <div data-search-exclude markdown>
 
@@ -101,7 +101,7 @@ El gestor de información es responsable de aplicar este procedimiento con todos
 
 **CWA** (*Construction Work Area*, área de trabajo de construcción): división geográfica del trabajo definida por Construcción. Incluye todas las disciplinas, con excepción de los cables y las obras subterráneas, que también se dividen en áreas de trabajo, pero a lo largo de todo el proyecto. Cada CWA tiene límites definidos por la agrupación lógica del trabajo y se convierte en una actividad del cronograma de nivel 2.
 
-**CWP** (*Construction Work Package*, paquete de trabajo de construcción): parte de una CWA correspondiente a una sola disciplina, que define una división lógica del trabajo de construcción de menos de 40 000 horas-hombre. Un CWP es un componente de la WBS (*Work Breakdown Structure*, estructura de desglose del trabajo), una sola actividad de nivel 3 del cronograma del proyecto y el producto final de un único EWP y un único PWP cuando se prepara para construcción. El trabajo se divide de modo que los CWPs no se superpongan y puedan usarse como límites contractuales del trabajo. Los planificadores del frente de trabajo (*Workface Planners*) dividen cada CWP en una serie de IWPs.
+**CWP** (*Construction Work Package*, paquete de trabajo de construcción): parte de una CWA correspondiente a una sola disciplina, que define una división lógica del trabajo de construcción de menos de 40 000 horas-hombre. Un CWP es un componente de la WBS (*Work Breakdown Structure*, estructura de desglose del trabajo), una sola actividad de nivel 3 del cronograma del proyecto y el producto final de un único EWP (*Engineering Work Package*, paquete de trabajo de ingeniería) y un único PWP (*Procurement Work Package*, paquete de trabajo de compras) cuando se prepara para construcción. El trabajo se divide de modo que los CWPs no se superpongan y puedan usarse como límites contractuales del trabajo. Los planificadores del frente de trabajo (*Workface Planners*) dividen cada CWP en una serie de IWPs (*Installation Work Packages*, paquetes de trabajo de instalación).
 
 **EWP** (*Engineering Work Package*, paquete de trabajo de ingeniería): entregable de ingeniería de una sola disciplina que contiene todos los datos de ingeniería necesarios para un único CWP: alcance del trabajo, planos, datos del proveedor, lista de materiales y especificaciones, tanto en PDF como en archivos electrónicos del modelo 3D. Los EWPs se desarrollan de forma secuencial para cumplir con los elementos de la ruta de construcción, lo que facilita la compra secuencial y la ejecución de los CWPs. Un EWP se representa en el cronograma como una sola actividad de nivel 3.
 

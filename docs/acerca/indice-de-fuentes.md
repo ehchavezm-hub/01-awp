@@ -3,7 +3,7 @@
 <div data-search-exclude markdown>
 
 !!! info "Documento fuente"
-    Copia de `INDICE.md`. Los enlaces se actualizaron para apuntar a las páginas de esta web. Los archivos duplicados (`-2.md`), `README.md` y `AWP.pdf.md` no se publican porque no aportan contenido distinto.
+    Copia de `INDICE.md`. Los enlaces se actualizaron para apuntar a las páginas de esta web. Los archivos duplicados (`-2.md`), `README.md` y `AWP.pdf.md` no se publican porque no aportan contenido distinto. Las páginas de la web son traducciones al español de los archivos originales, que siguen en inglés en la raíz del repositorio.
 
 </div>
 
@@ -73,7 +73,7 @@ Este índice cubre los **22 archivos `.md`** del repositorio (sin contar este). 
 
 | Tema | Dónde aparece | Observación |
 |---|---|---|
-| **Definición de AWP del CII** ("the overall process flow of all the detailed work packages…") | pptx 2022, Education Primer, Education Framework, Overview CII, Glosario | Es la cita más repetida del repositorio. |
+| **Definición de AWP del CII** (“el flujo de proceso general de todos los paquetes de trabajo detallados…”, traducción) | pptx 2022, Education Primer, Education Framework, Overview CII, Glosario | Es la cita más repetida del repositorio. |
 | **Jerarquía de paquetes** (CWA → CWP → IWP, con EWP y PWP alineados; SWP/TOP/TWP para puesta en marcha) | Prácticamente todos | Se define con matices distintos en cada fuente (ver §3). |
 | **CWP: una disciplina, < 40 000 HH, actividad de nivel 3** | Procedimientos 1-2-3, Glosario, pptx 2022 | Texto casi literal en las cuatro fuentes. |
 | **Relación 1 EWP = 1 PWP = 1 CWP** | Procedimiento 1, Omega 365, Framework, curso 2023 | Omega 365 y el curso 2023 admiten excepciones (bultos, varios EWP por CWP). |
@@ -114,14 +114,14 @@ Este índice cubre los **22 archivos `.md`** del repositorio (sin contar este). 
 - **Archivos vacíos:** `README.md` (solo título) y `AWP.pdf.md` (solo una imagen). Falta una descripción del repositorio y las "notas propias" que anuncia el README.
 - **Duplicados sin utilidad:** los 4 archivos `-2.md` repiten el mismo texto.
 - **Listas y viñetas perdidas en la conversión.** Muchas frases terminan en ":" sin contenido detrás. Por ejemplo:
-  - Procedimientos 1-2-3: *Scope*, "The AWP Champion will:", "WFP Coordinator is responsible to:", secciones de estrategias de ejecución, resumen de auditorías y lista final de mantenimiento.
+  - Procedimientos 1-2-3: el alcance, “El AWP Champion:”, “el coordinador de WFP es responsable de:”, las secciones de estrategias de ejecución, el resumen de auditorías y la lista final de mantenimiento.
   - Procedimiento 1: la **sección 12 (Roadmap)** está vacía.
-  - Procedimiento 3: las secciones **6 (IWP)**, **11 (Material Management)** y **14 (Field Execution)** están casi vacías, igual que la lista de restricciones por defecto y la del contenido del IWP.
-  - Omega 365: actividades de cada una de las 4 etapas, lista de beneficios, *best practices* del CII, KPIs y "apps involved".
-  - Curso 2023: los objetivos de lección, los cuestionarios ("Time to test your knowledge!") y la mayoría de los resúmenes "What we know…" están vacíos o cortados.
-  - Primer y Framework: las tablas "AWP by Project Phase" (actividades / valor / entregables) y "Getting Started" solo conservan los encabezados.
+  - Procedimiento 3: las secciones **6 (paquetes de trabajo de instalación)**, **11 (gestión de materiales)** y **14 (ejecución en campo)** están casi vacías, igual que la lista de restricciones por defecto y la del contenido del IWP.
+  - Omega 365: actividades de cada una de las 4 etapas, lista de beneficios, buenas prácticas del CII, KPIs y “aplicaciones involucradas”.
+  - Curso 2023: los objetivos de lección, los cuestionarios (“¡Es hora de poner a prueba sus conocimientos!”) y la mayoría de los resúmenes (“Lo que sabemos…”) están vacíos o cortados.
+  - Introducción a AWP y marco educativo del CII (Primer y Framework): las tablas de “AWP por fase del proyecto” (actividades / valor / entregables) y “Cómo empezar con AWP” solo conservan los encabezados.
 - **Texto truncado:** en `awp-vs-lc-pdf.md` varias comparaciones se cortan a mitad de frase (temas 6, 7 y 10), y los títulos de tema aparecen desfasados respecto a su contenido.
-- **Restos de OCR:** texto con letras espaciadas ("P a t h  o f  C o n s t r u c t i o n") en el Primer y el Framework, y tablas desarmadas en el Procedimiento 3 (*Pack Track*).
+- **Restos de OCR:** texto con letras espaciadas (por ejemplo, “P a t h  o f  C o n s t r u c t i o n”) en el Primer y el Framework; en la web ya se corrigió, y tablas desarmadas en el Procedimiento 3 (*Pack Track*).
 - **Placeholders:** el pptx 2022 termina con las diapositivas "AAA" y "BBB".
 
 ### 4.2 Errores o referencias internas rotas en los procedimientos Insight 2017

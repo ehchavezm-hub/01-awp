@@ -52,7 +52,11 @@ Se indica la sigla, su forma en inglés (tal como aparece en los documentos) y u
 | SPI | Schedule Performance Index | Índice de desempeño del cronograma. |
 | TIC | Total Installed Cost | Costo total instalado del proyecto. |
 | TOT / ToT | Time on Tools | Tiempo efectivo de trabajo con herramientas (*tool time*). |
-| TWLA | Three Week Look Ahead | Programación de las próximas tres semanas. |
+| TWLA | Three Week Look Ahead | Programación a tres semanas: las próximas tres semanas de trabajo. |
+| FID | Final Investment Decision | Decisión final de inversión (normalmente, en la compuerta 3). |
+| IPPM | Interactive Project Planning Meeting | Reunión de planificación interactiva del proyecto. |
+| RAS | Required At Site | Fecha requerida en obra (equivale a ROS). |
+| ROM | Rough Order of Magnitude | Estimación de orden de magnitud aproximado (±25 %). |
 | WBS | Work Breakdown Structure | Estructura de desglose del trabajo. |
 
 </div>
@@ -70,6 +74,11 @@ Se indica la sigla, su forma en inglés (tal como aparece en los documentos) y u
 | IM | Information Management | Gestión de la información. |
 | IMM | Integrated Materials Management | Gestión integrada de materiales. |
 | QC | Quality Control | Control de calidad. |
+| QA | Quality Assurance | Aseguramiento de la calidad. |
+| JHA | Job Hazard Analysis | Análisis de riesgos del trabajo. |
+| ITP | Inspection and Test Plan | Plan de inspección y ensayos. |
+| ITR | Inspection and Test Record | Registro de inspección y pruebas. |
+| ISBL / OSBL | Inside / Outside Battery Limits | Dentro / fuera de los límites de batería de la planta. |
 | SU | Startup | Puesta en marcha. |
 | STO / SDTA / STA | Shut Down Turn Around | Parada de planta para reparaciones, mantenimiento, ampliaciones o mejoras. |
 | TA | Turnaround | Parada de planta (ver STO). |
@@ -100,6 +109,8 @@ Se indica la sigla, su forma en inglés (tal como aparece en los documentos) y u
 | RFI | Request for Information | Solicitud de información. |
 | RFOC | Ready for Operation | Listo para operación. |
 | RFP | Request for Proposal | Solicitud de propuestas. |
+| MRM | Material Responsibility Matrix | Matriz de responsabilidad de materiales: quién suministra qué. |
+| PO | Purchase Order | Orden de compra. |
 
 </div>
 
@@ -112,6 +123,8 @@ Se indica la sigla, su forma en inglés (tal como aparece en los documentos) y u
 | CBA | Community for Business Advancement | Comunidad del CII para el avance de AWP en la industria. |
 | CII | Construction Industry Institute | Instituto de la Industria de la Construcción (Universidad de Texas en Austin). |
 | CM | Construction Manager | Gerente de construcción. |
+| CMT | Construction Management Team | Equipo de gestión de la construcción. |
+| CEP | Construction Execution Plan | Plan de ejecución de la construcción. |
 | COAA | Construction Owners Association of Alberta | Asociación de propietarios de Alberta (Canadá), socia del CII en la investigación de AWP. |
 | EPC | Engineering, Procurement and Construction | Contrato de ingeniería, compras y construcción. |
 | EPCM | Engineering, Procurement and Construction Management | Contrato de ingeniería, compras y gestión de la construcción. |
@@ -122,6 +135,7 @@ Se indica la sigla, su forma en inglés (tal como aparece en los documentos) y u
 | LPS | Last Planner System® | Sistema del último planificador (Lean Construction). |
 | PMT | Project Management Team | Equipo de gestión del proyecto. |
 | SME | Subject Matter Expert | Experto en la materia. |
+| RT | Research Team | Equipo de investigación del CII (por ejemplo, RT-272 o RT-319). |
 
 </div>
 
@@ -139,7 +153,10 @@ AWP Architectural Plan / AWP Framework
 :   Documento que define cómo se aplicará AWP en un proyecto concreto: flujos de proceso, interfaces, responsabilidades, integración de datos y sistemas, y el plan de AWP y WFP. Se presenta al propietario en la etapa de propuesta (RFP).
 
 Backlog
-:   Reserva de IWPs listos (sin restricciones) para que las cuadrillas no se queden sin trabajo. Las fuentes recomiendan entre 2 y 4 semanas.
+:   Cartera de trabajo liberado: reserva de IWPs listos (sin restricciones) para que las cuadrillas no se queden sin trabajo. Las fuentes recomiendan entre 2 y 4 semanas (30 días en el curso 2023).
+
+Big Room (sala de trabajo conjunto)
+:   En Lean/IPD, espacio y forma de trabajo en que los equipos de todos los oficios planifican juntos el alcance y el método constructivo, con el plan exhibido en la pared.
 
 Building Information Model (BIM)
 :   Representación digital de las características físicas y funcionales de un proyecto.
@@ -149,6 +166,9 @@ Constraint (restricción)
 
 Constraint Management (gestión de restricciones)
 :   Proceso para identificar, asignar y eliminar las restricciones de cada paquete antes de liberarlo al campo. La regla principal de WFP es que ningún IWP va al campo con restricciones abiertas.
+
+Construction Driven Engineering (ingeniería dirigida por la construcción)
+:   Incluir la planificación de la construcción en las fases tempranas de la ingeniería para que ingeniería emita sus entregables en el orden que necesita construcción.
 
 Construction Schedule (cronograma de construcción)
 :   Cronograma (nivel 2 o superior) que muestra los IWPs como actividades dentro de los CWPs y su relación con la ruta de construcción.
@@ -164,6 +184,9 @@ Engineering Work Package (EWP)
 
 EWP Release Plan
 :   Documento de control, derivado de la ruta de construcción, con las fechas de emisión de los EWPs necesarias para apoyar los paquetes de compras y construcción.
+
+Digital Thread (hilo digital)
+:   Transferencia continua de información estructurada entre sistemas y disciplinas a lo largo del ciclo de vida del proyecto, para no volver a crear los datos en cada fase.
 
 Foreman (capataz)
 :   Supervisa directamente una cuadrilla de una sola disciplina y ejecuta los IWPs en campo. Proporción típica: 1 capataz por 10 trabajadores.
@@ -183,8 +206,14 @@ Integrated Project Schedule (cronograma integrado)
 IWP Release Plan
 :   Documento de control que genera y mantiene el contratista para seguir y comunicar el estado de cada IWP.
 
+Make Work Ready (hacer el trabajo ejecutable)
+:   Proceso semanal del Last Planner System® en que los capataces y superintendentes identifican las restricciones de las próximas 6 semanas o más y asignan a un responsable para levantarlas.
+
 Module Assembly Work Package (MAWP)
 :   Grupo de EWPs con toda la ingeniería IFC de todas las disciplinas necesaria para construir un módulo. Un grupo de menos de 10 módulos forma un CWP y un grupo de envío.
+
+Pack Track
+:   Hoja de cálculo en la que el planificador del frente de trabajo registra el avance de cada IWP por las etapas de levantamiento de restricciones.
 
 Path of Construction (POC)
 :   Secuencia en la que se construirán las distintas áreas de la planta. Considera la instalación de equipos grandes, las prioridades de comisionamiento y puesta en marcha, y los equipos de fabricación larga. Se define en FEL 2 y se congela en FEL 3; la lidera Construcción.
@@ -195,11 +224,23 @@ Path of Engineering
 Procurement Work Package (PWP)
 :   Entregable de compras que identifica todos los materiales de un CWP. Normalmente no es un paquete físico, sino fechas ROS asignadas en el software de materiales. Para acero y tuberías se convierte en un paquete de fabricación.
 
+Pull planning (planificación *pull*)
+:   Planificación “de arrastre” del Last Planner System®: se parte del hito y se planifica hacia atrás, acordando los traspasos entre oficios.
+
 Production Design
 :   Diseño de la estrategia de producción: cómo configurar los tipos de paquetes (EWP, CWP, IWP, etc.) y los flujos de trabajo para entregar el proyecto.
 
+Release Plan (plan de liberación)
+:   Documento de control con las fechas planificadas y reales de liberación de cada paquete (EWP, CWP o IWP).
+
+Rules of Credit (reglas de crédito)
+:   Criterios acordados para medir el avance de un paquete o elemento según las etapas que ha cumplido; por ejemplo, un porcentaje fijo al emitirse para construcción.
+
 Shut Down Turn Around (STO / SDTA / STA)
 :   Proyectos en los que se detiene la operación de toda o parte de una planta para hacer reparaciones, mantenimiento, ampliaciones o mejoras.
+
+Stage Gate (sistema de etapas y compuertas)
+:   Sistema de revisiones del proyecto al final de cada etapa (FEL 1 evaluar, FEL 2 seleccionar, FEL 3 definir, ejecutar, operar) antes de pasar a la siguiente.
 
 Superintendent (superintendente)
 :   Supervisa hasta 4 capataces generales de una disciplina según el CII (hasta 3 según Insight-AWP).
@@ -233,6 +274,44 @@ WorkFace Planner / WorkFace Facilitator
 
 WorkFace Planning (WFP)
 :   Proceso de organizar y entregar, antes de empezar, todo lo necesario para que los trabajadores ejecuten el trabajo de forma segura, eficaz y eficiente. Libera al frente de trabajo solo trabajo sin restricciones, mediante IWPs bien definidos.
+
+## Equivalencias usadas en las traducciones
+
+Para que todos los documentos usen la misma terminología, las traducciones de esta web aplican estas equivalencias (español de Latinoamérica, vocabulario de obra):
+
+| En inglés | En español |
+|---|---|
+| AWP Champion | AWP Champion (líder de AWP) |
+| Backlog | Backlog (cartera de trabajo liberado) |
+| Bill of Materials | Lista de materiales |
+| Commissioning / Startup | Comisionamiento / puesta en marcha |
+| Constraint / constraint removal | Restricción / levantamiento de restricciones |
+| Constructability | Constructabilidad |
+| Crew / Foreman / General Foreman | Cuadrilla / capataz / capataz general |
+| Earned value / Planned value | Valor ganado / valor planificado |
+| Front End Planning | Planificación temprana |
+| Installation rates / rates of placement | Rendimientos de instalación |
+| Laydown | Zona de acopio |
+| Lookahead / Three Week Look Ahead | Programación anticipada / programación a tres semanas |
+| Material Take-Off | Metrado de materiales |
+| Mechanical completion | Completamiento mecánico |
+| Owner / Contractor / Stakeholders | Propietario / contratista / interesados |
+| Path of Construction | Ruta de construcción |
+| Pipe rack | Rack de tuberías |
+| Plot plan | Plano de ubicación general |
+| Pour (concrete) | Vaciado (de concreto) |
+| Procurement | Compras (procura) |
+| Release Plan | Plan de liberación |
+| Rework | Retrabajo |
+| Rules of Credit | Reglas de crédito |
+| Scaffold | Andamio |
+| Schedule / Scheduler | Cronograma / programador |
+| Stewardship report | Informe de gestión |
+| Timesheet | Hoja de tiempo (tareo) |
+| Tool time / Time on Tools | Tiempo con herramientas |
+| Turnover | Entrega (*turnover*) |
+| Work-hours / man-hours | Horas-hombre |
+| Workface / Workface Planner | Frente de trabajo / planificador del frente de trabajo |
 
 ## Diferencias entre fuentes
 

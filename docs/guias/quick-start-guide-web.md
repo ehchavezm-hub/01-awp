@@ -1,92 +1,200 @@
-# Quick Start Guide de AWP (versión web)
+# Guía de inicio rápido de AWP (versión web)
 
 <div data-search-exclude markdown>
 
 !!! info "Documento fuente"
-    Copia de `awp-quick-start-guide-insight-awp.md` (página web de Insight-AWP, en inglés). Se corrigió solo el formato (títulos, listas y restos de la conversión); el texto es el original.
+    Traducción al español de `awp-quick-start-guide-insight-awp.md` (página web de Insight-AWP, *AWP Quick Start Guide*, en inglés). El archivo original de la raíz del repositorio no se modificó. Las siglas técnicas se mantienen en inglés; la primera vez que aparece cada una se indica su nombre completo en inglés y en español.
+
+!!! warning "Listas perdidas en la conversión"
+    La conversión de la página web no conservó varias listas del original. Cuando la [versión PDF de la guía](quick-start-guide-pdf.md) sí las conserva, se indica en la nota; no se ha inventado ningún contenido.
 
 </div>
 
-This AWP Quick Start Guide will show you how AWP can:
-Take control of your projects and remove the chaos. Start your journey on improving the path of construction.
-[Download the PDF](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fawp-quick-start-guide%2F%23download-form)
-**The aim of Advanced Work Packaging is to ultimately give each Foreman an Installation Work Package (IWP) at the start of each week that is 'ready to go'.**
-The scope is identified, the material and tools are available, the prerequisite work is complete, and the scaffold is erected and fit for purpose.
-The Superintendent expects the foreman and crew to complete the work within the scheduled time window and estimated hours. The results are typically a 25% increase in productivity and a 10% reduction in the project's Total Installed Cost. Many streams of contribution lead to this state, and this Quick Start Guide is designed to identify the core components that must be in place to effectively apply[Advanced Work Packaging](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2F)(AWP), Information Management (IM), and Workface Planning (WFP)
-### Table of Contents
-01. Assign an Advanced Work Packaging Champion.
-The application of AWP needs direction and guidance, much like how Project Management organizations apply models for Safety and Quality. The assignment of a dedicated Champion within the Project Management organization is a critical first step to the development of a culture of productive project execution.
-As a Project Management team member, the AWP Champion typically represents the Owner and coordinates deliverables from all project stakeholders impartially, with the singular focus of bringing benefit to the entire project.
-AWP Champion
-As a Project Management team member, the AWP Champion typically represents the Owner and coordinates deliverables from all project stakeholders impartially, with the singular focus of bringing benefit to the entire project.
-The AWP Champion functions as the project coach, guiding the implementation of AWP, IM, and WFP procedures. Aligning engineering and procurement with construction needs, developing IM standards and processes, and then developing and applying Workface Planning in the field.
-The ideal candidate for this position is a Subject Matter Expert in AWP and Project Management with experience in Construction Management. lnsight-AWP offers this service to our clients, and we often provide the AWP Champion, who then becomes integrated into the Project Management Team as a representative of the Owner
-02. Advanced Work Packaging Procedures
-In order for the project stakeholders to follow a set direction there must be a standard to go by. While procedures alone do not make changes happen, they do establish an expectation for compliance and will facilitate audits of the process later in the project. Ideally procedures are specific, detailed and identify: Who, What, When, How and Why, with flow charts and templates.
-Importantly the procedures need to address three key areas:
-03. 3D Model and Fabrication
-The core components related to 3D Model and Fabrication include:
-3D Construction Model
-The creation of a fully attributed 3D model and intelligent data created by the fabricators is already produced on most projects. Obtaining this data and making it available to the WFP team facilitates the planning process and creates a solid platform for communicating project information.
-The process that leads to the delivery of this data is typically the inclusion of a contract clause that identifies the data as a deliverable. The project management team then establishes a delivery schedule that ensures the project data is complete and updated.
-Typically, the AWP Champion and the Project Management Team facilitate the development of a matrix of attributes for Engineering to guide the population of the 3D model during design. This will allow the construction team to mine the appropriate data during the construction phase.
-04. Workface Planning Software
-WFP software is commercially available software that organizes the project data on the platform of the 3D model so that Workface Planners can develop and manage Installation Work Packages (IWPs) in a virtual 3D environment.
-The software also facilitates the calculation of Planned Value and can be used to create 4D simulations of IWPs based on the project schedule.
-Autodesk Navisworks | Constructsim
-Prior to the start of FEED, the AWP Champion and the Information Manager assess the features and compatibility of the different products to find the best fit with their existing software. This would typically span the software used for the 3D model, material management, and document control.
-05. Workface Planners
-The critical component of the Workface Planning process is the creation of an extra position within the typical construction organization.
-The Workface Planner is dedicated to developing plans for the Foreman based upon the execution strategy developed by the Superintendent.
-A typical profile for a Workface Planner:
-Once you have identified the candidates enroll them into a Workface Planning Training course (to be attended sometime after they have started work). Give each Workface Planner a copy of the book 'Schedule for Sale' to read prior to starting work.
-Set up a common area with desks, computers, and phones for each Workface Planner.
-**The approximate ratio of Planners to Field Workers should be 1 to 50**with some consideration for complexity. The complexity of instrumentation requires more planning resources than pouring concrete or earthworks.
-06. Installation Work Packages
-The model for Installation Work Packages (IWPs) is based upon this simple question: What does a Foreman need in order to execute work?
-The answer then becomes the contents of the IWP.
-The generic standard for an Installation Work Package:
-**Other considerations:**
-**How much work should be in an IWP?**
-Start with one rotation, approximately 500 hours and then allow the model to develop into a fit for purpose application. Generally speaking smaller packages are better for the Foremen, they are easier to track and guide the execution of a specific sequence.
-**The process of developing IWPs:**
-Pick a CWP that is planned for execution in 90 days and ask the Superintendent to sit with the Planner and describe how the work should be dissected and sequenced. The Planner develops the IWPs in the 30 environment and drafts a scope statement for each one, then the Superintendent reviews and approves the dissection and sequence. The Planner then builds each IWP and populates each of the sections based upon the specific scope.
-**The Project Schedule:**
-Once a CWP (Level 3 activity) has been dissected into IWPs (level 5 activities) the Workface Planner submits the sequence of IWPs to the Scheduler as the level S schedule for that CWP. The level 5 schedule should then only contain CWPs, IWPs and milestones.
-07. Constraint Removal
-The process of constraint removal and management is the single biggest change from the way that construction is typically executed. The golden rule is that IWP's must not be released to the field until they are free of constraints and are 'ready to execute'.
-Critical constraints on an IWP are typically Documents, Materials and Scaffold, with Construction Equipment, Project Controls, Safety, Quality and Workforce regarded as secondary constraints that can be addressed in house in a short period of time.
-This process is managed through the signatures on the 'Constraints' page in the IWP. The Workface Planner is responsible to gather the sign offs as each section of the IWP is satisfied.
-When an IWP becomes constraint free the Workface Planner prints a hard copy and submits it to document control for storage. The Workface Planner tracks the development of IWPs in a spreadsheet (Pack-Track) that is shared with the project.
+Esta guía de inicio rápido de AWP le mostrará cómo AWP puede:
+
+*(La lista de este apartado no se conservó en la conversión de la página original.)*
+
+Tome el control de sus proyectos y elimine el caos. Empiece a mejorar la ruta de construcción.
+
+[Descargar el PDF](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fawp-quick-start-guide%2F%23download-form)
+
+El objetivo de AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) es, en última instancia, entregar a cada capataz, al inicio de cada semana, un IWP (*Installation Work Package*, paquete de trabajo de instalación) “listo para ejecutar”.
+
+El alcance está identificado, el material y las herramientas están disponibles, el trabajo previo está terminado y el andamio está armado y es adecuado para el trabajo.
+
+El superintendente espera que el capataz y su cuadrilla terminen el trabajo dentro del plazo programado y de las horas estimadas. Los resultados suelen ser un aumento del 25 % en la productividad y una reducción del 10 % en el costo total instalado del proyecto. Muchas contribuciones llevan a este estado, y esta guía de inicio rápido está diseñada para identificar los componentes básicos que deben existir para aplicar con eficacia [Advanced Work Packaging](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2F) (AWP), IM (*Information Management*, gestión de la información) y WFP (*Workface Planning*, planificación del frente de trabajo).
+
+## Contenido
+
+1. Designar un AWP Champion
+2. Procedimientos de Advanced Work Packaging
+3. Modelo 3D y fabricación
+4. Software de Workface Planning
+5. Planificadores del frente de trabajo
+6. Paquetes de trabajo de instalación
+7. Levantamiento de restricciones
+8. Beneficios adicionales (más allá de la guía de inicio rápido)
+
+## 01. Designar un AWP Champion
+
+La aplicación de AWP necesita dirección y orientación, de forma muy parecida a como las organizaciones de gestión de proyectos aplican modelos de seguridad y de calidad. Designar un AWP Champion (líder de AWP) dedicado dentro de la organización de gestión del proyecto es un primer paso crítico para desarrollar una cultura de ejecución productiva de los proyectos.
+
+**AWP Champion**
+
+Como miembro del equipo de gestión del proyecto, el AWP Champion suele representar al propietario y coordina de manera imparcial los entregables de todos los interesados del proyecto, con el único objetivo de beneficiar al proyecto en su conjunto.
+
+El AWP Champion actúa como el *coach* del proyecto y guía la implementación de los procedimientos de AWP, IM y WFP: alinear la ingeniería y las compras (procura) con las necesidades de la construcción, desarrollar los estándares y procesos de IM y, luego, desarrollar y aplicar Workface Planning en campo.
+
+El candidato ideal para este cargo es un experto en la materia en AWP y gestión de proyectos, con experiencia en gestión de la construcción. Insight-AWP ofrece este servicio a sus clientes y a menudo proporciona al AWP Champion, que se integra al equipo de gestión del proyecto como representante del propietario.
+
+## 02. Procedimientos de Advanced Work Packaging
+
+Para que los interesados del proyecto sigan una dirección definida, debe existir un estándar de referencia. Aunque los procedimientos por sí solos no logran que los cambios ocurran, sí establecen una expectativa de cumplimiento y facilitarán las auditorías del proceso más adelante en el proyecto. Idealmente, los procedimientos son específicos y detallados, e identifican quién, qué, cuándo, cómo y por qué, con diagramas de flujo y plantillas.
+
+Es importante que los procedimientos aborden tres áreas clave:
+
+*(La lista no se conservó en la conversión de la página; la [versión PDF de la guía](quick-start-guide-pdf.md) la incluye: Advanced Work Packaging, gestión de la información y Workface Planning.)*
+
+## 03. Modelo 3D y fabricación
+
+Los componentes básicos relacionados con el modelo 3D y la fabricación incluyen:
+
+*(La lista de este apartado no se conservó en la conversión de la página original.)*
+
+**Modelo 3D de construcción**
+
+En la mayoría de los proyectos ya se produce un modelo 3D con todos sus atributos y los datos inteligentes que generan los fabricantes. Obtener estos datos y ponerlos a disposición del equipo de WFP facilita el proceso de planificación y crea una plataforma sólida para comunicar la información del proyecto.
+
+El proceso que conduce a la entrega de estos datos suele ser la inclusión de una cláusula contractual que identifique los datos como un entregable. Luego, el equipo de gestión del proyecto establece un cronograma de entregas que asegure que los datos del proyecto estén completos y actualizados.
+
+Normalmente, el AWP Champion y el equipo de gestión del proyecto facilitan la elaboración de una matriz de atributos para que Ingeniería guíe el llenado del modelo 3D durante el diseño. Esto permitirá al equipo de construcción extraer los datos adecuados durante la fase de construcción.
+
+## 04. Software de Workface Planning
+
+El software de WFP es un software comercial que organiza los datos del proyecto sobre la plataforma del modelo 3D, para que los planificadores del frente de trabajo (*Workface Planners*) puedan desarrollar y gestionar paquetes de trabajo de instalación (IWPs) en un entorno virtual 3D.
+
+El software también facilita el cálculo del valor planificado y puede usarse para crear simulaciones 4D de los IWPs a partir del cronograma del proyecto.
+
+Ejemplos de software: Autodesk Navisworks y ConstructSim.
+
+Antes del inicio de la FEED (*Front-End Engineering Design*, ingeniería básica extendida), el AWP Champion y el gestor de información evalúan las funciones y la compatibilidad de los distintos productos para encontrar el que mejor se adapte a su software existente. Normalmente, esto abarca el software que se usa para el modelo 3D, la gestión de materiales y el control documentario.
+
+## 05. Planificadores del frente de trabajo
+
+El componente crítico del proceso de Workface Planning es la creación de un cargo adicional dentro de la organización típica de construcción.
+
+El planificador del frente de trabajo se dedica a elaborar los planes para el capataz a partir de la estrategia de ejecución que define el superintendente.
+
+Perfil típico de un planificador del frente de trabajo:
+
+*(La lista no se conservó en la conversión de la página; la [versión PDF de la guía](quick-start-guide-pdf.md) la incluye.)*
+
+Una vez identificados los candidatos, inscríbalos en un curso de capacitación en Workface Planning (al que asistirán algún tiempo después de haber empezado a trabajar). Entregue a cada planificador un ejemplar del libro *Schedule for Sale* para que lo lea antes de empezar a trabajar.
+
+Habilite un área común con escritorios, computadoras y teléfonos para cada planificador.
+
+**La proporción aproximada entre planificadores y trabajadores de campo debe ser de 1 a 50**, teniendo en cuenta la complejidad. La complejidad de la instrumentación requiere más recursos de planificación que el vaciado de concreto o el movimiento de tierras.
+
+## 06. Paquetes de trabajo de instalación
+
+El modelo de los paquetes de trabajo de instalación (IWPs) se basa en esta sencilla pregunta: ¿qué necesita un capataz para ejecutar el trabajo?
+
+La respuesta se convierte entonces en el contenido del IWP.
+
+El estándar genérico de un paquete de trabajo de instalación:
+
+*(La lista no se conservó en la conversión de la página; la [versión PDF de la guía](quick-start-guide-pdf.md) la incluye completa, desde la portada hasta el cierre.)*
+
+**Otras consideraciones**
+
+**¿Cuánto trabajo debe tener un IWP?**
+
+Empiece con una rotación, aproximadamente 500 horas, y luego deje que el modelo evolucione hasta una aplicación adecuada a su propósito. En general, los paquetes más pequeños son mejores para los capataces: son más fáciles de seguir y orientan la ejecución de una secuencia específica.
+
+**El proceso de desarrollo de los IWPs:**
+
+Elija un CWP (*Construction Work Package*, paquete de trabajo de construcción) cuya ejecución esté prevista en 90 días y pida al superintendente que se siente con el planificador y le describa cómo debe dividirse y secuenciarse el trabajo. El planificador desarrolla los IWPs en el entorno 3D y redacta una declaración del alcance para cada uno; luego, el superintendente revisa y aprueba la división y la secuencia. Después, el planificador arma cada IWP y completa cada una de sus secciones según el alcance específico.
+
+**El cronograma del proyecto:**
+
+Una vez que un CWP (actividad de nivel 3) se ha dividido en IWPs (actividades de nivel 5), el planificador del frente de trabajo envía la secuencia de IWPs al programador como el cronograma de nivel 5 de ese CWP. El cronograma de nivel 5 debe contener entonces solo CWPs, IWPs e hitos.
+
+## 07. Levantamiento de restricciones
+
+El proceso de levantamiento y gestión de restricciones es el mayor cambio respecto de la forma en que normalmente se ejecuta la construcción. La regla de oro es que los IWPs no deben liberarse a campo hasta que estén libres de restricciones y “listos para ejecutar”.
+
+Las restricciones críticas de un IWP suelen ser los documentos, los materiales y los andamios; los equipos de construcción, el control de proyectos, la seguridad, la calidad y la mano de obra se consideran restricciones secundarias que pueden resolverse internamente en poco tiempo.
+
+Este proceso se gestiona mediante las firmas de la página de “Restricciones” del IWP. El planificador del frente de trabajo es responsable de reunir las aprobaciones a medida que se cumple cada sección del IWP.
+
+Cuando un IWP queda libre de restricciones, el planificador imprime una copia y la entrega a control documentario para su archivo. El planificador registra el desarrollo de los IWPs en una hoja de cálculo (Pack-Track) que se comparte con el proyecto.
+
 **Backlog:**
-The principle of a sustained backlog is one of the key influences on field productivity. Each Superintendent is responsible to establish and maintain a four week backlog of constraint free IWPs by ensuring that the work is being planned at the same rate that it is being executed with a four week buffer in between the development of a constraint free IWP and the execution of the work.
-**Three week look ahead:**
-Each week the Superintendent draws constraint free IWPs from the backlog and enters them into the schedule as level 5 activities to form the three week look ahead.
-**Execution:**
-The Superintendent or the General Foreman order the material for each IWP one week prior to the planned execution date and then issue the IWP to the Foreman ahead of the planned start date. The foremen will review the scope and make preparations for the execution.
-**Lesson Learned:**Each IWP must have a 'use by date' that shows the Foreman that the work must be completed in this window of time to satisfy the schedule. If there is work that cannot be completed then the window of time may be extended for one or two days. If the work is still not complete then the IWP must be returned to the GF and then to the Planner so that the work can be reorganized and placed into another IWP.
-**Progress:**
-The foreman is responsible to execute the work and record the progress daily in the IWP.
-08. Extended Benefits (Beyond the Quick Start Guide)
-Once you have these core principles in place:
-Then with a little bit more effort, you can optimize some of the other support systems directly influenced by the organized, sequential execution of work that you get with AWP.
-### A. Project Controls
-The process of packaging work ahead of time develops a solid foundation for the creation and management of project controls data. Project Controls is essentially:
-**The Plan:**
-**Actuals:**
-The answers to all of these questions can be managed through the application of IWPs. The key is to develop CWPs into IWPs no sooner than three months prior to execution {Rolling Wave schedule). Then calculate Planned Value based upon IFC drawings and standard installation rates. Cost code the timesheets with the IWP number and get the Foremen to record physical progress against components in the IWP.
-This process produces very accurate, timely data that will roll up to form a single version of the truth.
-### B. Material Management
-In a fully functioning Workface Planning system, the Workface Planners will send a Bill Of Materials for each IWP to the Material Management Team up to 8 weeks ahead of the scheduled execution date. This allows the Material Management Team to group deliveries into IWPs as they are received. In a system where a database is being used to track materials the IWPs can be entered into the database and used as the filter to produce reports that ~ show which IWPs are received and 'ready to go'. This system works very well for Workface Planning and also dramatically improves the efficiency of material delivery while also reducing warehousing costs.
-### C. Document Control
-The ideal model for any document control system is to establish a single vault of electronic project documents that all Stakeholders can access, within their permission limits. Engineering enter documents into the online system and Construction Contractors draw them out. It is also the ideal way to facilitate the link between the 3D planning model and the latest revision drawings.
-Each of the Workface Planning software suppliers have a product that will facilitate this model for document management.
-The end result of having a single online source for documents is that revision control can be managed without any lag between when a drawing revision is issued by Engineering and when the revision is received by the Construction Contractor. An online system also dramatically reduces the labor required to manage documents onsite.
-### D. Scaffold Management
-While the primary target of scaffold management is to minimize the delays encountered by field crews, the process of planning scaffolds ahead of time also produces an opportunity to reduce the overall cost of scaffold.
-As each Workface Planner develops an IWP they also produce a scaffold request for any scaffolds that will be required to support the scope. Typically this request will reach the scaffold management group at least two week prior to execution. This gives the scaffold management team the time to schedule the erection, track the components utilized and the record the labor required in a scaffold management database. Managing scaffold in this format allows the scaffold team to make educated decisions on what scaffolds to erect and when to tear them down.
-### E. Construction Equipment
-The management of construction equipment (cranes, man-lifts and welders etc.) is very similar to Scaffold in that your primary focus should be to ensure that there is enough equipment to satisfy the needs of the IWPs. However, by identifying the probable requirements two weeks ahead of time, the Workface Planners are also helping the equipment manager to develop a schedule for resource sharing that can optimize equipment utilization.
-### F. Engineering Alignment with Construction
-The logic that work needs to be dissected from Construction Work Packages (CWPs) into Installation Work Packages (IWPs) also drives the logic that engineering needs to be delivered in Engineering Work Packages (EWPs) that support the creation of the CWPs.
-The optimal path of Construction is a map of the ideal construction sequence by CWP, which once developed can then be used to map the ideal sequence, size and contents of engineering deliverables. This model for the elaboration of scope is the working model of the principle: 'Start with the end in mind'. The result is that when engineering and procurement are delivered in the right sequence then construction can start much earlier and be far more effective. This is the principle behind 'Fast Track Construction'.
+
+El principio de mantener un backlog (cartera de trabajo liberado) constante es una de las influencias clave en la productividad en campo. Cada superintendente es responsable de establecer y mantener un backlog de cuatro semanas de IWPs libres de restricciones, asegurándose de que el trabajo se planifique al mismo ritmo al que se ejecuta, con un margen de cuatro semanas entre el momento en que un IWP queda libre de restricciones y la ejecución del trabajo.
+
+**Programación a tres semanas (*three week look ahead*):**
+
+Cada semana, el superintendente toma IWPs libres de restricciones del backlog y los incorpora al cronograma como actividades de nivel 5 para formar la programación a tres semanas.
+
+**Ejecución:**
+
+El superintendente o el capataz general piden el material de cada IWP una semana antes de la fecha de ejecución prevista y luego entregan el IWP al capataz antes de la fecha de inicio prevista. Los capataces revisan el alcance y se preparan para la ejecución.
+
+**Lección aprendida:** cada IWP debe tener una “fecha de vencimiento” que indique al capataz que el trabajo debe terminarse dentro de ese plazo para cumplir el cronograma. Si hay trabajo que no puede terminarse, el plazo puede ampliarse uno o dos días. Si el trabajo sigue sin terminarse, el IWP debe devolverse al capataz general (GF: *General Foreman*) y luego al planificador, para que el trabajo se reorganice y se incluya en otro IWP.
+
+**Avance:**
+
+El capataz es responsable de ejecutar el trabajo y de registrar el avance diario en el IWP.
+
+## 08. Beneficios adicionales (más allá de la guía de inicio rápido)
+
+Una vez que tenga implementados estos principios básicos:
+
+*(La lista no se conservó en la conversión de la página; la [versión PDF de la guía](quick-start-guide-pdf.md) indica que son los siete puntos anteriores, del AWP Champion al levantamiento de restricciones.)*
+
+Con un poco más de esfuerzo podrá optimizar algunos de los otros sistemas de apoyo en los que influye directamente la ejecución ordenada y secuencial del trabajo que se obtiene con AWP.
+
+### A. Control de proyectos
+
+El proceso de empaquetar el trabajo con anticipación crea una base sólida para generar y gestionar los datos de control de proyectos. El control de proyectos es, en esencia:
+
+**El plan:**
+
+*(La lista de este apartado no se conservó en la conversión de la página original.)*
+
+**Lo real:**
+
+*(La lista de este apartado no se conservó en la conversión de la página original.)*
+
+Las respuestas a todas estas preguntas pueden gestionarse mediante los IWPs. La clave es dividir los CWPs en IWPs no antes de tres meses previos a la ejecución (cronograma de planificación progresiva o *rolling wave*). Luego, calcular el valor planificado a partir de los planos IFC (*Issued for Construction*, emitido para construcción) y de los rendimientos estándar de instalación. Codificar los tareos (hojas de tiempo) con el número de IWP y lograr que los capataces registren el avance físico de los componentes del IWP.
+
+Este proceso produce datos muy precisos y oportunos que se agregan para formar una única versión de la verdad.
+
+### B. Gestión de materiales
+
+En un sistema de Workface Planning plenamente operativo, los planificadores del frente de trabajo envían al equipo de gestión de materiales una lista de materiales (BOM: *Bill of Materials*) de cada IWP hasta 8 semanas antes de la fecha de ejecución programada. Esto permite al equipo de gestión de materiales agrupar las entregas por IWP a medida que se reciben. En un sistema en el que se usa una base de datos para seguir los materiales, los IWPs pueden cargarse en la base de datos y usarse como filtro para emitir informes que muestren qué IWPs tienen sus materiales recibidos y están “listos para ejecutar”. Este sistema funciona muy bien para Workface Planning y, además, mejora notablemente la eficiencia de la entrega de materiales y reduce los costos de almacenamiento.
+
+### C. Control documentario
+
+El modelo ideal para cualquier sistema de control documentario es establecer un único repositorio de documentos electrónicos del proyecto al que todos los interesados puedan acceder, dentro de sus límites de permisos. Ingeniería carga los documentos en el sistema en línea y los contratistas de construcción los descargan. También es la forma ideal de facilitar el vínculo entre el modelo 3D de planificación y los planos en su última revisión.
+
+Cada uno de los proveedores de software de Workface Planning tiene un producto que facilita este modelo de gestión documental.
+
+El resultado final de tener una única fuente en línea para los documentos es que el control de revisiones puede gestionarse sin desfase entre el momento en que Ingeniería emite una revisión de un plano y el momento en que la recibe el contratista de construcción. Un sistema en línea también reduce notablemente la mano de obra necesaria para gestionar los documentos en obra.
+
+### D. Gestión de andamios
+
+Aunque el objetivo principal de la gestión de andamios es minimizar las demoras que sufren las cuadrillas de campo, planificar los andamios con anticipación también ofrece la oportunidad de reducir el costo total de los andamios.
+
+A medida que cada planificador desarrolla un IWP, también genera una solicitud para los andamios que se necesitarán para el alcance. Normalmente, esta solicitud llega al grupo de gestión de andamios al menos dos semanas antes de la ejecución. Esto le da al equipo de andamios el tiempo necesario para programar el armado, seguir los componentes utilizados y registrar la mano de obra empleada en una base de datos de gestión de andamios. Gestionar los andamios de esta forma permite al equipo de andamios tomar decisiones informadas sobre qué andamios armar y cuándo desarmarlos.
+
+### E. Equipos de construcción
+
+La gestión de los equipos de construcción (grúas, plataformas elevadoras, máquinas de soldar, etc.) es muy similar a la de los andamios: el enfoque principal debe ser asegurar que haya suficientes equipos para cubrir las necesidades de los IWPs. Sin embargo, al identificar los requerimientos probables con dos semanas de anticipación, los planificadores también ayudan al responsable de equipos a elaborar un programa de uso compartido de recursos que optimice la utilización de los equipos.
+
+### F. Alineamiento de la ingeniería con la construcción
+
+La lógica de que el trabajo debe dividirse de los CWPs a los IWPs impulsa también la lógica de que la ingeniería debe entregarse en EWPs (*Engineering Work Packages*, paquetes de trabajo de ingeniería) que respalden la creación de los CWPs.
+
+La ruta óptima de construcción es un mapa de la secuencia ideal de construcción por CWP que, una vez desarrollado, puede usarse para definir la secuencia, el tamaño y el contenido ideales de los entregables de ingeniería. Este modelo de desarrollo del alcance es la aplicación práctica del principio “empezar con el fin en mente”. El resultado es que, cuando la ingeniería y las compras se entregan en la secuencia correcta, la construcción puede empezar mucho antes y ser mucho más eficaz. Este es el principio de la “construcción por vía rápida” (*fast track*).

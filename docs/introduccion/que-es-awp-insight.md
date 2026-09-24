@@ -3,40 +3,70 @@
 <div data-search-exclude markdown>
 
 !!! info "Documento fuente"
-    Copia de `what-is-advanced-work-packaging-insight-awp.md` (página web, en inglés). Se corrigió solo el formato (títulos, listas y restos de la conversión); el texto es el original.
+    Traducción al español de `what-is-advanced-work-packaging-insight-awp.md` (página web de Insight-AWP, en inglés). El archivo original de la raíz del repositorio no se modificó. Las siglas técnicas se mantienen en inglés; la primera vez que aparece cada una se indica su nombre completo en inglés y en español.
 
 </div>
 
-In short, Advanced Work Packaging (AWP) is a construction-driven planning and collaboration system designed to enhance project productivity and predictability by aligning planning and execution activities from the beginning of a construction project.
-Below is a more in-depth breakdown of Advanced Work Packaging.
-## A Brief Synopsis of Advanced Work Packaging
-Advanced Work Packaging is commonly known as both the overall process of work packaging for projects and also as a title for the activities that take place at the start of projects that align Engineering Work Packages with Procurement Work Packages and Construction Work Packages.
-AWP is broken down into three main processes that are seamlessly aligned:
+En pocas palabras, AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) es un sistema de planificación y colaboración dirigido por la construcción, diseñado para mejorar la productividad y la previsibilidad del proyecto alineando las actividades de planificación y ejecución desde el inicio de un proyecto de construcción.
+
+A continuación se explica Advanced Work Packaging con más detalle.
+
+## Resumen de Advanced Work Packaging
+
+Advanced Work Packaging se conoce comúnmente tanto como el proceso general de empaquetamiento del trabajo de los proyectos como el nombre de las actividades que se realizan al inicio de los proyectos para alinear los EWPs (*Engineering Work Packages*, paquetes de trabajo de ingeniería) con los PWPs (*Procurement Work Packages*, paquetes de trabajo de compras) y los CWPs (*Construction Work Packages*, paquetes de trabajo de construcción).
+
+AWP se divide en tres procesos principales, perfectamente alineados:
+
 ## Advanced Work Packaging
-The process of Advanced Work Packaging guides the dissection of project scope so that it supports the execution of Workface Planning in the field.
-It starts with the processes upstream of the Construction Work Package and aligns engineering work packages with procurement work packages. This populates the construction work packages with all the drawings and materials and gets them ready to be carved into Installation Work Packages by the construction team.
-The other two important elements of the bigger picture are Workface Planning and Information Management.
-[Watch the Youtube Videos](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Flearn-advanced-work-packaging%2Flearn-advanced-work-packaging-videos%2F)
+
+El proceso de Advanced Work Packaging orienta la división del alcance del proyecto de modo que respalde la ejecución de Workface Planning (planificación del frente de trabajo) en campo.
+
+Comienza con los procesos aguas arriba del paquete de trabajo de construcción y alinea los paquetes de trabajo de ingeniería con los paquetes de trabajo de compras. Así, los paquetes de trabajo de construcción se completan con todos los planos y materiales y quedan listos para que el equipo de construcción los divida en IWPs (*Installation Work Packages*, paquetes de trabajo de instalación).
+
+Los otros dos elementos importantes del panorama general son Workface Planning y la gestión de la información (*Information Management*).
+
+[Ver los videos en YouTube](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Flearn-advanced-work-packaging%2Flearn-advanced-work-packaging-videos%2F)
+
 ## Workface Planning
-In a coal mine, the workface is that point where the pick hits the coal, in our world of construction it is that point where our tradespeople turn materials into a functioning plant. Therefore, Workface Planning is the process of identifying what these people need and what we must do to get it to them.
+
+En una mina de carbón, el frente de trabajo (*workface*) es el punto donde el pico golpea el carbón; en nuestro mundo de la construcción, es el punto donde nuestros trabajadores de oficio convierten los materiales en una planta que funciona. Por lo tanto, Workface Planning es el proceso de identificar lo que estas personas necesitan y lo que debemos hacer para hacérselo llegar.
+
 [Workface Planning](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fworkface-planning%2F)
-## Information Management
-The management of information is a strategy that starts with the idea that everybody on the project needs information that is created by somebody else on the project. Therefore, the target of the strategy is to design systems and interfaces that align the source data with the users. The desired outcome is to ensure that all the right people have access to the data that they need, that it is compatible with other project data, and it is formatted to be interoperable.
-**So that everybody knows everything that they need to.**
-[Information Manangement](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Finformation-management%2F)
-## Next steps
-**Insight-AWP is your resource for learning AWP and its benefits to the industry, to the project and to your career.**Below you will find links to our Learn AWP section, case studies that detail the lessons learned and a place to start working with AWP.
-## Learn AWP
-Get up to speed with AWP. It is the future of construction and this is a great place to start.
-[Start Learning AWP](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Flearn-advanced-work-packaging%2F)
-## Case Studies
-Our case studies detail the lessons learned from our work on Mega and Giga projects.
-[Read the Studies](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcase-studies%2F)
-## Get Started
-Want to implement AWP? We are here to answer your questions and guide you in the process.
-[Get in Touch](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcontact%2F)
-## Ready to revolutionize your projects?
-**Insight-AWP can help!**
-**Contact us**for a free consultation to explore how AWP can benefit your specific needs.
-[Request an Assessment](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fget-in-touch%2F)
-[Contact Us](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcontact%2F)
+
+## Gestión de la información (Information Management)
+
+La gestión de la información es una estrategia que parte de la idea de que todos en el proyecto necesitan información que crea otra persona del proyecto. Por lo tanto, el objetivo de la estrategia es diseñar sistemas e interfaces que alineen los datos de origen con sus usuarios. El resultado buscado es asegurar que todas las personas indicadas tengan acceso a los datos que necesitan, que esos datos sean compatibles con los demás datos del proyecto y que tengan un formato que permita la interoperabilidad.
+
+Para que todos sepan todo lo que necesitan saber.
+
+[Gestión de la información](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Finformation-management%2F)
+
+## Próximos pasos
+
+Insight-AWP es su recurso para aprender AWP y conocer sus beneficios para la industria, para el proyecto y para su carrera. A continuación encontrará enlaces a nuestra sección “Aprenda AWP”, a casos de estudio que detallan las lecciones aprendidas y a un punto de partida para empezar a trabajar con AWP.
+
+## Aprenda AWP
+
+Póngase al día con AWP. Es el futuro de la construcción y este es un excelente lugar para empezar.
+
+[Empezar a aprender AWP](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Flearn-advanced-work-packaging%2F)
+
+## Casos de estudio
+
+Nuestros casos de estudio detallan las lecciones aprendidas en nuestro trabajo en megaproyectos y gigaproyectos.
+
+[Leer los casos de estudio](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcase-studies%2F)
+
+## Empiece
+
+¿Quiere implementar AWP? Estamos aquí para responder sus preguntas y guiarlo en el proceso.
+
+[Contáctenos](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcontact%2F)
+
+## ¿Listo para revolucionar sus proyectos?
+
+**Insight-AWP puede ayudarle.** Contáctenos para una consulta gratuita y descubra cómo AWP puede responder a sus necesidades específicas.
+
+[Solicitar una evaluación](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fget-in-touch%2F)
+
+[Contáctenos](https://www.google.com/url?sa=E&q=https%3A%2F%2Finsight-awp.com%2Fcontact%2F)
