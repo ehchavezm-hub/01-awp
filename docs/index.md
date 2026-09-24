@@ -76,4 +76,4 @@ Esta web reúne los documentos del repositorio, organizados por tema. Usa el **b
 4. **Para contrastar:** [AWP y Lean Construction](comparaciones/awp-vs-lean-construction.md) y el [artículo de Omega 365](introduccion/practica-recomendada-omega-365.md).
 
 !!! note "Sobre los documentos"
-    Casi todos los documentos están en **inglés** y son conversiones automáticas de PDF y páginas web. Por eso algunas listas y tablas se perdieron en la conversión. El [índice de fuentes](acerca/indice-de-fuentes.md) resume cada documento y señala las diferencias y vacíos entre ellos.
+    Casi todos los documentos están en **inglés** y son conversiones automáticas de PDF y páginas web. Los tres procedimientos AWP-IM-WFP (2017) ya están traducidos al español. Por eso algunas listas y tablas se perdieron en la conversión. El [índice de fuentes](acerca/indice-de-fuentes.md) resume cada documento y señala las diferencias y vacíos entre ellos.
