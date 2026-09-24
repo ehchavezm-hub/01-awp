@@ -1,9 +1,12 @@
-# AWP Education Primer (CII)
+# Introducción a AWP: material educativo del CII (AWP Education Primer)
 
 <div data-search-exclude markdown>
 
 !!! info "Documento fuente"
-    Copia de `awp-education-primer-pdf.md` (PDF del CII, en inglés). Se corrigió solo el formato (títulos, listas y restos de la conversión); el texto es el original.
+    Traducción al español de `awp-education-primer-pdf.md` (PDF del CII, *AWP Education Primer*, en inglés). El archivo original de la raíz del repositorio no se modificó. Todo el texto es una **traducción** del material del CII (*Construction Industry Institute*, Instituto de la Industria de la Construcción). Las siglas técnicas se mantienen en inglés; la primera vez que aparece cada una se indica su nombre completo en inglés y en español.
+
+!!! warning "Documento basado en diapositivas"
+    El original es una presentación convertida desde PDF: gran parte del contenido está en las imágenes y muchas etiquetas llegaron sueltas o con las letras separadas (“flo w s fro m”). Se reconstruyeron las listas y tablas cuando el texto lo permitía y se indica cuando la organización es una interpretación.
 
 </div>
 
@@ -17,34 +20,42 @@
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-6MXaPDZYNLuKiZ2_K59myMheRH2KwhijNCCEdH87CpIRo335dq2kKGKgjl_bOwvHVzEWoP6SfHVfoF_1X5RAkFwPh7QBC-4iYV3oKYLXuH1WU7Qgj8JBFBB_IaJDiMsT-VHVnjg=w383-h133-v0?authuser=0)
 
-###### CII COMMUNITY FOR BUSINESS ADVANCEMENT
-#### AWP EDUCATION PRIMER
+**Comunidad del CII para el avance de los negocios (CBA: *Community for Business Advancement*)**
+
+## Introducción a AWP (AWP Education Primer)
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-8UxVX3Z1YRYcUaCPCnQkHmQiuRMqh-2HYsF1rCzGM2FJzrGcxk60u3BHtSHiRKKI2Gg0yLGdRnDbE7ppuyTTUo41jpiTv3RjY64SDhedBy_AFLlGoy9nm6Q9XU1xUSQLp6JoDGQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-F3Ltdwe4hXRLFjG-rr24mYradiECtmiacmnuQ17ugBFLOzEIxmbGmW1HnfQlNTni6Kqg32_o9Kjg7Q8g_Et5_GCyCcltpy5UvI8kQUN3zuG4eRXAp5jekgq9i5E5scK7yObBIDQ=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9gJLcavpeQn0ytPs3BV81FOfHDN5rWM0PdzJ4g_S0mRKMNIxj8O-YcUyGSRbsflsQCPzaG_r7IY5BWMqwMo4DT_Q5RlzpFRPy-Sd6foxAPqc_7s42VBHcuAy9-qYblgG-VK7TMdQ=w383-h133-v0?authuser=0)
-Purpose Statement
-This resource should be used as a primer to educate organizations on the definition, function, components, benefits, and use cases for Advanced Work Packaging (AWP).
-The information contained in this resource is introductory, and can be shared with teams that have zero to little education in AWP.
-Additional resources beyond the data here can be accessed on CII’s website .
+
+**Propósito**
+
+Este recurso debe usarse como introducción para formar a las organizaciones en la definición, la función, los componentes, los beneficios y los casos de uso de AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo).
+
+La información de este recurso es introductoria y puede compartirse con equipos que tengan poca o ninguna formación en AWP.
+
+En el sitio web del CII hay recursos adicionales a los que se presentan aquí.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9eSfc0ubxRhD7Q4NFQRfCmm2OCWTckdFla9I7dhXLozM9jk59aBbj4TPL51LZ6-ra2RgvbbPBkK4fxoH52WYAvHYj064mGNmQ0fk0CBf1DdD18OVWY_U_0urZJNnYfw4xq0Hp9=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9wZgL0fl_yy67O04uQcf-KeaXfYF0nWmtnoKlRAqFXEm4fH5usV1I8G4azPAcd7B2ULXbNfe4pSjg0PLXae92T715DT69BGeenoV5ZpG4PIYXurEY7OUEN_a5zJds1GBhK_ANa=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8wqAlHyOmvNhMK5PeJDTrVNThd6v_2eK3ZIb6KMatAZJcveUSx3ZcrEclO5v9S82DVY_CTr_QizUgX8Ayk-ow_tqTcdekgSguT7NGCKk6thKsaKdRFU09sWyMWetwhqjXXBr7wag=w383-h133-v0?authuser=0)
-Table of Contents
 
-- What is AWP?
-- Benefits & Value of AWP
-- Origin & History of AWP
-- AWP by Project Phase
-- Roles & Expectations
-- Work Package Types
-- Path of Construction & Interactive Planning
-- Constraint Management
-- Getting Started with AWP
-- Overcoming Common AWP Objections
+**Contenido**
+
+- ¿Qué es AWP?
+- Beneficios y valor de AWP
+- Origen e historia de AWP
+- AWP por fase del proyecto
+- Roles y expectativas
+- Tipos de paquetes de trabajo
+- Ruta de construcción y planificación interactiva
+- Gestión de restricciones
+- Cómo empezar con AWP
+- Cómo superar las objeciones habituales a AWP
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX84Fstg6NibesfWc7y8RgkFyluI1Itpe1Ds64tZQA4oVTyCXtppFy1ZbKBRk-uDbuzvdzI9vrfdvqXRACFMz8yhWiAuPkDLnZBrMC-VFnBgwlxjmJVvwDK8RNTrpjuloTNptiyh=w1015-h571-v0?authuser=0)
 
@@ -52,14 +63,12 @@ Table of Contents
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-SM0qXva2nBi7KdkQVu52LTksgZLhJSSPK6hF-Uw1adARuIKQDPVU0M9cPiIiQ4cc7zaReSB0544uVJ10aQ9XamPp5SHYF6P7tqyW0pK9P4OkNTeb3h7APyA2kItZeR3PsmD1VAQ=w332-h94-v0?authuser=0)
 
-## What is Advanced Work Packaging?
-##### Definition
-The Construction Industry Institute (CII) defines AWP as “the overall process flow of all the
-detailed work packages (construction, engineering, and installation work packages). AWP
-is a planned, executable process that encompasses the work on an EPC project, beginning
-with the initial planning and continuing through detailed design and construction
-execution. AWP provides the framework for productive and progressive construction and
-presumes the existence of a construction execution plan.”
+## ¿Qué es Advanced Work Packaging?
+
+### Definición
+
+El CII define AWP como “el flujo de proceso general de todos los paquetes de trabajo detallados (paquetes de trabajo de construcción, de ingeniería y de instalación). AWP es un proceso planificado y ejecutable que abarca el trabajo en un proyecto EPC (*Engineering, Procurement and Construction*, ingeniería, compras y construcción), desde la planificación inicial y hasta la ingeniería de detalle y la ejecución de la construcción. AWP proporciona el marco para una construcción productiva y progresiva y presupone la existencia de un plan de ejecución de la construcción”.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_pBcYHRMstqZx8poDkDc6Ud4cnv4GixXcgH7oJTW-YTY1A-QUTTZpDxH2MPMNqaDeabAct2vh6oo1liFe8NoG4Rn8xpIARUkMQJFNtj-amTnDQid9BTbs4LONstzYAt739oNJXlw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-z3Z-dTNkKn3Qv0TN1fRWN5gynJlRPL87MnpNgotKom6u5_WYHRcTLJRZ_2MHUFpwrULMEC1Eh0tJWMYG3fqNFVpmMq0WqmK4osvB71huZZoRR0j5LhZtAE5em2o5gdlfAFqdmDQ=w842-h1191-v0?authuser=0)
@@ -68,15 +77,12 @@ presumes the existence of a construction execution plan.”
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_KIRUvL6saB_VaidFUgoK-TvT50N_0c92_130ghTHNB7TJmiVd1FN6RHHpIshxswv8YD1UArDPzwArr_FeoHkAKSfc2PU23VuZKaLn2yg7pgHdrGNrNppsTEXv53egZrXB4au_cw=w383-h133-v0?authuser=0)
 
-#### But what IS it?
-AWP is a project delivery method w h ich  flo w s fro m
-Fro n t  En d  P la n n in g  t h ro u g h  Co m m ission in g  a n d
-a lig n s En g in e e rin g  & P ro cu re m e n t  d e live ra b le s  w ith
-t h e  Co n st ru c t io n  Se q u e n ce .
-It ’s  a  d isc ip lin e d  a p p ro a ch  t o  im p ro vin g  p ro je c t
-d e live ry w h ich  p ro vid e s  a  s t ru c tu re  fo r focused
-execution planning a n d  p ro d u c t io n  co n t ro l t h a t  is
-d ire c t e d  a t  t h e  co n st ru c t io n  w o rk fro n t .
+### Pero ¿qué ES en realidad?
+
+AWP es un método de ejecución de proyectos que va desde la planificación temprana (*Front End Planning*) hasta el comisionamiento y que alinea los entregables de ingeniería y compras (procura) con la secuencia de construcción.
+
+Es un enfoque disciplinado para mejorar la ejecución de los proyectos, que ofrece una estructura para una planificación de la ejecución enfocada y un control de la producción dirigidos al frente de trabajo de construcción.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9-h9YywOHRLOBEjdWtPgnFL-KUuH8xTdrK1TtquAdNZ_ujuaSBEzriGhoGMvaeevzYObLItB5er81c3JYftIAUr8PsG7Vt6xaPDTt9i96qv384CTmCOyeDzOTwQkOjQwP9ygH82A=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX94SxwjwCWipQJC_ERgoYLRnDZb79lKCAQSxCqYzX2OczlDBJu2tPkJxtttbZ_z9vCEdVOTr9cG9Z8dCp9re9WSOC-ykqTFGFK4AdY0AfwH7x7irjaze7_1FWD_eBDlTLQzJ63aXA=w842-h1191-v0?authuser=0)
@@ -85,36 +91,28 @@ d ire c t e d  a t  t h e  co n st ru c t io n  w o rk fro n t .
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9Aq364Ct2SgC3VtsOTNQdkfk7JA_uETZldu2AbuH4LMfYm40HXkiSHpQpTa_oLSXGnNmTzp_hNU_RN89agjCcuzNmp9ehC0BLy_pXl7IrVLvUIUD20Td6dpdXV8_Tdx9WSQjv0=w627-h313-v0?authuser=0)
 
-###### ASSET LIFECYCLE INFORMATION MANAGEMENT
-#### ADVANCED WORK PACKAGING
+**Gestión de la información del ciclo de vida del activo: Advanced Work Packaging**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_mWLF4fs4jVZjrhsmLJjwdQSGru86e-sS2EiULtzLMzWC-XG7Z4E-aIerpkFiVgTGoXBPNjAixh8rQ2sh8BFnyyCFK1vDBJjxlAKvNYzm7hwFygqjhKC2Jc9wZWBSBYXDBA_67=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX89tHmAgynUpfVtORWAyf_yIur_T4BIUuIlWa5H5TaXnB5nvIFRQlb8CHgsZ1LS6wSqqH5hfuPhRrGRXjCaTQ-6zRojthBkfXSqjcvRF-vWWeVZHIGg50qEHm5JfRYd0F4xBwodwg=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9_mbu6D56YT9QUHBQ-O5Sxjxc_rxU025JA6TrPtY3LsGHtvBPoefXWoRpeguPZTV1ib_oNFiqfj2JvFCwQzdozCcXXXWCcQc4rgLKaIYpFs3Sk67LL0psj49ohcwHsoo4zRZf_MA=w383-h133-v0?authuser=0)
 
-##### ADVANCED WORK PACKAGING (AWP)
-STAGE 0 STAGE 1 – Preliminary Planning/Design STAGE 2 – Detailed Engineering STAGE 3 – Construction Execution, Testing, & Completions
-STAGE 4 – Energization & Commissioning
-Pre -Implementation
-Project Definition
-Construction, Commissioning, & Engineering
-Planning
-L2 Schedule Refinement &
-WBS Development
-CWP, EWP, & SWP Boundary Development
-Path of Construction
-L3 Schedule Development
-EWP -based Controls
-L4 Detailed Construction
-Schedule
-IWP -based Controls
-Test Packages
-IWP -SWP Transition
-Management
-SWP -based Controls
-Turnover to Startup
-##### Integrated Advanced Work Packaging Flow Chart
+### Diagrama de flujo integrado de Advanced Work Packaging
+
+Etapas y actividades que muestra el diagrama:
+
+| Etapa | Actividades |
+|---|---|
+| Etapa 0: preimplementación | Definición del proyecto; planificación de construcción, comisionamiento e ingeniería |
+| Etapa 1: planificación / diseño preliminar | Ajuste del cronograma de nivel 2 (L2) y desarrollo de la WBS (*Work Breakdown Structure*, estructura de desglose del trabajo); definición de los límites de los CWPs (*Construction Work Packages*, paquetes de trabajo de construcción), EWPs (*Engineering Work Packages*, paquetes de trabajo de ingeniería) y SWPs (*System Work Packages*, paquetes de trabajo de sistema); ruta de construcción; desarrollo del cronograma de nivel 3 (L3) |
+| Etapa 2: ingeniería de detalle | Control basado en los EWPs; cronograma detallado de construcción de nivel 4 (L4) |
+| Etapa 3: ejecución de la construcción, pruebas y cierre | Control basado en los IWPs (*Installation Work Packages*, paquetes de trabajo de instalación); paquetes de pruebas; gestión de la transición de IWP a SWP |
+| Etapa 4: energización y comisionamiento | Control basado en los SWPs; entrega (*turnover*) para la puesta en marcha |
+
+La asignación de cada actividad a su etapa se ha reconstruido a partir del orden de las etiquetas del diagrama.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9o9MElErZkvMRK_UykJ-kDk6zi-ILDsRSj8f3NWPA0Jyi8Jhh8YEj5Tlc84MPzPicc9rALfKq2Q1d5FqaORys9qrjEz2PZPRYbavA5iUb2fuH2ZhAoaBN8W_6JONJtWSNbe6w4=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8FueCv3m1OWcLVcwNpLEBZXyBzPEa8d-ZQbPGdqybZGB9EYpXMD5S49_OMP8ax6dxR8LVl80N6PSZMgPk7dcWUeHmbM3Kv01KCc_0XSYeXgKLQCtKfsVhG0MN0_HojPzOPADEipg=w842-h1191-v0?authuser=0)
@@ -123,42 +121,39 @@ Turnover to Startup
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9IJ_j8ldAp0c-pgHppNjw9JfdZ2c55L7T4pYEJy2KqPMGOELsKc4ICfTqgXAdxhdH9Ta47ZKnDyCpR0dK8zetsqJeRscgmCEO-1chAwdjeTsBTOKIug_xJ6LGKukWjbYL4buNNXg=w913-h555-v0?authuser=0)
 
-#### AWP Maturity
-Research demonstrated that increasing levels of
-Advanced  Work Packaging maturity were associated
-with consistent improvements in each project
-performance dimension.
-This pattern roughly describes an S -curve, with
-moderate performance improvement during the
-introduction phase, followed by fast -growing
-performance during the middle stage, after
-which comes continuous improvement, but at a
-slower rate, as the company becomes more mature in
-implementing the methodology
-Source : RT319-1Transforming the Industry: Making the Case for AWP as a Standard Best Practice
+### Madurez de AWP
+
+La investigación demostró que niveles crecientes de madurez en Advanced Work Packaging se asociaban con mejoras constantes en cada dimensión del desempeño del proyecto.
+
+Este patrón describe aproximadamente una curva en S: una mejora moderada del desempeño durante la fase de introducción, seguida de un crecimiento rápido en la etapa intermedia, y después una mejora continua, pero a un ritmo más lento, a medida que la empresa madura en la aplicación de la metodología.
+
+*Fuente: RT319-1, “Transforming the Industry: Making the Case for AWP as a Standard Best Practice” (transformar la industria: argumentos para que AWP sea una buena práctica estándar).*
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-AeE11lDy9eFBZ8inkMTg0fY6KqptfcvpHuCxigKrxqKTCBBjS2pJ9oAeLule6FdDe3PMF5OOU7Wb4ZB2WWJUauPL6221uh4mpIClOlfKW4bCx9CRGXgMPBCwGMUBA3mNtpbJ6=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_laKDiWAQxtLpdmJj9PAN1M4ROZQ0hFBJw7hiPKTNyI_28H-cU_IXWwpey7aCVRyY5otdDHbpsKzvunUGpZEz0ixohRU-Y2833CE89jzFY61IhfeKDUjEpuYjMnWrRE1UHfAFBjg=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9UgAHZ48aOk1p19kM-mcSnRHPZq7FztkHdyHxQCBfTrj4sidFdjJ8sb9KAazdkZRYO8wKdkTg6-IFF7hR6QtkwlNTh9Cx7Ep7a4h4-p0CazFTXnfBovfvyvupVQvq47WGXHx3f-w=w446-h155-v0?authuser=0)
 
-## Benefits & Value of AWP
+## Beneficios y valor de AWP
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX--FToym0AG6ts0nzHqAn3KPfMrvzIvrdTWpYRYepxRV6PcI3-9VsN-XWY3KRaBujH96YKtXPrRJrsbWjodmFrCkoOiA-i3BJxjZZuvrnjJVbFWGWduEmdwjQiPUnGif0qcCotyFQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8qBN55IOCTi1WtGM6DZiSZI8NBFoOEYJI4tJE_fMPelRDxDGfNrCcHZ449FBR4SkTwHyjI7DcRYgaJLR471_cOYpyAbKhgrLzxS3h-1KoxsxQDODjF5t_IQiTciOdHItX2wfba=w383-h133-v0?authuser=0)
 
-#### AWP Proven Results
-#### 25% 10%
-Traditional Projects
-AWP Projects
-Non -Tool Time Time on Tools
-63% 6.3 Hours
-54% 5.4 Hours
-37% 3.7 Hours
-46% 4.6 Hours
-##### increase in    productivity
-##### reduction   in TIC
-##### increase in safety
+### Resultados comprobados de AWP
+
+- **25 %** de aumento de la productividad.
+- **10 %** de reducción del TIC (*Total Installed Cost*, costo total instalado).
+- Aumento de la seguridad (el valor está en la imagen).
+
+**Tiempo con herramientas (*time on tools*) en una jornada de 10 horas:**
+
+| Tipo de proyecto | Tiempo sin herramientas | Tiempo con herramientas |
+|---|---|---|
+| Proyectos tradicionales | 63 % (6,3 horas) | 37 % (3,7 horas) |
+| Proyectos con AWP | 54 % (5,4 horas) | 46 % (4,6 horas) |
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8bNi0wV6oL_bNI5kMXoa1cvOwEJPYHJEysduKmHAhLdWaqK28PBvOK_c35EvGxUbdnqyOkca4HA6pyXGwuufou_y2S3wevGXbNJJG6IfF_vIvUMqbKkGIsmsccloqmb7sJ-nPgZA=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9wK4nRXT2V85IggUbH_0GJ_rkJKXxMGq6AycDrZZKiPgyScCAwhz1n1Whmjj3h7kXbx0HJSdRn5JLuPlH-0P6AeGOJBSuRAnhr-AbM3k7Z8UV6gltefRtJZyB_FUyV-n0TXpUGDg=w842-h1191-v0?authuser=0)
@@ -187,37 +182,32 @@ Non -Tool Time Time on Tools
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-FmIdvZ6qT9pJf_pqdgzu7eo85QS6C7jJ2F56QERKeiMl-xar77w9cJ2seMth9wNis3nxPV7sFLh_FNoLXiRGxcW86JSgZZrZwZJ8wrCdFEHSIl9Rrv42xmiaJjVDBJrisQ9Bx=w383-h133-v0?authuser=0)
 
-##### Additional Benefits of AWP
-v
-v
-Reduced cost via improved
-labor productivity
-Early & better constructability
-input
-Improved  project
-predictability Improved up -front planning
-Better stakeholder alignment
-Improve craft retention due to improved morale
-More time for supervision to
-supervise
-Improved housekeeping
-Improved progress tracking
-Improved installation
-quality
-Enhanced systems turnover
-sequence
-*Source: RT 319*
-“Even projects with low maturity of AWP
-implementation garner significant benefits.
-At the same time, benefits increase as
-AWP implementation matures.”
+### Beneficios adicionales de AWP
+
+- Menor costo gracias a una mayor productividad de la mano de obra.
+- Aportes de constructabilidad más tempranos y mejores.
+- Mayor previsibilidad del proyecto.
+- Mejor planificación inicial.
+- Mejor alineamiento de los interesados.
+- Mayor retención del personal de oficio gracias a una mejor moral.
+- Más tiempo para que la supervisión supervise.
+- Mejor orden y limpieza.
+- Mejor seguimiento del avance.
+- Mejor calidad de la instalación.
+- Mejor secuencia de entrega de los sistemas.
+
+*Fuente: RT 319.*
+
+> “Incluso los proyectos con una implementación de AWP poco madura obtienen beneficios significativos. Al mismo tiempo, los beneficios aumentan a medida que madura la implementación de AWP.”
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-ChkCgXEMIz5OPGfkrhWJsX2Ip60eDfjeHS_IGWV5t29vMXJeZr4sPFStwIGKYI_Dh10qzTF8NUouNAT-sGL9p1z-8O5eV8Xqoy2UEVf3Mh73qlsnrIP2ku5a26SDFd9532VUuHQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8t7wWVq_pjrrO1l6kuN0r9liA6Er_V7pmFEHXkhbh1FyxR3D-p_C3Wl_k2Kou09o217Z_vZCazTHY9WmuHDeivbmUkXUfb0QKWj1t1zXPmg0Ct-rRNSsHVVK4PTYnDEim8x9mEfg=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-hRTirLyvO_eZnVoqVHXD-ql_WLyLHDatEApqnxRvQX6x1KV-rHeD0XJY0aXfLYRkn8ZLHCaTd2RrzkRAMAYuERcH_t2wjACjskmjuP7olYVG6EJBC4v2Vau7zvaBNY4NR4zrFVA=w446-h155-v0?authuser=0)
 
-## Origin & History of AWP
+## Origen e historia de AWP
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8gEUZXcBGnpRiCAKbj055tQ9yWtPj94uAVAFnLl-Uz60rXSdPr2AJyJ0b35XeTEodl-0PoHL0qaq0dEXvBOvjvo7fUPE6RGWqjip4Ihtxj1ag3TVGRAKye_7I8zOhuGOUwncjB=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_ebEBTQYvHn4VORvH9py5yACyhhJa6PZBplFxLeAUDqjmghCfrwhSoYOA87Py6icoAczkOB8sXqAfCzsDFM34L-a9gOfwwLu9t0l7vaYJ-IBW8wLxFfQbxhvL1iHcyS_hwFQ-AzQ=w842-h1191-v0?authuser=0)
@@ -226,9 +216,12 @@ AWP implementation matures.”
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9gXenb8RscROHV5hErh1bh3Mlog8pLvTfJrv9zvVQVZbeXVPoZRoYcFdwJSx5pJxqHHGwotjyfMwbBcn185AgWMOHxxl5ISekaCkmYWFKel-mjLDiBDUq8NgCilEACQt-5nKuDig=w383-h133-v0?authuser=0)
 
-#### Myth Busted!
-##### MYTH: AWP is just a buzzword.
-##### FACT: It works and has been used successfully on projects for a decade.
+### ¡Mito destruido!
+
+**MITO:** AWP es solo una palabra de moda.
+
+**HECHO:** Funciona y se ha usado con éxito en proyectos durante una década.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9kEkozUAiDDa5dQDdec33vrH-PdtlivxmJRmIshimWz1a9wMpv5jmX-2snVbDMwFyteZak612xksRvjz3x2NLBoDw5niDi8UEEya5m6479c-3_5flj-vdgl2Io9hQEMuQJRxVnJQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_9Ev8lhKcCFWG67bso03zv6EbdeHKXxGakNM9gJY-6pJYLBCJzHJUn15o1s9idTRlCyvyBMK4eJrxhGlVUcWTMAsSO-vpOPBTwClybk4LfmZ4K6LMOjHl3krFKq3z37DBNb0CCFg=w119-h123-v0?authuser=0)
@@ -255,58 +248,45 @@ AWP implementation matures.”
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-Re_zsIUDp2ZBkXEA1duha33Zh2-yQpYv2usO1VGUt5DN70Q3gjaQmFcy9pOJT5uwUvMF2sCaO1q1tuE2Iq_rIHUzolXUeY1TqEu4UlnB2sL5vU8oE6VlbsuGvJp_Xg38iQ_PNAw=w110-h110-v0?authuser=0)
 
-C 2000
-So ftw a re  c re a t e d
-2017
-1s t  s t a g e s  o f g lo b a liza t io n
-2013
-jo in t ly a n n o u n ce  AW P  Mo d e l
-2009
-W FP  Co n fe re n ce
-re se a rch  o n  AW P  RT-272a
-2006
-W o rkFa ce  P la n n in g  Co m m it t e e
-##### Origin & History of AWP
-2005
-re co g n ize s  W FP  a s  a  b e s t  p ra c t ice
-2020
-EW P , P W P , SW P , AW P  Da ta  St a n d a rd s
-2015
-AW P  a s  a  Be st  P ra c t ice
-2011
-t o  fo rm  RT-272b , firs t  AW P  m o d e l p u b lish e d  b y CII (272 v1)
-2008
-m a rke t  fo r W FP  a u to m a t io n  so ftw a re  b e g in s  t o  m a tu re
-1990s
-in t ro d u ce d  to  co n st ru c t io n  p ro je c t s
+### Línea de tiempo de AWP
+
+La conversión solo conservó fragmentos de cada hito de la línea de tiempo (a menudo falta el sujeto de la frase, que está en la imagen). Se presentan en orden cronológico, tal como quedaron:
+
+| Año | Hito (fragmento conservado) |
+|---|---|
+| Década de 1990 | … introducido en los proyectos de construcción |
+| c. 2000 | … software creado |
+| 2005 | … reconoce WFP (*WorkFace Planning*, planificación del frente de trabajo) como una buena práctica |
+| 2006 | … Comité de WorkFace Planning |
+| 2008 | … el mercado del software de automatización de WFP empieza a madurar |
+| 2009 | … Conferencia de WFP; investigación sobre AWP RT-272a |
+| 2011 | … para formar el RT-272b; el CII publica el primer modelo de AWP (272 v1) |
+| 2013 | … anuncian conjuntamente el modelo AWP |
+| 2015 | AWP como buena práctica |
+| 2017 | Primeras etapas de la globalización |
+| 2020 | Estándares de datos de EWP, PWP, SWP y AWP |
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-WWjyUQZ3qvEhConOVF5LGs-Zt24eOo2W7LGyr49XXJ_7uQaDGCRFEqf2qsTvr2GntWsF8LoRIAkViOnuVkcfFUYu8-S2bbalNdqvgIm16t2fKqUKm0T1eJS27Or9dPVTqqBf_pg=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_pbIi5_8vIns9ScxhK_4MQ9bqXqJG98LQngREXBzxePqYJDtEtj-776Rgw1BIKjrpefKV_iQpryeWqPUG3IXJ4FvynDcbL8il5TmM6Lw-DPb-2RWf3kNrsqtNG1eJDkcIip4AZNw=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9p0C8t-HRQwXKV4M0FyEa4OiZfmKdDcXz_KMSMc5DAdV2V9IUdfsa7CUNUAZzueuuCf-j-pu4ArAGVb2OI1lMQhH5LrPr08JeG-NfPfX6Kzl4WSGOsfoU355vlJ1yy23XvQTnz_Q=w446-h155-v0?authuser=0)
 
-## AWP by Project Phase
+## AWP por fase del proyecto
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_1IQveAk21cFQmUmyE3n6k_gHydamgld-wf6yPVNIHtcqZCMw3v6W4Ivqbcey0jp8FOTwjbSfs9OmB7m9S7djcJnMBZjohiME_sZb46UmAt9A1rx9-FSXhAhJxhnAng8uisMaL8g=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-A-JVA4rHlekVPY6bdMqQ3Xh-Ggt-YC4XzB5ojkVj1MitJg0TKQI7C-DdwnILGIMFBk6XX5LL3lWgzXYMw273t4THOHC2rBMHAaS0--uxmbEekjepXKgWt1fDaE0MKqwRMq3Vx=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-V9rCs_LKvrO-zPTLYvJnZGMlPeqgzCkW4FDgTex_4mdN8BGuICer3m3eHZ2sVALY0KFU48TIr83G81fjJqMXN4vSK_GvOzH9ly0GOXny8XIy8sBFxZVzsLzRw4S7Uj647pd4lgA=w383-h133-v0?authuser=0)
 
-Stage II  - Detailed Engineering
-Procurement
-Stage IV – Energization &  Commissioning
-Stage III – Construction Execution, Testing & Completions
-CWPs EWPs
-IWPs
-PWPs
-SWPs
-Stage I – Preliminary Planning / Design
-CWAs CWPs EWPsDefine :
-Created:
-Interactive Project Planning
-CWA – Construction Work Area CWP – Construction Work Package POC – Path of Construction EWP – Engineering Work Package PWP – Procurement Work Package IWP – Installation Work Package SWP – System Work Package
-Optional:
-POC
+Elementos que muestra el diagrama por etapa (organización reconstruida a partir de las etiquetas sueltas):
+
+- **Etapa I, planificación / diseño preliminar:** planificación interactiva del proyecto; se definen las CWAs (*Construction Work Areas*, áreas de trabajo de construcción), los CWPs y los EWPs; opcionalmente, la POC (*Path of Construction*, ruta de construcción).
+- **Etapa II, ingeniería de detalle y compras:** se crean los CWPs, los EWPs y los PWPs (*Procurement Work Packages*, paquetes de trabajo de compras).
+- **Etapa III, ejecución de la construcción, pruebas y cierre:** IWPs.
+- **Etapa IV, energización y comisionamiento:** SWPs.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8ZBawqXTzgztC64VXAGBUWK9Lf22NVLC31l8Af-gM4QB3bvdHCZip2_KEAuArRI_92ot7dmOZRP-CK2fm95NU0CoEcfW-mZLNOC5I9Cx7sRHyQclyc4gVHiwtF_gEl3f-7HW0KJQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-mFHwRYqfPvLi75ACIkx5TqGhl71Gh9o1KHDcEZklEDMTQt4fahatHM-xtVwFxtGoIJfX9Cow8Px9w3772WRI6Rdmwy0OLs25hTxdGlRKru1acBRFNchOcM-WDM_TZ2bBefRwHXA=w842-h1191-v0?authuser=0)
@@ -314,77 +294,83 @@ POC
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8Nob3M93MmAbQtlAuK-fjZRdQ82Vi3vijgZvNMzBxPvdroX6wKVgwx2GL8ZpJlzVI9xVih7ckFy4ZiQnzdfkEL-7o1QcA_qAbTjogkxDMgGl3ZWZOPFQ3Xw9jqcciRrkqqMPR8Kg=w383-h133-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_JBme8JZwY77-aaHzfne2kYxAk11ffTdvj5aORCw7axYIXyGPRPlc_Tr8217yEZXBCVVPTR94owVZWXjS1LuTvZdxrTcQN_eCq1ZYklIBBRePG1ersjR8rlfI6zhvWG_0KtIriEA=w1036-h612-v0?authuser=0)
-LIFECYCLE OF AN INSTALLATION WORK PACKAGE
-SAMPLE LIFECYCLE
-OF AN INSTALLATION
-WORK PACKAGE
+
+**Ciclo de vida de ejemplo de un paquete de trabajo de instalación** (diagrama en la imagen).
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8KFD1DuNPfN5rizWGDiDYywpcZ77RZy58gJiMKoDzcQVEOEF_WpoiZhDDQHTX9dCBk0H82T4-Yww4TBFHJAEgss9AuixsedU-AJdgTQE3D5faEXssj48awD6n2p-oVedPe6BEJ9A=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_kdY2QKV22AGCUzVDBi1gFDdRqDXmm4g569UCTvBaTHiOYu42m0MqcFECqPBnhJG--gZ0vpLlzKGZCa4cqOSACJkJjNMff04aLArK2P_ojcQlp5RPBPvMH6O4pIwfe9e6L0W2yoQ=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_jivnEPvxHjE6msdMV1gGGeYF-t6XNAcOGOGu-Tci3VtTLM0EQnXGTTZBnZMGbqbbYfmbbEV97T7-FUZ5yD_5klgOqQv0RFsz_BYKf-zdkhmNEwWJ5GZtY2Br9rnYSd8I-gRArlw=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example DeliverablesStage I – Preliminary Planning / Design
+Las diapositivas siguientes presentan, para cada etapa, tres columnas: **actividades principales**, **valor de AWP** y **entregables de ejemplo**. Su contenido está en las imágenes; la conversión solo conservó los títulos.
+
+**Etapa I: planificación / diseño preliminar**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8GOwqopbYghl8Ufve9rDv6fjn_lRZYW1uL0mlRb5oA4MmDmBuUseQJs6uL9Lk6uBmfdezrXuctjH2GG_zo3DN99B1dH-LALXADapPT10T8ypxTaovEgRdrb2El-KJNzlOyHxyn=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9n5iEFZCi6LVGjuhn7JXBT8OeVIZET8CpuIT8R8VKWoVNoZUBKRFt8wNiSvQfBTTco1Vd2kDCHRbqw-6h1j8lLByyGuJy3SxnJMM829G9r1SigJ94xLORWAdhvw_huuwqOvGUCYw=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9xj157wuG7CWDq3Yeeqbm_rr0yO1lZybmTlH_YrxB6UZ8Sxi61bQmPeaHjQ74CUBIMJCwrTmMGcPONiLDEMXLgu82X8XF-zOTHx5vZ54iwJJVPa9BpPVb_bMb_gfsHVMIY2IO93A=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example DeliverablesStage 2 – Detailed Engineering
+**Etapa 2: ingeniería de detalle**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX975cttwLfU22-1gWReTFGOYXgyzSUUF1OjPDopb8U3P957ayXZUVZ0WUDrlBITSGUjzowx9Ev9H-VH6_zt1elu6nfaafcxLpD8TDO1gyreoXdWTX8ANSzx5R83SFyyfvXipInD=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-piSMrEu5u1l9kqZgSUJ31QvrrZih3nDUHON4cm94JvZ8ycf40jKixD_0wgXRGi9tPNtHKoGaFRUeGpjCjWE0BIYxUrqODaRWzammdf22s3qjYF6w7ueC8I2D2mkFS0id0sg00iw=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX87Ur5n9PswppCM0KaR7EQTni94HM8x7XdCyc9Ah8IV0GV4EqsLAyP4Gb_Lvp6d6o8ayEK8dmO5S0LWLSswp3N6jw12fxFoENTEbubgHMUHOG70IoewJa5oSPUtUu4wi5VEjmuSSA=w383-h133-v0?authuser=0)
 
-Major Activities Preliminary Planning
-/ Design Value of AWP Example
-Deliverables
-Major Activities Detailed EngineeringProcurement in the Early Stages
+**Compras en las etapas tempranas (planificación / diseño preliminar e ingeniería de detalle)**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-0yXt90rRTY_1uQlmMd8Kf7nlDD2f9rVOuQFMr0evBh0eQlDYSWca9okawIvWsfEm2uLzxfKWfGQRosAtezPa2uyE-RYCLyagTsah8FLjmFt1d0Wo0tF9zNSizjsXAv3cEo_BQHQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8_QpqnknKHTaiejjdRQIx64uZNUGHkhmvDjhNoYDPrCyWiV4NlbhaX7XowRH8HHpunw2ws7Cb9d0P08S5gI42DpmQTatoscoMSX2BfZZ9L1wNYl-R7Esk3DddzRlbnKPHj94A-=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8BkQdyIGVQFtAsm4mNg-r2vCKEc7yToflFSOrYBLdfoTlhrsz32l8097NrCXtuov9-TbxN9sWXwuxz7UrMB6VJarFeeBfMQHHVrOUjZJcqS0aP4iAB6Ha3fDCU9NlvaEiILSej=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example DeliverablesDetailed Engineering
+**Ingeniería de detalle**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_bC4YMnQEUoJAq80nPQJOquFWqYMDQPo1KUg6aRr1k43oyLKsirp30FI8yGzTo3aEimVXf6IItJXRSp7UuWSAKI2YjkFLKqfxsc5Gso38z8gFDPLwyya9GxpmBcjIeWCmNjivBhg=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9SpBJWvh5tbMXpqjbQXGSCuu-pZ993RFNQ53yqdLUbHwpij9_sW-09_PVN8tkXqQz-xaIwP4Io_8l0DyKuV_BwGWvg-0kGshPk-jOA0V85oNrOnc6CSCWXse5dtozJdy-M5SIp=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9E5Qa8NoGsbBmz3L-jP205tVzatCe0DBHyITVWCfTTcUgElgYCNcyEGDOyHH-qMLlbrJatlbLdFBbLXOqXgTioTg8QhwXZhR6dQ3vXR46iMyPY641TnyWxJCNlfjyGsujnhJADcQ=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example DeliverablesProcurement in Detailed Engineering
+**Compras durante la ingeniería de detalle**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_CPp0q_QLyQqsIxXWo0TNSyVPvVEjn19R72a8I9i1Jy8fVlF0qQcXV9yX0gLtk4_Yeq8EPMM9DKvNoDw9GxX8HP72yQCuhtdHmOjMjsV6lWIQ5EfKe_BFR66bIpxp0F1pSkrs2Tw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-Q61skwjSEkeUdYk-SyLmovg-QXlCFpUz7e46Rv1yNvMMiq17F9Tf1GJTWGDqeQX8x7u6ZYP0sbqeJGzdD8ZpkWsNlTyzuttnU_hrtax9EaTC-HxVVgvfAfQmDOPNloKXwyg3DiQ=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_hrYZ5jXS2AG_PMh4czY1m83IiwDU4-lSWP9S_Lx76ODEF8VcOXwR0ImsCm3n8s5ElaJUevkvFXKB1SuoKH7afbIVTWmX3Rxx3xM6-8zPKoX2kmxwagqfaHsLKaOScsjL2gpbf5g=w383-h133-v0?authuser=0)
 
-Major Activities Value of AWP Example DeliverablesStage 3 - Construction Execution, Testing & Completions
+**Etapa 3: ejecución de la construcción, pruebas y cierre**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-GCNEKkSbVC2E9pmRSjdyWD9BaFAemaKSWQCAy1gzVafWyT3yml3wIDxu0vjOsRfmaDYc7wgapRLU7wHyoNlQjFTl1ZdDaXjzJ2jbx_oHhZcIKGbZp1S0lYu3k4sxUvCyL8nX9Ug=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9ayJ2ZrWNQtN8k5JyQCBUecmXm0SsE0YmHgvWse3CZ78TWiNNjJrnwwewaKEIXmFG_biRsgoxEDyHca20v2vcw58RCAeC2xSRJF65jALwaBPbClt2r55yl31cdach4Gkdcr2cH=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-u0QneiFLxcQZbbXv8NAEyzK5sXsAVSFKCuTs1bt9-sPitGAKP-aqXwdqksilan5QmYtJIph753Uc-NDUsw9FDbTABmPnJV6paN3LJ4vVmbKZcd4do7mCWD_CexMFHoTLvBPGShg=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example DeliverablesProcurement in Construction
+**Compras durante la construcción**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_SofWQjnJsBAazRhB2Io3O7fjrVwSn00Xrk3ZZDua6PxCFkA9OPh9z3BHCgcFDGsdYrIZ1tfq6UcycqZoZSUrA65wLq53nvsURakrlsaBWlxnsPAv_FlG4wwuomodBUEkt619zqw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9r_OuNxBs9LVar9yZDF-8xAEVvrn1dIZ2GVlxqVkOSCZQQafuT7uaNBhDAUZmoygx6nTz3fkkwzpLITFiskyueIREJ6K01z7ZwYDqhIMMMhvFJ9eSxiViVtMtb3imo0VTSoETsZw=w1280-h853-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_ZwJGrbWHB9ohcRZ7zASuuRC9zfoZsaL713wOzQOoq2Mo74L5iSuZWHcre5XfbThM_7eT7psLF1gLFQBqppHMNoMDxRp4HwEhQttyfdGNhxXGHJbOnCsxOETBSTC7pgn-6q0RoVw=w383-h133-v0?authuser=0)
 
-Major ActivitiesValue of AWP Example
-DeliverablesStage 4 – Energization & Commissioning
+**Etapa 4: energización y comisionamiento**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8mg0TgJ-da4fhMI92cCeWFBF2dnPgr8Obl1Y4mQAr6yrYHDqZjnvggNHZQNwPkGDmxlCRhowBJirq0RacuHH0VOfoO2X0TIVJxLLaUVyCSmahffuZTx3zgp6hC4ayM4HH8QAZM=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9ugqD1fILR1YByzCU1prPtMyR5w0gp4nyqFlf39OXNWHGXVf4l0Kq1Xu9oYxltEH5kFsWYaCS5765MFnXRUxm5tQ0ebmUlzUU_M0B1l0E-iUZ2GxQoyWbcvzFbfiLN3sufG8LAkA=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_TP_UfurQdIUVj73_ys7uXhMGtlBSvcp39VJYkv3yCt7PmVmeaP3OVOlvfmXTCeS9x1XFwstypmM0v8mm1RWU2iNhJQIgxCGVqCx_sFjdI0trXpR-3PCW1htfYWnPN39PZjmfJsw=w446-h155-v0?authuser=0)
 
-## Roles & Expectations
+## Roles y expectativas
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_JaRG6tYyH_FmjrsAgt-DQmik9LNGzBIq-EphsvNWYLZs_8zhC3P6SH66JeiLyg4OqFHyrVBB99Zy4dauvZO4Sb-cm12dtPY1JoM9qxlG7PnDEi1BRiIRQ-5qGXTxix_XEOYrFRw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_18TGxP_bN26aeBgQ_7oG0Yf_xL39LhPvxgpdQoYRGror0CleDeDorbiQKS1q_V_UQnXPfuvznnYMVeiz8FgsTaDK6pDoJRLjjTvn6mClQzuE85vwxKNmxhlRQB4CCbkB-2DbaIw=w237-h242-v0?authuser=0)
@@ -409,70 +395,59 @@ DeliverablesStage 4 – Energization & Commissioning
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-MV3gDUl7-fHtY77bvVsBYMzhA2736qH_y55EgvGnnTXsPJBD12INiC7fYrMDYI1jAqpV8Jb2nJm7wtL5fRXg0Kd7eAB1kcq4O8-CRqUaxolYkTzNrBBfhUh_-gpbKf1qE_d_cfQ=w383-h133-v0?authuser=0)
 
-Owner
+### Roles de los interesados
 
-- Support Overall AWP Project Execution
-- Develop AWP Strategy
-- Allocate Budget Resources
+**Propietario**
 
-Construction Contractor (CMT pre -bid
-selection)
+- Apoyar la ejecución general del proyecto con AWP.
+- Desarrollar la estrategia de AWP.
+- Asignar recursos presupuestales.
 
-- Develop CEP and Turnover Strategy
-- Develop Path of Construction
-- Defines CWP Boundaries
+**Contratista de construcción (CMT: *Construction Management Team*, equipo de gestión de la construcción, seleccionado antes de la licitación)**
 
-Engineering &
-Procurement
+- Desarrollar el CEP (*Construction Execution Plan*, plan de ejecución de la construcción) y la estrategia de entrega.
+- Desarrollar la ruta de construcción.
+- Definir los límites de los CWPs.
 
-- Attend Interactive Project Planning Sessions
-- Draft definition of the Construction Work Areas
-- Develop Level 2 schedule & estimate
-- Draft Required At Site dates for major equipment
+**Ingeniería y compras**
 
-Project Management
+- Asistir a las sesiones de planificación interactiva del proyecto.
+- Elaborar un borrador de la definición de las áreas de trabajo de construcción.
+- Desarrollar el cronograma y el presupuesto de nivel 2.
+- Elaborar un borrador de las fechas requeridas en obra de los equipos principales.
 
-- Attend IPP Sessions
-- Incorporate AWP into
+**Gestión del proyecto**
 
-Project Execution Plan
+- Asistir a las sesiones de IPP (*Interactive Project Planning*, planificación interactiva del proyecto).
+- Incorporar AWP en el plan de ejecución del proyecto.
+- Identificar contratistas calificados en AWP.
+- Definir las métricas de AWP.
+- Fijar los parámetros del plan de ejecución de la construcción.
+- Mantener las políticas y procedimientos.
+- Determinar los roles y responsabilidades de AWP.
 
-- Identify AWP Qualified Contractors
-- Define AWP Metrics
-- Set Construction
+**Equipo de gestión de la construcción**
 
-Execution Plan Parameters
+- Liderar las sesiones de IPP: revisiones de constructabilidad, ruta de construcción y CWPs preliminares.
+- Asegurar que la terminación de los EWPs respalde la ruta de construcción.
+- Informar el avance a nivel de EWP.
 
-- Maintain Policies & Procedures
-- Determine AWP Roles & Responsibilities
+**Gestión de la cadena de suministro**
 
-Construction Management
-Team
+- Asistir a las sesiones de IPP.
+- Asegurar que la estrategia de compras esté alineada con los contratos.
+- Respaldar los requisitos de AWP en los contratos.
 
-- Lead IPP Sessions – Constructability Reviews, Path of Construction, Preliminary CWPs
-- Ensure EWP Completions Support the Path of Construction
-- Report Progress at EWP Level
+**Gerente de operaciones**
 
-Supply Chain Management
+- Asistir a las sesiones de IPP.
+- Asegurar que los IWPs, los TWPs (*Test Work Packages*, paquetes de trabajo de pruebas) y los TOPs (*Turnover Packages*, paquetes de entrega) respalden la secuencia de entrega y puesta en marcha más eficaz.
 
-- Attend IPP Sessions
-- Ensure Procurement
+**Control de proyectos**
 
-Strategy is Aligned with Contracts
-
-- Supports AWP Requirements for Contracts
-
-Operations Manager
-
-- Attend IPP Sessions
-- Ensure IWPs, TWPs,
-
-and TOPs support the most effective turnover and startup sequence
-Project Controls
-
-- Track AWP Metrics by Project Phase
-- Monitor the Health of AWP Adoption Metrics
-- Track High Level Project Metrics that are supported / improved by AWP (Cost, Schedule, Quality, Safety)Stakeholder Roles
+- Seguir las métricas de AWP por fase del proyecto.
+- Vigilar la salud de las métricas de adopción de AWP.
+- Seguir las métricas generales del proyecto que AWP respalda o mejora (costo, plazo, calidad, seguridad).
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9gvyDgU9VWL4XtqIvFaOX07M4l_IHPB1NTu_YfQRxukkdireAG_dagKoHwNOQIibF-Mfq5AKs-lLz-PgK93X_Ue-ObDOJ9JlCP8NowLzFUFbNiS0ptn8aDcJov4EM7gt2JVtTf=w1015-h571-v0?authuser=0)
 
@@ -480,38 +455,36 @@ Project Controls
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX82SmloNV-wBi8q044mWReGPsfXs3-HRjJz_tOjfIAJeM4GzWUvwEEU4CwD0xPtK15E_IL8pNGnCiDuPFqhYoCHkpB8R3LY6zDRqF3j60ZkSnzgQDouTdsST5xSRnkm_6-_AKAd=w383-h133-v0?authuser=0)
 
-Corporate AWP Manager
+### Roles específicos de AWP
 
-- Responsible for the development of AWP program across an organization
-- Program development
-- Procedure creation
-- Staffing
-- Education and promotion
-- Determine technology needs
-- Define data requirement needs
+**Gerente corporativo de AWP**
 
-AWP Champion
+- Responsable de desarrollar el programa de AWP en toda la organización:
+    - Desarrollo del programa.
+    - Elaboración de procedimientos.
+    - Dotación de personal.
+    - Formación y promoción.
+    - Determinación de las necesidades tecnológicas.
+    - Definición de los requisitos de datos.
 
-- Project Specific
-- Establishes project expectations
-- Audits performance
-- Detailed reporting
-- Capturing lessons learned
-- Ensure data requirements are
+**AWP Champion (líder de AWP)**
 
-met
-EPC AWP Manager
+- Específico del proyecto.
+- Establece las expectativas del proyecto.
+- Audita el desempeño.
+- Elabora informes detallados.
+- Registra las lecciones aprendidas.
+- Asegura que se cumplan los requisitos de datos.
 
-- Responsible for implementation of AWP program on a project
-- Project Execution
-- Organizational Procedures
-- Attending/Contributing to
+**Gerente de AWP del EPC**
 
-Project Management
-
-- Collaborating
-- Developing Training Plans
-- Mentoring project stakeholdersAWP Specific Roles
+- Responsable de implementar el programa de AWP en un proyecto:
+    - Ejecución del proyecto.
+    - Procedimientos organizacionales.
+    - Asistencia y aportes a la gestión del proyecto.
+    - Colaboración.
+    - Elaboración de planes de capacitación.
+    - Mentoría de los interesados del proyecto.
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_MsIv86k0Im-UVRyArDp4R8B2up29Iz6jwUXJggezF2s990posoQo4G4EUOer4ZqsPC5GwrM1N9J91sLIAxlWxgGqr0Hj3D96DItJOpu5HShNdKD68d2H9_qkS2SnAIosKpF5i-A=w1015-h571-v0?authuser=0)
 
@@ -519,62 +492,58 @@ Project Management
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-Np8QlqYBnWSmwI3-KbNw581CgMsi9ZL1wwbEE-T855ChTEJIJFlQ80eqRW3lGeAZ8zj0J5P7sn2Me88xcS4y_lJv90zC4D6Z48Lo6MHtr6Y61uryJDK0_tV-SEcXNycfvCgLR=w383-h133-v0?authuser=0)
 
-WorkFace Planning Lead
+### Roles específicos de WorkFace Planning
 
-- Plans and oversees the development of Installation Work Packages
-- Provides input on Construction Work Packages
-- Selects and trains team members
-- Performs quality checks
-- Produces reports for
+**Líder de WorkFace Planning**
 
-management
+- Planifica y supervisa el desarrollo de los paquetes de trabajo de instalación.
+- Hace aportes sobre los paquetes de trabajo de construcción.
+- Selecciona y capacita a los miembros del equipo.
+- Realiza controles de calidad.
+- Elabora informes para la gerencia.
+- Es mentor de los planificadores del frente de trabajo.
 
-- Mentors WorkFace Planners
+**Planificador del frente de trabajo (*WorkFace Planner*)**
 
-WorkFace Planner
+- Elabora planes de trabajo para ejecutar la construcción con más eficiencia.
+- Realiza el análisis de constructabilidad.
+- Gestiona las RFIs (*Requests for Information*, solicitudes de información).
+- Conoce la ruta de construcción.
+- Divide los paquetes de trabajo de construcción en paquetes de trabajo de instalación.
+- Realiza los metrados.
+- Mantiene la base de datos del proyecto.
+- Identifica las restricciones.
+- Gestiona los planes de liberación de los paquetes de trabajo de instalación.
 
-- Produces work plans to more efficiently execute construction
-- Completes Constructability analysis
-- Handles RFIs
-- Understands the Path of
-
-Construction
-
-- Dissects Construction Work
-
-Packages into Installation Work Packages
-
-- Handles Quantity take offs
-- Maintains project database
-- Identifies constraints
-- Manages Installation Work Package
-
-Release PlansWorkFace Planning Specific Roles
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX90W7ZH70iaIuyFQz9ucweVZsaqgpUumxS9Il_HqaEPvdIexOpX13L6WjuzSdZdpkAh_ze27KgD_qr2qyyGvSkC_gjvZ3MxYWNHdV9X1Qz6BxjM9-Qo5Y4ONz7axf8LGYxCsnZNfw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-ElUoXRNYgLohZVFl7vywCMA_hYHkuqMgOjMGTSjFwEfV6LNLPMiM3YVFOhksaLcZ-FlpuSFB5OxyzOxC0KSwoIYkH9OiZzW13HYnBUWnf9ZZQZyVDen_HxLifynqgJGirqEn9fQ=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9gLz84Bg9W48yJ0KZH7IFREYL7XWGSGiv1Smqfg57fNQ-nsKmdTTdDADIpAh03kI2tErGcHemu-LRBnASo7lCz1jsjVMrGFO6LAtKhIfkSxTF8WNXlKTCz2GggecM-gxFge4GCww=w383-h133-v0?authuser=0)
 
-Optimized Preliminary Plot Plan
-Co n st ru c t io n  W o rk Are a s
-De fin e d  St a rt u p  P rio rit ie s
-P a t h  o f Co n st ru c t io n  (P o C)
-W o rk Bre a kd o w n  St ru c t u re  & W o rk P a cka g e s
-P ro je c t  Org a n iza t io n a l Ch a rt
-IP P  Se ss io n  - Sch e d u le
-W o rk P a cka g e s
-Co n st ru c t io n  Exe cu t io n  P la n
--15 / 30 % Est im a t e
-Co m m iss io n in g  & Va lid a t io n  P la n
-Tu rn a ro u n d  Re q u ire m e n t sStakeholder Deliverables Related to AWP
+### Entregables de los interesados relacionados con AWP
+
+- Plano de ubicación general (*plot plan*) preliminar optimizado.
+- Áreas de trabajo de construcción.
+- Prioridades de puesta en marcha definidas.
+- Ruta de construcción (PoC).
+- Estructura de desglose del trabajo y paquetes de trabajo.
+- Organigrama del proyecto.
+- Sesión de IPP: cronograma.
+- Paquetes de trabajo.
+- Plan de ejecución de la construcción.
+- Presupuesto con precisión de −15 / +30 %.
+- Plan de comisionamiento y validación.
+- Requisitos de parada de planta (*turnaround*).
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8VhY9rXnhvigWpDkXortt0JCPq49SUtWcdXP2e5En-miYoJedg8wQwSuhgc8UEEXDl2ZlHAX9vXDDnXgoI731rSm5v9SVNyEI2PzrldzXoF161ISUBqFhjC7tev1nATEVafkvwmw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9K7PZJspsW95F8_Vzyn61r_RC1Lus7BnlA2b5UTmRMXRgE3OUeSEwtkCdt72lQuXoklyeKTgrm4SWS89AzKW2zv9v1TBVXdD4aKv0MqOhUrLa406ipp7rSo0oG-MKs54PTtQ_2qQ=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9r8g6nvpk2L-VayWbY0LpLf1i10_EMGTRA9mrpJGD9a3N-P0ShbGMoxHFCuIh-0zgN67fyLnks6_xxu53NeqIjKxzSMs0eFfAAJplDTmR6FpIOGnjuYgzO6or881JsZeHgv7P6VA=w446-h155-v0?authuser=0)
 
-## Work Package Types
+## Tipos de paquetes de trabajo
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_sTea5VrfLBjBQGnD2vKBHMOIGzsfGuWyoNVx7s5unpG7rxqPm07fLJ0o8MIbRrgjWBbvWzQ2hYm3VJXItCAmswED894Uz_544czlqWHPSrrsUTErBRS_ZTy0mvlqs1fbYBpGMQw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-sZzRjQD_zlmHvyd0kzAGDYikcRc4kY0OhxREZM4FsUuuh47YjveqkW0qrBBZsNdA8S5unEQEakuhRlVp2W5rLok1Pv43gPRR8-dEodQatHeoyQnlrlCSrJE33dwGVZ1rj9Ur2Rg=w169-h169-v0?authuser=0)
@@ -595,103 +564,108 @@ Tu rn a ro u n d  Re q u ire m e n t sStakeholder Deliverables Related to AWP
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-x0LQTmfxCJK9GVfTr89LVttpD8OF6JmEi-mV6fiWxDjlLF_Auo6BdORZe0o_kckmnHr9TYETCZDiapFYbeEXlQk1tfD959gwtUoa9R6_1nWlAuYlRW-ctDV9GxrLPPUhPUgFL=w383-h133-v0?authuser=0)
 
-Construction Work Package
-(CWP)
-Construction Work Area
-(CWA)
-Engineering Work Package
-(EWP)
-A location specific, multi -disciplinary representation of process units, major areas throughout the construction site.
-Created by the key stakeholders in accordance with the Path of Construction. Serves as a proposal for executives to ensure the construction of a given project or production is well -planned out. The better Construction Work Packages are prepared, the better chance that the project will be accepted by a company. CWPs are subsets of CWAs. Prepared by discipline or craft.
-Engineering deliverable that is used to develop (CWP) Construction Work Packages and that defines a scope of work to support construction in the form of drawings, procurement deliverables, specifications, and vendor support. The EWP is released in an approved sequence that is consistent with the CWP schedule. The scope of work is typically both by discipline and by area. Prepared by discipline or craft.
-Installation Work Package
-(IWP)
-Contains constraint free scope of work that allows trade to complete tasks independently for a specified time duration in a safe, predictable, measurable, and efficient manner. This includes supporting documents such as BOMs, tasks, and man -hour estimates to complete the task. IWPs are subsets of CWPs. Prepared by discipline or craft.
-Procurement Work Package*
-(PWP)
-System Work Package
-(TWP)
-A deliverable that enables a commisioning work crew. An TWP should be scoped to be manageable and progressable and is typically scoped in a way that maps to existing commissioning zones, systems, subsystems, or subsystem components. The TWP should be mapped to predecessor IWPs to ensure the Path of Construction enables an efficient startup sequence.
-A complete list of supplied material and equipment for an EWP/CWP. The scope of a PWP can be specific to an engineered piece of equipment or to a group of bulks supply. A PWP does not have to be a physical package —a PWP can also be a scheduling or tracking exercise. Must support the Path of Construction.
-##### Types of Work Packages
-*Optional, some may consider this a process rather than a package
+| Tipo de paquete | Descripción |
+|---|---|
+| Área de trabajo de construcción (CWA) | Representación multidisciplinaria, ligada a una ubicación, de las unidades de proceso y áreas principales de toda la obra. |
+| Paquete de trabajo de construcción (CWP) | Lo crean los interesados clave de acuerdo con la ruta de construcción. Sirve como propuesta para que los ejecutivos aseguren que la construcción de un proyecto o producción esté bien planificada. Cuanto mejor se preparen los paquetes de trabajo de construcción, más probable es que la empresa acepte el proyecto. Los CWPs son subconjuntos de las CWAs. Se preparan por disciplina u oficio. |
+| Paquete de trabajo de ingeniería (EWP) | Entregable de ingeniería que se usa para desarrollar los paquetes de trabajo de construcción (CWPs) y que define un alcance de trabajo para respaldar la construcción en forma de planos, entregables de compras, especificaciones y soporte de proveedores. El EWP se libera en una secuencia aprobada, coherente con el cronograma de los CWPs. El alcance suele definirse por disciplina y por área. Se prepara por disciplina u oficio. |
+| Paquete de trabajo de instalación (IWP) | Contiene un alcance de trabajo libre de restricciones que permite al oficio completar sus tareas de forma independiente durante un plazo determinado, de manera segura, previsible, medible y eficiente. Incluye documentos de apoyo como BOMs (*Bills of Materials*, listas de materiales), tareas y estimaciones de horas-hombre para completar el trabajo. Los IWPs son subconjuntos de los CWPs. Se preparan por disciplina u oficio. |
+| Paquete de trabajo de compras (PWP)\* | Lista completa de los materiales y equipos suministrados para un EWP/CWP. El alcance de un PWP puede corresponder a un equipo diseñado específico o a un grupo de materiales a granel. Un PWP no tiene que ser un paquete físico: también puede ser un ejercicio de programación o de seguimiento. Debe respaldar la ruta de construcción. |
+| Paquete de trabajo de sistema / de pruebas (TWP) | Entregable que habilita a una cuadrilla de comisionamiento. Un TWP debe tener un alcance manejable y medible en su avance, y normalmente se define de modo que corresponda a zonas, sistemas, subsistemas o componentes de subsistemas de comisionamiento existentes. El TWP debe vincularse con los IWPs predecesores, para asegurar que la ruta de construcción permita una secuencia de puesta en marcha eficiente. |
+
+\*Opcional: algunos pueden considerarlo un proceso más que un paquete.
+
+En el original, la última fila se titula “System Work Package (TWP)”; se mantiene la sigla TWP que usa el texto.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-x7cJurVUZWZXovX4e1cUe55mFQtKE1HbJmmTLrqGKV3KHPdJCVt3wS1KFWJA8R3iM0lJNeSyCQnoJO69ULycqrOTi-nCENkn2FVaI4Ns5qvHAJlGvPaW4Vz7L9cZLT_36J_2gyA=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9RXS1NUxaXIBFfu7JUj9RUS3ZdjtXgU2ji0gF0etU-Zvyx-w0MXrAo4zCKs-wxPTu1tqi6kPtWa86bEnMvEujxAVVTe0pBvJ8tzs43J_IPySnALIDXTQL-JdjTka7uUFZSrty4Ig=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_9b8754ytIW-tab2HQA4NoEP0ZsQqFElPXoG9Hqn3cCojldP2uBDkrPC2aznj3gc6JowRLuP4kxFPRI8rE5MX1xDt_IC_Q6TVPS2IMpPzs4IEEM76MVFhyexa_oCQTsArGhGh3Tw=w383-h133-v0?authuser=0)
 
-Geographically Identified
-Mu lt i-d isc ip lin a ry
-Re p re se n t s  a ll m a jo r a re a s
-Lis t  o f a ll Ma t e ria l, Eq u ip , & Ve n d o r Da t a  Re q u ire d  b y En g in e e rin g
-Lin ka g e  t o  a  Sp e c ific  CW P /EW P
-Ro le s  o f Bu yin g  & Re ce ivin g  P ro ce ss
-Lis t  o f Asso c ia t e d  P u rch a se  Ord e rs  w it h  ROS Da t e s
-Fie ld  In fo  – Ta g s, Ma t e ria l MGMT
-De p e n d e n c ie s  w it h  o t h e r P W P s
-Su p p o rt s  P OC
-Construction Work Area
-(CWA)
-Procurement Work Package (PWP)
+### Características de cada tipo de paquete
+
+**Área de trabajo de construcción (CWA)**
+
+- Identificada geográficamente.
+- Multidisciplinaria.
+- Representa todas las áreas principales.
+
+**Paquete de trabajo de compras (PWP)**
+
+- Lista de todos los materiales, equipos y datos de proveedores que requiere ingeniería.
+- Vínculo con un CWP/EWP específico.
+- Roles en el proceso de compra y recepción.
+- Lista de las órdenes de compra asociadas, con sus fechas ROS (*Required on Site*, requerido en obra).
+- Información de campo: tags, gestión de materiales.
+- Dependencias con otros PWPs.
+- Respalda la POC.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_ePiVrkvK4nNbeBZPjInX4cbbpANljFLrkFiG79dPO0iYHWDIIVjwU1VrOa-XbaXnJc72-BzgBCH5IVF1wuU-yqeeTdU8ag0nVBCJygNh5dL6XZaLfGwK4OGyDAQc69d9IJlKq=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_ggmxTWU7_FE2MX2oW-bDMl19rBlFNeA4YrELQvu8N_TEA_opyixY8l8C_tGZFgKj39DW0apG_hsrsmYfvgvKecj3wB_k4xZb--wpTGFRRvZbupCDtCEi059eGteXykaikXExQyQ=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-C8beAjFp6jTGt1Ax16hC0e_TFrbIwBQqSopZ8k5ELXPKWrTJoTKS9TmbgUR-yBd89EZw9A4f0IJuyza3tuJkSm25GSrPbPFNeMeiWDseW05p97Jspa-nJeceG1F-zirNLqgbO0A=w383-h133-v0?authuser=0)
 
-Subset of a CWA and aligned t o  a  CW P
-Disc ip lin e  Sp e c ific
-Te ch n ica l Sp e c ifica t io n s
-En g in e e rin g  Da t a  & Dra w in g s IFC
-Ve n d o r Da t a  & Dra w in g s IFC
-Su b se t  o f a  CW A
-Disc ip lin e  Sp e c ific
-Est im a t e d  Ma n  Ho u rs
-P la n n e d  St a rt  & Fin ish  Da t e s
-CW P  Re le a se  P la n
-Construction Work Package
-(CWP)
-Engineering Work Package
-(EWP)
-Co n st ra in t s  Id e n t ifie d Co n st ra in t s  Id e n t ifie d
+**Paquete de trabajo de ingeniería (EWP)**
+
+- Subconjunto de una CWA, alineado con un CWP.
+- Específico de una disciplina.
+- Especificaciones técnicas.
+- Datos y planos de ingeniería IFC (*Issued for Construction*, emitido para construcción).
+- Datos y planos de proveedores IFC.
+- Restricciones identificadas.
+
+**Paquete de trabajo de construcción (CWP)**
+
+- Subconjunto de una CWA.
+- Específico de una disciplina.
+- Horas-hombre estimadas.
+- Fechas de inicio y fin planificadas.
+- Plan de liberación de CWPs.
+- Restricciones identificadas.
+
+La asignación de los elementos a EWP y CWP se ha reconstruido a partir del orden en que aparecen.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_Zbl5GMvqAmjnfOuH-TMCJ83FTsIPaF4rcrG0jF6_t0XiK_XJ7J_zYeQZico2imoj8XLNBPTh446v0c8d8Rxj2BtPwUUq3rgLmCeD-zVPN4-krwBHqxiDUuvwVF2zgUzN7Q2bgcQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-114YpyCIPKXf697BUla77F3LU485C-u8fJEz-RZ5ROGfcmWgqGoS2rutSPBvTv0iQmfETn-9IlWwjALzVS7rGpj0sOr_1G4iyCz2MU2tE5ju1ewrNEslg_Qvm-zqEXptKZSta-g=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8MdkFHowzBdtFmLf_G49XpRQkJ6_rtqPWz0fUKUpFKmFVoOvHNdjFge1drSE5nwfmOH0tmfHASwvdDuyO8qEbFMLSEB3SYLImZckrQjQ56i5iwf1boAIp5TY7ew_fX8aN-jUrVNg=w383-h133-v0?authuser=0)
 
-Subset of a CWP Co n st ra in t  Lis t  & Ve rifica t io n
-W o rk Sco p e /Ta sk Lis t
-Ma n  Ho u r Allo ca t io n
-Sp e c ia lt y To o l & Eq u ip  Re q u ire m e n t s
-BOM’s
-Te ch n ica l Do cs & DW Gs
-Scre e n sh o t s  fro m  Mo d e l
-Installation Work Package
-(IWP)
+**Paquete de trabajo de instalación (IWP)**
+
+- Subconjunto de un CWP.
+- Lista y verificación de restricciones.
+- Alcance del trabajo / lista de tareas.
+- Asignación de horas-hombre.
+- Requisitos de herramientas y equipos especiales.
+- Listas de materiales (BOMs).
+- Documentos técnicos y planos.
+- Capturas de pantalla del modelo.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9QIN2WOzbzu1p6pPHwdtYLGHvw8GYN7_NLn8-DJ-xdFx1vf6HZqGJsWiRYbKT7Ymmv7eJCLxZjQtcFSSSm0wns_g1klxV0AZGSiTCN0OkjQLB_4xOQy4DefSifGc2J3rlxnxgN=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9VgfNlce7WqY090uuI8yJgjUtwgLWTSIPRf0rEYnQE2K0pQHs6dGR9PF8e-SEKgJ5VJTcZo2tHZ0w1a_JytvJ1mR_fecbbKs2fa0rjXyVeN-4KzTQvv0CX4NgPbxNVlwC1LlO51A=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9qtYGDD0TlCFkbBMEeSShqVWWGsX82RbBKX_t_TqYKnNfHKAuqKTo9g0mT4Rvn5O01aYMon8x-MCkgcTC7a_XROWIvyB5I7X0GbRHfn3oihx7_Q-3rYq45lycHjgKp7hUZwfgw=w446-h155-v0?authuser=0)
 
-## Work Package Constraints
+## Restricciones de los paquetes de trabajo
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9SfjOx6A1LuI26lMkgwD6oe3BXoJyvsCnbVoYH9i3xoA8ErD8FtSAj1Ygik8sPtG_lmlj2dI-9MfGmk2nOpQXDh4CZADO7B-6ckEye2G2qGnFzbsoT3Ah-vgpNOL6zfcZXP9ll=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8f0N_d3xpKp7GbpkOpuak3P5PTcUXgKOWDmyj2m9v86abdMXoDC8XcIHb41A9kYb3WtK6j_3yMvJ9H3Bj172j5yc8UJwf_RtpOTdHdgigQaMWWCjsgnwDNmbXiflr-OFOe9fvL2g=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8Mh5maQYQ3-M_Jquv0nJpwr3RgZmKdigbZCdSnw_pOc1nW1WaB0IyDdCE5XKoF53AX4thbL6gQ6nq3FLrgDaU0KLxPYBTbnZsWmRNcyxG-uc4xWPr6PURPahwudLy5ud3TWkssKA=w383-h133-v0?authuser=0)
 
-“Work Packaging and the Constraint Management process remove the guesswork from executing at the work face by acutely defining the scope of all work involved and ensuring all things necessary for execution are in place. It ensures to a much greater degree that the work
-will be done in the time allotted.” - CII RT272 , page 35
-Any information, tools, materials, equipment, access issues or
-otherwise that prevent or delay the safe and successful execution
-of work in its entirety.
-##### What is a Constraint? What is Constraint Management?
-A process used by supervisors and other
-management personnel to help employees
-maintain task focus.
+> “El empaquetamiento del trabajo y el proceso de gestión de restricciones eliminan las conjeturas al ejecutar en el frente de trabajo, porque definen con precisión el alcance de todo el trabajo involucrado y aseguran que todo lo necesario para la ejecución esté disponible. Aseguran, en un grado mucho mayor, que el trabajo se hará en el tiempo asignado.”
+>
+> — CII RT272, página 35
+
+**¿Qué es una restricción?** Cualquier información, herramienta, material, equipo, problema de acceso u otro factor que impida o retrase la ejecución segura y exitosa del trabajo en su totalidad.
+
+**¿Qué es la gestión de restricciones?** Un proceso que usan los supervisores y otros miembros de la gerencia para ayudar a los trabajadores a mantenerse enfocados en la tarea.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9TDT5tcWObZsU3DYrctT3rNg9F56JfTWa54Hy4LfpQxTf9YrX5tTp04Mt1TbOEAHqivcYlyM0eqRjfUgGk9rw1Z0gw5is27gx8E6GsWJ_AEycjn2Hny_XNCzcb2ELIkFO7tb5v9g=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9MKVaaa6uVVhhzw8ss-dUbFR9YETfdMv6wu_g0wV2wr-SUnAyboUoP8wtWu2ZCCsY8bQvBTeaJkdPF1SCJeTPS1p3XKGWUFX6_6yua10CraZZvt2MoGaZYbU0f5N3h52YyC3-MUw=w842-h1191-v0?authuser=0)
@@ -702,109 +676,24 @@ maintain task focus.
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_SIB1sFRLx_5CuEjYqJnoAYloulVB9v-cuG-4WNeZLSp03iXRlZ7SZMJyzxHx_MG9kCzRd2WZAYN0wsyRCumaAeuL5TZ_duzas1FVGJv12-njV16YjI4M2q1D7ukYg73Qiof_e=w383-h133-v0?authuser=0)
 
-##### Benefits of Constraint Management
-Project Balance
-Scope Budget
-Schedule
+**Beneficios de la gestión de restricciones:** equilibrio del proyecto entre alcance, presupuesto y cronograma.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-2kFK-hxtfCv3LSir31S-5A3vUYDbjHwf34RuWfUOvhDNTJurrpxuhIRPb_hETlIyqd5Kx50_TbsLltDl-qZS8VqMDFpSrkFoCdIBSzDZeUf-eu2yqud4Xx0I20R_NZP6UBQpR=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8gpBxSVpZd4Y6x2ae876vuIg5gQwJviPzVQG4fWUoklobXhYUzpmSZ9Bh0i1zYVVLPneEGJRf0ACa36-6YroTot1rt7-lpblCgMc58G9tPojSlZ9OMFYiWJtwPOboZ5DB4QO3Wrw=w383-h133-v0?authuser=0)
 
-Construction Work Area
-(CWA)
-Engineering Work Package
-(EWP)
-Procurement Work Package*
-(PWP)
-Construction Work Package
-(CWP)
-Installation Work Package
-(IWP)
+### Restricciones habituales por tipo de paquete de trabajo
 
-- Equipment
-- Access
-- Concurrent
+El diagrama original asigna las restricciones en cinco columnas (CWA, EWP, PWP\*, CWP e IWP). La conversión perdió las columnas; los grupos siguientes respetan el orden del original y la asignación de cada grupo a un tipo de paquete es probable, no segura.
 
-Projects
+- **CWA (probable):** equipos; acceso; proyectos simultáneos; requisitos de seguridad propios del área; terminación de trabajos predecesores.
+- **PWP (probable):** restricciones de PWP, EWP, CWP e IWP; paquetes predecesores; requisitos de datos; definición final del alcance de materiales; documentación de proveedores; puntos de espera de proveedores; paquetes interdependientes.
+- **EWP (probable):** investigaciones; estrategia de modularización; requisitos de soporte de proveedores; plan de ejecución; revisión de constructabilidad; aportes a los P&ID (*Piping and Instrumentation Diagrams*, diagramas de tuberías e instrumentación); planos del sitio; aprobaciones del propietario; calidad.
+- **CWP (probable):** planos IFC; RFIs abiertas; materiales de la empresa; materiales del contratista; paquetes predecesores; requisitos de seguridad.
+- **IWP (probable):** planos; RFIs abiertas; materiales de la empresa; materiales del contratista; paquetes predecesores; frente de trabajo despejado; permisos; equipos; herramientas; cuadrilla; andamios; requisitos de calidad; retrabajo del paquete de trabajo; requisitos de seguridad.
 
-- Area -Based Safety
+\*Opcional: algunos pueden considerarlo un proceso más que un paquete.
 
-Requirements
-
-- Predecessor
-
-Completion
-
-- PWP Constraints
-- EWP Constraints
-- CWP Constraints
-- IWP Constraints
-- Predecessor Packages
-- Data Requirements
-- Scope of Material Finalization
-- Vendor Documentation
-- Vendor Hold Points
-- Interdependent Packages
-
-Investigations
-
-- Modularization
-
-Strategy
-
-- Vendor Support
-
-Requirements
-
-- Execution Plan
-- Constructability
-
-Review
-
-- P&ID Input
-- Site Drawings
-- Owners Approvals
-- Quality
-- IFC Drawings
-- Open RFIs
-- Company Materials
-- Contractor Materials
-- Predecessor
-
-Packages
-
-- Safety
-
-Requirements
-
-- Drawings
-- Open RFI
-- Company Materials
-- Contractor Materials
-- Predecessor
-
-Packages
-
-- Clear Workface
-
-Permitting
-
-- Equipment
-- Tools
-- Crew
-- Scaffolding
-- Quality
-
-Requirements
-
-- Work Package
-
-Rework
-
-- Safety
-
-RequirementsCommon Constraints by Work Package Type
-*Optional, some may consider this a process rather than a package
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8P_Zz_eNxE4qCGEAYOqRcB0yoCiKcJC46_a6YEjAOE00MPKPl9wm7v--KwHrgDQgkKjo_9ipyqSRS6lhrZ7C2cgCMr9mZx-XMxUug5eMXsraKIhHXk-s6QawIjp52OODyNuwaBIQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9JjJL0hOdyzjVlgXonfktz3BtFLOC7EPHhG7wgmZoM_EUSBlGD1fDPhhs-zDj1BQXQqdpuR6_ys32nrJTtQ8mEPCFc-a43aBg46KRhRi5AVYpOKasTfBKLp6NRaWQU0A1prbadCg=w194-h232-v0?authuser=0)
@@ -817,41 +706,43 @@ RequirementsCommon Constraints by Work Package Type
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-dHOm3DHlRDHnnb9FU0MRJ4A07AhwIbMtNZHio68K3uvC430smrQPB6woDfCPMyeaQdQ7lCjBFp4sfOv4sBjm-NDKXjxVXiCyJiStWFw5AE6eoAQssXmlNd4lRJOt5YvRfXn6m_A=w150-h150-v0?authuser=0)
 
-Discipline / Team Lead
+### ¿Quién participa en la gestión de restricciones?
 
-- Keeps track of the planned vs. actual start dates for work packages
-- Monitors the quantities being held up by constraints to help with prioritization
-- Understands the impact and criticality of all open constraints
+**Líder de disciplina o de equipo**
 
-Constraint Owner
+- Sigue las fechas de inicio planificadas frente a las reales de los paquetes de trabajo.
+- Vigila las cantidades retenidas por restricciones, para ayudar a priorizar.
+- Entiende el impacto y la criticidad de todas las restricciones abiertas.
 
-- Anyone working in any capacity on the project
-- Responsible for clearing their assigned constraints such as permits, materials, safety gear, or equipment
-- Provides details and updates on the constraint removal processWho is Involved in Constraint Management?
+**Responsable de la restricción**
 
-WorkFace Planning Lead
+- Cualquier persona que trabaje en el proyecto, en cualquier función.
+- Responsable de levantar las restricciones que se le asignan, como permisos, materiales, equipos de protección o equipos.
+- Proporciona detalles y actualizaciones sobre el proceso de levantamiento de la restricción.
 
-- Runs the weekly constraint review meeting with the Owner & Contractors
+**Específico de WorkFace Planning / ejecución de la construcción:**
 
-– Discusses any new constraints
-– Provides updates on existing constraints
+**Líder de WorkFace Planning**
 
-- Manages the escalation of unresolved constraints that may impact the project
+- Dirige la reunión semanal de revisión de restricciones con el propietario y los contratistas:
+    - Trata las restricciones nuevas.
+    - Actualiza el estado de las restricciones existentes.
+- Gestiona el escalamiento de las restricciones no resueltas que puedan afectar el proyecto.
 
-WorkFace Planner
+**Planificador del frente de trabajo**
 
-- Identifies constraints for specific work packages
-- Drives clearing of constraints for work packages
-- Status packages for release if work is impacted by an uncleared constraint
+- Identifica las restricciones de paquetes de trabajo específicos.
+- Impulsa el levantamiento de las restricciones de los paquetes de trabajo.
+- Actualiza el estado de liberación de los paquetes si el trabajo se ve afectado por una restricción no levantada.
 
-Specific for WorkFace Planning / Construction Execution:
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-dLKRr0whqkPdUNP3dWUL-iHHLYuwJkRnP4-MGdai0_Y6snO2Ksz2DR4s-QnRMGIceWZwMX1wYrywbuCaIkqyAEUCseov5YO_9jpc51Z2hXeExhDzA0VYT3Bnu5t8bYQ966raKDA=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9UPvZpK8jeLynEWWSa4NP7-z0-Jf3GxxTU-xi17sZrAE9KdTNesWl3IhCKL8l9KjXaMxVChwuSZsenav21lUFKoIqmH-Bf9ICU5SiQlj-0ZUYJHsmse-UKNci3XICfHOT7iiYE5w=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-9TcXQqf0mk_pFBMRDvnukkZuLeLGr1AKUp5GA8d5R6vKtqDCpb3ew60FWpCfPQBGqSQuSKURI8fu94c-x5JbphOIx6t7PaIJBoHyJ01qYHJeOhzXYwO-Qwp2mA2q24aoAkUZOKg=w446-h155-v0?authuser=0)
 
-## Path of Construction & Interactive Planning Meetings
+## Ruta de construcción y reuniones de planificación interactiva
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_xz7C_zDjKap6DbKB-tOm4m7qnq76LmYEOtyfuw-SEKAPaNCihienMxoyZTrqOxp3EUr2tA3MegKhcMm4r2O99OYVtJb_xMBLhpWVyPLZ4My7_Szf6-Vd1eILJLdHlChH8zOPLVA=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-qmS8-GIkdJktMdLiVg10HtdSsOOvw0XJ5_EdVbtajWuVooBMNxi_IiHhMBLmOBNWFOt7jitN-0L3oNOoVjIUbcNMXTisqAynKEy9miBGoYQH2y0xY8BUnrwuRqs1am5GK_cWu0w=w1280-h853-v0?authuser=0)
@@ -864,51 +755,32 @@ Specific for WorkFace Planning / Construction Execution:
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9YVUd-othYVIq6chKnwzZh5yB9lZqQnKW-0alxfEwENCRwEz1SRtgE-3nwgx04cteNQC6eK7WWodIQIZrhR8VNVI8YSzK1vEYS7NimcQ2H7zuIMcUn2OtuONQLJTSAAIiHQNjCdw=w383-h133-v0?authuser=0)
 
-In a traditional project, Engineering is performed by
-Syst e m , P rocu re m e n t  in  b u lk, Fa b rica t ion  b y s ize , a n d
-Con st ru c t ion  b y a re a .
-AW P  is  d e sig n e d  t o  a lig n  En g in e e rin g , P rocu re m e n t , a n d
-Fa b rica t ion  w it h  t h e  P a t h  o f Con st ru c t ion  so  d e live ra b le s
-a re  m a n a g e d  a n d  d isse m in a t e d  in  t h e  co rre c t  se q u e n ce  t o
-su p p o rt  t h e  Con st ru c t ion  p la n .
-Th is  p roce ss  is  in it ia t e d  d u rin g  t h e
-In t e g ra t e d  P la n n in g  Se ssion s.
+En un proyecto tradicional, la ingeniería se hace por sistema, las compras a granel, la fabricación por tamaño y la construcción por área.
+
+AWP está diseñado para alinear la ingeniería, las compras y la fabricación con la ruta de construcción, de modo que los entregables se gestionen y distribuyan en la secuencia correcta para respaldar el plan de construcción.
+
+Este proceso se inicia durante las sesiones de planificación integrada.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_qXetIFl1D3NC1ylnjsEnn037lKR3PxYJASAbhodO-vr7VGeM9AwgbpeMKPdmlr7jh4g5l3VI8AUYzf2cLPYw-guhzDNgfLB6JloVtPLzsP_0QpnZJDfSBYVUiaVlDrS89bEdd2g=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8xc8TXOrW3GCUDZxBr5WsEjol3dxVWBLvQ_femZetN9iG_c-SW99jJUhXm2evf8lBnTIF_rNwgu360jo0pbECI1QbGYuIQy8hr426TXYdPuxszGqaAH_Mi9p5HvEFo2sCklzJKAQ=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-PNR2KFsFq3o2ItcEQgFAK_FT7LbmO6Z2DdOV6dDi8E30fBV-YBxtkUa-_jL0toPmns5ecShDdIB7qvh2j8bj3A4pe2QE8Nb4Fe1P8arDE5HPx5rmdg7nDkLtiRAU0fpStvS_68g=w383-h133-v0?authuser=0)
 
-3 4
-2
-5
-1 Commissioning
-Engineering
-Procurement
-Construction
-Owner
-Integrated Planning Sessions bring together the project
-lifecycle team to define the Path of Construction and do a
-backwards pass to ensure that Engineering and Procurement
-can support Construction execution dates, with
-Commissioning requirements
-in mind.
+Las sesiones de planificación integrada reúnen al equipo de todo el ciclo de vida del proyecto (propietario, ingeniería, compras, construcción y comisionamiento) para definir la ruta de construcción y hacer un cálculo hacia atrás (*backwards pass*) que asegure que ingeniería y compras puedan respaldar las fechas de ejecución de la construcción, teniendo en cuenta los requisitos de comisionamiento.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8SdAbd_hWO55RYnVSt17Ryh2JiO7suWuUr-ST7tfuNMVx-7WdtEovfCV_qxwFTOCQ8UQzfGnECkUrm2q03V10XZq_jDAvIzLc9Ruxv-A0HKDloXpXraLUMHLIl8bHCDdDju4EYPw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_rm-41Uclv5u186ge3UVYyHFiRZVTeTDJu8Ccbnqaq1Y5Q1qnKh9nHeb_sbzvGyvK9DA16Ao03DzBxOutM8gA0vr4-EgtfsIa7hSav-bDQcfOK2gVr-HGOaPy1k1uJp88W7g9-CQ=w383-h133-v0?authuser=0)
-PATH OF CONSTRUCUTION (PoC)
-The PoC is the strategic sequencing of Construction
-(and Commissioning) execution activities by
-Construction Work Areas.
-The PoC identifies the Construction approach for
-project delivery and how Engineering and
-Procurement deliverables will support construction
-sequencing.
-*Commissioning and plant startup operations set the priority and sequence for the project
-CONSTRUCTION
-ENGINEERING
-COMMISSIONING
-PROCUREMENTPoC
+
+### Ruta de construcción (PoC)
+
+La PoC es la secuencia estratégica de las actividades de ejecución de la construcción (y del comisionamiento) por áreas de trabajo de construcción.
+
+La PoC identifica el enfoque constructivo para la ejecución del proyecto y cómo los entregables de ingeniería y compras respaldarán la secuencia de construcción.
+
+\*El comisionamiento y las operaciones de puesta en marcha de la planta fijan la prioridad y la secuencia del proyecto. El diagrama muestra la PoC en el centro, rodeada de construcción, ingeniería, comisionamiento y compras.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9jLqh_g_-ESYfpuXC3Dkk_PSA3RUV5Le8R1auwa_VCF15DFO4cS5_iMMvSfllRdJxGBlL5br7WWjeOsT1LlSfuMhw6Psw2q5BgtZq6OsxtO98l6WFr8NCmB5ZM5stHT4Dq8XtN=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9b8KAFdAETURLXe9nYW9V1yVsagRffCduvGKoSLf2PDC5PySe1d82VBqyghWufsaPWjDuKg04se1eJCSsEWyrFuniFfOAl5UE_U09MQxg55nghjjEzGYVg4Ua2TBn7Ux2cK0zp-Q=w842-h1191-v0?authuser=0)
@@ -917,21 +789,18 @@ PROCUREMENTPoC
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX93fanzSS23Lzwn-AmsZTmIfovbLfZFf7IBeJhvzlJvw599iphOhKvpZ_ImEk6cTeO1lBtlmzPb9xyBIMss9q5JqEWHjBZhtXqy4-HmT3H4h8rhfHntuTeDNcRQrYGGiPnFVf-PFw=w383-h133-v0?authuser=0)
 
-Who is required to provide information for determining the Path of Construction?
-###### EXAMPLE OF ATTENDEES THAT WOULD BE PART OF THE PATH OF CONSTRUCTION DEVELOPMENT
+**¿Quién debe aportar información para definir la ruta de construcción?**
+
+*Ejemplo de participantes en el desarrollo de la ruta de construcción* (en la imagen).
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX816UpfqYAn_wU1QyIXHDGBX6HUHXIFUqDAVTpY02SiSMZlUWgBnZXlx1oEmEDS5yzGD991Tqj6ptspSkyP1mEV65nZz0OA3jyOT5kNrCA2_k5_MLUuIrWw1VhowHftp7gnYLiD=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8vb1padwO1Q-DxCJi2FbqffGoOYEmjiYyBWlETqL_cEWqGJll3sISm8hWctr7tHHTjWPfokS28D21nwq-oWY4D_D6Ld69lo9wimcxQ4oyjFEg19xLraZfbFUXCPfaeOOTmgEHz=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8ClEYW2OArRpcNT593LFAHMjTIyZbMWLmqSY4Ak46ZQQyqUUtewjszjGV-lwGpUFIJ45RsXKYWnbv_qYUPG1QKGKQWmVv1n8LoS8IMhS77E1adtxTiMho0FPEY0iHDHHq6EjEp=w383-h133-v0?authuser=0)
 
-##### What information is required by each discipline after each meeting?
-Engineering
-Procurement
-Process
-Construction
-Commissioning
-Project Controls
+**¿Qué información requiere cada disciplina después de cada reunión?** Ingeniería, compras, procesos, construcción, comisionamiento y control de proyectos (el detalle está en las imágenes).
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_AVFeuFisVroCw9DCXTAfIMtcwer-4Kvtsm13G0gX1MaRA7ADdDtQqvtF5d-qD24sbn3OjJRJjF0yBGjKsxho2QK6jDql82gwSvrfbWnjISJwCXoebATANEcbxUa4SEJbS2tIl=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-vHn2YJ8sKgG5KnhnzFKYeutyKvo4PQTwPUIvLF9pWM5RgG2SgDz-fAywCytkddjg7MYEGLYsqtOx-IlIAGyMIZ9PdQjg_cqTfep0w5Y8kKND7Xqgv3LPNwJhqgCNssaS2Z0nh=w842-h1191-v0?authuser=0)
@@ -948,19 +817,22 @@ Project Controls
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9aPVZtc60nONoUqPLA_YelM1PFby_yJhy06I8a6lP91cdsq8Un8HHQh0ZXl_7Hn4g6A9nj-dGmr17-7-E8ZsMhhqBLvoIZBjq3x2iKzzWo_QGbehbT31PMRHCaHtFIX1Hysp10MQ=w100-h97-v0?authuser=0)
 
-Construction Work Area boundaries defined on plot plan(s)
-Co n st ru c t io n  W o rk Are a s  p rio rit ize d
-En g in e e rin g  a n d  Co n st ru c t io n  W o rk P a cka g e s  id e n t ifie d
-P a th  o f Co n st ru c t io n  b y Co n st ru c t io n  W o rk Are a s
-En g in e e rin g  a n d  Co n st ru c t io n  W o rk P a cka g e s  se q u e n ce d  w ith in  Co n st ru c t io n  W o rk Are a s
-##### Deliverables from the Integrated Project Planning Meeting
+### Entregables de la reunión de planificación integrada del proyecto
+
+- Límites de las áreas de trabajo de construcción definidos en los planos de ubicación general.
+- Áreas de trabajo de construcción priorizadas.
+- Paquetes de trabajo de ingeniería y de construcción identificados.
+- Ruta de construcción por áreas de trabajo de construcción.
+- Paquetes de trabajo de ingeniería y de construcción secuenciados dentro de las áreas de trabajo de construcción.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_DJrOBWLde-vz0l6PEwhwUIa5jWnqAuf9wllfqvXIBXWCsfQDOPrC6P8Og_PIwfXtTR1Sk3rvWGteCnAqWaVHdhVgNgLYZ33Y1b-N_Nz9mkr4XQShiiV1-vp0jVD94dTLliGlweg=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-2uCU7LGyzDV7FvtU8guKVLJl9IZhHGZMk5LlQpplbt7faY2HbIRYkHVrcqGSrFidvJ6VeHfG1TYIpb3OgH4Vp3A5PrjhfMG0PZEJRbfUM13rxHWQUKwUgkUoECvTavQIj-Ck4JQ=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-FUqYS_RGZeuQnMYDi_mi3biFbffqGtPGx2yD4aWqmDuClNK2JVQ3vmhurs54LcT2UBXXyulBpLbYBkTW8eMLPFW_xXRRsxgRajahTdNWNo10x1yPG1ZIl4D3iosqIgODDrjSdlA=w446-h155-v0?authuser=0)
 
-## Getting Started with AWP
+## Cómo empezar con AWP
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_mggbI4v6JJFRIKQYz6xUwPKCJY6Ux8nfaIhBWKS75xf4J0WyqbJqj6Y-t2Y94ipyQtquoI3Tse5rYTrtm_qLdp39Mb6jPKZlilCLcXeN6VC5zcajoSxescqLw965YTvxRyD4H9Q=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX89ccU0dYHl7lDl_zNKLMwKsJq4vPDhnrOe1L_3cMcOC0Azc5sHLz02BYs4fCX_EXi0-EdMxbiKGekL14AS2tEcYk6pPZBrHsKhQJikQpW9n5NyD2foZASS4C0NaurPN22U0Q960A=w842-h1191-v0?authuser=0)
@@ -971,11 +843,12 @@ En g in e e rin g  a n d  Co n st ru c t io n  W o rk P a cka g e s  se q u e n 
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9UlfxcFxclZgmD56p_1odeWTYB9DyXdG8aJWK3BvpMkaes3GbwdRXZ7W_VlbxRjAMZeyTbnc9trMYre0iVl1nJIALhcFCqwckjTw_vw8DhOlzflREVyY1_sTkhBYiyH1MiM5wu=w1036-h721-v0?authuser=0)
 
-###### Where Should You Start?
-Support Change Management
-resources to achieve a quick win!
-tools, and tips to get started.
-Visit the CII AWP Concierge to go deeper into objection handling & resources!
+### ¿Por dónde empezar?
+
+La conversión solo conservó fragmentos de esta diapositiva: “Apoyar la gestión del cambio”, “… recursos para lograr un triunfo rápido” y “… herramientas y consejos para empezar”.
+
+Visite el CII AWP Concierge para profundizar en el manejo de objeciones y en los recursos disponibles.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-qVYQg7Bbn1kO0YwGkqD0WHWowCaRrVoF2L7ZaVlCX-CZKwYOYuhLYCIYtV3egvbDV-StPGrq1vN14_zA-ZcWXCerdU2oW5dGv-nxu2F5z44jfcTTnwztSg5znErSsJhYTzWua-w=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-De9vNtVgHdtUY8r3EE8w8AH4iY4DsyPMz_8PvyjKKRBVqHCn69vsOH_mxbDj1xceQkPZGtBUclwxaaJDiVV6jCk-fbCbnL5nZqnmsJC11IONpqIxndVP3h_5pIzHRjDK-_puVAQ=w842-h1191-v0?authuser=0)
@@ -984,15 +857,18 @@ Visit the CII AWP Concierge to go deeper into objection handling & resources!
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX--QzesGb0Kqh5EgA7DOa6hGVHmwcMj0ZeLgs7p4FPv4XRbI_H7IsbK6ZZe2_1FyUhXRtAb3BVtFXyZOEEjI7cKRGbF8GXyMXsz6QlsgB_WLd7v9y-vsWZTELFpfMgFHn-9gCbWhQ=w1012-h461-v0?authuser=0)
 
-##### AWP Maturity Stages & Project Performance
-Source :  RT319-1Transforming the Industry: Making the Case for AWP as a Standard Best Practice
+### Etapas de madurez de AWP y desempeño del proyecto
+
+*Fuente: RT319-1, “Transforming the Industry: Making the Case for AWP as a Standard Best Practice”.*
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8_ERExP7bUt3Sh3I8nH-o8JIyF73llvDQxtgRC-bNfK5PeansUqyxqw34UUwjTXKJRoM3wyVHElhY-qowK7-W38xCMNbZrADayr2Ovw-WAuQ55PddGjYwoC2m5Oe8QGsbdV5sMZQ=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-SnmjRoG7lan_v38Lj1xl41S4yx1XgydbF_CSuqIcirmQGa2o8nHw1OGU-GGNM2GZrrFdfe3OpiR3HP9AU4l0yBPRWKb0hXEVqSWtFQePTxSL24GvzRkVG98E_3dGdyk4Hn-BlDQ=w1280-h850-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_zdthC_9T8QRDDgp12b4aUXgM9U71TeOCmlrcQKLIE-hxUXTxrUNnHKyf6NbzJ_rkatEEMyX2fhwvslJ5bs9Tockqs5xToMlndTeabyWNAhB3dwB5zpQoahO7EAc3Hk0OzgdKeEg=w446-h155-v0?authuser=0)
 
-## Overcoming Common AWP Objections
+## Cómo superar las objeciones habituales a AWP
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-7oBpC9QzzLGARciZAkDBVf8ZEUvNL-Tz3739_m6MqrxpGq7Rmty5km7ZphfSrWWoYILe-RRCF2LHE9sQdA6lItOtdS4-uiijtZFnufKmCFUb1vXTuFXUq82k29FY6pc325AsM=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9F7rr6k2cAXD27B4BQ9oZcyE-88cgmtRSkvNhUG08jZxLGymqFj0BAk6Z522e4iVlZXo8MzomHASmF5bZLIXEnlkNI2g-5oeIGqlNZXwrrilLmShOZ8BGZMK4US2Pug59463MzNw=w842-h1191-v0?authuser=0)
@@ -1003,29 +879,41 @@ Source :  RT319-1Transforming the Industry: Making the Case for AWP as a Standar
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8QhthHjyT7s2r_PeZhQ7abtTHdKU3f8yv2DnysEcDJqZLCMRk4wBcrtkB2h-HYmv1JWVoN4WEDrx4jzrZ015lzzPVbYPd4842G8bATny8ESV2dD72UnMc_PcjEQxKFsfYwAI7I3g=w1036-h721-v0?authuser=0)
 
-##### Common Objections
-1. “I don’t have enough people.” 2. “This will slow down engineering.” 3. “This is too hard.” 4. “Our current process is just fine.” 5. “I don’t have the technology or tools for this.” 6. “AWP is just a buzz word.” 7. “AWP is not right for my project.” 8. “I don’t have time to learn something new.” 9. “My project is too small.” 10. “My project is too far along.” 11. “I have a lump sum job.” 12. “We already do AWP, kind of.” Visit the CII AWP Concierge to go deeper
-into objection handling & resources!
+### Objeciones habituales
+
+1. “No tengo suficiente personal.”
+2. “Esto va a retrasar la ingeniería.”
+3. “Esto es demasiado difícil.”
+4. “Nuestro proceso actual funciona bien.”
+5. “No tengo la tecnología ni las herramientas para esto.”
+6. “AWP es solo una palabra de moda.”
+7. “AWP no es adecuado para mi proyecto.”
+8. “No tengo tiempo para aprender algo nuevo.”
+9. “Mi proyecto es demasiado pequeño.”
+10. “Mi proyecto está demasiado avanzado.”
+11. “Tengo un contrato a suma alzada.”
+12. “Ya hacemos AWP, más o menos.”
+
+Visite el CII AWP Concierge para profundizar en el manejo de objeciones y en los recursos disponibles.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9zgo2Wtm0H9IGLLJXjoUZy_vwLePj6dJzXyuP9BwedMMFgg8KuhnyqCIbOZFgG8qnXalZMcPeceMBprcQuqkyuCkSDb3HY9Q2gok1wwDVbEF2vEhMwGxQ7TVfJSh6hFkybl1PI=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9KvamtbDp6mEMtpn02beSkBZjKNweoqM65dUrR_A-Lr-A0lNrc7iE6GwvBBqYYcooOzE-Zx_epAtzsXdzPktYgl7-9zJ_vKsjPx5VkoEXWXBvABlq6CLPNybJPthOYYvoNG5SwLQ=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX98WcN9MzeTDquB3S1QP-bkLvf4HLc6kAkcZ744YSpeaP8aXOL5JN4BVAByHecPPkgXrrbLtaHCOZa6z0FCrShyJqV0Y2FeWD7_zASduWq_3_vXENeweTWdDPQmrNmV8BSaayKcHQ=w781-h271-v0?authuser=0)
 
-## WHAT’s NEXT?
-##### Join the
-##### AWP CBA
-Learn More >>
-##### Read CII AWP Research
-Learn More >>
-##### Join Your Company
-##### AWP Team
+## ¿Qué sigue?
+
+- **Únase a la CBA de AWP.** Más información >>
+- **Lea la investigación del CII sobre AWP.** Más información >>
+- **Únase al equipo de AWP de su empresa.**
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-k8rVVoHOpsRTRHL-DrgaAzMwKt6yU8CT0yT8HQpih5NEGOkPA1Z3NNjF0PNoX0zZrdH3kRxGxdBUfqqq3DoPZGoBYdk5dERI-bEfkadXN0B0I5lgpdfhAWD1IfuyKwdyiJvdYrw=w1015-h571-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-zbOxMP0YaMqQ9VZzuFTjRSDytOJHxRpoL_yPrLfAb4WxZdCjbm7c5JnSLgLyHzoLJWKIwbkI9IrfZR_5Yxbm7YUU1ApgjTlKsIyvLcnzaScpL3MjB3_liUDFzIaJSGdpy5ygD=w842-h1191-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_j54DmdTLejoAO9mpTkJKU-2-hsScbrSM0idkocWWw7zyl76zpe4wpPJEYzVknFqJl6FvkDQttiwOsO6twusvM5fIEi1WVGI2u7d1n-1zaaMOnzUsFbXzCRMPqBwALDXg5JtEqGw=w1280-h444-v0?authuser=0)
 
-CII Advanced Work Packaging Community for Business Advancement, Education & Outreach Subcommittee Contributors:
-![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9wtUNkg7ZEjjR4Q2bzPL45gQSXggkmyGQuOdRxUf1HL3hC3WZff_wVh08jbxu6Vo4u5sdh_-EI8ZAJEB1Fr2JkLaAlqq_PZEirSXzMcejge-HrB4sZLV04bIu6RSzswK_uybMxuw=w1015-h571-v0?authuser=0)
+Colaboradores: Subcomité de Educación y Difusión de la Comunidad para el Avance de los Negocios de Advanced Work Packaging del CII.
 
+![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9wtUNkg7ZEjjR4Q2bzPL45gQSXggkmyGQuOdRxUf1HL3hC3WZff_wVh08jbxu6Vo4u5sdh_-EI8ZAJEB1Fr2JkLaAlqq_PZEirSXzMcejge-HrB4sZLV04bIu6RSzswK_uybMxuw=w1015-h571-v0?authuser=0)
