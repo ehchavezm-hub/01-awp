@@ -1,9 +1,9 @@
-# Resumen de AWP – Buenas prácticas COAA (2016)
+# Resumen de AWP: guía de buenas prácticas de la COAA (2016)
 
 <div data-search-exclude markdown>
 
 !!! info "Documento fuente"
-    Copia de `cop-awp-pbp-01-2016-v1-advanced-work-packaging-summary-pdf.md` (PDF, en inglés). Se corrigió solo el formato (títulos, listas y restos de la conversión); el texto es el original.
+    Traducción al español de `cop-awp-pbp-01-2016-v1-advanced-work-packaging-summary-pdf.md` (PDF de la COAA, 2016, en inglés). El archivo original de la raíz del repositorio no se modificó. Las siglas técnicas se mantienen en inglés; la primera vez que aparece cada una se indica su nombre completo en inglés y en español. Todo el texto es una traducción del documento de la COAA (*Construction Owners Association of Alberta*, Asociación de Propietarios de la Construcción de Alberta).
 
 </div>
 
@@ -11,9 +11,9 @@
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_M0fnAtJ0AKliU9sM2YBK8xIxC9egTmI7NjSK2KIRkgiVr1EJ4l5fp2iheIWIo6v8nHUL5l2nbCoEAKJv4JlY31j0VT5S78H0Zje5PwP1FGL6zJuUP9avQZPTaQRLhsQsx_VeWaA=w1280-h1002-v0?authuser=0)
 
-Advanced Work Packaging / WorkFace Planning
-A Best Practices Guideline
-Version I  |  July 2016
+**Advanced Work Packaging / WorkFace Planning: guía de buenas prácticas**
+Versión I, julio de 2016
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX91QxtA0fI6nijkXIQPRUBB0TJK_fxmXryEBwVdnfFE6cGyaPeLfXrG1H4aLb_-3kWZv8pn2C38efq40KGZwZbIps048lnQQYLFv_NMc7EYgnJft0oNQYgaisFVD8fL2wYW6ePkgw=w298-h149-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-Es8pMtFjksuD_D1Bao8rCUnyEtwLamLfHfHTWWCVnyzwsf0g8482NE83PBuuCkKSC1jfOT4eyQvUhElgqsMyRGHUc3XcmSb1YZ_DIPwDod5YMdhIZLYt7vMaywh9-Uan3iCXN=w749-h50-v0?authuser=0)
@@ -22,71 +22,87 @@ Version I  |  July 2016
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-_5tvs9onXCEcK__kpEcaULVAPHSE__nglP9XL2RYETC6FCNBdYj_JXDsnkt9AaHopz6Ih-0EKX82SJdOXkUu8rfcKpu2BOI0fOi37qH3gEbG-OwEYP2EAG4JI9wCSZVC48lUSpg=w391-h182-v0?authuser=0)
 
-1
-**
-This Best Practice guideline ("guideline") was developed through a consensus process approved by COAA. This process brings together volunteers representing varied viewpoints and interests to achieve a reasonable consensus on a generic guideline for industry use. The content of this guideline does not represent the views of any particular committee member. This document is a general guideline and COAA strongly recommends legal and other professional advice being obtained to complement and clarify specific adopting of this guideline. This guideline is also subject to periodic review and readers should ensure they are referencing the most current version of this guideline. Suggestions for improving this guideline are welcome and can be submitted directly to COAA.
-This guideline is provided without any representations, warranties, or conditions of any kind, express or implied, including, without limitation, implied warranties or conditions concerning this document's fitness for a particular purpose or use. In publishing this document, COAA and the committee members do not accept responsibility arising in any way from any and all use of or reliance on the information contained in this document. The information in this guideline is directed to those who have the appropriate degree of experience to use and apply its content. COAA and the committee members are not rendering professional or other services for or on behalf of any person or entity, nor undertaking to perform any duty owed by any person or entity to another person or entity.
-Copyright © 2016 Construction Owners Association of Alberta
-The information in this publication may be reproduced, in part or in whole and by any means, without charge or further permission from the Construction Owners Association of Alberta, provided that due diligence is exercised in ensuring the accuracy of the information reproduced; that the Construction Owners Association of Alberta is identified as the source; and that the reproduction is not represented as an official version of the information, nor as having been made in affiliation with, or endorsed by the Construction Owners Association of Alberta.
-Construction Owners Association of Alberta #800, 10123 – 99 Street Edmonton, Alberta Canada T5J 3H1  T: 780 420-1145 E: admin@coaa.ab.ca www.coaa.ab.ca
+## Aviso legal
+
+Esta guía de buenas prácticas (“guía”) se elaboró mediante un proceso de consenso aprobado por la COAA. Este proceso reúne a voluntarios que representan diversos puntos de vista e intereses para lograr un consenso razonable sobre una guía genérica para uso de la industria. El contenido de esta guía no representa la opinión de ningún miembro del comité en particular. Este documento es una guía general y la COAA recomienda firmemente obtener asesoría legal y de otros profesionales para complementar y aclarar la adopción específica de esta guía. Esta guía también está sujeta a revisión periódica, y los lectores deben asegurarse de consultar su versión más reciente. Las sugerencias para mejorar esta guía son bienvenidas y pueden enviarse directamente a la COAA.
+
+Esta guía se proporciona sin declaraciones, garantías ni condiciones de ningún tipo, expresas o implícitas, incluidas, entre otras, las garantías o condiciones implícitas sobre la idoneidad de este documento para un propósito o uso determinado. Al publicar este documento, la COAA y los miembros del comité no aceptan ninguna responsabilidad derivada, de cualquier forma, del uso de la información contenida en este documento o de la confianza depositada en ella. La información de esta guía está dirigida a personas con el grado de experiencia adecuado para usar y aplicar su contenido. La COAA y los miembros del comité no prestan servicios profesionales ni de otro tipo para ninguna persona o entidad ni en su nombre, ni asumen ningún deber que una persona o entidad tenga con otra.
+
+Copyright © 2016 Construction Owners Association of Alberta.
+
+La información de esta publicación puede reproducirse, total o parcialmente y por cualquier medio, sin costo ni permiso adicional de la Construction Owners Association of Alberta, siempre que se actúe con la debida diligencia para asegurar la exactitud de la información reproducida; que se identifique a la Construction Owners Association of Alberta como fuente; y que la reproducción no se presente como una versión oficial de la información, ni como realizada en asociación con la Construction Owners Association of Alberta o con su respaldo.
+
+Construction Owners Association of Alberta, #800, 10123 – 99 Street, Edmonton, Alberta, Canadá T5J 3H1. Teléfono: 780 420-1145. Correo: admin@coaa.ab.ca. Web: www.coaa.ab.ca
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX98nvTkGtZYN36G86892fmzjyKwZeS2KINJSV5IIEeyDUNCm2oo4LOJUL5QlPyNXhv4RuPDZaa0Eakxif7LVLyGDxjlfFY0oEH8lW-OPC6BOfF7RjG1PSvQwzwxnv2ZKECD9wyUwg=w132-h61-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_QxlvAh_FvYQ263dLexuvVKrbSm_jB1B4_ifhSr0MiescQ0o1qbC15Ooug_S0j2MSUbKndb-O3XKUGv8G-VIb3k-fAj6vtDtQgzsz7JJOSVWYvZbT0oKaaX8MNU9uML7n2Gvwt=w391-h182-v0?authuser=0)
 
-2Contents
-Introduction ........................................................................................................................................................ 3
-Proposed AWP Benefits ...................................................................................................................................... 3
-AWP at-a-glance.................................................................................................................................................. 4
-AWP Resources added to WFP ........................................................................................................................... 5
-More information about AWP and CII ................................................................................................................ 6
-For the WorkFace Planning Best Practice, please click here.
+## Contenido
+
+1. Introducción
+2. Beneficios esperados de AWP
+3. AWP de un vistazo
+4. Recursos de AWP añadidos a WFP
+5. Más información sobre AWP y el CII
+
+Para la guía de buenas prácticas de WorkFace Planning, consulte el sitio web de la COAA (en el PDF original, “haga clic aquí”).
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_I3IJomOFBHcBPYvo0jqeyXCknbwqBTu0HVXA_GYH0JdLLMpfmdB6V-kE2pwHHDumHVlNKL0jREmWAK4mA160gAmnXqYtxb7ChQ-prw2_iInh-KZKrHCJsZ5-NgtwFacx9qXDi=w132-h61-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9FizAMJyr_BU-5i0VbUdfyUd9w4I5Xeomy3_maR5cSYKbfVrIz8U-MxbiRe2MvRvQ5Na3wHtD_kMdmOkkZTbynkB59-o-ctUYfp-8JbvwQ5gzOPrY1m0xbryYGu-XpoYJIfe8Y1Q=w391-h182-v0?authuser=0)
 
-3
-## Introduction
-In 2012, a partnership between the Construction Industry Institute (CII) and COAA was established, and a co-funded joint research project was initiated. Based out of the University of Texas at Austin, CII and COAA researchers developed a series of recommendations and best practices for work packaging techniques that include detailed front-end planning and enhanced construction execution planning and management.  The research team (coined RT-272) released the first series of reports from this study at the 2013 COAA WorkFace Planning Conference. The concept of Advanced Work Packaging (or AWP) is a series of processes intended to improve construction performance from concept to commissioning, very much like the intended effects and scope of WorkFace Planning, although the current vision of the AWP model considers WorkFace Planning to be most relevant to the field-level execution (construction) stage of the project, while the AWP concepts have the most relevance in the front-end planning stages. The AWP model is presented, along with challenges and benefits in the RT-272 report, published by and available through CII. Here, we provide a brief overview of AWP, with a special focus on how AWP and WFP fit together. More information about AWP will be presented here in the future.
-## Proposed AWP Benefits
-Traditionally, contractors face a large amount of rework due to both poor field planning and poor coordination between engineering and construction. The loss of productivity caused by rework can be harnessed and turned around if the work packaging process is implemented properly. Early project planning that integrates work packaging with engineering, procurement, construction, and project controls increases the probability of the following:
+## Introducción
 
-- The engineering team supports the construction sequence and schedule.
-- Vendor-supplied equipment remains on schedule.
-- Materials are purchased and delivered to support construction.
-- Communication of specific work tasks is improved at the workface, from the superintendent level through the craft ranks. (Throughout this document the team uses the term workface; this term is interchangeable with the term work front.)
-- Constraints such as craft availability, material laydown, scaffolding, and IFC drawings are better managed.
-- Work toward closeout and turnover is better controlled.
+En 2012 se estableció una alianza entre el CII (*Construction Industry Institute*, Instituto de la Industria de la Construcción) y la COAA, y se inició un proyecto de investigación conjunto cofinanciado. Con sede en la Universidad de Texas en Austin, los investigadores del CII y de la COAA desarrollaron una serie de recomendaciones y buenas prácticas sobre técnicas de empaquetamiento del trabajo que incluyen una planificación temprana (*front-end planning*) detallada y una mejor planificación y gestión de la ejecución de la construcción. El equipo de investigación (denominado RT-272) presentó la primera serie de informes de este estudio en la Conferencia de WorkFace Planning de la COAA de 2013.
 
-While this is not an exhaustive list is of the potential improvements from advanced work packaging, it provides a snapshot of the areas that are most often vulnerable to failure on construction projects. The case studies performed by RT 272 revealed that the effective implementation of work packaging techniques improves productivity and increases predictability of project performance.
+El concepto de AWP (*Advanced Work Packaging*, empaquetamiento avanzado del trabajo) es una serie de procesos destinados a mejorar el desempeño de la construcción desde el concepto hasta el comisionamiento, muy similar a los efectos y el alcance que se buscan con WorkFace Planning. Sin embargo, la visión actual del modelo AWP considera que WorkFace Planning es más relevante para la etapa de ejecución en campo (construcción) del proyecto, mientras que los conceptos de AWP son más relevantes en las etapas de planificación temprana. El modelo AWP se presenta, junto con sus desafíos y beneficios, en el informe RT-272, publicado y distribuido por el CII. Aquí ofrecemos una breve visión general de AWP, con especial atención a cómo encajan AWP y WFP (*WorkFace Planning*, planificación del frente de trabajo). En el futuro se presentará aquí más información sobre AWP.
+
+## Beneficios esperados de AWP
+
+Tradicionalmente, los contratistas enfrentan una gran cantidad de retrabajos debido tanto a una mala planificación en campo como a una mala coordinación entre ingeniería y construcción. La pérdida de productividad causada por los retrabajos puede aprovecharse y revertirse si el proceso de empaquetamiento del trabajo se implementa correctamente. Una planificación temprana del proyecto que integre el empaquetamiento del trabajo con la ingeniería, las compras (procura), la construcción y el control de proyectos aumenta la probabilidad de que:
+
+- El equipo de ingeniería respalde la secuencia y el cronograma de construcción.
+- Los equipos suministrados por los proveedores se mantengan dentro del cronograma.
+- Los materiales se compren y entreguen de manera que respalden la construcción.
+- Mejore la comunicación de las tareas específicas en el frente de trabajo, desde el nivel de superintendente hasta los trabajadores de oficio. (En todo este documento el equipo usa el término *workface*, que equivale a *work front*: frente de trabajo).
+- Se gestionen mejor las restricciones, como la disponibilidad de personal de oficio, las zonas de acopio de materiales, los andamios y los planos IFC (*Issued for Construction*, emitido para construcción).
+- Se controle mejor el trabajo hacia el cierre y la entrega (*turnover*).
+
+Aunque esta no es una lista exhaustiva de las posibles mejoras que aporta el empaquetamiento avanzado del trabajo, ofrece una visión de las áreas que con mayor frecuencia fallan en los proyectos de construcción. Los casos de estudio realizados por el RT-272 revelaron que la implementación eficaz de técnicas de empaquetamiento del trabajo mejora la productividad y aumenta la previsibilidad del desempeño del proyecto.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8hQfbreKt_lU_uTfFrW80WlYTZIpgN5GVIJILcQZvfe77Vnb1CGUXKK1e7su-rtaSDB1afXRAaxyqKExnSB_xqy81vpmUkOAysOhzzxYOQLL-SFvxXrMzb0aJIvKIIbtRUGR3QNg=w132-h61-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9EtI8e2lnEiMegSf7KBpMfZe4T746t1N8euUmwFvPCXTVLJGNYNgCRiItlQW8dPJ9KWlnBaSOtFSeNuLUkkVLv_Ex8XnLCOk6EHm62WoWZzLZyxSvC0WcEcjyunGPoCErpLNK71Q=w391-h182-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9qPLO5CS0mv6O6Z-OvFkSRueCE2bb42r71w8Ug13XmRxnOgAlOaFZt8Ai1Vx1gRjXuUIEIfcJcPaQXnb7TaaFUPFntN76gmjd548VLqUjwlXx_dEF-alwZTmm3-PDZkRZOwwWXWw=w545-h269-v0?authuser=0)
 
-4
-## AWP at-a-glance
-Advanced Work Packaging (AWP) is a disciplined approach to improving project productivity and predictability. It accomplishes this by aligning planning and execution activities throughout the project life cycle, from project set-up to start-up and turnover. The essence of AWP is conveyed in the below figure (which also demonstrates how WorkFace Planning fits within the AWP model):
-AWP activities span the entire project. Front end planning and detailed engineering activities support enhanced execution at the work front. Project set-up and planning sessions establish the basis for coordinated construction and engineering work packages (CWPs and EWPs). These packages then enable time progress of work through orderly planning, execution, and monitoring of installation work packages (IWPs). Management of IWPs is also known as workface planning.
+## AWP de un vistazo
+
+Advanced Work Packaging es un enfoque disciplinado para mejorar la productividad y la previsibilidad del proyecto. Lo logra alineando las actividades de planificación y ejecución durante todo el ciclo de vida del proyecto, desde su configuración inicial hasta la puesta en marcha y la entrega. La esencia de AWP se muestra en la figura siguiente (que también muestra cómo encaja WorkFace Planning dentro del modelo AWP):
+
+Las actividades de AWP abarcan todo el proyecto. Las actividades de planificación temprana y de ingeniería de detalle respaldan una mejor ejecución en el frente de trabajo. Las sesiones de configuración y planificación del proyecto establecen la base para paquetes de trabajo de construcción y de ingeniería coordinados: CWPs (*Construction Work Packages*, paquetes de trabajo de construcción) y EWPs (*Engineering Work Packages*, paquetes de trabajo de ingeniería). Luego, estos paquetes permiten el avance oportuno del trabajo mediante la planificación, ejecución y seguimiento ordenados de los IWPs (*Installation Work Packages*, paquetes de trabajo de instalación). La gestión de los IWPs también se conoce como WorkFace Planning.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9yFlWHopGRo9kORat8By_UyP7jsbkXW-9o1ZKujPtJUUxFYT-yjcS1VUIcdObhd6y23EKoxYSwA0e0AAliXDfzt4MfzWVPplI-lN-8-zSspGBP9NbItyVKiD_iSzsrNpkROgwQCA=w132-h61-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX_4bys2f0rVtvCoiuvCSWiUux-FUeZAD2gBkVgoFmlgO-dV0L1uF3CdlPvdWn8n0sA57DwRYENBj85jRYk8qcVFkpXFmW_mI0iD2dqie2CkzaoIkqvDl05aMHaN_3rGENWmbhx8Ow=w576-h284-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX-f6Xw4zZ7TpWhv0HPKrW9ySHciy9Ky_eGwc-fM4x9c79PcFyGJeiPUp1uI-lbX3_zUBsjPFRdEPQWBNr7hzh8tteQBpQ9tflw9RgHwrhEBm5DjPRNG8eVvhxkK5_VnIXy4wQr3Aw=w391-h182-v0?authuser=0)
 
-5
-## AWP Resources added to WFP
-The COAA online library contains these resources for WorkFace Planning and Advanced Work Packaging.
-Area WFP Resource AWP Resource Best Practice Report WFP Best
-Practice AWP Summary (main best practice is on CII website)
-Procedures COAA Scorecard – are you ready to implement? WFP Prerequisites WFP Infrastructure WFP Timelines Rules of WFP Path of Construction Inputs, Tools, Outputs RASCI
-Overview of Project Integration Flowcharts Overviews of each responsibility along flowcharts: owner, PM, CM, Eng, Supply chain, constructor
-Work Flowcharts Path of construction IWP Lifecycle flowcharts and narratives
-Project Integration Stages 1,2,3, Swimlanes
-Templates, others
-IWP – Piping IWP – Electrical IWP – Structural Steel Sample IWP package EWP template CWP template Job Descriptions for workface planner, materials management, scaffold, etc
-Job Descriptions for integration positions: AWP champion at Constructor, Construction Management, Engineer, Owner, Project management, Supply chain
-Checklists Path of Construction Cable Tray Civil Foundations Civil Piling Electrical Instrument Cable Install Electrical Junction Box Install Equipment Setting Hydrotesting Instrument Install Instrument Raceway Install Insulation Piping Structural Steel Tracing Install Underground Piping
+## Recursos de AWP añadidos a WFP
+
+La biblioteca en línea de la COAA contiene estos recursos para WorkFace Planning y Advanced Work Packaging.
+
+| Área | Recursos de WFP | Recursos de AWP |
+|---|---|---|
+| Informe de buenas prácticas | Guía de buenas prácticas de WFP | Resumen de AWP (la guía principal de buenas prácticas está en el sitio web del CII) |
+| Procedimientos | Tarjeta de puntuación de la COAA: ¿está listo para implementar?; requisitos previos de WFP; infraestructura de WFP; plazos de WFP; reglas de WFP | Ruta de construcción: entradas, herramientas y salidas; matriz RASCI (*Responsible, Accountable, Support, Consulted, Informed*: responsable, quien rinde cuentas, apoyo, consultado, informado); visión general de los diagramas de flujo de integración del proyecto; resumen de cada responsabilidad según los diagramas de flujo: propietario, PM (*Project Manager*, gerente del proyecto), CM (*Construction Manager*, gerente de construcción), ingeniería, cadena de suministro y constructor |
+| Diagramas de flujo de trabajo | Ruta de construcción; diagramas de flujo y descripciones del ciclo de vida del IWP | Etapas 1, 2 y 3 de integración del proyecto; diagramas de carriles (*swimlanes*) |
+| Plantillas y otros | IWP de tuberías; IWP eléctrico; IWP de acero estructural; paquete IWP de ejemplo; plantilla de EWP; plantilla de CWP; descripciones de cargo del planificador del frente de trabajo, gestión de materiales, andamios, etc. | Descripciones de cargo de los puestos de integración: AWP Champion (líder de AWP) del constructor, gestión de la construcción, ingeniero, propietario, gestión del proyecto, cadena de suministro |
+| Listas de verificación | Ruta de construcción; bandejas portacables; cimentaciones (civil); pilotaje (civil); instalación de cables eléctricos y de instrumentación; instalación de cajas de paso eléctricas; montaje de equipos; pruebas hidrostáticas; instalación de instrumentos; instalación de canalizaciones de instrumentación; aislamiento; tuberías; acero estructural; instalación de traceado; tuberías enterradas | |
+
+En la conversión desde PDF, esta tabla llegó como texto corrido; la asignación de cada recurso a la columna de WFP o de AWP se ha reconstruido según el orden en que aparecen.
+
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX93-na-72R6V5uZPm4ygiT-nUwFIqLC31vpNVsq4cyRXNfg9D2P_Kd7j5UIvJ93EfeJIASaauv-nq853d0LbuEdjKKCdIsBqdSsvDi8jd1Ko1w8BkYdXqMLwc5euErx0je4B7_gTQ=w132-h61-v0?authuser=0)
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX9gP5T8k9C_5sIG_I6GbQlwV0p4KMWO3ok5cN4ebHyG7CuxJQ6OBiXE5eegtuuM7NBUgQTlcpB3Gt4JIorrAOcUdoPZnsm47EWMJLDpttaI5sc0BIEfxXL9DszvUijb7wbqkEU0zg=w219-h36-v0?authuser=0)
@@ -121,11 +137,14 @@ Checklists Path of Construction Cable Tray Civil Foundations Civil Piling Electr
 
 ![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8eXCS4j09D9K4yxYFLARuHxHD_YLpB4cHJco4i2puWw-ZfCmYf8CLUiuAeDWdunkFKR0cbuk69zYs9nz83qD4iO7R5iq63Y_c6c8faaojnSsafw-evqZ-Vb3Gu0wFLaY2H465h=w391-h182-v0?authuser=0)
 
-6
-## More information about AWP and CII
-The CII Research Team RT-272 developed (this study) in response to known AWP implementation challenges. While not addressing all the barriers to successful AWP implementation, the team developed tools and assessments that were felt to address most of the primary challenges.
-Implementers at all levels—from those getting started to those who are sophisticated practitioners of AWP— should benefit from (this guidance). Please click here to contact CII for more information.
-*Construction Industry Institutete:*
-Founded in 1983, the Construction Industry Institute (CII), based at The University of Texas at Austin, is a non-profit consortium of more than 100 owner, engineering-contractor, and supplier firms from both the public and private arenas. For more information, please visit https://www.construction-institute.org
-![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8mo-vgMZwpidQBdWWb0xSIVeRneUeFdelmVZSB6Guz8St07AWbkd598z13sihz2k8sPlaBO0VmJBybDSgw7nyECeBGQnKFjt2S6bWvKGcCOrD2sZUI2Gk2glabVpJKTe_50Agh=w132-h61-v0?authuser=0)
+## Más información sobre AWP y el CII
 
+El equipo de investigación RT-272 del CII desarrolló este estudio en respuesta a desafíos conocidos en la implementación de AWP. Aunque no aborda todas las barreras para implementar AWP con éxito, el equipo desarrolló herramientas y evaluaciones que, a su juicio, atienden la mayoría de los desafíos principales.
+
+Quienes implementan AWP en todos los niveles, desde quienes recién comienzan hasta quienes ya lo practican con madurez, deberían beneficiarse de esta guía. Para más información, contacte al CII (en el PDF original, “haga clic aquí”).
+
+**Construction Industry Institute**
+
+Fundado en 1983, el Construction Industry Institute (CII), con sede en la Universidad de Texas en Austin, es un consorcio sin fines de lucro de más de 100 empresas propietarias, contratistas de ingeniería y proveedores, tanto del sector público como del privado. Para más información, visite <https://www.construction-institute.org>.
+
+![image](https://lh3.googleusercontent.com/notebooklm/AKYWMX8mo-vgMZwpidQBdWWb0xSIVeRneUeFdelmVZSB6Guz8St07AWbkd598z13sihz2k8sPlaBO0VmJBybDSgw7nyECeBGQnKFjt2S6bWvKGcCOrD2sZUI2Gk2glabVpJKTe_50Agh=w132-h61-v0?authuser=0)
