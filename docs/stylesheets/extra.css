@@ -1,0 +1,23 @@
+/* Imágenes de los documentos convertidos: que no desborden la página. */
+.md-typeset img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tarjetas de la página de inicio. */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.4rem;
+}
+
+/* Tablas del glosario: primera columna sin cortes de línea. */
+.md-typeset .glosario td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* Los documentos convertidos usan muchos títulos de nivel 5 y 6:
+   se muestran sin mayúsculas forzadas para que se lean mejor. */
+.md-typeset h5,
+.md-typeset h6 {
+  text-transform: none;
+}

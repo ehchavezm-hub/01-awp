@@ -1,0 +1,112 @@
+site_name: Consulta AWP
+site_description: Web interna de consulta sobre Advanced Work Packaging (AWP), Workface Planning (WFP) e Information Management (IM).
+site_url: https://ehchavezm-hub.github.io/01-awp/
+repo_url: https://github.com/ehchavezm-hub/01-awp
+repo_name: ehchavezm-hub/01-awp
+edit_uri: edit/main/docs/
+copyright: Material de consulta interna. Los documentos pertenecen a sus autores originales (CII, COAA, Insight-AWP, Omega 365 y otros).
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: es
+  icon:
+    logo: material/package-variant-closed
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+
+plugins:
+  - search:
+      # El contenido está en español e inglés: se indexan ambos idiomas.
+      lang:
+        - es
+        - en
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  # Los textos convertidos desde PDF usan saltos de línea simples:
+  # nl2br los respeta para que no se junten en un solo párrafo.
+  - nl2br
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  # Muestra el significado de las siglas al pasar el ratón por encima.
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abreviaturas.md
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/imagenes.js
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Inicio: index.md
+  - Introducción y visión general:
+      - ¿Qué es AWP? (Insight-AWP): introduccion/que-es-awp-insight.md
+      - Visión general del CII: introduccion/vision-general-cii.md
+      - Presentación de introducción (2022, en español): introduccion/presentacion-awp-2022.md
+      - Resumen COAA de buenas prácticas (2016): introduccion/resumen-coaa-2016.md
+      - Práctica recomendada (Omega 365, 2025): introduccion/practica-recomendada-omega-365.md
+  - Guías de inicio rápido:
+      - Quick Start Guide (PDF): guias/quick-start-guide-pdf.md
+      - Quick Start Guide (web): guias/quick-start-guide-web.md
+  - Procedimientos AWP-IM-WFP (2017):
+      - 1.0 Advanced Work Packaging: procedimientos/1-advanced-work-packaging.md
+      - 2.0 Information Management: procedimientos/2-information-management.md
+      - 3.0 Workface Planning: procedimientos/3-workface-planning.md
+  - Formación (CII):
+      - AWP Education Primer: formacion/education-primer.md
+      - AWP Education Framework (2020): formacion/education-framework.md
+      - Curso integrado de AWP (2023): formacion/curso-awp-2023.md
+  - Terminología y referencia:
+      - Glosario de siglas y términos: referencia/glosario.md
+      - Siglas y definiciones del CII (original): referencia/siglas-y-definiciones-cii.md
+  - Comparaciones:
+      - AWP y Lean Construction: comparaciones/awp-vs-lean-construction.md
+  - Acerca de esta web:
+      - Índice y análisis de las fuentes: acerca/indice-de-fuentes.md
+      - Cómo agregar documentos: acerca/como-agregar-documentos.md
