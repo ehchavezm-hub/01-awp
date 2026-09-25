@@ -1,0 +1,12 @@
+{
+  "name": "AWP · Implementación",
+  "short_name": "AWP",
+  "description": "Registro y seguimiento de la implementación de Advanced Work Packaging.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#3f51b5",
+  "icons": [{ "src": "icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

@@ -133,7 +133,7 @@ nav:
       - Cronograma de implementación: implementacion/cronograma.md
       - Referencias: implementacion/referencias.md
       - Plantillas descargables: implementacion/plantillas.md
-      - Aplicación AWP (maqueta de diseño): https://ehchavezm-hub.github.io/01-awp/app/maqueta/
+      - Aplicación AWP: https://ehchavezm-hub.github.io/01-awp/app/
   - Terminología y referencia:
       - Glosario de siglas y términos: referencia/glosario.md
       - Siglas y definiciones del CII: referencia/siglas-y-definiciones-cii.md
