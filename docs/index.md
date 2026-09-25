@@ -50,6 +50,14 @@ Esta web reúne los documentos del repositorio, organizados por tema. Usa el **b
 
     [:octicons-arrow-right-24: Ver material](formacion/education-primer.md)
 
+-   :material-hammer-wrench: **Implementación**
+
+    ---
+
+    Kit completo para implementar AWP en un proyecto tipo de tres fases: plan de implementación, plantillas Excel y Word descargables.
+
+    [:octicons-arrow-right-24: Ver el plan](implementacion/index.md)
+
 -   :material-book-alphabet: **Glosario**
 
     ---
@@ -72,7 +80,7 @@ Esta web reúne los documentos del repositorio, organizados por tema. Usa el **b
 
 1. **Si eres nuevo en AWP:** [¿Qué es AWP?](introduccion/que-es-awp-insight.md), luego la [presentación en español](introduccion/presentacion-awp-2022.md) y después la [introducción a AWP del CII](formacion/education-primer.md).
 2. **Para profundizar:** el [marco educativo de AWP del CII](formacion/education-framework.md) y el [curso integrado 2023](formacion/curso-awp-2023.md), con el [glosario](referencia/glosario.md) a mano.
-3. **Para implementar:** la [guía de inicio rápido](guias/quick-start-guide-pdf.md) y los procedimientos [1.0](procedimientos/1-advanced-work-packaging.md), [2.0](procedimientos/2-information-management.md) y [3.0](procedimientos/3-workface-planning.md).
+3. **Para implementar:** el [plan de implementación](implementacion/index.md) con sus [plantillas descargables](implementacion/plantillas.md), la [guía de inicio rápido](guias/quick-start-guide-pdf.md) y los procedimientos [1.0](procedimientos/1-advanced-work-packaging.md), [2.0](procedimientos/2-information-management.md) y [3.0](procedimientos/3-workface-planning.md).
 4. **Para contrastar:** [AWP y Lean Construction](comparaciones/awp-vs-lean-construction.md) y el [artículo de Omega 365](introduccion/practica-recomendada-omega-365.md).
 
 !!! note "Sobre los documentos"

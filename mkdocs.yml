@@ -67,17 +67,29 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.superfences
+  # Diagramas Mermaid (flujos y cronogramas del kit de implementación).
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   # Muestra el significado de las siglas al pasar el ratón por encima.
   - pymdownx.snippets:
       auto_append:
         - includes/abreviaturas.md
+
+# Publica los .xlsx y .docx de implementacion/ para que se puedan descargar.
+hooks:
+  - hooks/descargas.py
 
 extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/imagenes.js
+  # Copia local de Mermaid (licencia MIT): la web no depende de un CDN externo
+  # para dibujar los diagramas. Material la usa si ya está cargada.
+  - javascripts/vendor/mermaid-11.17.2.min.js
 
 validation:
   omitted_files: warn
@@ -104,6 +116,21 @@ nav:
       - Introducción a AWP (CII): formacion/education-primer.md
       - Marco educativo de AWP (CII, 2020): formacion/education-framework.md
       - Curso integrado de AWP (2023): formacion/curso-awp-2023.md
+  - Implementación:
+      - Plan de implementación de AWP: implementacion/index.md
+      - Proyecto tipo y sus fases: implementacion/proyecto-tipo.md
+      - Etapas del ciclo de vida: implementacion/etapas-ciclo-de-vida.md
+      - Aplicación por fase del proyecto: implementacion/aplicacion-por-fase.md
+      - Hitos por fase: implementacion/hitos.md
+      - Organización y roles: implementacion/organizacion.md
+      - Flujo de paquetes: implementacion/flujo-paquetes.md
+      - Restricciones y liberación de IWP: implementacion/restricciones-liberacion.md
+      - Riesgos de implementación: implementacion/riesgos.md
+      - Indicadores (KPI): implementacion/kpi.md
+      - Lecciones aprendidas entre fases: implementacion/lecciones-aprendidas.md
+      - Cronograma de implementación: implementacion/cronograma.md
+      - Referencias: implementacion/referencias.md
+      - Plantillas descargables: implementacion/plantillas.md
   - Terminología y referencia:
       - Glosario de siglas y términos: referencia/glosario.md
       - Siglas y definiciones del CII: referencia/siglas-y-definiciones-cii.md
