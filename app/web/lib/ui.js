@@ -147,8 +147,8 @@ export function AyudaModulo({ modulo }) {
   </section>`;
 }
 
-export const urlRecurso = archivo => archivo.includes('/') && !archivo.endsWith('.pptx') ? CONFIG.web + archivo
-  : archivo.endsWith('.pptx') ? CONFIG.web + archivo : CONFIG.web + 'implementacion/descargas/' + archivo;
+// Plantillas: implementacion/descargas/<archivo>; otros recursos traen su ruta (p. ej. presentacion/…).
+export const urlRecurso = archivo => CONFIG.web + (archivo.includes('/') ? archivo : 'implementacion/descargas/' + archivo);
 
 export function Contexto({ modulo }) {
   const recs = (modulo.recursos || []).map(a => RECURSOS.find(r => r.archivo === a)).filter(Boolean);

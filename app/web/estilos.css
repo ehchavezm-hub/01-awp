@@ -521,4 +521,11 @@ details.mas summary { cursor: pointer; color: var(--primario); font-size: 13px; 
   .fondo-modal { padding: 8px; align-items: end; }
   .tour-caja, .glosa { width: calc(100vw - 24px); left: 12px !important; }
   .toast { bottom: 84px; }
+  .cabecera .btn { white-space: nowrap; }
+  .marca small { display: none; }
+  .recurso-cab { flex-wrap: wrap; }
+  .recurso-cab > div[style*="flex:1"] { flex-basis: calc(100% - 60px) !important; min-width: 0; }
+  .recurso-cab > .botones { flex-basis: 100%; }
+  .titulo-pantalla .acciones, .titulo-pantalla .acciones label { width: 100%; }
+  .titulo-pantalla .acciones input { min-width: 0 !important; flex: 1; }
 }
