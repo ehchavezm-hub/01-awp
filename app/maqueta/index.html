@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aplicación AWP – Maqueta</title>
+<style>
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --primario: #3f51b5; --primario-fuerte: #303f9f; --primario-suave: #e8eaf6;
+  --acento: #ffc107;
+  --fondo: #f6f7fb; --superficie: #ffffff; --superficie-2: #f1f2f8;
+  --texto: #1b1c22; --texto-2: #5b5e6b; --texto-3: #8a8d99;
+  --borde: #e3e5ee; --grilla: #e6e7ee; --eje: #c7c9d4;
+  --ok: #0ca30c; --ok-texto: #006300; --ok-fondo: #e3f5e3;
+  --atencion: #fab219; --atencion-texto: #7a5200; --atencion-fondo: #fff4d6;
+  --critico: #d03b3b; --critico-texto: #a32626; --critico-fondo: #fbe5e5;
+  --neutro: #898781;
+  --f1: #2a78d6; --f2: #eb6834; --f3: #1baf7a;
+  --t-cwa: #2a78d6; --t-cwp: #eb6834; --t-ewp: #1baf7a; --t-pwp: #eda100; --t-iwp: #e87ba4;
+  --seq-1: #cde2fb; --seq-2: #9ec5f4; --seq-3: #5598e7; --seq-4: #256abf; --seq-5: #104281;
+  --sombra: 0 1px 2px rgba(20, 22, 40, .06), 0 2px 8px rgba(20, 22, 40, .05);
+  --radio: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --primario: #7986cb; --primario-fuerte: #9fa8da; --primario-suave: #262a45;
+    --acento: #ffca28;
+    --fondo: #12131a; --superficie: #1c1d26; --superficie-2: #242632;
+    --texto: #f1f1f5; --texto-2: #b4b6c2; --texto-3: #858896;
+    --borde: #2c2e3a; --grilla: #2a2c37; --eje: #3a3c49;
+    --ok-texto: #4cc94c; --ok-fondo: #173019;
+    --atencion-texto: #fab219; --atencion-fondo: #3a2f12;
+    --critico-texto: #ef7373; --critico-fondo: #3d1d1d;
+    --f1: #3987e5; --f2: #d95926; --f3: #199e70;
+    --t-cwa: #3987e5; --t-cwp: #d95926; --t-ewp: #199e70; --t-pwp: #c98500; --t-iwp: #d55181;
+    --seq-1: #184f95; --seq-2: #1c5cab; --seq-3: #2a78d6; --seq-4: #6da7ec; --seq-5: #b7d3f6;
+    --sombra: 0 1px 2px rgba(0, 0, 0, .4);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primario: #7986cb; --primario-fuerte: #9fa8da; --primario-suave: #262a45;
+  --acento: #ffca28;
+  --fondo: #12131a; --superficie: #1c1d26; --superficie-2: #242632;
+  --texto: #f1f1f5; --texto-2: #b4b6c2; --texto-3: #858896;
+  --borde: #2c2e3a; --grilla: #2a2c37; --eje: #3a3c49;
+  --ok-texto: #4cc94c; --ok-fondo: #173019;
+  --atencion-texto: #fab219; --atencion-fondo: #3a2f12;
+  --critico-texto: #ef7373; --critico-fondo: #3d1d1d;
+  --f1: #3987e5; --f2: #d95926; --f3: #199e70;
+  --t-cwa: #3987e5; --t-cwp: #d95926; --t-ewp: #199e70; --t-pwp: #c98500; --t-iwp: #d55181;
+  --seq-1: #184f95; --seq-2: #1c5cab; --seq-3: #2a78d6; --seq-4: #6da7ec; --seq-5: #b7d3f6;
+  --sombra: 0 1px 2px rgba(0, 0, 0, .4);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--fondo); color: var(--texto);
+  font: 14.5px/1.5 Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--primario); }
+button, select, input, textarea { font: inherit; color: inherit; }
+.ic { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; }
+.ic-lg { width: 22px; height: 22px; }
+.num { font-variant-numeric: tabular-nums; }
+.oculto { display: none !important; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Aviso de maqueta */
+.aviso-maqueta { background: var(--acento); color: #3b2c00; text-align: center; font-size: 12.5px; padding: 4px 12px; }
+
+/* Cabecera */
+.cabecera { position: sticky; top: 0; z-index: 20; background: var(--primario); color: #fff; }
+:root[data-theme="dark"] .cabecera { background: #262a45; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cabecera { background: #262a45; } }
+.cabecera-in { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
+.marca { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; color: #fff; text-decoration: none; white-space: nowrap; }
+.marca small { font-weight: 400; opacity: .8; }
+.nav-sup { display: flex; gap: 4px; margin-left: 12px; }
+.nav-sup a { color: #fff; opacity: .82; text-decoration: none; padding: 6px 10px; border-radius: 8px; display: flex; gap: 6px; align-items: center; }
+.nav-sup a[aria-current="page"], .nav-sup a:hover { opacity: 1; background: rgba(255,255,255,.14); }
+.buscador { margin-left: auto; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.14); border-radius: 8px; padding: 5px 10px; min-width: 220px; }
+.buscador input { background: none; border: 0; outline: 0; color: #fff; width: 100%; }
+.buscador input::placeholder { color: rgba(255,255,255,.75); }
+.btn-ic { background: none; border: 0; color: inherit; padding: 7px; border-radius: 8px; cursor: pointer; display: inline-flex; }
+.btn-ic:hover { background: rgba(255,255,255,.14); }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--acento); color: #3b2c00; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+
+/* Contenedor */
+main { max-width: 1320px; margin: 0 auto; padding: 20px 16px 96px; }
+.migas { color: var(--texto-2); font-size: 13px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.migas a { color: var(--texto-2); text-decoration: none; }
+.titulo-pantalla { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.titulo-pantalla h1 { font-size: 24px; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+.titulo-pantalla p { margin: 2px 0 0; color: var(--texto-2); }
+.acciones { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Botones */
+.btn { display: inline-flex; align-items: center; gap: 6px; border-radius: 9px; padding: 8px 14px; border: 1px solid var(--borde); background: var(--superficie); cursor: pointer; font-weight: 500; text-decoration: none; color: var(--texto); transition: transform .12s, box-shadow .12s, background .12s; }
+.btn:hover { box-shadow: var(--sombra); }
+.btn:active { transform: scale(.98); }
+.btn-primario { background: var(--primario); color: #fff; border-color: var(--primario); }
+:root[data-theme="dark"] .btn-primario { color: #10122a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primario { color: #10122a; } }
+.btn-suave { background: var(--primario-suave); color: var(--primario-fuerte); border-color: transparent; }
+.btn-chico { padding: 5px 10px; font-size: 13px; }
+
+/* Filtros */
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 8px 10px; margin-bottom: 16px; }
+.filtros label { font-size: 12px; color: var(--texto-2); display: flex; flex-direction: column; gap: 2px; }
+.filtros select, .filtros input { border: 1px solid var(--borde); background: var(--superficie-2); border-radius: 8px; padding: 5px 8px; min-width: 140px; }
+.filtros .btn { margin-left: auto; align-self: flex-end; }
+.btn-filtros-movil { display: none; }
+
+/* Tarjetas y rejillas */
+.rejilla { display: grid; gap: 16px; }
+.r-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.r-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.r-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.r-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.r-21 { grid-template-columns: 2fr 1fr; }
+.tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra); padding: 16px; min-width: 0; }
+.tarjeta h2 { font-size: 16px; font-weight: 600; margin: 0 0 2px; line-height: 1.35; }
+.tarjeta .leer { color: var(--texto-2); font-size: 12.5px; margin: 0 0 12px; }
+.tarjeta-cab { display: flex; align-items: flex-start; gap: 8px; }
+.tarjeta-cab .herr { margin-left: auto; display: flex; gap: 2px; color: var(--texto-3); }
+.tarjeta-cab .herr button { background: none; border: 0; color: inherit; cursor: pointer; padding: 4px; border-radius: 6px; }
+.tarjeta-cab .herr button:hover { background: var(--superficie-2); color: var(--texto); }
+.seccion-titulo { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-2); margin: 24px 0 10px; font-weight: 600; }
+
+/* Estadísticas */
+.estadistica { display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: transform .15s; }
+.estadistica:hover { transform: translateY(-2px); }
+.estadistica .etq { color: var(--texto-2); font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.estadistica .valor { font-size: 30px; font-weight: 600; letter-spacing: -.02em; }
+.estadistica .delta { font-size: 12.5px; color: var(--texto-2); }
+
+/* Chips de estado */
+.chip { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 2px 9px 2px 7px; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+.chip .ic { width: 14px; height: 14px; vertical-align: 0; }
+.chip-ok { background: var(--ok-fondo); color: var(--ok-texto); }
+.chip-atencion { background: var(--atencion-fondo); color: var(--atencion-texto); }
+.chip-critico { background: var(--critico-fondo); color: var(--critico-texto); }
+.chip-neutro { background: var(--superficie-2); color: var(--texto-2); }
+.chip-fase { color: #fff; }
+
+/* Tarjetas de proyecto */
+.proyecto { cursor: pointer; transition: transform .15s, box-shadow .15s; display: flex; flex-direction: column; gap: 12px; }
+.proyecto:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(20,22,40,.10); }
+.proyecto-cab { display: flex; gap: 12px; align-items: center; }
+.proyecto-cab h3 { margin: 0; font-size: 15.5px; line-height: 1.3; }
+.proyecto-cab .cod { color: var(--texto-2); font-size: 12.5px; }
+.mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mini div { background: var(--superficie-2); border-radius: 8px; padding: 6px 8px; font-size: 12px; color: var(--texto-2); }
+.mini b { display: block; font-size: 17px; color: var(--texto); }
+.mini .rojo b { color: var(--critico-texto); }
+.proximo { font-size: 12.5px; color: var(--texto-2); display: flex; gap: 6px; align-items: center; border-top: 1px solid var(--borde); padding-top: 10px; }
+
+/* Tablas */
+.tabla-env { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th { text-align: left; font-weight: 600; color: var(--texto-2); font-size: 12.5px; border-bottom: 1px solid var(--borde); padding: 8px; white-space: nowrap; }
+td { border-bottom: 1px solid var(--borde); padding: 8px; vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--superficie-2); }
+.barra-mini { height: 6px; background: var(--superficie-2); border-radius: 3px; min-width: 70px; overflow: hidden; }
+.barra-mini i { display: block; height: 100%; background: var(--primario); border-radius: 3px; }
+
+/* Gráficos SVG */
+svg.grafico { width: 100%; height: auto; display: block; overflow: visible; }
+.grafico text { fill: var(--texto-2); font-size: 11px; font-family: inherit; }
+.grafico .valor-txt { fill: var(--texto); font-weight: 600; }
+.grafico .grilla { stroke: var(--grilla); stroke-width: 1; }
+.grafico .eje { stroke: var(--eje); stroke-width: 1; }
+.grafico .meta { stroke: var(--texto); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.grafico .marca-dato { cursor: pointer; transition: opacity .15s; }
+.grafico .marca-dato:hover { opacity: .8; }
+.leyenda { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--texto-2); margin-top: 8px; }
+.leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+.leyenda i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.leyenda .linea-meta { width: 14px; height: 0; border-top: 2px dashed var(--texto); border-radius: 0; }
+#tooltip { position: fixed; z-index: 60; pointer-events: none; background: var(--superficie); color: var(--texto); border: 1px solid var(--borde); box-shadow: 0 6px 20px rgba(0,0,0,.18); border-radius: 8px; padding: 7px 10px; font-size: 12.5px; max-width: 260px; opacity: 0; transition: opacity .1s; }
+#tooltip b { display: block; }
+
+/* Anillos */
+.anillo { position: relative; display: inline-grid; place-items: center; }
+.anillo svg { transform: rotate(-90deg); }
+.anillo .pct { position: absolute; font-weight: 600; }
+.anillo-pista { stroke: var(--superficie-2); }
+.anillo-valor { transition: stroke-dashoffset .9s cubic-bezier(.2,.8,.2,1); }
+.etapas { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.etapa { text-align: center; padding: 10px 6px; border-radius: 10px; cursor: pointer; transition: background .15s; }
+.etapa:hover { background: var(--superficie-2); }
+.etapa .nombre { font-size: 12.5px; font-weight: 500; margin-top: 6px; line-height: 1.3; }
+.etapa .det { font-size: 11.5px; color: var(--texto-2); }
+
+/* Próximo paso */
+.proximo-paso { display: flex; gap: 14px; align-items: center; background: linear-gradient(120deg, var(--primario-suave), var(--superficie)); border: 1px solid var(--borde); border-radius: var(--radio); padding: 14px 16px; margin-bottom: 16px; }
+.proximo-paso .burbuja { width: 44px; height: 44px; border-radius: 12px; background: var(--primario); color: #fff; display: grid; place-items: center; flex: none; }
+.proximo-paso h2 { margin: 0; font-size: 15.5px; }
+.proximo-paso p { margin: 2px 0 0; color: var(--texto-2); font-size: 13.5px; }
+.proximo-paso .btn { margin-left: auto; flex: none; }
+
+/* Listas */
+.lista { list-style: none; margin: 0; padding: 0; }
+.lista li { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--borde); cursor: pointer; }
+.lista li:last-child { border-bottom: 0; }
+.lista .t { flex: 1; min-width: 0; }
+.lista .t b { display: block; font-weight: 500; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lista .t small { color: var(--texto-2); font-size: 12px; }
+
+/* Línea de tiempo de hitos */
+.linea-tiempo { position: relative; padding: 8px 0 0; }
+
+/* Insignias */
+.insignias { display: flex; gap: 10px; flex-wrap: wrap; }
+.insignia { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 84px; text-align: center; font-size: 11.5px; color: var(--texto-2); }
+.insignia .medalla { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--acento); color: #3b2c00; box-shadow: inset 0 -3px 0 rgba(0,0,0,.12); }
+.insignia.bloqueada .medalla { background: var(--superficie-2); color: var(--texto-3); box-shadow: none; }
+
+/* KPI */
+.kpi { display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
+.kpi .cod { font-size: 12px; color: var(--texto-2); }
+.kpi .nom { font-size: 13.5px; font-weight: 500; line-height: 1.3; min-height: 36px; }
+.kpi .fila { display: flex; align-items: flex-end; gap: 8px; }
+.kpi .val { font-size: 24px; font-weight: 600; }
+.kpi .meta-txt { font-size: 12px; color: var(--texto-2); margin-bottom: 4px; }
+
+/* Término AWP con explicación */
+.termino { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
+#glosa { position: fixed; z-index: 70; width: 300px; background: var(--superficie); border: 1px solid var(--borde); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.2); padding: 12px 14px; font-size: 13px; display: none; }
+#glosa h4 { margin: 0 0 4px; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+#glosa p { margin: 0 0 6px; color: var(--texto-2); }
+#glosa .ej { background: var(--superficie-2); border-radius: 8px; padding: 6px 8px; margin-bottom: 8px; }
+#glosa a { font-size: 12.5px; margin-right: 10px; }
+
+/* Formulario por pasos */
+.form-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.pasos { list-style: none; padding: 0; margin: 0; position: sticky; top: 76px; }
+.pasos li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-size: 13.5px; color: var(--texto-2); }
+.pasos li:hover { background: var(--superficie-2); }
+.pasos li.actual { background: var(--primario-suave); color: var(--primario-fuerte); font-weight: 600; }
+.pasos .n { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; border: 1.5px solid var(--eje); background: var(--superficie); flex: none; }
+.pasos li.hecho .n { background: var(--ok); border-color: var(--ok); color: #fff; }
+.pasos li.hecho .n .ic { width: 14px; height: 14px; stroke: #fff; stroke-width: 3; }
+.pasos li.error .n { background: var(--critico); border-color: var(--critico); color: #fff; }
+.pasos li.actual .n { border-color: var(--primario); color: var(--primario); }
+.progreso-form { height: 6px; background: var(--superficie-2); border-radius: 3px; overflow: hidden; margin: 6px 0 14px; }
+.progreso-form i { display: block; height: 100%; background: var(--primario); transition: width .3s; }
+.campos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo.ancho { grid-column: 1 / -1; }
+.campo label { font-size: 13px; font-weight: 500; display: flex; gap: 4px; align-items: center; }
+.campo label .req { color: var(--critico-texto); }
+.campo input, .campo select, .campo textarea { border: 1px solid var(--borde); background: var(--superficie); border-radius: 9px; padding: 8px 10px; outline: none; transition: border-color .15s, box-shadow .15s; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--primario); box-shadow: 0 0 0 3px var(--primario-suave); }
+.campo input[readonly] { background: var(--superficie-2); color: var(--texto-2); }
+.campo .ayuda { font-size: 12px; color: var(--texto-2); }
+.campo.con-error input, .campo.con-error select { border-color: var(--critico); }
+.campo .error { font-size: 12.5px; color: var(--critico-texto); display: flex; gap: 6px; align-items: flex-start; }
+.heredado { font-size: 11.5px; color: var(--texto-3); display: inline-flex; gap: 4px; align-items: center; }
+.pie-form { display: flex; gap: 8px; align-items: center; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--borde); flex-wrap: wrap; }
+.autoguardado { color: var(--texto-2); font-size: 12.5px; display: inline-flex; gap: 6px; align-items: center; }
+.pie-form .der { margin-left: auto; display: flex; gap: 8px; }
+.panel-ayuda h3 { margin: 0 0 6px; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.panel-ayuda p { margin: 0 0 10px; color: var(--texto-2); font-size: 13.5px; }
+.panel-ayuda .caja { background: var(--superficie-2); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; font-size: 13px; }
+.panel-ayuda .caja b { display: flex; gap: 6px; align-items: center; margin-bottom: 2px; }
+.relacionado { border-left: 3px solid var(--t-cwp); padding-left: 10px; margin-bottom: 10px; }
+.tabla-form td, .tabla-form th { padding: 6px; }
+.tabla-form input { width: 100%; border: 1px solid var(--borde); border-radius: 7px; padding: 5px 7px; background: var(--superficie); }
+
+/* Recursos */
+.pestanas { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.pestana { border: 1px solid var(--borde); background: var(--superficie); border-radius: 999px; padding: 6px 14px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; font-size: 13.5px; }
+.pestana[aria-selected="true"] { background: var(--primario); border-color: var(--primario); color: #fff; }
+.recurso { display: flex; flex-direction: column; gap: 10px; }
+.recurso-cab { display: flex; gap: 12px; align-items: flex-start; }
+.tipo-archivo { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; flex: none; color: #fff; font-weight: 700; font-size: 11px; flex-direction: column; }
+.tipo-xlsx { background: #1d7a45; } .tipo-docx { background: #2b5fb4; } .tipo-pptx { background: #c4502a; } .tipo-web { background: #5b5e6b; }
+.recurso h3 { margin: 0; font-size: 15px; line-height: 1.3; }
+.recurso .cat { font-size: 12px; color: var(--texto-2); }
+.recurso dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 12.5px; }
+.recurso dt { color: var(--texto-3); }
+.recurso dd { margin: 0; color: var(--texto-2); }
+.recurso .botones { display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap; }
+.destacado { border: 1px solid var(--borde); background: linear-gradient(135deg, var(--superficie), var(--primario-suave)); }
+.modulos { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; margin-top: 12px; }
+.modulo { background: var(--superficie); border: 1px solid var(--borde); border-radius: 10px; padding: 8px 10px; font-size: 12.5px; }
+.modulo b { display: flex; gap: 6px; align-items: baseline; font-size: 13px; }
+.modulo b span { color: var(--primario); font-size: 12px; }
+.modulo small { color: var(--texto-2); }
+
+/* Recorrido guiado y toast */
+#tour { position: fixed; z-index: 90; width: 320px; background: var(--superficie); border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.28); padding: 16px; display: none; }
+#tour h4 { margin: 0 0 6px; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+#tour p { margin: 0 0 12px; color: var(--texto-2); font-size: 13.5px; }
+#tour .pie { display: flex; align-items: center; gap: 8px; }
+#tour .puntos { display: flex; gap: 4px; margin-right: auto; }
+#tour .puntos i { width: 7px; height: 7px; border-radius: 50%; background: var(--eje); }
+#tour .puntos i.on { background: var(--primario); }
+.resaltado-tour { position: relative; z-index: 85; box-shadow: 0 0 0 4px var(--acento), 0 0 0 9999px rgba(10,12,30,.45) !important; border-radius: 12px; }
+#toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); z-index: 95; background: #1f2230; color: #fff; border-radius: 12px; padding: 10px 16px; display: flex; gap: 10px; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+#toast.on { opacity: 1; transform: translate(-50%, 0); }
+#toast .check { width: 22px; height: 22px; border-radius: 50%; background: var(--ok); display: grid; place-items: center; animation: pop .35s ease-out; }
+@keyframes pop { 0% { transform: scale(.3); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+/* Barra inferior (celular) */
+.barra-inferior { display: none; }
+.fab { display: none; }
+
+/* ------------------------------------------------------------------ */
+/* Adaptación                                                          */
+/* ------------------------------------------------------------------ */
+@media (max-width: 1100px) {
+  .r-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .r-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .form-layout { grid-template-columns: 220px minmax(0, 1fr); }
+  .form-layout .panel-ayuda { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  body { font-size: 15px; }
+  .nav-sup, .buscador, .cabecera .solo-escritorio { display: none; }
+  main { padding: 14px 12px 96px; }
+  .r-5, .r-4, .r-3, .r-2, .r-21 { grid-template-columns: minmax(0, 1fr); }
+  .r-5.estadisticas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .titulo-pantalla h1 { font-size: 21px; }
+  .acciones { margin-left: 0; width: 100%; }
+  .acciones .btn { flex: 1; justify-content: center; }
+  .filtros { display: none; }
+  .filtros.abiertos { display: flex; }
+  .filtros label, .filtros select, .filtros input { width: 100%; }
+  .btn-filtros-movil { display: inline-flex; margin-bottom: 12px; }
+  .etapas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .form-layout { grid-template-columns: minmax(0, 1fr); }
+  .pasos { position: static; display: flex; overflow-x: auto; gap: 4px; padding-bottom: 6px; }
+  .pasos li { flex: none; }
+  .pasos li .txt { display: none; }
+  .pasos li.actual .txt { display: inline; }
+  .campos { grid-template-columns: minmax(0, 1fr); }
+  .proximo-paso { flex-wrap: wrap; }
+  .proximo-paso .btn { margin-left: 0; width: 100%; justify-content: center; }
+  .tabla-movil thead { display: none; }
+  .tabla-movil tr { display: block; border: 1px solid var(--borde); border-radius: 10px; margin-bottom: 8px; padding: 6px 10px; }
+  .tabla-movil td { display: flex; justify-content: space-between; gap: 10px; border: 0; padding: 4px 0; }
+  .tabla-movil td::before { content: attr(data-etq); color: var(--texto-2); font-size: 12.5px; }
+  .barra-inferior { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--superficie); border-top: 1px solid var(--borde); justify-content: space-around; padding: 6px 0 calc(6px + env(safe-area-inset-bottom)); }
+  .barra-inferior a { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: var(--texto-2); text-decoration: none; gap: 2px; padding: 2px 8px; }
+  .barra-inferior a[aria-current="page"] { color: var(--primario); }
+  .fab { display: grid; place-items: center; position: fixed; right: 16px; bottom: 76px; z-index: 31; width: 54px; height: 54px; border-radius: 16px; background: var(--primario); color: #fff; border: 0; box-shadow: 0 8px 20px rgba(63,81,181,.4); }
+  #tour { width: calc(100vw - 24px); left: 12px !important; }
+  #glosa { width: calc(100vw - 24px); left: 12px !important; }
+}
+@media print {
+  .cabecera, .barra-inferior, .fab, .aviso-maqueta, .filtros, .btn-filtros-movil, .herr { display: none !important; }
+  body { background: #fff; }
+  .tarjeta { box-shadow: none; break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<!-- Íconos: Lucide (licencia ISC), https://lucide.dev -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></symbol><symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /> <circle cx="12" cy="8" r="6" /></symbol><symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /> <path d="m16 9-5.5 5.5L8 12" /></symbol><symbol id="i-building-2" viewBox="0 0 24 24"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></symbol><symbol id="i-calendar-range" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M16 2v3" /> <path d="M3 9h18" /> <path d="M8 2v3" /> <path d="M17 13h-6" /> <path d="M13 17H7" /> <path d="M7 13h.01" /> <path d="M17 17h.01" /></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol><symbol id="i-circle-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></symbol><symbol id="i-circle-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /> <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /> <path d="M12 17h.01" /></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3" /> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <path d="m7 10 5 5 5-5" /></symbol><symbol id="i-file-text" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /></symbol><symbol id="i-filter" viewBox="0 0 24 24"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z" /></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" /></symbol><symbol id="i-focus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /> <path d="M3 7V5a2 2 0 0 1 2-2h2" /> <path d="M17 3h2a2 2 0 0 1 2 2v2" /> <path d="M21 17v2a2 2 0 0 1-2 2h-2" /> <path d="M7 21H5a2 2 0 0 1-2-2v-2" /></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4" /> <path d="M3.34 19a10 10 0 1 1 17.32 0" /></symbol><symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /> <path d="M22 10v6" /> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol><symbol id="i-hard-hat" viewBox="0 0 24 24"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /> <path d="M14 6a6 6 0 0 1 6 6v3" /> <path d="M4 15v-3a6 6 0 0 1 6-6" /> <rect x="2" y="15" width="20" height="4" rx="1" /></symbol><symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /> <path d="M12 16v-4" /> <path d="M12 8h.01" /></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></symbol><symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></symbol><symbol id="i-library" viewBox="0 0 24 24"><path d="m16 6 4 14" /> <path d="M12 6v14" /> <path d="M8 8v12" /> <path d="M4 4v16" /></symbol><symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /> <path d="M9 18h6" /> <path d="M10 22h4" /></symbol><symbol id="i-list-checks" viewBox="0 0 24 24"><path d="M13 5h8" /> <path d="M13 12h8" /> <path d="M13 19h8" /> <path d="m3 17 2 2 4-4" /> <path d="m3 7 2 2 4-4" /></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /> <path d="M15 5.764v15" /> <path d="M9 3.236v15" /></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></symbol><symbol id="i-octagon-alert" viewBox="0 0 24 24"><path d="M12 16h.01" /> <path d="M12 8v4" /> <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" /></symbol><symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /> <path d="M12 22V12" /> <polyline points="3.29 7 12 12 20.71 7" /> <path d="m7.5 4.27 9 5.15" /></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14" /> <path d="M12 5v14" /></symbol><symbol id="i-presentation" viewBox="0 0 24 24"><path d="M2 3h20" /> <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" /> <path d="m7 21 5-5 5 5" /></symbol><symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3" /> <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /> <circle cx="18" cy="5" r="3" /></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /> <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" /> <path d="M7 3v4a1 1 0 0 0 1 1h7" /></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /></symbol><symbol id="i-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="M12 8v4" /> <path d="M12 16h.01" /></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /></symbol><symbol id="i-triangle-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /> <path d="M12 9v4" /> <path d="M12 17h.01" /></symbol><symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol></svg>
+<div class="aviso-maqueta">Maqueta de diseño para aprobar el estilo · los datos son ilustrativos · no se guarda nada</div>
+
+<header class="cabecera">
+  <div class="cabecera-in">
+    <a class="marca" href="#portafolio"><svg class="ic ic-lg"><use href="#i-package"/></svg>AWP <small>Implementación</small></a>
+    <nav class="nav-sup" aria-label="Principal">
+      <a href="#portafolio" data-nav="portafolio"><svg class="ic"><use href="#i-layout-grid"/></svg>Portafolio</a>
+      <a href="#proyecto" data-nav="proyecto"><svg class="ic"><use href="#i-building-2"/></svg>Proyecto</a>
+      <a href="#iwp" data-nav="iwp"><svg class="ic"><use href="#i-hard-hat"/></svg>Preparar IWP</a>
+      <a href="#recursos" data-nav="recursos"><svg class="ic"><use href="#i-library"/></svg>Recursos</a>
+    </nav>
+    <label class="buscador"><svg class="ic"><use href="#i-search"/></svg><input placeholder="Buscar proyecto, paquete, restricción…" aria-label="Buscar"></label>
+    <button class="btn-ic" id="btn-tema" title="Cambiar modo claro u oscuro" aria-label="Cambiar modo claro u oscuro"><svg class="ic"><use href="#i-moon"/></svg></button>
+    <button class="btn-ic" id="btn-ayuda" title="Recorrido guiado" aria-label="Iniciar el recorrido guiado"><svg class="ic"><use href="#i-circle-help"/></svg></button>
+    <div class="avatar solo-escritorio" title="Tu cuenta">EC</div>
+  </div>
+</header>
+
+<main>
+  <!-- ============================================================== -->
+  <!-- 1. PORTAFOLIO                                                  -->
+  <!-- ============================================================== -->
+  <section id="v-portafolio" data-vista="portafolio">
+    <div class="titulo-pantalla">
+      <div>
+        <h1>Tu portafolio AWP</h1>
+        <p>4 proyectos activos · corte al 15/06/2028</p>
+      </div>
+      <div class="acciones">
+        <button class="btn" onclick="toast('Proyecto de ejemplo cargado: PT – Complejo de instalaciones')"><svg class="ic"><use href="#i-sparkles"/></svg>Cargar proyecto de ejemplo</button>
+        <button class="btn btn-primario" id="tour-nuevo"><svg class="ic"><use href="#i-plus"/></svg>Nuevo proyecto</button>
+      </div>
+    </div>
+
+    <button class="btn btn-filtros-movil" onclick="this.nextElementSibling.classList.toggle('abiertos')"><svg class="ic"><use href="#i-filter"/></svg>Filtros</button>
+    <div class="filtros">
+      <label>Proyecto<select><option>Todos</option></select></label>
+      <label>Fase<select><option>Todas</option><option>Fase 1</option><option>Fase 2</option><option>Fase 3</option></select></label>
+      <label>Estado<select><option>En ejecución</option><option>Planificado</option><option>Cerrado</option></select></label>
+      <label>Responsable<select><option>Todos</option><option>AWP Champion</option><option>Gerente de Construcción</option></select></label>
+      <label>Desde<input type="date" value="2028-03-01"></label>
+      <label>Hasta<input type="date" value="2028-06-15"></label>
+      <button class="btn btn-chico"><svg class="ic"><use href="#i-x"/></svg>Limpiar</button>
+    </div>
+
+    <div class="rejilla r-5 estadisticas" id="tour-indicadores">
+      <div class="tarjeta estadistica" onclick="detalle('Proyectos activos')"><span class="etq"><svg class="ic"><use href="#i-building-2"/></svg>Proyectos activos</span><span class="valor num">4</span><span class="delta">1 en planificación</span></div>
+      <div class="tarjeta estadistica" onclick="detalle('Implementación AWP')"><span class="etq"><svg class="ic"><use href="#i-list-checks"/></svg>Implementación AWP</span><span class="valor num">58 %</span><span class="delta">+6 pts en 4 semanas</span></div>
+      <div class="tarjeta estadistica" onclick="detalle('Restricciones vencidas')"><span class="etq"><svg class="ic"><use href="#i-octagon-alert"/></svg>Restricciones vencidas</span><span class="valor num" style="color:var(--critico-texto)">12</span><span class="delta">de 87 abiertas</span></div>
+      <div class="tarjeta estadistica" onclick="detalle('Riesgos altos')"><span class="etq"><svg class="ic"><use href="#i-shield-alert"/></svg>Riesgos altos</span><span class="valor num">7</span><span class="delta">2 materializados</span></div>
+      <div class="tarjeta estadistica" onclick="detalle('Hitos atrasados')"><span class="etq"><svg class="ic"><use href="#i-flag"/></svg>Hitos atrasados</span><span class="valor num" style="color:var(--atencion-texto)">3</span><span class="delta">5 en los próximos 30 días</span></div>
+    </div>
+
+    <h2 class="seccion-titulo">Proyectos</h2>
+    <div class="rejilla r-4" id="tarjetas-proyectos"></div>
+
+    <h2 class="seccion-titulo">Comparación entre proyectos</h2>
+    <div class="rejilla r-21">
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Planta Norte va 24 puntos por detrás de la meta de implementación</h2><p class="leer">Cómo leerlo: cada barra es el % de actividades AWP completadas; la línea discontinua es la meta a la fecha de corte. Haz clic en una barra para abrir el proyecto.</p></div>
+          <div class="herr"><button title="Exportar como imagen"><svg class="ic"><use href="#i-image"/></svg></button><button title="Exportar a PDF"><svg class="ic"><use href="#i-download"/></svg></button></div></div>
+        <div id="g-avance-proyectos"></div>
+        <div class="leyenda"><span><i style="background:var(--ok)"></i>En meta</span><span><i style="background:var(--atencion)"></i>A menos de 10 pts</span><span><i style="background:var(--critico)"></i>Más de 10 pts por debajo</span><span><i class="linea-meta"></i>Meta a la fecha</span></div>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Las restricciones vencidas bajan 3 semanas seguidas</h2><p class="leer">Cómo leerlo: restricciones vencidas del portafolio, foto de cada lunes (últimas 12 semanas).</p></div>
+          <div class="herr"><button title="Exportar como imagen"><svg class="ic"><use href="#i-image"/></svg></button></div></div>
+        <div id="g-tendencia-vencidas"></div>
+      </div>
+    </div>
+
+    <div class="rejilla r-21" style="margin-top:16px">
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Todos los proyectos cumplen FEL; construcción es la etapa más rezagada</h2><p class="leer">Cómo leerlo: % de avance de cada etapa del ciclo de vida por proyecto; más oscuro = más avance. Toca una celda para ver sus actividades pendientes.</p></div></div>
+        <div id="g-calor"></div>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Resumen comparativo</h2><p class="leer">Ordena por cualquier columna; toca una fila para abrir el proyecto.</p></div></div>
+        <div class="tabla-env">
+          <table class="tabla-movil num" id="tabla-portafolio"><thead><tr><th>Proyecto</th><th>AWP</th><th>Vencidas</th><th>Riesgos altos</th><th>Estado</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 2. PROYECTO                                                    -->
+  <!-- ============================================================== -->
+  <section id="v-proyecto" data-vista="proyecto" class="oculto">
+    <nav class="migas"><a href="#portafolio">Portafolio</a><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><span>PT · Complejo de instalaciones en tres fases</span></nav>
+    <div class="titulo-pantalla">
+      <div>
+        <h1>Complejo de instalaciones en tres fases</h1>
+        <p>PT · Cliente: Proyecto tipo del kit · AWP Champion: E. Chávez · <span class="chip chip-fase" style="background:var(--f2)">Fase 2 en construcción</span></p>
+      </div>
+      <div class="acciones">
+        <button class="btn"><svg class="ic"><use href="#i-file-text"/></svg>Reporte del proyecto</button>
+        <button class="btn btn-primario"><svg class="ic"><use href="#i-plus"/></svg>Registrar</button>
+      </div>
+    </div>
+
+    <div class="proximo-paso" id="tour-proximo">
+      <div class="burbuja"><svg class="ic ic-lg"><use href="#i-sparkles"/></svg></div>
+      <div><h2>Tu próximo paso: levanta las 2 restricciones del IWP-2.01-EST-01-001</h2><p>Debía liberarse el 11/04 y sigue bloqueado por la grúa de 100 t (R-0005) y el plan de izaje (R-0008). Sin él, la cuadrilla M-01 no tiene trabajo liberado.</p></div>
+      <button class="btn btn-primario" onclick="location.hash='iwp'">Ver el IWP<svg class="ic"><use href="#i-arrow-right"/></svg></button>
+    </div>
+
+    <button class="btn btn-filtros-movil" onclick="this.nextElementSibling.classList.toggle('abiertos')"><svg class="ic"><use href="#i-filter"/></svg>Filtros</button>
+    <div class="filtros">
+      <label>Fase<select><option>Todas</option><option>Fase 1</option><option selected>Fase 2</option><option>Fase 3</option></select></label>
+      <label>Responsable<select><option>Todos</option></select></label>
+      <label>Estado<select><option>Todos</option></select></label>
+      <label>Desde<input type="date" value="2028-03-01"></label>
+      <label>Hasta<input type="date" value="2028-06-15"></label>
+    </div>
+
+    <div class="rejilla r-21">
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>La implementación va en 64 %: FEL e ingeniería completas, construcción al 45 %</h2><p class="leer">Cómo leerlo: cada anillo es el % de actividades del checklist AWP completadas en esa etapa del ciclo de vida. Toca un anillo para ver sus actividades.</p></div>
+          <div class="herr"><button title="Exportar como imagen"><svg class="ic"><use href="#i-image"/></svg></button></div></div>
+        <div class="etapas" id="etapas"></div>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>La Fase 1 cerró; la Fase 2 va al 38 % de su construcción</h2><p class="leer">Cómo leerlo: avance físico de cada fase del proyecto frente a lo planificado a la fecha (marca discontinua).</p></div></div>
+        <div id="g-fases"></div>
+        <div class="leyenda"><span><i style="background:var(--f1)"></i>Fase 1</span><span><i style="background:var(--f2)"></i>Fase 2</span><span><i style="background:var(--f3)"></i>Fase 3</span><span><i class="linea-meta"></i>Plan a la fecha</span></div>
+      </div>
+    </div>
+
+    <div class="tarjeta" style="margin-top:16px">
+      <div class="tarjeta-cab"><div><h2>2 hitos de la Fase 2 van atrasados; el primer IWP se liberó 1 mes tarde</h2><p class="leer">Cómo leerlo: círculo vacío = fecha plan; círculo lleno = fecha real (verde a tiempo, rojo con atraso); rombo ámbar = próximo hito.</p></div></div>
+      <div id="g-hitos"></div>
+    </div>
+
+    <div class="rejilla r-3" style="margin-top:16px">
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>3 restricciones vencidas bloquean 2 IWP</h2><p class="leer">Vencidas primero, luego las que vencen en 7 días. Toca una para gestionarla.</p></div></div>
+        <ul class="lista" id="lista-restricciones"></ul>
+        <a href="#proyecto" style="font-size:13px">Ver las 4 restricciones críticas →</a>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Los IWP son el cuello de botella: solo 12 % liberados</h2><p class="leer">Cómo leerlo: paquetes por tipo y estado. Toca un segmento para ver la lista.</p></div></div>
+        <div id="g-paquetes"></div>
+        <div class="leyenda" id="ley-paquetes"></div>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>8 de 10 riesgos siguen en zona alta</h2><p class="leer">Cómo leerlo: cantidad de riesgos abiertos por probabilidad (filas) e impacto (columnas). Toca una celda para ver cuáles son.</p></div></div>
+        <div id="g-riesgos"></div>
+      </div>
+    </div>
+
+    <h2 class="seccion-titulo">Indicadores clave (Fase 2)</h2>
+    <div class="rejilla r-4" id="kpis"></div>
+
+    <div class="rejilla r-2" style="margin-top:16px">
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Insignias del proyecto</h2><p class="leer">Se obtienen al cumplir hitos y completar etapas. Te faltan 4.</p></div></div>
+        <div class="insignias" id="insignias"></div>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-cab"><div><h2>Recursos para este proyecto</h2><p class="leer">Plantillas, procedimientos y capacitación relacionados con la etapa actual.</p></div></div>
+        <ul class="lista">
+          <li><span class="tipo-archivo tipo-xlsx" style="width:32px;height:32px;font-size:9px">XLSX</span><div class="t"><b>Registro de restricciones</b><small>Plantilla del kit · también se llena en la app</small></div><svg class="ic"><use href="#i-chevron-right"/></svg></li>
+          <li><span class="tipo-archivo tipo-docx" style="width:32px;height:32px;font-size:9px">DOCX</span><div class="t"><b>Procedimiento de gestión de restricciones</b><small>Cómo identificar, escalar y liberar</small></div><svg class="ic"><use href="#i-chevron-right"/></svg></li>
+          <li><span class="tipo-archivo tipo-pptx" style="width:32px;height:32px;font-size:9px">PPTX</span><div class="t"><b>Módulo 6 · Construcción</b><small>Presentación «Implementar AWP», láminas 59–74</small></div><svg class="ic"><use href="#i-chevron-right"/></svg></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 3. FORMULARIO IWP POR PASOS                                    -->
+  <!-- ============================================================== -->
+  <section id="v-iwp" data-vista="iwp" class="oculto">
+    <nav class="migas"><a href="#portafolio">Portafolio</a><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><a href="#proyecto">PT</a><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><span>Fase 2</span><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><span>CWA-2.01</span><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><span>CWP-2.01-EST-01</span><svg class="ic" style="width:14px"><use href="#i-chevron-right"/></svg><span>Nuevo IWP</span></nav>
+    <div class="titulo-pantalla">
+      <div>
+        <h1>Preparar un <span class="termino" data-t="IWP">IWP</span></h1>
+        <p>Plantilla PT-AWP-FOR-IWP · 12 pasos, uno por sección de la plantilla Word</p>
+      </div>
+      <div class="acciones">
+        <button class="btn" onclick="toast('Documento generado: IWP-2.01-EST-01-002.docx')"><svg class="ic"><use href="#i-file-text"/></svg>Vista previa del documento</button>
+      </div>
+    </div>
+
+    <div class="form-layout">
+      <div class="tarjeta" style="padding:10px">
+        <div style="font-size:12.5px;color:var(--texto-2);padding:0 6px">Paso <b id="n-paso">1</b> de 12</div>
+        <div class="progreso-form" style="margin:6px 6px 10px"><i id="barra-pasos" style="width:8%"></i></div>
+        <ol class="pasos" id="pasos"></ol>
+      </div>
+
+      <div class="tarjeta" id="contenido-paso"></div>
+
+      <aside class="tarjeta panel-ayuda" id="tour-ayuda">
+        <h3><svg class="ic"><use href="#i-lightbulb"/></svg>¿Qué es esto y para qué sirve?</h3>
+        <p id="ayuda-texto"></p>
+        <div class="caja"><b><svg class="ic"><use href="#i-info"/></svg>Ejemplo</b><span id="ayuda-ejemplo"></span></div>
+        <div class="caja"><b><svg class="ic"><use href="#i-sparkles"/></svg>Consejo práctico</b><span id="ayuda-consejo"></span></div>
+        <h3 style="margin-top:14px"><svg class="ic"><use href="#i-package"/></svg>Relacionado</h3>
+        <div class="relacionado"><b style="font-size:13.5px">CWP-2.01-EST-01</b><br><small style="color:var(--texto-2)">Estructura metálica bloque A · 9 600 HH · 1 de 24 IWP creados</small></div>
+        <div class="relacionado" style="border-color:var(--critico)"><b style="font-size:13.5px;color:var(--critico-texto)">2 restricciones abiertas en el CWP</b><br><small style="color:var(--texto-2)">R-0005 Grúa de 100 t · R-0008 Plan de izaje crítico</small></div>
+        <p style="font-size:12.5px;margin:10px 0 0"><svg class="ic" style="width:15px"><use href="#i-file-text"/></svg> <a href="../../implementacion/descargas/Plantilla_IWP.docx">Plantilla Word</a> · <a href="../../implementacion/restricciones-liberacion/">Proceso de liberación</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 4. RECURSOS                                                    -->
+  <!-- ============================================================== -->
+  <section id="v-recursos" data-vista="recursos" class="oculto">
+    <div class="titulo-pantalla">
+      <div>
+        <h1>Recursos del kit AWP</h1>
+        <p>Plantillas, plan de implementación y capacitación. Disponibles sin iniciar sesión.</p>
+      </div>
+      <div class="acciones"><label class="filtros" style="margin:0;padding:6px 10px;display:flex"><svg class="ic"><use href="#i-search"/></svg><input id="buscar-recurso" placeholder="Buscar recurso" style="border:0;background:none;min-width:180px;outline:0"></label></div>
+    </div>
+    <div class="pestanas" role="tablist" id="pestanas"></div>
+
+    <div class="tarjeta destacado" id="presentacion" style="margin-bottom:16px">
+      <div class="recurso-cab">
+        <div class="tipo-archivo tipo-pptx"><svg class="ic ic-lg" style="stroke:#fff"><use href="#i-presentation"/></svg></div>
+        <div style="flex:1">
+          <div class="cat">Capacitación · Presentación · 122 láminas</div>
+          <h3 style="font-size:18px">Implementar AWP: guía práctica de implementación</h3>
+          <p style="margin:4px 0 0;color:var(--texto-2)">Material para formar al equipo antes de cada fase. Recorre un proyecto real etapa por etapa, con las cifras del CII, la COAA e Insight-AWP.</p>
+        </div>
+        <div class="botones" style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primario" href="../../presentacion/implementacion_awp.pptx"><svg class="ic"><use href="#i-download"/></svg>Descargar</a></div>
+      </div>
+      <div class="modulos" id="modulos"></div>
+    </div>
+
+    <div class="rejilla r-3" id="recursos"></div>
+  </section>
+</main>
+
+<nav class="barra-inferior" aria-label="Navegación inferior">
+  <a href="#portafolio" data-nav="portafolio"><svg class="ic ic-lg"><use href="#i-layout-grid"/></svg>Inicio</a>
+  <a href="#proyecto" data-nav="proyecto"><svg class="ic ic-lg"><use href="#i-building-2"/></svg>Proyecto</a>
+  <a href="#iwp" data-nav="iwp"><svg class="ic ic-lg"><use href="#i-hard-hat"/></svg>IWP</a>
+  <a href="#recursos" data-nav="recursos"><svg class="ic ic-lg"><use href="#i-library"/></svg>Recursos</a>
+  <a href="#" onclick="event.preventDefault(); iniciarTour()"><svg class="ic ic-lg"><use href="#i-circle-help"/></svg>Ayuda</a>
+</nav>
+<button class="fab" aria-label="Registrar" onclick="toast('Menú rápido: restricción, avance de IWP, datos de KPI')"><svg class="ic ic-lg"><use href="#i-plus"/></svg></button>
+
+<div id="tooltip" role="tooltip"></div>
+<div id="glosa" role="dialog"></div>
+<div id="tour" role="dialog" aria-live="polite"></div>
+<div id="toast" role="status"><span class="check"><svg class="ic" style="width:14px;height:14px;stroke:#fff;stroke-width:3"><use href="#i-check"/></svg></span><span id="toast-txt"></span></div>
+
+<script>
+/* ================================================================== */
+/* Utilidades                                                          */
+/* ================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const icono = (n, cls = 'ic') => `<svg class="${cls}"><use href="#i-${n}"/></svg>`;
+const ancho = (el, min = 280) => Math.max(el.clientWidth || el.parentElement.clientWidth || 600, min);
+const corto = (t, n) => t.length > n ? t.slice(0, n - 1) + '…' : t;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip = $('#tooltip');
+function mostrarTip(e, html) {
+  tip.innerHTML = html; tip.style.opacity = 1;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+}
+function ocultarTip() { tip.style.opacity = 0; }
+function conTip(el, html) {
+  el.addEventListener('mousemove', e => mostrarTip(e, html));
+  el.addEventListener('mouseleave', ocultarTip);
+  el.addEventListener('click', e => { mostrarTip(e, html); });
+}
+let toastT;
+function toast(txt) {
+  $('#toast-txt').textContent = txt; $('#toast').classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(() => $('#toast').classList.remove('on'), 2600);
+}
+function detalle(que) { toast('Abriría la lista de «' + que + '» con los filtros aplicados'); }
+const estadoChip = (s, txt) => {
+  const m = { ok: ['chip-ok', 'check'], atencion: ['chip-atencion', 'triangle-alert'], critico: ['chip-critico', 'circle-alert'], neutro: ['chip-neutro', 'clock'] }[s];
+  return `<span class="chip ${m[0]}">${icono(m[1])}${txt}</span>`;
+};
+const colorEstado = s => ({ ok: 'var(--ok)', atencion: 'var(--atencion)', critico: 'var(--critico)' })[s];
+
+/* ================================================================== */
+/* Datos ilustrativos                                                  */
+/* ================================================================== */
+const PROYECTOS = [
+  { cod: 'PT', nombre: 'Complejo de instalaciones en tres fases', fase: 'Fase 2', fc: 'var(--f2)', awp: 64, meta: 60, est: 'ok', vencidas: 3, riesgos: 8, hitos: 2, prox: 'H8 Backlog estable · 30/06/2028', etapas: [100, 100, 80, 45, 10] },
+  { cod: 'PTN', nombre: 'Planta de tratamiento Norte', fase: 'Fase 1', fc: 'var(--f1)', awp: 38, meta: 62, est: 'critico', vencidas: 6, riesgos: 3, hitos: 1, prox: 'H2 Path of Construction · 21/06/2028', etapas: [75, 40, 30, 20, 0] },
+  { cod: 'HRS', nombre: 'Hospital Regional Sur', fase: 'Fase 1', fc: 'var(--f1)', awp: 71, meta: 75, est: 'atencion', vencidas: 2, riesgos: 2, hitos: 0, prox: 'H7 Primer IWP liberado · 03/07/2028', etapas: [100, 90, 70, 40, 15] },
+  { cod: 'CLE', nombre: 'Centro logístico Lima Este', fase: 'Fase 3', fc: 'var(--f3)', awp: 59, meta: 55, est: 'ok', vencidas: 1, riesgos: 2, hitos: 0, prox: 'H9 Primer sistema entregado · 15/07/2028', etapas: [100, 100, 90, 60, 30] },
+];
+const ETAPAS = ['Planificación temprana (FEL)', 'Ingeniería', 'Procura', 'Construcción', 'Comisionamiento'];
+const ETAPAS_CORTAS = ['FEL', 'Ingeniería', 'Procura', 'Construcción', 'Comisionamiento'];
+
+/* ================================================================== */
+/* Gráficos (SVG)                                                      */
+/* ================================================================== */
+function anillo(pct, tam = 64, grosor = 7, color = 'var(--primario)', txt = true) {
+  const r = (tam - grosor) / 2, c = 2 * Math.PI * r;
+  return `<span class="anillo" style="width:${tam}px;height:${tam}px">
+    <svg width="${tam}" height="${tam}"><circle class="anillo-pista" cx="${tam/2}" cy="${tam/2}" r="${r}" fill="none" stroke-width="${grosor}"/>
+    <circle class="anillo-valor" cx="${tam/2}" cy="${tam/2}" r="${r}" fill="none" stroke="${color}" stroke-width="${grosor}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-final="${c * (1 - pct / 100)}"/></svg>
+    ${txt ? `<span class="pct num" style="font-size:${tam > 60 ? 15 : 12}px">${pct} %</span>` : ''}</span>`;
+}
+function animarAnillos(raiz) {
+  requestAnimationFrame(() => $$('.anillo-valor', raiz).forEach(a => a.style.strokeDashoffset = a.dataset.final));
+}
+
+function barrasHorizontales(el, datos) {
+  const W = ancho(el), fila = 34, izq = W < 480 ? 104 : 160, der = 48, H = datos.length * fila + 22, nc = W < 480 ? 13 : 24;
+  const x = v => izq + (W - izq - der) * v / 100;
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Porcentaje de implementación AWP por proyecto">`;
+  [0, 25, 50, 75, 100].forEach(t => s += `<line class="grilla" x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H - 18}"/><text x="${x(t)}" y="${H - 4}" text-anchor="middle">${t} %</text>`);
+  datos.forEach((d, i) => {
+    const y = i * fila + 6, h = 18;
+    s += `<text x="${izq - 8}" y="${y + 13}" text-anchor="end">${corto(d.nombre, nc)}</text>`;
+    s += `<rect class="marca-dato" data-i="${i}" x="${izq}" y="${y}" width="${x(d.awp) - izq}" height="${h}" rx="4" fill="${colorEstado(d.est)}"/>`;
+    s += `<line class="meta" x1="${x(d.meta)}" x2="${x(d.meta)}" y1="${y - 3}" y2="${y + h + 3}"/>`;
+    s += `<text class="valor-txt num" x="${x(Math.max(d.awp, d.meta)) + 6}" y="${y + 13}">${d.awp} %</text>`;
+  });
+  el.innerHTML = s + '</svg>';
+  $$('.marca-dato', el).forEach(r => { const d = datos[r.dataset.i]; conTip(r, `<b>${d.nombre}</b>Implementación: ${d.awp} % · meta ${d.meta} %<br>Diferencia: ${d.awp - d.meta > 0 ? '+' : ''}${d.awp - d.meta} pts`); });
+}
+
+function lineaTendencia(el, serie, etiquetas) {
+  const W = ancho(el), H = 190, iz = 28, ab = 22, ar = 24, de = 14;
+  const max = Math.max(...serie) * 1.15;
+  const x = i => iz + (W - iz - de) * i / (serie.length - 1), y = v => ar + (H - ar - ab) * (1 - v / max);
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tendencia de restricciones vencidas">`;
+  [0, 10, 20].forEach(t => s += `<line class="grilla" x1="${iz}" x2="${W - de}" y1="${y(t)}" y2="${y(t)}"/><text x="${iz - 6}" y="${y(t) + 4}" text-anchor="end">${t}</text>`);
+  etiquetas.forEach((t, i) => { if (i % 3 === 0 || i === etiquetas.length - 1) s += `<text x="${x(i)}" y="${H - 5}" text-anchor="middle">${t}</text>`; });
+  const pts = serie.map((v, i) => `${x(i)},${y(v)}`).join(' ');
+  s += `<polygon points="${iz},${y(0)} ${pts} ${x(serie.length - 1)},${y(0)}" fill="var(--critico)" opacity=".08"/>`;
+  s += `<polyline points="${pts}" fill="none" stroke="var(--critico)" stroke-width="2" stroke-linejoin="round"/>`;
+  serie.forEach((v, i) => s += `<circle class="marca-dato" data-i="${i}" cx="${x(i)}" cy="${y(v)}" r="${i === serie.length - 1 ? 5 : 3.5}" fill="var(--critico)" stroke="var(--superficie)" stroke-width="2"/>`);
+  s += `<text class="valor-txt" x="${x(serie.length - 1)}" y="${y(serie.at(-1)) + 22}" text-anchor="end">${serie.at(-1)} vencidas</text>`;
+  el.innerHTML = s + '</svg>';
+  $$('.marca-dato', el).forEach(c => conTip(c, `<b>Semana del ${etiquetas[c.dataset.i]}</b>${serie[c.dataset.i]} restricciones vencidas`));
+}
+
+function mapaCalor(el) {
+  const W = ancho(el), iz = W < 480 ? 48 : 160, ar = 28, fila = 36, col = (W - iz) / 5, H = ar + PROYECTOS.length * fila;
+  const et = W < 480 ? ['FEL', 'Ing.', 'Proc.', 'Const.', 'Com.'] : ETAPAS_CORTAS;
+  const escala = v => v >= 90 ? 'var(--seq-5)' : v >= 70 ? 'var(--seq-4)' : v >= 45 ? 'var(--seq-3)' : v >= 20 ? 'var(--seq-2)' : 'var(--seq-1)';
+  const tinta = v => v >= 45 ? '#fff' : 'var(--texto)';
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Avance por etapa y proyecto">`;
+  et.forEach((e, j) => s += `<text x="${iz + col * j + col / 2}" y="16" text-anchor="middle">${e}</text>`);
+  PROYECTOS.forEach((p, i) => {
+    const y = ar + i * fila;
+    s += `<text x="${iz - 8}" y="${y + 20}" text-anchor="end">${W < 480 ? p.cod : corto(p.nombre, 24)}</text>`;
+    p.etapas.forEach((v, j) => {
+      s += `<rect class="marca-dato" data-i="${i}" data-j="${j}" x="${iz + col * j + 1}" y="${y + 1}" width="${col - 2}" height="${fila - 2}" rx="4" fill="${escala(v)}"/>`;
+      s += `<text x="${iz + col * j + col / 2}" y="${y + 21}" text-anchor="middle" style="fill:${tinta(v)};font-weight:600;pointer-events:none">${v} %</text>`;
+    });
+  });
+  el.innerHTML = s + '</svg>';
+  $$('.marca-dato', el).forEach(r => { const p = PROYECTOS[r.dataset.i]; conTip(r, `<b>${p.nombre}</b>${ETAPAS[r.dataset.j]}: ${p.etapas[r.dataset.j]} % completado`); });
+}
+
+function barrasFases(el) {
+  const datos = [{ f: 'Fase 1', v: 100, p: 100, c: 'var(--f1)' }, { f: 'Fase 2', v: 38, p: 45, c: 'var(--f2)' }, { f: 'Fase 3', v: 4, p: 5, c: 'var(--f3)' }];
+  const W = ancho(el), iz = 56, de = 48, fila = 38, H = datos.length * fila + 20, x = v => iz + (W - iz - de) * v / 100;
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Avance por fase">`;
+  [0, 50, 100].forEach(t => s += `<line class="grilla" x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H - 18}"/><text x="${x(t)}" y="${H - 4}" text-anchor="middle">${t} %</text>`);
+  datos.forEach((d, i) => {
+    const y = i * fila + 8;
+    s += `<text x="${iz - 8}" y="${y + 14}" text-anchor="end">${d.f}</text>`;
+    s += `<rect class="marca-dato" data-i="${i}" x="${iz}" y="${y}" width="${Math.max(x(d.v) - iz, 3)}" height="20" rx="4" fill="${d.c}"/>`;
+    s += `<line class="meta" x1="${x(d.p)}" x2="${x(d.p)}" y1="${y - 4}" y2="${y + 24}"/>`;
+    s += `<text class="valor-txt num" x="${x(Math.max(d.v, d.p)) + 6}" y="${y + 14}">${d.v} %</text>`;
+  });
+  el.innerHTML = s + '</svg>';
+  $$('.marca-dato', el).forEach(r => { const d = datos[r.dataset.i]; conTip(r, `<b>${d.f}</b>Avance real ${d.v} % · plan ${d.p} %`); });
+}
+
+const estadoHito = (h, corte) => h.r === null ? (h.p <= corte ? 'critico' : 'atencion') : h.r > h.p ? 'critico' : 'ok';
+function lineaHitos(el) {
+  const hitos = [
+    { c: 'H1', n: 'CWA definidas', p: 6, r: 6 }, { c: 'H2', n: 'PoC aprobado', p: 8, r: 8.5 }, { c: 'H3', n: 'CWP/EWP/PWP', p: 9, r: 9.5 },
+    { c: 'H4', n: 'Contratos', p: 10, r: 10 }, { c: 'H5', n: 'Primer EWP IFC', p: 11, r: 12.5 }, { c: 'H6', n: 'Primer CWP', p: 14, r: 14 },
+    { c: 'H7', n: 'Primer IWP liberado', p: 14, r: 15 }, { c: 'H8', n: 'Backlog estable', p: 17, r: null }, { c: 'H9', n: 'Primer sistema', p: 24, r: null }, { c: 'H10', n: 'Cierre de fase', p: 30, r: null },
+  ];
+  const W = ancho(el), iz = 16, de = 16, H = 96, corte = 18, x = m => iz + (W - iz - de) * (m - 5) / 26, yy = 46;
+  const paso = W < 500 ? 6 : 2;
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Línea de tiempo de hitos de la Fase 2">`;
+  s += `<line class="eje" x1="${iz}" x2="${W - de}" y1="${yy}" y2="${yy}"/>`;
+  for (let m = 6; m <= 30; m += paso) s += `<line class="grilla" x1="${x(m)}" x2="${x(m)}" y1="${yy - 5}" y2="${yy + 5}"/><text x="${x(m)}" y="${yy + 22}" text-anchor="middle">M${m}</text>`;
+  s += `<line x1="${x(corte)}" x2="${x(corte)}" y1="8" y2="${yy + 30}" stroke="var(--primario)" stroke-width="1.5"/><text x="${x(corte) + 5}" y="${yy + 40}" style="fill:var(--primario);font-weight:600">Hoy</text>`;
+  hitos.forEach((h, i) => {
+    const col = colorEstado(estadoHito(h, corte));
+    if (h.r === null) s += `<rect class="marca-dato" data-i="${i}" x="${x(h.p) - 6}" y="${yy - 6}" width="12" height="12" transform="rotate(45 ${x(h.p)} ${yy})" fill="${col}" stroke="var(--superficie)" stroke-width="2"/>`;
+    else {
+      s += `<circle cx="${x(h.p)}" cy="${yy}" r="6" fill="var(--superficie)" stroke="var(--texto-2)" stroke-width="1.5"/>`;
+      s += `<circle class="marca-dato" data-i="${i}" cx="${x(h.r)}" cy="${yy}" r="6" fill="${col}" stroke="var(--superficie)" stroke-width="2"/>`;
+    }
+    if (W >= 500 || i % 2 === 0) s += `<text x="${x(h.r ?? h.p)}" y="${yy - 14 - (i % 2) * 13}" text-anchor="middle" style="fill:var(--texto);font-weight:600">${h.c}</text>`;
+  });
+  el.innerHTML = s + '</svg>';
+  el.insertAdjacentHTML('beforeend', `<div class="leyenda">${hitos.map(h => `<span>${estadoChip(estadoHito(h, 18), h.c)} ${h.n}</span>`).join('')}</div>`);
+  $$('.marca-dato', el).forEach(r => { const h = hitos[r.dataset.i]; conTip(r, `<b>${h.c} ${h.n}</b>Plan: M${h.p}${h.r !== null ? ` · Real: M${h.r}` : ' · pendiente'}${h.r > h.p ? `<br>Atraso: ${Math.round((h.r - h.p) * 30)} días` : ''}`); });
+}
+
+function barrasApiladas(el) {
+  const estados = [['Cerrado', 'var(--ok)'], ['En ejecución', 'var(--f1)'], ['Liberado / aprobado', 'var(--f3)'], ['En desarrollo', 'var(--atencion)'], ['Planificado', 'var(--neutro)']];
+  const datos = [{ t: 'CWP', v: [2, 6, 4, 3, 30] }, { t: 'EWP', v: [18, 0, 0, 12, 15] }, { t: 'PWP', v: [9, 14, 0, 6, 16] }, { t: 'IWP', v: [60, 22, 30, 60, 78] }];
+  const W = ancho(el), iz = 40, de = 12, fila = 34, H = datos.length * fila + 6;
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Paquetes por tipo y estado">`;
+  datos.forEach((d, i) => {
+    const tot = d.v.reduce((a, b) => a + b, 0), y = i * fila + 6;
+    let x0 = iz;
+    s += `<text x="${iz - 8}" y="${y + 14}" text-anchor="end">${d.t}</text>`;
+    d.v.forEach((v, j) => {
+      const w = (W - iz - de) * v / tot; if (!v) return;
+      s += `<rect class="marca-dato" data-i="${i}" data-j="${j}" x="${x0}" y="${y}" width="${Math.max(w - 2, 1)}" height="20" rx="3" fill="${estados[j][1]}"/>`;
+      x0 += w;
+    });
+  });
+  el.innerHTML = s + '</svg>';
+  $('#ley-paquetes').innerHTML = estados.map(e => `<span><i style="background:${e[1]}"></i>${e[0]}</span>`).join('');
+  $$('.marca-dato', el).forEach(r => { const d = datos[r.dataset.i], v = d.v[r.dataset.j], t = d.v.reduce((a, b) => a + b, 0); conTip(r, `<b>${d.t} · ${estados[r.dataset.j][0]}</b>${v} de ${t} (${Math.round(100 * v / t)} %)<br><small>Toca para ver la lista</small>`); });
+}
+
+function matrizRiesgos(el) {
+  const cuenta = { '4-3': 1, '4-4': 2, '3-3': 1, '3-4': 4, '3-5': 1, '2-3': 1 };
+  const W = Math.min(ancho(el), 320), iz = 34, ab = 30, c = (W - iz) / 5, H = c * 5 + ab;
+  let s = `<svg class="grafico" viewBox="0 0 ${W} ${H}" style="max-width:${W}px;margin:0 auto" role="img" aria-label="Matriz de probabilidad e impacto">`;
+  for (let p = 5; p >= 1; p--) for (let i = 1; i <= 5; i++) {
+    const x = iz + (i - 1) * c, y = (5 - p) * c, n = p * i, k = cuenta[`${p}-${i}`] || 0;
+    const fondo = n >= 12 ? 'var(--critico-fondo)' : n >= 6 ? 'var(--atencion-fondo)' : 'var(--ok-fondo)';
+    s += `<rect class="marca-dato" data-p="${p}" data-i="${i}" data-k="${k}" x="${x + 1}" y="${y + 1}" width="${c - 2}" height="${c - 2}" rx="5" fill="${fondo}"/>`;
+    if (k) s += `<text x="${x + c / 2}" y="${y + c / 2 + 6}" text-anchor="middle" style="font-size:17px;font-weight:700;fill:${n >= 12 ? 'var(--critico-texto)' : 'var(--atencion-texto)'};pointer-events:none">${k}</text>`;
+  }
+  for (let p = 1; p <= 5; p++) s += `<text x="${iz - 10}" y="${(5 - p) * c + c / 2 + 4}" text-anchor="middle">${p}</text>`;
+  for (let i = 1; i <= 5; i++) s += `<text x="${iz + (i - 1) * c + c / 2}" y="${5 * c + 16}" text-anchor="middle">${i}</text>`;
+  s += `<text x="${iz + 2.5 * c}" y="${H - 1}" text-anchor="middle">Impacto →</text><text x="6" y="${2.5 * c}" transform="rotate(-90 6 ${2.5 * c})" text-anchor="middle">Probabilidad →</text>`;
+  el.innerHTML = s + '</svg>';
+  $$('.marca-dato', el).forEach(r => conTip(r, `<b>P${r.dataset.p} × I${r.dataset.i} = ${r.dataset.p * r.dataset.i}</b>${r.dataset.k} riesgo(s) abierto(s)`));
+}
+
+function sparkline(serie, color) {
+  const W = 90, H = 30, max = Math.max(...serie), min = Math.min(...serie), r = max - min || 1;
+  const pts = serie.map((v, i) => `${(W - 4) * i / (serie.length - 1) + 2},${H - 4 - (H - 8) * (v - min) / r}`).join(' ');
+  return `<svg width="${W}" height="${H}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/></svg>`;
+}
+
+/* ================================================================== */
+/* Pantallas                                                           */
+/* ================================================================== */
+function pintarPortafolio() {
+  $('#tarjetas-proyectos').innerHTML = PROYECTOS.map((p, i) => `
+    <article class="tarjeta proyecto" ${i === 0 ? 'id="tour-proyecto"' : ''} onclick="location.hash='proyecto'">
+      <div class="proyecto-cab">${anillo(p.awp, 58, 6, colorEstado(p.est))}
+        <div><h3>${p.nombre}</h3><div class="cod">${p.cod} · <span class="chip chip-fase" style="background:${p.fc};padding:0 8px;font-size:11.5px">${p.fase}</span></div></div></div>
+      <div>${estadoChip(p.est, p.est === 'ok' ? 'En meta' : p.est === 'atencion' ? 'Atención' : 'Fuera de meta')}</div>
+      <div class="mini num"><div class="${p.vencidas > 2 ? 'rojo' : ''}"><b>${p.vencidas}</b>vencidas</div><div><b>${p.riesgos}</b>riesgos altos</div><div class="${p.hitos ? 'rojo' : ''}"><b>${p.hitos}</b>hitos atrasados</div></div>
+      <div class="proximo">${icono('flag')}<span>${p.prox}</span></div>
+    </article>`).join('');
+  animarAnillos($('#tarjetas-proyectos'));
+  barrasHorizontales($('#g-avance-proyectos'), PROYECTOS);
+  lineaTendencia($('#g-tendencia-vencidas'), [19, 18, 21, 20, 22, 19, 17, 18, 20, 17, 14, 12], ['27/03', '03/04', '10/04', '17/04', '24/04', '01/05', '08/05', '15/05', '22/05', '29/05', '05/06', '12/06']);
+  mapaCalor($('#g-calor'));
+  $('#tabla-portafolio tbody').innerHTML = PROYECTOS.map(p => `<tr onclick="location.hash='proyecto'">
+    <td data-etq="Proyecto"><b>${p.cod}</b><br><small style="color:var(--texto-2)">${p.nombre}</small></td>
+    <td data-etq="AWP"><div style="display:flex;gap:8px;align-items:center;white-space:nowrap"><div class="barra-mini"><i style="width:${p.awp}%;background:${colorEstado(p.est)}"></i></div>${p.awp} %</div></td>
+    <td data-etq="Vencidas">${p.vencidas}</td><td data-etq="Riesgos altos">${p.riesgos}</td>
+    <td data-etq="Estado">${estadoChip(p.est, p.est === 'ok' ? 'En meta' : p.est === 'atencion' ? 'Atención' : 'Fuera de meta')}</td></tr>`).join('');
+}
+
+function pintarProyecto() {
+  const p = PROYECTOS[0];
+  $('#etapas').innerHTML = ETAPAS.map((e, i) => `<div class="etapa" onclick="detalle('${e}')">${anillo(p.etapas[i], 72, 7, p.etapas[i] === 100 ? 'var(--ok)' : 'var(--primario)')}<div class="nombre">${e}</div><div class="det">${[8, 6, 5, 7, 4][i]} actividades</div></div>`).join('');
+  animarAnillos($('#etapas'));
+  barrasFases($('#g-fases'));
+  lineaHitos($('#g-hitos'));
+  const restr = [
+    ['critico', 'R-0005 Grúa de 100 t no disponible', 'IWP-2.01-EST-01-001 · Gerente de Construcción', 'Vencida hace 65 días'],
+    ['critico', 'R-0008 Plan de izaje crítico no aprobado', 'IWP-2.01-EST-01-001 · Líder de HSE', 'Vencida hace 65 días'],
+    ['critico', 'R-0006 Planos certificados de válvulas', 'IWP-2.01-TUB-01-001 · Líder de Procura', 'Vencida hace 5 días'],
+    ['atencion', 'R-0007 Andamio para bandejas', 'IWP-2.03-ELE-01-001 · Superintendente', 'Vence en 5 días'],
+  ];
+  $('#lista-restricciones').innerHTML = restr.map(r => `<li onclick="detalle('${r[1]}')"><span style="color:${colorEstado(r[0])}">${icono(r[0] === 'critico' ? 'circle-alert' : 'triangle-alert')}</span><div class="t"><b>${r[1]}</b><small>${r[2]}</small></div>${estadoChip(r[0], r[3].split(' hace')[0].split(' en')[0])}</li>`).join('');
+  barrasApiladas($('#g-paquetes'));
+  matrizRiesgos($('#g-riesgos'));
+  const kpis = [
+    ['K03', 'IWP liberados sin restricciones', '94,8 %', 'Meta ≥ 95 %', 'atencion', [88, 90, 91, 93, 92, 95, 94, 95]],
+    ['K04', 'Backlog de IWP liberados', '2,7 sem', 'Meta ≥ 2 sem', 'ok', [1.4, 1.6, 1.9, 2.1, 2.3, 2.4, 2.6, 2.7]],
+    ['K08', 'Porcentaje de plan cumplido (PPC)', '80,6 %', 'Meta ≥ 80 %', 'ok', [72, 74, 73, 77, 78, 79, 81, 80.6]],
+    ['K06', 'Atraso promedio de restricciones', '5,2 días', 'Meta ≤ 5 días', 'atencion', [9, 8.5, 8, 7.1, 6.4, 6, 5.5, 5.2]],
+  ];
+  $('#kpis').innerHTML = kpis.map(k => `<div class="tarjeta kpi" onclick="detalle('${k[0]} ${k[1]}')"><span class="cod">${k[0]} · <span class="termino" data-t="${k[0] === 'K08' ? 'PPC' : 'Backlog'}">${k[0] === 'K08' ? 'PPC' : 'KPI'}</span></span><span class="nom">${k[1]}</span>
+    <div class="fila"><span class="val num">${k[2]}</span>${sparkline(k[5], colorEstado(k[4]))}</div><span class="meta-txt">${k[3]}</span>${estadoChip(k[4], k[4] === 'ok' ? 'Cumple' : 'Cerca de la meta')}</div>`).join('');
+  const ins = [['flag', 'Primer paso', 1], ['users', 'Equipo formado', 1], ['map', 'Áreas definidas', 1], ['route', 'Ruta trazada', 1], ['package', 'Paquetes alineados', 1], ['badge-check', 'Primer IWP liberado', 1], ['calendar-range', 'Backlog estable', 0], ['check', 'Semana limpia', 0], ['lightbulb', 'Lección cerrada', 1], ['award', 'Fase cerrada', 1], ['layers', 'Etapa completa', 1], ['graduation-cap', 'Madurez 3', 0]];
+  $('#insignias').innerHTML = ins.map(i => `<div class="insignia ${i[2] ? '' : 'bloqueada'}" title="${i[2] ? 'Obtenida' : 'Pendiente'}"><span class="medalla">${icono(i[0], 'ic ic-lg')}</span>${i[1]}</div>`).join('');
+}
+
+/* ---------------- Formulario IWP ---------------- */
+const PASOS = [
+  ['Identificación', 'hecho'], ['Alcance del trabajo', 'hecho'], ['Documentos de referencia', 'error'], ['Secuencia de trabajo', ''],
+  ['Materiales', ''], ['Equipos y andamios', ''], ['Seguridad (HSE)', ''], ['Calidad', ''], ['Restricciones', ''],
+  ['Liberación', ''], ['Cierre', ''], ['Anexos', ''],
+];
+const AYUDA = {
+  0: ['El IWP es el paquete que recibe un capataz: el trabajo de una cuadrilla durante una semana, con todo lo necesario para ejecutarlo sin interrupciones.', 'IWP-2.01-EST-01-002 · Vigas nivel 1 ejes A1–A4 · 410 HH · cuadrilla M-01.', 'Elige primero el CWP: el código, la CWA, la fase y la disciplina se completan solos.'],
+  2: ['Los documentos de referencia son los planos y especificaciones con los que se construye. Solo valen documentos emitidos para construcción (IFC) y vigentes.', 'EST-PL-2011 Planta de vigas nivel 1, rev. 2, IFC.', 'Si un plano aún está en revisión, regístralo como restricción de ingeniería en vez de liberar el IWP.'],
+  8: ['Aquí ves las restricciones del IWP y de su CWP. Para liberar el IWP todas deben estar liberadas o canceladas.', 'R-0005 Grúa de 100 t · vencida hace 65 días.', 'Registra la restricción desde aquí: el CWP y el IWP ya quedan elegidos.'],
+};
+let pasoActual = 0;
+function pintarPasos() {
+  $('#pasos').innerHTML = PASOS.map((p, i) => `<li class="${p[1]} ${i === pasoActual ? 'actual' : ''}" onclick="irPaso(${i})"><span class="n">${p[1] === 'hecho' ? icono('check', 'ic') : p[1] === 'error' ? '!' : i + 1}</span><span class="txt">${p[0]}</span></li>`).join('');
+  $('#n-paso').textContent = pasoActual + 1;
+  $('#barra-pasos').style.width = ((pasoActual + 1) / PASOS.length * 100) + '%';
+  const a = AYUDA[pasoActual] || AYUDA[0];
+  $('#ayuda-texto').textContent = a[0]; $('#ayuda-ejemplo').textContent = a[1]; $('#ayuda-consejo').textContent = a[2];
+  $('#contenido-paso').innerHTML = contenidoPaso(pasoActual) + `
+    <div class="pie-form">
+      <span class="autoguardado">${icono('save')}Borrador guardado hace 4 s</span>
+      <div class="der">
+        <button class="btn" ${pasoActual === 0 ? 'disabled style="opacity:.5"' : ''} onclick="irPaso(${pasoActual - 1})">${icono('chevron-left')}Anterior</button>
+        <button class="btn btn-primario" onclick="${pasoActual === PASOS.length - 1 ? "toast('IWP guardado')" : `guardarPaso()`}">${pasoActual === PASOS.length - 1 ? 'Guardar IWP' : 'Siguiente'}${icono('chevron-right')}</button>
+      </div>
+    </div>`;
+  activarTerminos($('#contenido-paso'));
+}
+function irPaso(i) { if (i < 0 || i >= PASOS.length) return; pasoActual = i; pintarPasos(); }
+function guardarPaso() { if (!PASOS[pasoActual][1]) PASOS[pasoActual][1] = 'hecho'; toast('Paso guardado. Sigue cuando quieras: el borrador se conserva.'); irPaso(pasoActual + 1); }
+function contenidoPaso(i) {
+  if (i === 0) return `
+    <h2 style="font-size:18px;margin:0 0 4px">1. Identificación</h2>
+    <p class="leer" style="color:var(--texto-2);margin:0 0 16px">Datos básicos del paquete. Los campos marcados con * son obligatorios.</p>
+    <div class="campos">
+      <div class="campo ancho"><label>CWP padre <span class="req">*</span></label><select><option>CWP-2.01-EST-01 · Estructura metálica bloque A (Fase 2)</option><option>CWP-2.01-CIV-01 · Cimentaciones bloque A</option><option>CWP-2.01-TUB-01 · Tuberías de servicios bloque A</option></select><span class="ayuda">Solo aparecen los <span class="termino" data-t="CWP">CWP</span> emitidos del proyecto.</span></div>
+      <div class="campo"><label>Código del IWP <span class="req">*</span></label><input value="IWP-2.01-EST-01-002"><span class="ayuda">Propuesto automáticamente: el siguiente número libre del CWP.</span></div>
+      <div class="campo"><label>Descripción corta <span class="req">*</span></label><input value="Vigas nivel 1 ejes A1–A4"></div>
+      <div class="campo"><label>CWA</label><input readonly value="CWA-2.01 · Bloque A"><span class="heredado">${icono('info')}Heredado del CWP</span></div>
+      <div class="campo"><label>Fase del proyecto · Disciplina</label><input readonly value="Fase 2 · EST Estructuras"><span class="heredado">${icono('info')}Heredado del CWP</span></div>
+      <div class="campo"><label>Sistema <span class="req">*</span></label><select><option>Estructura bloque A</option></select><span class="ayuda">Obligatorio desde la lección LA-06: permite preparar los SWP.</span></div>
+      <div class="campo"><label>Capataz / cuadrilla</label><select><option>Cuadrilla M-01 · J. Pérez</option></select></div>
+      <div class="campo"><label>Inicio plan <span class="req">*</span></label><input type="date" value="2028-05-02"></div>
+      <div class="campo con-error"><label>Fin plan <span class="req">*</span></label><input type="date" value="2028-04-28"><span class="error">${icono('circle-alert')}El fin no puede ser antes del inicio (02/05/2028). Un IWP dura alrededor de una semana: prueba con 08/05/2028.</span></div>
+      <div class="campo"><label>HH estimadas <span class="req">*</span></label><input value="410"><span class="ayuda">Entre 300 y 600 HH (criterio del kit).</span></div>
+      <div class="campo"><label>Planificador</label><select><option>Planificador de frente de trabajo · A. Rojas</option></select></div>
+    </div>`;
+  if (i === 2) return `
+    <h2 style="font-size:18px;margin:0 0 4px">3. Documentos de referencia</h2>
+    <p style="color:var(--texto-2);margin:0 0 12px">Planos y especificaciones <span class="termino" data-t="IFC">IFC</span> que usará la cuadrilla.</p>
+    <div class="tabla-env"><table class="tabla-form"><thead><tr><th>N.°</th><th>Código</th><th>Título</th><th>Rev.</th><th>Estado</th></tr></thead><tbody>
+      <tr><td>1</td><td><input value="EST-PL-2011"></td><td><input value="Planta de vigas nivel 1"></td><td><input value="2" style="width:48px"></td><td>${estadoChip('ok', 'IFC')}</td></tr>
+      <tr><td>2</td><td><input value="EST-DT-2040"></td><td><input value="Detalles de conexiones"></td><td><input value="B" style="width:48px"></td><td>${estadoChip('critico', 'IFR')}</td></tr>
+    </tbody></table></div>
+    <div class="campo con-error" style="margin-top:10px"><span class="error">${icono('circle-alert')}EST-DT-2040 está en revisión (IFR). Para liberar el IWP todos los documentos deben estar IFC. <a href="#" onclick="event.preventDefault();toast('Restricción R-0011 registrada para EST-DT-2040')">Registrar como restricción de ingeniería</a></span></div>
+    <button class="btn btn-suave btn-chico" style="margin-top:12px">${icono('plus')}Agregar documento</button>`;
+  if (i === 8) return `
+    <h2 style="font-size:18px;margin:0 0 4px">9. Restricciones</h2>
+    <p style="color:var(--texto-2);margin:0 0 12px">Restricciones abiertas del IWP y de su CWP (del registro de restricciones).</p>
+    <ul class="lista">
+      <li><span style="color:var(--critico)">${icono('circle-alert')}</span><div class="t"><b>R-0005 Grúa de 100 t no disponible</b><small>Equipos de construcción · Gerente de Construcción · requerida 11/04/2028</small></div>${estadoChip('critico', 'Vencida')}</li>
+      <li><span style="color:var(--critico)">${icono('circle-alert')}</span><div class="t"><b>R-0008 Plan de izaje crítico no aprobado</b><small>HSE · Líder de HSE · requerida 11/04/2028</small></div>${estadoChip('critico', 'Vencida')}</li>
+    </ul>
+    <button class="btn btn-suave btn-chico" style="margin-top:12px">${icono('plus')}Registrar restricción</button>`;
+  return `<h2 style="font-size:18px;margin:0 0 4px">${i + 1}. ${PASOS[i][0]}</h2><p style="color:var(--texto-2)">En la aplicación, este paso tendrá los campos de la sección «${PASOS[i][0]}» de la plantilla Word del IWP. La maqueta muestra en detalle los pasos 1, 3 y 9.</p>`;
+}
+
+/* ---------------- Recursos ---------------- */
+const RECURSOS = [
+  ['Planificación', 'docx', 'Plan de implementación de AWP', 'Plan completo: fases, etapas, hitos, roles, flujo de paquetes, KPI y cronograma.', 'Al iniciar el proyecto y en cada puerta de control.', 'AWP Champion', 'Plan_Implementacion_AWP.docx', 1],
+  ['Planificación', 'xlsx', 'Definición de CWA', 'Límites, disciplinas, HH, secuencia y criterios de cada área de trabajo.', 'Planificación temprana de cada fase (hito H1).', 'AWP Champion y Gerente de Construcción', 'Definicion_CWA.xlsx', 1],
+  ['Planificación', 'xlsx', 'Path of Construction', 'Secuencia de CWP y fechas requeridas de EWP, CWP y materiales.', 'Talleres IPP (hito H2).', 'Gerente de Construcción', 'Path_of_Construction.xlsx', 1],
+  ['Planificación', 'docx', 'Plantilla de IWP', 'Paquete de instalación: alcance, materiales, HSE, calidad, liberación y cierre.', 'Al preparar y cerrar cada IWP.', 'Planificador de frente de trabajo', 'Plantilla_IWP.docx', 1],
+  ['Control', 'xlsx', 'Registro de restricciones', 'Lista única de restricciones con responsable, fecha requerida y atraso.', 'Cada semana, antes de liberar IWP.', 'Planificadores; consolida el Líder de WFP', 'Registro_Restricciones.xlsx', 1],
+  ['Control', 'docx', 'Procedimiento de gestión de restricciones', 'Cómo identificar, escalar y liberar restricciones e IWP.', 'Durante toda la construcción.', 'AWP Champion (lo mantiene)', 'Procedimiento_Gestion_Restricciones.docx', 1],
+  ['Control', 'xlsx', 'Tablero de KPI por fase', '13 KPI con metas por fase, semáforo y tendencia.', 'Carga semanal; Comité AWP mensual.', 'Controles del proyecto', 'Tablero_KPI.xlsx', 1],
+  ['Organización', 'xlsx', 'Matriz de roles RACI', '37 actividades AWP por etapa frente a 16 roles.', 'Al arrancar cada fase.', 'AWP Champion con los líderes', 'Matriz_Roles_RACI.xlsx', 1],
+  ['Organización', 'docx', 'Perfiles de puesto AWP', 'AWP Champion, Líder de WFP, planificador y coordinador de IM.', 'Al seleccionar al personal AWP.', 'Gerente de Proyecto', 'Perfiles_Puesto_AWP.docx', 1],
+  ['Capacitación', 'web', 'Glosario de siglas y términos', 'Todas las siglas AWP explicadas en español.', 'Siempre que aparezca una sigla nueva.', 'Todo el equipo', '../../referencia/glosario/', 0],
+];
+const MODULOS = [
+  ['1', 'Por qué AWP', '5–12'], ['2', 'Qué es AWP', '13–24'], ['3', 'Preparar la organización', '25–34'], ['4', 'Planificación preliminar', '35–46'],
+  ['5', 'Ingeniería y compras', '47–58'], ['6', 'Construcción', '59–74'], ['7', 'Puesta en marcha', '75–79'], ['8', 'Información y tecnología', '80–86'],
+  ['9', 'Roles y organización', '87–95'], ['10', 'Medición', '96–102'], ['11', 'Escalar y adoptar', '103–110'], ['12', 'Errores y lecciones', '111–118'], ['13', 'Hoja de ruta', '119–122'],
+];
+let categoria = 'Todas';
+function pintarRecursos() {
+  const cats = ['Todas', 'Planificación', 'Control', 'Organización', 'Capacitación'];
+  const ics = { Todas: 'library', Planificación: 'route', Control: 'gauge', Organización: 'users', Capacitación: 'graduation-cap' };
+  $('#pestanas').innerHTML = cats.map(c => `<button class="pestana" role="tab" aria-selected="${c === categoria}" onclick="categoria='${c}';pintarRecursos()">${icono(ics[c])}${c}</button>`).join('');
+  $('#modulos').innerHTML = MODULOS.map(m => `<div class="modulo"><b><span>${m[0]}</span>${m[1]}</b><small>Láminas ${m[2]}</small></div>`).join('');
+  $('#presentacion').classList.toggle('oculto', !['Todas', 'Capacitación'].includes(categoria));
+  const q = ($('#buscar-recurso').value || '').toLowerCase();
+  $('#recursos').innerHTML = RECURSOS.filter(r => (categoria === 'Todas' || r[0] === categoria) && (!q || r.join(' ').toLowerCase().includes(q))).map(r => {
+    const url = r[1] === 'web' ? r[6] : '../../implementacion/descargas/' + r[6];
+    return `<article class="tarjeta recurso">
+      <div class="recurso-cab"><div class="tipo-archivo tipo-${r[1]}">${r[1] === 'web' ? icono('library', 'ic ic-lg') : r[1].toUpperCase()}</div>
+        <div><div class="cat">${r[0]}</div><h3>${r[2]}</h3></div></div>
+      <dl><dt>Para qué</dt><dd>${r[3]}</dd><dt>Cuándo</dt><dd>${r[4]}</dd><dt>Quién</dt><dd>${r[5]}</dd></dl>
+      <div class="botones"><a class="btn btn-chico" href="${url}">${icono(r[1] === 'web' ? 'arrow-right' : 'download')}${r[1] === 'web' ? 'Abrir' : 'Descargar'}</a>
+        ${r[7] ? `<button class="btn btn-chico btn-suave" onclick="toast('Abriría el formulario «${r[2]}» en la aplicación (requiere iniciar sesión)')">${icono('file-text')}Llenar en la aplicación</button>` : ''}</div>
+    </article>`;
+  }).join('') || `<div class="tarjeta" style="grid-column:1/-1;text-align:center;padding:32px"><p>No encontramos recursos con «${q}». Prueba con otra palabra.</p></div>`;
+}
+
+/* ================================================================== */
+/* Glosario emergente                                                  */
+/* ================================================================== */
+const GLOSARIO = {
+  IWP: ['Installation Work Package – paquete de trabajo de instalación', 'Trabajo de un capataz y su cuadrilla durante unos 7 días, libre de restricciones.', 'IWP-2.01-EST-01-001 · Columnas nivel 1 ejes A1–A4 · 420 HH', '../../implementacion/flujo-paquetes/'],
+  CWP: ['Construction Work Package – paquete de trabajo de construcción', 'Parte de una CWA de una sola disciplina, de menos de 40 000 HH. Se divide en IWP.', 'CWP-2.01-EST-01 · Estructura metálica bloque A', '../../implementacion/flujo-paquetes/'],
+  IFC: ['Issued for Construction – emitido para construcción', 'Estado del documento de ingeniería aprobado para construir. Solo documentos IFC entran a un IWP.', 'EST-PL-2011 rev. 2 IFC', '../../referencia/glosario/'],
+  PPC: ['Percent Plan Complete – porcentaje de plan cumplido', 'IWP completados según el plan semanal ÷ IWP planificados. Mide la confiabilidad del plan.', '29 de 36 IWP completados = 80,6 %', '../../implementacion/kpi/'],
+  Backlog: ['Backlog – cartera de IWP liberados', 'IWP liberados y listos para ejecutar, medidos en semanas de trabajo. Meta: 2 a 4 semanas.', '58 000 HH liberadas ÷ 20 800 HH por semana = 2,7 semanas', '../../implementacion/restricciones-liberacion/'],
+};
+function activarTerminos(raiz = document) {
+  $$('.termino', raiz).forEach(t => {
+    if (t.dataset.ok) return; t.dataset.ok = 1; t.tabIndex = 0;
+    const abrir = e => {
+      const g = GLOSARIO[t.dataset.t]; if (!g) return;
+      const box = $('#glosa');
+      box.innerHTML = `<h4>${icono('graduation-cap')}${t.dataset.t}</h4><p><b>${g[0]}</b></p><p>${g[1]}</p><div class="ej"><b>Ejemplo:</b> ${g[2]}</div><a href="${g[3]}">Leer más en la web</a><a href="../../referencia/glosario/">Glosario</a>`;
+      const r = t.getBoundingClientRect(); box.style.display = 'block';
+      box.style.left = Math.min(r.left, innerWidth - 316) + 'px'; box.style.top = (r.bottom + 8) + 'px';
+      e.stopPropagation();
+    };
+    t.addEventListener('mouseenter', abrir); t.addEventListener('click', abrir); t.addEventListener('focus', abrir);
+  });
+}
+document.addEventListener('click', e => { if (!e.target.closest('#glosa') && !e.target.closest('.termino')) $('#glosa').style.display = 'none'; });
+
+/* ================================================================== */
+/* Recorrido guiado (muestra)                                          */
+/* ================================================================== */
+const TOUR = [
+  ['portafolio', '#tour-indicadores', 'layout-grid', 'Tu portafolio de un vistazo', 'Aquí ves todos tus proyectos: % de implementación AWP, restricciones vencidas, riesgos altos e hitos atrasados. Toca cualquier número para ver el detalle.'],
+  ['portafolio', '#tour-proyecto', 'building-2', 'Cada proyecto, una tarjeta', 'El anillo muestra el avance de la implementación y el color, si va en meta. Toca la tarjeta para entrar al proyecto.'],
+  ['proyecto', '#tour-proximo', 'sparkles', 'Tu próximo paso', 'La aplicación te sugiere qué hacer ahora según el avance del proyecto, con un botón para hacerlo.'],
+  ['iwp', '#tour-ayuda', 'lightbulb', 'Ayuda en cada formulario', 'Cada paso explica qué es, trae un ejemplo del proyecto tipo y un consejo práctico. Las siglas subrayadas se explican al tocarlas.'],
+];
+let tourI = -1;
+function iniciarTour() { tourI = 0; pasoTour(); }
+function pasoTour() {
+  $$('.resaltado-tour').forEach(e => e.classList.remove('resaltado-tour'));
+  const box = $('#tour');
+  if (tourI < 0 || tourI >= TOUR.length) { box.style.display = 'none'; if (tourI >= TOUR.length) toast('¡Listo! Puedes repetir el recorrido desde el botón de ayuda.'); return; }
+  const [vista, sel, ic, tit, txt] = TOUR[tourI];
+  if (location.hash.slice(1) !== vista) { location.hash = vista; setTimeout(pasoTour, 60); return; }
+  const el = $(sel); el.scrollIntoView({ block: 'center', behavior: 'instant' }); el.classList.add('resaltado-tour');
+  box.innerHTML = `<h4>${icono(ic)}${tit}</h4><p>${txt}</p><div class="pie"><span class="puntos">${TOUR.map((_, i) => `<i class="${i === tourI ? 'on' : ''}"></i>`).join('')}</span>
+    <button class="btn btn-chico" onclick="tourI=-1;pasoTour()">Saltar</button><button class="btn btn-chico btn-primario" onclick="tourI++;pasoTour()">${tourI === TOUR.length - 1 ? 'Terminar' : 'Siguiente'}</button></div>`;
+  box.style.display = 'block';
+  const r = el.getBoundingClientRect();
+  const arriba = r.bottom + 12 + box.offsetHeight > innerHeight;
+  box.style.top = Math.max(12, arriba ? r.top - box.offsetHeight - 12 : r.bottom + 12) + 'px';
+  box.style.left = Math.max(12, Math.min(r.left, innerWidth - box.offsetWidth - 12)) + 'px';
+}
+$('#btn-ayuda').onclick = iniciarTour;
+
+/* ================================================================== */
+/* Tema y navegación                                                   */
+/* ================================================================== */
+function oscuroActivo() {
+  const t = document.documentElement.dataset.theme;
+  return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function iconoTema() { $('#btn-tema use').setAttribute('href', oscuroActivo() ? '#i-sun' : '#i-moon'); }
+$('#btn-tema').onclick = () => {
+  document.documentElement.dataset.theme = oscuroActivo() ? 'light' : 'dark';
+  try { localStorage.setItem('awp-tema', document.documentElement.dataset.theme); } catch (e) {}
+  iconoTema(); mostrar();
+};
+try { const t = localStorage.getItem('awp-tema'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+iconoTema();
+
+function mostrar() {
+  const v = location.hash.slice(1) || 'portafolio';
+  $$('[data-vista]').forEach(s => s.classList.toggle('oculto', s.dataset.vista !== v));
+  $$('[data-nav]').forEach(a => { if (a.dataset.nav === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  if (v === 'portafolio') pintarPortafolio();
+  if (v === 'proyecto') pintarProyecto();
+  if (v === 'iwp') pintarPasos();
+  if (v === 'recursos') pintarRecursos();
+  activarTerminos();
+  window.scrollTo(0, 0);
+}
+$('#buscar-recurso').addEventListener('input', pintarRecursos);
+addEventListener('hashchange', mostrar);
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { const v = location.hash.slice(1) || 'portafolio'; if (v === 'portafolio') pintarPortafolio(); if (v === 'proyecto') pintarProyecto(); }, 200); });
+mostrar();
+</script>
+</body>
+</html>

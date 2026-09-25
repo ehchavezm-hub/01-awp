@@ -518,6 +518,20 @@ def seguimiento_paquetes():
 # 4. Definición de CWA
 # ==========================================================================
 
+CRITERIOS_CWA = [
+    ("Límites", "Tiene límites físicos o lógicos claros, dibujados en un plano de CWA y sin superposición con otras CWA."),
+    ("Fase", "Pertenece a una sola fase del proyecto."),
+    ("Secuencia", "Permite construir en una secuencia lógica que termina en sistemas o áreas entregables."),
+    ("Tamaño", "Su tamaño permite dividirla en CWP de una disciplina y menos de 40 000 HH."),
+    ("Accesos", "Considera accesos, zonas de acopio, grúas y rutas de izaje."),
+    ("Interfaces", "Identifica las interfaces con CWA vecinas y con otras fases (entregas de área, conexiones)."),
+    ("Sistemas", "Identifica los sistemas de comisionamiento que atraviesan la CWA."),
+    ("Modularización", "Evalúa si parte del alcance se prefabrica o modulariza."),
+    ("Código", "Tiene código único según la codificación del kit y está cargada en el modelo 3D y el cronograma."),
+    ("Aprobación", "Fue revisada por construcción, ingeniería, procura y comisionamiento y aprobada por el AWP Champion."),
+]
+
+
 def definicion_cwa():
     lib = Libro(SALIDA / "Definicion_CWA.xlsx", "Definición de CWA", ["Fases", "EstadosPaquete", "Roles", "SiNo"])
     fechas = {
@@ -578,24 +592,12 @@ def definicion_cwa():
     # Criterios
     cs = lib.wb.create_sheet("Criterios")
     estilo_titulo(cs, "Criterios para definir una CWA", "Revise cada CWA con esta lista antes del hito H1 (CWA definidas).", 3)
-    criterios = [
-        ("Límites", "Tiene límites físicos o lógicos claros, dibujados en un plano de CWA y sin superposición con otras CWA."),
-        ("Fase", "Pertenece a una sola fase del proyecto."),
-        ("Secuencia", "Permite construir en una secuencia lógica que termina en sistemas o áreas entregables."),
-        ("Tamaño", "Su tamaño permite dividirla en CWP de una disciplina y menos de 40 000 HH."),
-        ("Accesos", "Considera accesos, zonas de acopio, grúas y rutas de izaje."),
-        ("Interfaces", "Identifica las interfaces con CWA vecinas y con otras fases (entregas de área, conexiones)."),
-        ("Sistemas", "Identifica los sistemas de comisionamiento que atraviesan la CWA."),
-        ("Modularización", "Evalúa si parte del alcance se prefabrica o modulariza."),
-        ("Código", "Tiene código único según la codificación del kit y está cargada en el modelo 3D y el cronograma."),
-        ("Aprobación", "Fue revisada por construcción, ingeniería, procura y comisionamiento y aprobada por el AWP Champion."),
-    ]
     for i, t in enumerate(("N.°", "Criterio", "Descripción"), 1):
         celda = cs.cell(row=4, column=i, value=t)
         celda.font = Font(name=FUENTE, bold=True, color=BLANCO)
         celda.fill = relleno(AZUL)
         celda.border = BORDE
-    for n, (k, d) in enumerate(criterios, 1):
+    for n, (k, d) in enumerate(CRITERIOS_CWA, 1):
         for i, v in enumerate((n, k, d), 1):
             celda = cs.cell(row=4 + n, column=i, value=v)
             celda.border = BORDE
@@ -603,7 +605,7 @@ def definicion_cwa():
     cs.column_dimensions["A"].width = 6
     cs.column_dimensions["B"].width = 18
     cs.column_dimensions["C"].width = 90
-    configurar_impresion(cs, "Criterios de CWA", "landscape", "4:4", f"A1:C{4 + len(criterios)}")
+    configurar_impresion(cs, "Criterios de CWA", "landscape", "4:4", f"A1:C{4 + len(CRITERIOS_CWA)}")
 
     hoja_instrucciones(
         lib,
