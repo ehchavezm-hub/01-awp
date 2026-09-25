@@ -87,7 +87,7 @@ Criterios de liberación (resumen del checklist *Checklist_Liberacion_IWP.xlsx*)
 
 | Concepto | Fase 1 | Fase 2 | Fase 3 |
 |---|---|---|---|
-| Ventana de planificación de IWP | 8 semanas | 12 semanas | 10 semanas |
+| Ventana de planificación de IWP | 8 semanas | 12 semanas | 8 semanas |
 | Restricciones levantadas antes de la ejecución | 3 semanas | 4 semanas | 3 semanas |
 | Backlog objetivo | ≥ 2 semanas | 2 a 4 semanas | 3 a 4 semanas |
 | Tolerancia de IWP liberados con restricciones | ≤ 15 % | ≤ 5 % | ≤ 2 % |
