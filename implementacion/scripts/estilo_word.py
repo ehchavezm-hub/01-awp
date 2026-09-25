@@ -287,11 +287,27 @@ def indice(doc, entradas_previas=None):
 
 
 def anchos(tabla, cms):
+    """Fija el ancho de cada columna en las celdas y en la grilla de la tabla
+    (Word usa las celdas; LibreOffice, la grilla)."""
     tabla.autofit = False
     for fila in tabla.rows:
         for i, ancho in enumerate(cms):
             if i < len(fila.cells):
                 fila.cells[i].width = Cm(ancho)
+    grilla = tabla._tbl.tblGrid
+    for i, col in enumerate(grilla.findall(qn("w:gridCol"))):
+        if i < len(cms):
+            col.set(qn("w:w"), str(int(cms[i] * 567)))
+    tbl_pr = tabla._tbl.tblPr
+    ancho_total = OxmlElement("w:tblW")
+    ancho_total.set(qn("w:w"), str(int(sum(cms) * 567)))
+    ancho_total.set(qn("w:type"), "dxa")
+    for viejo in tbl_pr.findall(qn("w:tblW")):
+        tbl_pr.remove(viejo)
+    tbl_pr.append(ancho_total)
+    disposicion = OxmlElement("w:tblLayout")
+    disposicion.set(qn("w:type"), "fixed")
+    tbl_pr.append(disposicion)
 
 
 def tabla_datos(doc, encabezados, filas, cms=None, tam=9, primera_negrita=False):

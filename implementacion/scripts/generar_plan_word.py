@@ -89,6 +89,8 @@ PATRON = re.compile(r"(\*\*.+?\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|(?<![\w*])\*[^*\s
 
 def texto_en_linea(parrafo, texto, tam=None, negrita=False):
     texto = texto.replace("<br/>", " ").replace("<br>", " ")
+    # Íconos de la web (:material-...:) que no tienen equivalente en Word.
+    texto = re.sub(r":(material|octicons)-[a-z0-9-]+:\s*", "", texto)
     for trozo in PATRON.split(texto):
         if not trozo:
             continue
@@ -125,14 +127,26 @@ def celdas(linea):
     return [c.strip() for c in linea.strip().strip("|").split("|")]
 
 
-def anchos_para(encabezados, filas, total=17.0):
-    largos = []
+def anchos_para(encabezados, filas, total=17.0, tam=9):
+    """Anchos de columna: cada columna recibe al menos el ancho de su palabra
+    más larga y el resto se reparte según la longitud del texto."""
+    cm_por_caracter = 0.19 if tam >= 9 else 0.17
+
+    def limpio(x):
+        return re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", x).replace("**", "").replace("`", "")
+
+    minimos, pesos = [], []
     for i in range(len(encabezados)):
-        col = [encabezados[i]] + [f[i] if i < len(f) else "" for f in filas]
-        largo = max(len(re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", x)) for x in col)
-        largos.append(min(max(largo, 6), 60))
-    suma = sum(largos)
-    return [total * l / suma for l in largos]
+        col = [f[i] if i < len(f) else "" for f in filas]
+        palabras = [p for x in col for p in limpio(x).split()] or [""]
+        palabra_enc = max((len(p) for p in limpio(encabezados[i]).split()), default=4)
+        minimos.append(min(4.0, max(max(len(p) for p in palabras), palabra_enc, 3) * cm_por_caracter + 0.45))
+        pesos.append(min(max((len(limpio(x)) for x in col + [encabezados[i]]), default=6), 70))
+    resto = max(total - sum(minimos), 0)
+    suma = sum(pesos) or 1
+    anchos = [m + resto * p / suma for m, p in zip(minimos, pesos)]
+    factor = total / sum(anchos)
+    return [a * factor for a in anchos]
 
 
 def quitar_numero(titulo):
@@ -196,7 +210,7 @@ class Conversor:
             [(lambda par, v=v: texto_en_linea(par, v, tam)) for v in fila] for fila in filas
         ]
         encabezados_limpios = [re.sub(r"[*`]", "", e) for e in encabezados]
-        ew.tabla_datos(self.doc, encabezados_limpios, valores, anchos_para(encabezados, filas), tam)
+        ew.tabla_datos(self.doc, encabezados_limpios, valores, anchos_para(encabezados, filas, tam=tam), tam)
 
     def recuadro(self, titulo, lineas):
         partes = []
