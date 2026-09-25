@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3f51b5">
+<title>AWP · Implementación</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icono.svg" type="image/svg+xml">
+<link rel="stylesheet" href="estilos.css">
+<script>
+  // Aplica el tema guardado antes de pintar, para evitar un parpadeo.
+  try { const t = localStorage.getItem('awp-tema'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<div id="app"><div class="cargando-inicial"><span class="girador"></span>Cargando…</div></div>
+<noscript>La aplicación necesita JavaScript activado.</noscript>
+<script src="vendor/supabase.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
