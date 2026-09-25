@@ -81,6 +81,8 @@ markdown_extensions:
 # Publica los .xlsx y .docx de implementacion/ para que se puedan descargar.
 hooks:
   - hooks/descargas.py
+  # Publica la aplicación (app/web/) y su maqueta (app/maqueta/) en /app/.
+  - hooks/aplicacion.py
 
 extra_css:
   - stylesheets/extra.css
@@ -131,6 +133,7 @@ nav:
       - Cronograma de implementación: implementacion/cronograma.md
       - Referencias: implementacion/referencias.md
       - Plantillas descargables: implementacion/plantillas.md
+      - Aplicación AWP (maqueta de diseño): https://ehchavezm-hub.github.io/01-awp/app/maqueta/
   - Terminología y referencia:
       - Glosario de siglas y términos: referencia/glosario.md
       - Siglas y definiciones del CII: referencia/siglas-y-definiciones-cii.md
