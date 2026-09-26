@@ -146,7 +146,7 @@ EH:
 End Function
 
 ' 4) Escritura de todas las hojas de salida (sin graficos).
-Public Function PruebaSalidas(ByVal N As Long) As String
+Public Function PruebaSalidas(ByVal N As Long, Optional ByVal graficos As Boolean = False) As String
     Dim errs As String, nErr As Long
     On Error GoTo EH
     PrColActivo "R-", "SI"
@@ -162,7 +162,8 @@ Public Function PruebaSalidas(ByVal N As Long) As String
         PruebaSalidas = "ERROR " & errs
         Exit Function
     End If
-    gSinGraficos = True
+    gSinGraficos = Not graficos
+    gNFallosGraf = 0: gPrimerFalloGraf = ""
     gEtapa = "nucleo": NucleoSimulacion
     gEtapa = "RESULTADOS": EscribirResultados
     gEtapa = "CURVA_S": EscribirCurvaS
@@ -171,7 +172,7 @@ Public Function PruebaSalidas(ByVal N As Long) As String
     gEtapa = "MATRIZ": EscribirMatriz
     gEtapa = "COMPARACION": EscribirComparacion
     gEtapa = "SIMULACION": EscribirSimulacion
-    PruebaSalidas = "OK|" & PrResumen() & "|HAYDESP=" & gHayDespues & "|CRESP=" & PrNum(gCostoRespTotal)
+    PruebaSalidas = "OK|" & PrResumen() & "|HAYDESP=" & gHayDespues & "|CRESP=" & PrNum(gCostoRespTotal) & "|GRAF_FALLOS=" & gNFallosGraf & " " & gPrimerFalloGraf
     Exit Function
 EH:
     PruebaSalidas = "ERROR " & Err.Number & ": " & Err.Description & " (" & gEtapa & ")"

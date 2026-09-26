@@ -29,6 +29,7 @@ Private Const MIN_ITER As Long = 1000
 Private Const MAX_ITER As Long = 100000
 Private Const MAX_FILAS_SIM As Long = 5000
 Private Const N_CLASES As Long = 20
+Private Const COL_AUX_GRAFICOS As Long = 60   ' columna BH: datos auxiliares de las lineas de referencia
 Private Const MAX_ERRORES_MSG As Long = 30
 Private Const LIMITE_VALORES As Double = 20000000#
 Private Const DOS_PI As Double = 6.28318530717959
@@ -140,6 +141,9 @@ End Type
 Private gEtapa As String
 Private gRiesgoActual As Long
 Private gDimActual As Long
+Private gPasoGrafico As String
+Private gNFallosGraf As Long
+Private gPrimerFalloGraf As String
 Private gSinGraficos As Boolean   ' solo para pruebas automaticas (False en uso normal)
 
 ' ---------------- Modelo leido ----------------
@@ -221,6 +225,8 @@ Public Sub EjecutarSimulacion()
     Application.EnableEvents = False
     Application.Calculation = xlCalculationManual
 
+    gNFallosGraf = 0
+    gPrimerFalloGraf = ""
     gEtapa = "simulando iteraciones"
     NucleoSimulacion
 
@@ -251,6 +257,8 @@ Public Sub EjecutarSimulacion()
           "; pendientes de cuantificar: " & gNPend & ")" & vbLf & _
           ChrW$(8226) & " Semilla: " & TextoSemilla() & vbLf & _
           ChrW$(8226) & " Tiempo: " & Format$(Timer - t0, "0.0") & " s" & vbLf
+    If gNFallosGraf > 0 Then msg = msg & ChrW$(8226) & U(" Gr\u00E1ficos no creados: ") & gNFallosGraf & _
+        " (" & gPrimerFalloGraf & U("). El aviso queda en cada hoja; los resultados num\u00E9ricos son v\u00E1lidos.") & vbLf
     If gNAdv > 0 Then msg = msg & ChrW$(8226) & " Advertencias: " & gNAdv & U(" (vea la hoja RESULTADOS)") & vbLf
     msg = msg & vbLf & "Nivel de confianza: " & Format$(gNivel, "0%") & vbLf
     For d = 1 To gND
@@ -2494,9 +2502,11 @@ Private Function BloqueTornado(ByVal ws As Worksheet, ByVal fila As Long, ByVal 
         Set co = GraficoTornado(ws, ws.Cells(fila + 2, 3).Resize(nChart, 1), ws.Cells(fila + 2, 12).Resize(nChart, 1), _
                                 ws.Cells(fila + 2, 13).Resize(nChart, 1), U("Tornado \u2014 ") & gD(d).Nombre & " (" & gD(d).Unidad & ")", _
                                 ws.Cells(fila, 15), nChart, gD(d).Formato)
-        Do While ws.Cells(ultima, 1).Top < co.Top + co.Height
-            ultima = ultima + 1
-        Loop
+        If Not co Is Nothing Then
+            Do While ws.Cells(ultima, 1).Top < co.Top + co.Height
+                ultima = ultima + 1
+            Loop
+        End If
     End If
     BloqueTornado = ultima
 End Function
@@ -2938,26 +2948,37 @@ Private Sub GraficoCurvaS(ByVal ws As Worksheet, rangosX As Variant, rangosY As 
                           ByVal v50 As Double, ByVal vNivel As Double, ByVal fmt As String, ByVal vMin As Double, _
                           ByVal ancho As Double, ByVal alto As Double)
     Dim co As ChartObject, ch As Chart, s As Series, k As Long, nSeries As Long
+    Dim rX As Range, rY As Range, aux As Range
     If gSinGraficos Then Exit Sub
+    On Error GoTo EH
+    gPasoGrafico = "crear el objeto"
     Set co = ws.ChartObjects.Add(pos.Left, pos.Top, ancho, alto)
     Set ch = co.Chart
     Do While ch.SeriesCollection.Count > 0
         ch.SeriesCollection(1).Delete
     Loop
     For k = LBound(rangosX) To UBound(rangosX)
+        gPasoGrafico = "agregar la serie " & (k - LBound(rangosX) + 1)
+        Set rX = rangosX(k)
+        Set rY = rangosY(k)
         Set s = ch.SeriesCollection.NewSeries
-        s.XValues = rangosX(k)
-        s.Values = rangosY(k)
-        s.Name = nombres(k)
+        s.XValues = RefRango(rX)
+        s.Values = RefRango(rY)
+        s.Name = CStr(nombres(k))
     Next k
     nSeries = ch.SeriesCollection.Count
+    gPasoGrafico = "tipo de grafico"
     ch.ChartType = xlXYScatterSmoothNoMarkers
+    gPasoGrafico = "color de las series"
     For k = 1 To nSeries
-        ch.SeriesCollection(k).Format.Line.ForeColor.RGB = colores(k - 1 + LBound(colores))
+        ch.SeriesCollection(k).Format.Line.ForeColor.RGB = CLng(colores(k - 1 + LBound(colores)))
         ch.SeriesCollection(k).Format.Line.Weight = 2.25
     Next k
-    LineaReferencia ch, v50, 0.5, "P50", fmt, vMin, COLOR_REF_P50
-    LineaReferencia ch, vNivel, gNivel, "P" & Format$(gNivel * 100, "0"), fmt, vMin, COLOR_REF_NIVEL
+    ' Datos de las lineas de referencia en celdas auxiliares (a la derecha de la hoja)
+    Set aux = ws.Cells(pos.Row, COL_AUX_GRAFICOS)
+    LineaReferencia ch, aux, v50, 0.5, "P50", fmt, vMin, COLOR_REF_P50
+    LineaReferencia ch, aux.Offset(0, 2), vNivel, gNivel, "P" & Format$(gNivel * 100, "0"), fmt, vMin, COLOR_REF_NIVEL
+    gPasoGrafico = "titulo y leyenda"
     ch.HasTitle = True
     ch.ChartTitle.Text = titulo
     ch.ChartTitle.Font.Size = 12
@@ -2969,10 +2990,11 @@ Private Sub GraficoCurvaS(ByVal ws As Worksheet, rangosX As Variant, rangosY As 
         On Error Resume Next
         ch.Legend.LegendEntries(ch.Legend.LegendEntries.Count).Delete
         ch.Legend.LegendEntries(ch.Legend.LegendEntries.Count).Delete
-        On Error GoTo 0
+        On Error GoTo EH
     Else
         ch.HasLegend = False
     End If
+    gPasoGrafico = "ejes"
     With ch.Axes(xlValue)
         .MinimumScale = 0
         .MaximumScale = 1
@@ -2986,16 +3008,28 @@ Private Sub GraficoCurvaS(ByVal ws As Worksheet, rangosX As Variant, rangosY As 
         .AxisTitle.Text = ejeX
         .TickLabels.NumberFormat = fmt
     End With
+    Exit Sub
+EH:
+    FalloGrafico co, pos, titulo, Err.Number, Err.Description
 End Sub
 
-Private Sub LineaReferencia(ByVal ch As Chart, ByVal x As Double, ByVal y As Double, ByVal etiqueta As String, _
-                            ByVal fmt As String, ByVal xMin As Double, ByVal color As Long)
-    Dim s As Series
+Private Sub LineaReferencia(ByVal ch As Chart, ByVal aux As Range, ByVal x As Double, ByVal y As Double, _
+                            ByVal etiqueta As String, ByVal fmt As String, ByVal xMin As Double, ByVal color As Long)
+    Dim s As Series, a(1 To 4, 1 To 2) As Variant
+    gPasoGrafico = "linea de referencia " & etiqueta
+    a(1, 1) = etiqueta & " (x)"
+    a(1, 2) = etiqueta & " (y)"
+    a(2, 1) = xMin: a(2, 2) = y
+    a(3, 1) = x:    a(3, 2) = y
+    a(4, 1) = x:    a(4, 2) = 0
+    aux.Resize(4, 2).Value = a
+    aux.Resize(4, 2).Font.Color = COLOR_SUBTITULO
+    aux.Resize(4, 2).Font.Size = 8
     Set s = ch.SeriesCollection.NewSeries
-    s.ChartType = xlXYScatterLinesNoMarkers
+    s.XValues = RefRango(aux.Offset(1, 0).Resize(3, 1))
+    s.Values = RefRango(aux.Offset(1, 1).Resize(3, 1))
     s.Name = etiqueta
-    s.XValues = Array(xMin, x, x)
-    s.Values = Array(y, y, 0)
+    s.ChartType = xlXYScatterLinesNoMarkers
     s.Format.Line.ForeColor.RGB = color
     s.Format.Line.Weight = 1.25
     s.Format.Line.DashStyle = 4   ' msoLineDash
@@ -3010,50 +3044,63 @@ Private Sub GraficoHistograma(ByVal ws As Worksheet, ByVal rCat As Range, ByVal 
                               ByVal color As Long, ByVal pos As Range, ByVal fmt As String)
     Dim co As ChartObject, ch As Chart, s As Series
     If gSinGraficos Then Exit Sub
+    On Error GoTo EH
+    gPasoGrafico = "crear el objeto"
     Set co = ws.ChartObjects.Add(pos.Left, pos.Top, 480, 290)
     Set ch = co.Chart
     Do While ch.SeriesCollection.Count > 0
         ch.SeriesCollection(1).Delete
     Loop
+    gPasoGrafico = "agregar la serie"
     Set s = ch.SeriesCollection.NewSeries
-    s.Values = rVal
-    s.XValues = rCat
+    s.Values = RefRango(rVal)
+    s.XValues = RefRango(rCat)
     s.Name = "Frecuencia"
+    gPasoGrafico = "tipo y formato"
     ch.ChartType = xlColumnClustered
-    s.Format.Fill.ForeColor.RGB = color
+    ch.SeriesCollection(1).Format.Fill.ForeColor.RGB = color
     ch.ChartGroups(1).GapWidth = 10
     ch.HasTitle = True
     ch.ChartTitle.Text = titulo
     ch.ChartTitle.Font.Size = 12
     ch.ChartTitle.Font.Bold = True
     ch.HasLegend = False
+    gPasoGrafico = "ejes"
     ch.Axes(xlCategory).TickLabels.NumberFormat = fmt
     ch.Axes(xlValue).HasTitle = True
     ch.Axes(xlValue).AxisTitle.Text = "Frecuencia (iteraciones)"
+    Exit Sub
+EH:
+    FalloGrafico co, pos, titulo, Err.Number, Err.Description
 End Sub
 
 Private Function GraficoTornado(ByVal ws As Worksheet, ByVal rCat As Range, ByVal rInf As Range, ByVal rSup As Range, _
                                 ByVal titulo As String, ByVal pos As Range, ByVal nBarras As Long, _
                                 ByVal fmt As String) As ChartObject
     Dim co As ChartObject, ch As Chart, s As Series
+    On Error GoTo EH
+    gPasoGrafico = "crear el objeto"
     Set co = ws.ChartObjects.Add(pos.Left, pos.Top, 560, 110 + 24 * nBarras)
     Set ch = co.Chart
     Do While ch.SeriesCollection.Count > 0
         ch.SeriesCollection(1).Delete
     Loop
+    gPasoGrafico = "agregar las series"
     Set s = ch.SeriesCollection.NewSeries
-    s.XValues = rCat
-    s.Values = rInf
+    s.XValues = RefRango(rCat)
+    s.Values = RefRango(rInf)
     s.Name = "Riesgo en su 10% inferior"
     Set s = ch.SeriesCollection.NewSeries
-    s.XValues = rCat
-    s.Values = rSup
+    s.XValues = RefRango(rCat)
+    s.Values = RefRango(rSup)
     s.Name = "Riesgo en su 10% superior"
+    gPasoGrafico = "tipo y formato"
     ch.ChartType = xlBarClustered
     ch.SeriesCollection(1).Format.Fill.ForeColor.RGB = COLOR_TORNADO_BAJO
     ch.SeriesCollection(2).Format.Fill.ForeColor.RGB = COLOR_TORNADO_ALTO
     ch.ChartGroups(1).Overlap = 100
     ch.ChartGroups(1).GapWidth = 40
+    gPasoGrafico = "ejes"
     With ch.Axes(xlCategory)
         .ReversePlotOrder = True
         .TickLabelPosition = xlTickLabelPositionLow
@@ -3064,6 +3111,7 @@ Private Function GraficoTornado(ByVal ws As Worksheet, ByVal rCat As Range, ByVa
         .HasTitle = True
         .AxisTitle.Text = U("Variaci\u00F3n del total respecto de su media")
     End With
+    gPasoGrafico = "titulo y leyenda"
     ch.HasTitle = True
     ch.ChartTitle.Text = titulo
     ch.ChartTitle.Font.Size = 12
@@ -3071,7 +3119,30 @@ Private Function GraficoTornado(ByVal ws As Worksheet, ByVal rCat As Range, ByVa
     ch.HasLegend = True
     ch.Legend.Position = xlLegendPositionBottom
     Set GraficoTornado = co
+    Exit Function
+EH:
+    FalloGrafico co, pos, titulo, Err.Number, Err.Description
+    Set GraficoTornado = Nothing
 End Function
+
+' Referencia de rango en texto (='Hoja'!$A$1:$A$9): es la forma mas estable de enlazar una serie.
+Private Function RefRango(ByVal r As Range) As String
+    RefRango = "='" & Replace(r.Worksheet.Name, "'", "''") & "'!" & r.Address
+End Function
+
+' Si un grafico falla, se borra lo creado, se deja un aviso en la hoja y la simulacion continua.
+Private Sub FalloGrafico(ByVal co As ChartObject, ByVal pos As Range, ByVal titulo As String, _
+                         ByVal nErr As Long, ByVal desc As String)
+    On Error Resume Next
+    If Not co Is Nothing Then co.Delete
+    pos.Value = U("No se pudo crear el gr\u00E1fico \u00AB") & titulo & U("\u00BB. Error ") & nErr & ": " & desc & _
+                " (paso: " & gPasoGrafico & U("). Los datos de las tablas son v\u00E1lidos.")
+    pos.Font.Bold = True
+    pos.Font.Color = COLOR_TEXTO
+    pos.Interior.Color = COLOR_ADVERTENCIA
+    gNFallosGraf = gNFallosGraf + 1
+    If Len(gPrimerFalloGraf) = 0 Then gPrimerFalloGraf = "Error " & nErr & ": " & desc & " (paso: " & gPasoGrafico & ")"
+End Sub
 
 
 ' ======================================================================

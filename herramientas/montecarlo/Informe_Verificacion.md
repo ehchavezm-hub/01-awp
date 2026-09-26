@@ -68,7 +68,10 @@ Verificación: se revisaron todos los estilos del libro y del código VBA. Solo 
 
 LibreOffice no puede probar estos puntos, que dependen de Excel:
 
-- Creación de gráficos (curva S, histograma, tornado). Los de la v1, hechos con el mismo método, funcionaron en Excel.
+- Creación de gráficos (curva S, histograma, tornado). **Primera prueba en Excel (26/09/2026): «Error 13: No coinciden los tipos» en CURVA_S.** Corrección:
+  - las series se enlazan con una referencia en texto (`='CURVA_S'!$C$7:$C$27`) y ya no con objetos Range guardados en un Array;
+  - las líneas P50 y P(nivel) leen sus puntos de celdas auxiliares (columna BH), no de arreglos en memoria;
+  - cada gráfico tiene su propio control de errores: si uno falla, se borra, queda un aviso ámbar con el error y el paso, y la simulación termina igual.
 - Lectura de las tablas como ListObjects. En LibreOffice se probó con rangos equivalentes y la ruta de lectura es la misma.
 - `AgregarDimension`: agrega columnas a tblRiesgos, tblDimensiones y tblEscalas.
 - Los 4 botones (formas con macro asignada).
