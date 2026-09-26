@@ -1636,17 +1636,26 @@ End Function
 
 Private Sub NucleoSimulacion()
     Dim r As Long, i As Long, d As Long, ua As Double, x As Double
+    Dim nIt As Long, nRi As Long, nDi As Long
     Dim ocA As Boolean, ocD As Boolean, s() As Double
 
+    gEtapa = "iniciando el generador de numeros aleatorios"
     If gSemillaFija Then
         SembrarGenerador gSemilla
     Else
         SembrarGenerador Int(Timer * 1000#) + 7919# * Second(Now) + 104729# * Minute(Now)
     End If
 
-    ReDim gM(1 To gN, 1 To gNR, 1 To gND)
-    If gHayDespues Then ReDim gMD(1 To gN, 1 To gNR, 1 To gND)
-    ReDim gOcc(1 To gNR)
+    gEtapa = "reservando memoria para la simulacion"
+    nIt = gN
+    nRi = gNR
+    nDi = gND
+    ReDim gM(1 To nIt, 1 To nRi, 1 To nDi)
+    If gHayDespues Then
+        ReDim gMD(1 To nIt, 1 To nRi, 1 To nDi)
+    End If
+    ReDim gOcc(1 To nRi)
+    gEtapa = "simulando iteraciones"
 
     For r = 1 To gNR
         gRiesgoActual = r
@@ -1716,7 +1725,7 @@ Private Sub AplicarCorrelacion()
     Dim r As Long, q As Long, g As Long, i As Long, d As Long, kd As Long
     Dim rn As Double, w() As Double, sc() As Double, clave() As Double
     Dim ixK() As Long, ixS() As Long, perm() As Long, tmp() As Double
-    Dim yaVisto As Boolean, miembros() As Long, nm As Long, rk() As Variant, suma As Double, npar As Long
+    Dim yaVisto As Boolean, miembros() As Long, nm As Long, rkM() As Double, suma As Double, npar As Long
     Dim ra() As Double, rb() As Double, ix() As Long
 
     gNG = 0
@@ -1788,11 +1797,11 @@ Private Sub AplicarCorrelacion()
                         Next d
                     End If
                 Next q
-                ' Correlacion de rango lograda: promedio de pares
+                ' Correlacion de rango lograda: promedio de pares (rangos en una matriz)
                 suma = 0
                 npar = 0
                 If nm > 1 Then
-                    ReDim rk(1 To nm)
+                    ReDim rkM(1 To gN, 1 To nm)
                     For q = 1 To nm
                         kd = PrimeraDimension(miembros(q))
                         ReDim clave(1 To gN)
@@ -1802,12 +1811,18 @@ Private Sub AplicarCorrelacion()
                             Next i
                         End If
                         RangosPromedio clave, gN, ra, ix
-                        rk(q) = ra
+                        For i = 1 To gN
+                            rkM(i, q) = ra(i)
+                        Next i
                     Next q
+                    ReDim ra(1 To gN)
+                    ReDim rb(1 To gN)
                     For q = 1 To nm - 1
                         For g = q + 1 To nm
-                            ra = rk(q)
-                            rb = rk(g)
+                            For i = 1 To gN
+                                ra(i) = rkM(i, q)
+                                rb(i) = rkM(i, g)
+                            Next i
                             suma = suma + Pearson(ra, rb, gN)
                             npar = npar + 1
                         Next g

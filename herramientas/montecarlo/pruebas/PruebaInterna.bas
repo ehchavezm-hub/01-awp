@@ -226,7 +226,13 @@ Public Function PruebaMemoria(ByVal caso As String) As String
             gR(1).Grupo = "G": gR(1).Rho = 0.6
             gR(2).Grupo = "G": gR(2).Rho = 0.6
             NucleoSimulacion
-            PruebaMemoria = "OBJ=0.6|LOG=" & PrNum(gGrupoLog(1))
+            Dim xa() As Double, xb() As Double, ra() As Double, rb() As Double, ixa() As Long
+            ColumnaRiesgo 1, 1, gN, xa
+            ColumnaRiesgo 2, 1, gN, xb
+            RangosPromedio xa, gN, ra, ixa
+            RangosPromedio xb, gN, rb, ixa
+            PruebaMemoria = "OBJ=0.6|LOG=" & PrNum(gGrupoLog(1)) & "|NG=" & gNG & "|N1=" & gGrupoN(1) & _
+                "|SPEARMAN_DIRECTO=" & PrNum(Pearson(ra, rb, gN)) & "|X1=" & PrNum(xa(1)) & ";" & PrNum(xa(2)) & "|X2=" & PrNum(xb(1)) & ";" & PrNum(xb(2))
         Case "OPORT"
             PrMemoria 2, 50000
             PrDist 1, D_PERT, 100, 200, 400
@@ -258,7 +264,7 @@ Public Function PruebaMemoria(ByVal caso As String) As String
     End Select
     Exit Function
 EH:
-    PruebaMemoria = "ERROR " & Err.Number & ": " & Err.Description
+    PruebaMemoria = "ERROR " & Err.Number & ": " & Err.Description & " (" & gEtapa & ")"
 End Function
 
 ' 6) Casos borde leyendo la hoja.
@@ -407,4 +413,20 @@ Public Function PruebaValidacion() As String
     Exit Function
 EH:
     PruebaValidacion = "ERROR " & Err.Number & ": " & Err.Description
+End Function
+
+Public Function PruebaDiag(ByVal nn As Long, ByVal rr As Long) As String
+    Dim paso As String
+    On Error GoTo EH
+    gN = nn: gNR = rr: gND = 1
+    paso = "gM": ReDim gM(1 To gN, 1 To gNR, 1 To gND)
+    paso = "gM asignar": gM(5, 2, 1) = 3
+    paso = "gOcc": ReDim gOcc(1 To gNR)
+    paso = "local3d"
+    Dim x() As Double
+    ReDim x(1 To gN, 1 To gNR, 1 To gND)
+    PruebaDiag = "OK"
+    Exit Function
+EH:
+    PruebaDiag = "falla en " & paso & ": " & Err.Description
 End Function
