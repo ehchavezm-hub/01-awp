@@ -1,0 +1,2675 @@
+1
+00:00:00,500 --> 00:00:01,225
+Bienvenidos.
+
+2
+00:00:01,225 --> 00:00:06,298
+En esta guía vamos a aprender a usar la herramienta de simulación Montecarlo para el
+
+3
+00:00:06,298 --> 00:00:09,076
+análisis cuantitativo de riesgos del proyecto.
+
+4
+00:00:09,076 --> 00:00:13,908
+La herramienta es un libro de Excel con una macro incluida, y permite estimar la
+
+5
+00:00:13,908 --> 00:00:19,222
+contingencia de costo, de plazo y de horas hombre de ingeniería a partir del registro de
+
+6
+00:00:19,222 --> 00:00:19,705
+riesgos.
+
+7
+00:00:19,705 --> 00:00:24,175
+Pondremos especial atención en la parte conceptual, que es la más difícil:
+
+8
+00:00:24,175 --> 00:00:29,550
+qué es una distribución de probabilidad, cómo se elige la adecuada para cada riesgo y qué
+
+9
+00:00:29,550 --> 00:00:31,120
+número va en cada casilla.
+
+10
+00:00:32,620 --> 00:00:35,322
+Al terminar, usted podrá hacer seis cosas.
+
+11
+00:00:35,322 --> 00:00:40,470
+Primero, entender qué es una distribución y por qué es mejor que un número fijo.
+
+12
+00:00:40,470 --> 00:00:44,266
+Segundo, elegir la distribución adecuada para cada impacto.
+
+13
+00:00:44,266 --> 00:00:49,928
+Tercero, llenar correctamente la probabilidad y los parámetros pe uno a pe cuatro de las
+
+14
+00:00:49,928 --> 00:00:52,116
+veinte distribuciones disponibles.
+
+15
+00:00:52,116 --> 00:00:54,625
+Cuarto, validar y correr la simulación.
+
+16
+00:00:54,625 --> 00:00:58,872
+Quinto, interpretar la curva S, el tornado y la tabla de reservas.
+
+17
+00:00:58,872 --> 00:01:03,376
+Y sexto, evaluar si las respuestas a los riesgos valen lo que cuestan.
+
+18
+00:01:03,376 --> 00:01:06,400
+No se necesita formación previa en estadística:
+
+19
+00:01:06,400 --> 00:01:09,360
+cada concepto se explica con ejemplos de obra.
+
+20
+00:01:10,860 --> 00:01:12,579
+La guía tiene siete partes.
+
+21
+00:01:12,579 --> 00:01:16,462
+Empezamos con los conceptos de riesgo que usa la herramienta.
+
+22
+00:01:16,462 --> 00:01:19,646
+Luego recorremos el libro de Excel y sus columnas.
+
+23
+00:01:19,646 --> 00:01:23,847
+Las partes tres, cuatro y cinco, marcadas en ámbar, son el núcleo:
+
+24
+00:01:23,847 --> 00:01:29,323
+la idea de distribución, cómo elegirla, y una lámina dedicada a cada una de las veinte
+
+25
+00:01:29,323 --> 00:01:30,278
+distribuciones.
+
+26
+00:01:30,278 --> 00:01:35,180
+Después vemos casos especiales, como oportunidades, respuestas y correlación.
+
+27
+00:01:35,180 --> 00:01:40,910
+Y cerramos con la ejecución de la macro y la interpretación de los resultados, incluida la
+
+28
+00:01:40,910 --> 00:01:41,737
+contingencia.
+
+29
+00:01:43,237 --> 00:01:45,748
+¿Por qué simular y no simplemente sumar?
+
+30
+00:01:45,748 --> 00:01:48,321
+Hay tres prácticas comunes con problemas.
+
+31
+00:01:48,321 --> 00:01:53,907
+El porcentaje fijo, por ejemplo diez por ciento, no se relaciona con los riesgos reales y
+
+32
+00:01:53,907 --> 00:01:55,350
+es difícil de defender.
+
+33
+00:01:55,350 --> 00:02:00,497
+La suma de peores casos supone que todos los riesgos ocurren a la vez y en su peor
+
+34
+00:02:00,497 --> 00:02:02,945
+versión, lo que da una cifra exagerada.
+
+35
+00:02:02,945 --> 00:02:08,593
+Y la suma de valores esperados da el promedio, pero no dice cuánto margen se necesita para
+
+36
+00:02:08,593 --> 00:02:10,915
+estar cubiertos con cierta seguridad.
+
+37
+00:02:10,915 --> 00:02:16,564
+La simulación combina los riesgos como ocurren en la realidad y entrega la probabilidad de
+
+38
+00:02:16,564 --> 00:02:17,945
+no superar cada monto.
+
+39
+00:02:19,445 --> 00:02:20,122
+Parte uno:
+
+40
+00:02:20,122 --> 00:02:21,477
+conceptos de riesgo.
+
+41
+00:02:21,477 --> 00:02:26,151
+Repasamos el vocabulario del estándar del PMI que usa la herramienta:
+
+42
+00:02:26,151 --> 00:02:32,044
+amenazas y oportunidades, las dos reservas, el valor monetario esperado y la idea de la
+
+43
+00:02:32,044 --> 00:02:33,534
+simulación Montecarlo.
+
+44
+00:02:35,034 --> 00:02:40,861
+Según el PMI, un riesgo es un evento o condición incierta que, si ocurre, afecta al menos
+
+45
+00:02:40,861 --> 00:02:42,498
+un objetivo del proyecto.
+
+46
+00:02:42,498 --> 00:02:48,390
+Puede ser una amenaza, que aumenta el costo o el plazo, o una oportunidad, que los reduce.
+
+47
+00:02:48,390 --> 00:02:53,890
+Además, conviene distinguir el riesgo individual, que es cada fila del registro, del
+
+48
+00:02:53,890 --> 00:02:59,193
+riesgo general del proyecto, que es el efecto combinado de toda la incertidumbre.
+
+49
+00:02:59,193 --> 00:03:02,532
+La simulación mide precisamente ese riesgo general:
+
+50
+00:03:02,532 --> 00:03:05,609
+su resultado principal es la curva S del total.
+
+51
+00:03:07,109 --> 00:03:09,444
+El presupuesto se construye por capas.
+
+52
+00:03:09,444 --> 00:03:14,912
+Abajo está la línea base, que es el costo y el plazo del contrato sin considerar riesgos.
+
+53
+00:03:14,912 --> 00:03:19,950
+Encima va la reserva para contingencias, que cubre los riesgos identificados en el
+
+54
+00:03:19,950 --> 00:03:20,503
+registro.
+
+55
+00:03:20,503 --> 00:03:25,848
+Esta es la que calcula la simulación, normalmente como el percentil ochenta del impacto
+
+56
+00:03:25,848 --> 00:03:26,217
+total.
+
+57
+00:03:26,217 --> 00:03:31,316
+Y arriba va la reserva de gestión, para lo no previsto, que no se simula porque por
+
+58
+00:03:31,316 --> 00:03:33,589
+definición no conocemos esos riesgos:
+
+59
+00:03:33,589 --> 00:03:35,924
+se fija como un porcentaje de la base.
+
+60
+00:03:35,924 --> 00:03:39,365
+La suma de las tres capas es el presupuesto recomendado.
+
+61
+00:03:40,864 --> 00:03:45,809
+El valor monetario esperado, o VME, es la probabilidad por el impacto medio.
+
+62
+00:03:45,809 --> 00:03:50,949
+Por ejemplo, si la demora de aprobaciones tiene cincuenta y cinco por ciento de
+
+63
+00:03:50,949 --> 00:03:56,674
+probabilidad y un impacto medio de unos seiscientos sesenta y siete mil soles, su VME es
+
+64
+00:03:56,674 --> 00:03:59,667
+de unos trescientos sesenta y siete mil soles.
+
+65
+00:03:59,667 --> 00:04:03,831
+En las oportunidades el VME es negativo, porque reduce el total.
+
+66
+00:04:03,831 --> 00:04:09,361
+El VME sirve para ordenar riesgos y para comprobar la simulación, pero no dice cuánto
+
+67
+00:04:09,361 --> 00:04:10,532
+margen hace falta:
+
+68
+00:04:10,532 --> 00:04:14,176
+es un promedio, y el proyecto lo supera en muchos casos.
+
+69
+00:04:14,176 --> 00:04:17,103
+Por eso la contingencia se lee en la curva S.
+
+70
+00:04:18,603 --> 00:04:23,076
+Una simulación Montecarlo consiste en jugar el proyecto miles de veces.
+
+71
+00:04:23,076 --> 00:04:28,684
+En cada iteración, la computadora sortea qué riesgos ocurren y cuánto impactan, según las
+
+72
+00:04:28,684 --> 00:04:30,322
+estimaciones del registro.
+
+73
+00:04:30,322 --> 00:04:35,677
+Con diez mil iteraciones obtenemos diez mil totales posibles, y su distribución es el
+
+74
+00:04:35,677 --> 00:04:36,307
+resultado.
+
+75
+00:04:36,307 --> 00:04:40,529
+La precisión mejora con la raíz cuadrada del número de iteraciones:
+
+76
+00:04:40,529 --> 00:04:45,254
+para reducir el error a la mitad se necesitan cuatro veces más iteraciones.
+
+77
+00:04:45,254 --> 00:04:50,924
+El gráfico muestra cómo el error baja rápidamente al principio y luego cada vez más lento.
+
+78
+00:04:50,924 --> 00:04:56,595
+La macro usa un generador de números aleatorios de alta calidad y una semilla, de modo que
+
+79
+00:04:56,595 --> 00:04:59,745
+con la misma semilla el resultado es reproducible.
+
+80
+00:05:01,245 --> 00:05:01,936
+Parte dos:
+
+81
+00:05:01,936 --> 00:05:02,973
+la herramienta.
+
+82
+00:05:02,973 --> 00:05:08,711
+Veamos cómo está organizado el libro de Excel y qué información va en cada columna.
+
+83
+00:05:10,210 --> 00:05:11,848
+El flujo tiene seis pasos.
+
+84
+00:05:11,848 --> 00:05:16,382
+Usted registra los riesgos y describe cada impacto con una distribución.
+
+85
+00:05:16,382 --> 00:05:21,673
+Luego la macro valida los datos, juega diez mil escenarios, escribe los resultados y
+
+86
+00:05:21,673 --> 00:05:24,255
+calcula la contingencia al nivel elegido.
+
+87
+00:05:24,255 --> 00:05:28,286
+Su trabajo está en los dos primeros pasos y en la lectura final.
+
+88
+00:05:28,286 --> 00:05:33,828
+Y es importante saber que la calidad del resultado depende casi por completo de esos dos
+
+89
+00:05:33,828 --> 00:05:34,773
+primeros pasos:
+
+90
+00:05:34,773 --> 00:05:39,497
+la macro calcula bien, pero no puede corregir una estimación mal planteada.
+
+91
+00:05:40,997 --> 00:05:42,679
+El libro tiene once hojas.
+
+92
+00:05:42,679 --> 00:05:45,267
+INICIO explica el propósito y los pasos.
+
+93
+00:05:45,267 --> 00:05:49,149
+GUIA es la ayuda sobre distribuciones para no especialistas.
+
+94
+00:05:49,149 --> 00:05:53,225
+PARAMETROS, en ámbar, es la única hoja donde se ingresan datos.
+
+95
+00:05:53,225 --> 00:05:55,231
+Las demás las escribe la macro:
+
+96
+00:05:55,231 --> 00:06:00,537
+RESULTADOS con las reservas, CURVA S, TORNADO, RANGOS, la matriz de probabilidad e
+
+97
+00:06:00,537 --> 00:06:06,295
+impacto, COMPARACION de antes y después, el detalle de la SIMULACION y la hoja TEORIA con
+
+98
+00:06:06,295 --> 00:06:09,012
+toda la base conceptual y la bibliografía.
+
+99
+00:06:10,512 --> 00:06:14,620
+En la parte superior de PARAMETROS hay seis celdas de configuración.
+
+100
+00:06:14,620 --> 00:06:20,058
+El costo base y el plazo base vienen con valores supuestos de doscientos millones de soles
+
+101
+00:06:20,058 --> 00:06:21,689
+y setecientos treinta días:
+
+102
+00:06:21,689 --> 00:06:24,106
+deben reemplazarse por los del contrato.
+
+103
+00:06:24,106 --> 00:06:27,852
+Las iteraciones, por defecto diez mil, controlan la precisión.
+
+104
+00:06:27,852 --> 00:06:31,538
+La semilla permite repetir exactamente los mismos resultados;
+
+105
+00:06:31,538 --> 00:06:34,256
+si se deja vacía, cada corrida será distinta.
+
+106
+00:06:34,256 --> 00:06:38,909
+El nivel de confianza, ochenta por ciento por defecto, define la reserva para
+
+107
+00:06:38,909 --> 00:06:41,688
+contingencias y es una decisión de la empresa.
+
+108
+00:06:41,688 --> 00:06:46,038
+Y la reserva de gestión es un porcentaje de la base para lo no previsto.
+
+109
+00:06:47,538 --> 00:06:50,701
+La tabla de dimensiones define los tipos de impacto.
+
+110
+00:06:50,701 --> 00:06:51,553
+Vienen cuatro:
+
+111
+00:06:51,553 --> 00:06:56,663
+costo en soles, plazo en días, e ingeniería de diseño e ingeniería de campo en horas
+
+112
+00:06:56,663 --> 00:06:57,088
+hombre.
+
+113
+00:06:57,088 --> 00:07:01,225
+Cada dimensión tiene sus propias columnas en el registro de riesgos.
+
+114
+00:07:01,225 --> 00:07:05,118
+Es importante entender que las dimensiones no se suman entre sí:
+
+115
+00:07:05,118 --> 00:07:09,619
+cada una tiene su propia curva S y su propia reserva, en su propia unidad.
+
+116
+00:07:09,619 --> 00:07:14,972
+Si necesita otra dimensión, como calidad o seguridad, el botón agregar dimensión la crea
+
+117
+00:07:14,972 --> 00:07:17,649
+con todas sus columnas, sin tocar el código.
+
+118
+00:07:19,148 --> 00:07:22,831
+Las primeras columnas del registro identifican el riesgo:
+
+119
+00:07:22,831 --> 00:07:28,000
+su código, su nombre con la causa, el tipo, la categoría, la causa, el dueño, la
+
+120
+00:07:28,000 --> 00:07:30,326
+estrategia de respuesta y el estado.
+
+121
+00:07:30,326 --> 00:07:32,717
+De ellas, solo dos entran al cálculo.
+
+122
+00:07:32,717 --> 00:07:35,818
+TIPO, porque las oportunidades restan del total.
+
+123
+00:07:35,818 --> 00:07:39,695
+Y ACTIVO, porque las filas con ACTIVO igual a NO se ignoran.
+
+124
+00:07:39,695 --> 00:07:44,476
+Los treinta y dos riesgos del proyecto tienen estado estimado por validar:
+
+125
+00:07:44,476 --> 00:07:48,482
+sus números son preliminares y deben revisarse con cada dueño.
+
+126
+00:07:49,982 --> 00:07:53,383
+Las columnas de cuantificación son el corazón del modelo.
+
+127
+00:07:53,383 --> 00:07:55,948
+PROBABILIDAD es un número entre cero y uno.
+
+128
+00:07:55,948 --> 00:07:59,170
+Luego, para cada dimensión, hay un bloque de columnas:
+
+129
+00:07:59,170 --> 00:08:03,227
+DIST, con el nombre de la distribución elegida de un menú de veinte;
+
+130
+00:08:03,227 --> 00:08:05,554
+pe uno a pe cuatro, con sus parámetros;
+
+131
+00:08:05,554 --> 00:08:09,074
+y AYUDA, que se llena sola y dice qué va en cada parámetro.
+
+132
+00:08:09,074 --> 00:08:14,145
+Si la distribución de una dimensión se deja vacía, el riesgo no afecta esa dimensión.
+
+133
+00:08:14,145 --> 00:08:19,455
+Al final hay columnas para correlación y para evaluar respuestas, que veremos en la parte
+
+134
+00:08:19,455 --> 00:08:19,753
+seis.
+
+135
+00:08:21,253 --> 00:08:21,970
+Parte tres:
+
+136
+00:08:21,970 --> 00:08:23,534
+la idea de distribución.
+
+137
+00:08:23,534 --> 00:08:29,335
+Esta es la parte más importante y también la más difícil de entender, así que iremos paso
+
+138
+00:08:29,335 --> 00:08:31,746
+a paso, siempre con ejemplos de obra.
+
+139
+00:08:33,246 --> 00:08:35,137
+Empecemos con la idea central.
+
+140
+00:08:35,137 --> 00:08:36,713
+Tradicionalmente decimos:
+
+141
+00:08:36,713 --> 00:08:39,486
+el sobrecosto será de seiscientos mil soles.
+
+142
+00:08:39,486 --> 00:08:44,843
+Es un solo número, que no dice qué tan seguros estamos ni cuánto podría costar si las
+
+143
+00:08:44,843 --> 00:08:45,852
+cosas salen mal.
+
+144
+00:08:45,852 --> 00:08:48,625
+Una distribución describe lo que no sabemos:
+
+145
+00:08:48,625 --> 00:08:51,902
+qué valores son posibles y cuáles son más probables.
+
+146
+00:08:51,902 --> 00:08:57,449
+Con tres números, mínimo doscientos mil, más probable seiscientos mil y máximo un millón
+
+147
+00:08:57,449 --> 00:09:00,285
+cuatrocientos mil, describimos todo el rango.
+
+148
+00:09:00,285 --> 00:09:04,129
+La altura de la curva indica qué tan frecuente es cada valor:
+
+149
+00:09:04,129 --> 00:09:09,172
+cerca de seiscientos mil es frecuente, y cerca del máximo es raro, pero posible.
+
+150
+00:09:10,671 --> 00:09:12,721
+¿Qué representa una distribución?
+
+151
+00:09:12,721 --> 00:09:14,709
+Representa nuestro conocimiento.
+
+152
+00:09:14,709 --> 00:09:16,883
+Si sabemos poco, el rango es ancho;
+
+153
+00:09:16,883 --> 00:09:18,747
+si sabemos mucho, es estrecho.
+
+154
+00:09:18,747 --> 00:09:20,859
+Ambos son válidos si son honestos.
+
+155
+00:09:20,859 --> 00:09:26,326
+En el gráfico, la curva azul describe un retraso sobre el que sabemos poco, entre diez y
+
+156
+00:09:26,326 --> 00:09:31,854
+cincuenta y cinco días, y la naranja uno que conocemos bien, entre veinte y treinta y dos
+
+157
+00:09:31,854 --> 00:09:32,165
+días.
+
+158
+00:09:32,165 --> 00:09:37,632
+La distribución se puede actualizar cuando llega información nueva, y se puede defender,
+
+159
+00:09:37,632 --> 00:09:42,104
+porque cada número tiene una fuente que se anota en la columna de notas.
+
+160
+00:09:43,604 --> 00:09:48,456
+Cada riesgo responde dos preguntas distintas, y van en columnas distintas.
+
+161
+00:09:48,456 --> 00:09:49,177
+La primera:
+
+162
+00:09:49,177 --> 00:09:50,488
+¿ocurre o no ocurre?
+
+163
+00:09:50,488 --> 00:09:54,619
+Va en la columna probabilidad, como un número entre cero y uno.
+
+164
+00:09:54,619 --> 00:09:55,340
+La segunda:
+
+165
+00:09:55,340 --> 00:09:57,110
+si ocurre, ¿cuánto impacta?
+
+166
+00:09:57,110 --> 00:10:03,011
+Va en la distribución de cada dimensión, y describe el impacto completo, suponiendo que el
+
+167
+00:10:03,011 --> 00:10:04,191
+riesgo ya ocurrió.
+
+168
+00:10:04,191 --> 00:10:09,895
+El error más común es multiplicar la probabilidad por el impacto al ingresar los datos.
+
+169
+00:10:09,895 --> 00:10:10,616
+No lo haga:
+
+170
+00:10:10,616 --> 00:10:13,108
+la macro ya lo hace en cada escenario.
+
+171
+00:10:13,108 --> 00:10:17,763
+Si usted lo multiplica, el riesgo quedaría contado dos veces a la baja.
+
+172
+00:10:19,263 --> 00:10:21,243
+¿Cómo estimamos la probabilidad?
+
+173
+00:10:21,243 --> 00:10:23,533
+Se puede partir de una escala verbal:
+
+174
+00:10:23,533 --> 00:10:26,380
+muy improbable, entre cinco y diez por ciento;
+
+175
+00:10:26,380 --> 00:10:28,174
+poco probable, hasta treinta;
+
+176
+00:10:28,174 --> 00:10:30,526
+tan probable como no, hasta cincuenta;
+
+177
+00:10:30,526 --> 00:10:32,011
+probable, hasta setenta;
+
+178
+00:10:32,011 --> 00:10:33,620
+y casi seguro, por encima.
+
+179
+00:10:33,620 --> 00:10:35,600
+Si hay datos históricos, úselos:
+
+180
+00:10:35,600 --> 00:10:40,427
+si ocurrió en tres de diez obras similares, la probabilidad es cero coma tres.
+
+181
+00:10:40,427 --> 00:10:41,293
+No ponga cero;
+
+182
+00:10:41,293 --> 00:10:43,521
+si el riesgo no existe, desactívelo.
+
+183
+00:10:43,521 --> 00:10:47,915
+Y si la probabilidad supera cincuenta por ciento, la macro lo advierte:
+
+184
+00:10:47,915 --> 00:10:50,638
+conviene incluir el evento en la línea base.
+
+185
+00:10:50,638 --> 00:10:55,588
+Recuerde que la probabilidad es una sola por riesgo, para todas sus dimensiones.
+
+186
+00:10:57,088 --> 00:11:02,219
+Veamos qué hace la macro en cada escenario, con el riesgo R cero cinco, que tiene
+
+187
+00:11:02,219 --> 00:11:04,752
+probabilidad cero coma cuarenta y cinco.
+
+188
+00:11:04,752 --> 00:11:08,046
+En cada iteración sortea un número entre cero y uno.
+
+189
+00:11:08,046 --> 00:11:13,620
+Si sale menor que cero coma cuarenta y cinco, el riesgo ocurre, y entonces saca un valor
+
+190
+00:11:13,620 --> 00:11:15,773
+de cada una de sus distribuciones:
+
+191
+00:11:15,773 --> 00:11:17,547
+costo, plazo y horas hombre.
+
+192
+00:11:17,547 --> 00:11:21,284
+Si el sorteo sale mayor, el riesgo no ocurre y aporta cero.
+
+193
+00:11:21,284 --> 00:11:25,591
+Luego suma todos los riesgos para obtener el total de esa iteración.
+
+194
+00:11:25,591 --> 00:11:30,848
+Como resultado, en unas cuatro mil quinientas de las diez mil iteraciones el riesgo
+
+195
+00:11:30,848 --> 00:11:33,065
+ocurre, y en las demás aporta cero.
+
+196
+00:11:34,565 --> 00:11:35,481
+Un punto clave:
+
+197
+00:11:35,481 --> 00:11:40,852
+si el riesgo ocurre, impacta a la vez en todas las dimensiones donde tiene distribución.
+
+198
+00:11:40,852 --> 00:11:46,345
+R cero cinco tiene distribución en costo, plazo e ingeniería de diseño, y la de ingeniería
+
+199
+00:11:46,345 --> 00:11:48,908
+de campo está vacía, así que no la afecta.
+
+200
+00:11:48,908 --> 00:11:54,340
+Como la ocurrencia es un solo sorteo, la macro nunca produce un escenario donde el riesgo
+
+201
+00:11:54,340 --> 00:11:56,659
+cueste dinero pero no retrase la obra.
+
+202
+00:11:56,659 --> 00:12:00,932
+Lo que sí se sortea por separado es el valor dentro de cada dimensión:
+
+203
+00:12:00,932 --> 00:12:04,777
+puede salir un costo alto con un retraso moderado, por ejemplo.
+
+204
+00:12:06,276 --> 00:12:11,301
+Cuando la macro suma los treinta y dos riesgos en cada iteración, obtiene diez mil
+
+205
+00:12:11,301 --> 00:12:11,791
+totales.
+
+206
+00:12:11,791 --> 00:12:15,713
+El histograma muestra cuántas iteraciones cayeron en cada rango.
+
+207
+00:12:15,713 --> 00:12:20,431
+El centro está cerca de dieciséis millones de soles, que es lo más frecuente.
+
+208
+00:12:20,431 --> 00:12:25,518
+Casi nunca sale cero, porque algún riesgo casi siempre ocurre, y casi nunca pasa de
+
+209
+00:12:25,518 --> 00:12:30,665
+treinta y cinco millones, porque tendrían que ocurrir casi todos en su peor versión.
+
+210
+00:12:30,665 --> 00:12:35,138
+Fíjese que la suma de los máximos de todos los riesgos sería mucho mayor:
+
+211
+00:12:35,138 --> 00:12:37,161
+por eso no se suman peores casos.
+
+212
+00:12:38,660 --> 00:12:41,177
+Hay dos formas de leer una distribución.
+
+213
+00:12:41,177 --> 00:12:42,813
+La primera es la densidad.
+
+214
+00:12:42,813 --> 00:12:45,896
+La curva muestra dónde se concentran los valores.
+
+215
+00:12:45,896 --> 00:12:50,364
+La cima es la moda, el valor más frecuente, aquí seiscientos mil soles.
+
+216
+00:12:50,364 --> 00:12:54,705
+La cola derecha son los valores altos, poco frecuentes pero posibles.
+
+217
+00:12:54,705 --> 00:12:56,278
+Y un concepto importante:
+
+218
+00:12:56,278 --> 00:13:00,746
+el área bajo la curva entre dos puntos es la probabilidad de ese tramo.
+
+219
+00:13:00,746 --> 00:13:06,283
+Por ejemplo, entre cuatrocientos mil y ochocientos mil cae más de la mitad de los casos.
+
+220
+00:13:06,283 --> 00:13:09,114
+La altura por sí sola no es una probabilidad;
+
+221
+00:13:09,114 --> 00:13:09,995
+lo es el área.
+
+222
+00:13:11,495 --> 00:13:16,902
+La segunda forma de leer una distribución es la curva acumulada, también llamada curva S.
+
+223
+00:13:16,902 --> 00:13:21,094
+Para cada valor, indica qué porcentaje de los casos queda por debajo.
+
+224
+00:13:21,094 --> 00:13:22,856
+De ahí salen los percentiles.
+
+225
+00:13:22,856 --> 00:13:27,838
+El percentil diez es el valor que solo el diez por ciento de los casos no alcanza.
+
+226
+00:13:27,838 --> 00:13:31,604
+El percentil cincuenta, o mediana, deja la mitad de cada lado.
+
+227
+00:13:31,604 --> 00:13:37,072
+Y el percentil ochenta es el valor que no se supera en el ochenta por ciento de los casos.
+
+228
+00:13:37,072 --> 00:13:42,358
+Esta es exactamente la lectura que usaremos para la contingencia, pero sobre la curva S
+
+229
+00:13:42,358 --> 00:13:43,755
+del total del proyecto.
+
+230
+00:13:45,255 --> 00:13:47,881
+Cinco valores que se confunden a menudo.
+
+231
+00:13:47,881 --> 00:13:51,099
+El mínimo es lo mejor razonable, no lo imposible.
+
+232
+00:13:51,099 --> 00:13:55,892
+La moda es el valor más frecuente, la cima de la curva, aquí veinte días.
+
+233
+00:13:55,892 --> 00:13:59,240
+La mediana deja la mitad de los casos de cada lado.
+
+234
+00:13:59,240 --> 00:14:00,816
+La media es el promedio.
+
+235
+00:14:00,816 --> 00:14:06,660
+Cuando la distribución tiene una cola hacia la derecha, como casi todos los sobrecostos y
+
+236
+00:14:06,660 --> 00:14:09,286
+retrasos, la media es mayor que la moda:
+
+237
+00:14:09,286 --> 00:14:12,372
+aquí veintidós coma cinco días frente a veinte.
+
+238
+00:14:12,372 --> 00:14:14,539
+Y el máximo es lo peor razonable.
+
+239
+00:14:14,539 --> 00:14:19,332
+En las distribuciones de tres puntos, el experto da la moda, no la media.
+
+240
+00:14:20,831 --> 00:14:25,218
+Al elegir una distribución, en realidad elegimos tres rasgos de su forma.
+
+241
+00:14:25,218 --> 00:14:27,261
+El centro, que es el valor típico.
+
+242
+00:14:27,261 --> 00:14:32,310
+El ancho, que es la cantidad de incertidumbre, y que determina en buena parte cuánta
+
+243
+00:14:32,310 --> 00:14:33,752
+contingencia hará falta.
+
+244
+00:14:33,752 --> 00:14:37,057
+Y el sesgo, que indica hacia dónde se extiende la cola.
+
+245
+00:14:37,057 --> 00:14:40,723
+En obra, los impactos casi siempre tienen sesgo a la derecha:
+
+246
+00:14:40,723 --> 00:14:45,771
+cuando las cosas salen mal, cuestan mucho más de lo que se ahorra cuando salen bien.
+
+247
+00:14:45,771 --> 00:14:49,738
+Por eso las distribuciones asimétricas, como PERT, son tan usadas.
+
+248
+00:14:51,237 --> 00:14:52,032
+Parte cuatro:
+
+249
+00:14:52,032 --> 00:14:53,744
+cómo elegir la distribución.
+
+250
+00:14:53,744 --> 00:14:55,639
+La regla principal es sencilla:
+
+251
+00:14:55,639 --> 00:15:00,347
+se elige según lo que sabemos del impacto, no según lo que suena más técnico.
+
+252
+00:15:01,847 --> 00:15:05,299
+El principio es elegir según la información disponible.
+
+253
+00:15:05,299 --> 00:15:10,131
+Si la fuente es el juicio de un experto, que es lo más común en obra, se usan
+
+254
+00:15:10,131 --> 00:15:13,834
+distribuciones que el experto pueda describir con palabras:
+
+255
+00:15:13,834 --> 00:15:16,469
+tres puntos con PERT, TRIANGULAR o TRIGEN;
+
+256
+00:15:16,469 --> 00:15:17,850
+un rango con UNIFORME;
+
+257
+00:15:17,850 --> 00:15:19,356
+escenarios con DISCRETA;
+
+258
+00:15:19,356 --> 00:15:21,239
+o un valor fijo con CONSTANTE.
+
+259
+00:15:21,239 --> 00:15:26,448
+Si hay datos históricos, se pueden usar distribuciones que se ajustan a datos, como
+
+260
+00:15:26,448 --> 00:15:28,080
+normal, lognormal o gamma.
+
+261
+00:15:28,080 --> 00:15:29,335
+Y la regla práctica:
+
+262
+00:15:29,335 --> 00:15:30,464
+si duda, use PERT.
+
+263
+00:15:30,464 --> 00:15:34,795
+Es robusta, fácil de explicar y es la que recomienda la bibliografía.
+
+264
+00:15:36,294 --> 00:15:39,090
+Este árbol de decisión resume la elección.
+
+265
+00:15:39,090 --> 00:15:41,220
+Pregúntese qué sabe del impacto.
+
+266
+00:15:41,220 --> 00:15:43,683
+Si el valor es seguro, use constante.
+
+267
+00:15:43,683 --> 00:15:45,946
+Si solo conoce un rango, uniforme.
+
+268
+00:15:45,946 --> 00:15:49,874
+Si conoce mínimo, más probable y máximo, PERT o triangular.
+
+269
+00:15:49,874 --> 00:15:54,068
+Si el experto habla de valores que rara vez se superan, TRIGEN.
+
+270
+00:15:54,068 --> 00:15:58,062
+Si hay pocos escenarios con probabilidad conocida, discreta.
+
+271
+00:15:58,062 --> 00:16:01,723
+Las cinco primeras, en ámbar, cubren el juicio experto.
+
+272
+00:16:01,723 --> 00:16:06,117
+Las de abajo, en negro, se usan con datos o en casos particulares:
+
+273
+00:16:06,117 --> 00:16:10,776
+simétricas, sesgadas, tiempos entre eventos, conteos y colas extremas.
+
+274
+00:16:12,276 --> 00:16:16,168
+Las palabras que usa el experto ya indican la distribución.
+
+275
+00:16:16,168 --> 00:16:17,949
+Si dice fija, es constante.
+
+276
+00:16:17,949 --> 00:16:21,116
+Si dice cualquiera dentro de un rango, uniforme.
+
+277
+00:16:21,116 --> 00:16:24,612
+Si dice normalmente, o lo típico, está dando la moda:
+
+278
+00:16:24,612 --> 00:16:24,942
+PERT.
+
+279
+00:16:24,942 --> 00:16:29,164
+Si dice rara vez, está dando percentiles, no extremos absolutos:
+
+280
+00:16:29,164 --> 00:16:29,626
+TRIGEN.
+
+281
+00:16:29,626 --> 00:16:32,858
+Si habla de escenarios con porcentajes, discreta.
+
+282
+00:16:32,858 --> 00:16:34,639
+Si cuenta eventos, Poisson.
+
+283
+00:16:34,639 --> 00:16:37,410
+Si da un promedio con más o menos, normal.
+
+284
+00:16:37,410 --> 00:16:42,819
+Y si dice que está muy seguro del valor típico, PERT modificada con un gamma alto.
+
+285
+00:16:42,819 --> 00:16:46,711
+Escuche con atención y anote las palabras exactas en notas.
+
+286
+00:16:48,211 --> 00:16:51,524
+Para obtener los tres puntos, pregunte en este orden.
+
+287
+00:16:51,524 --> 00:16:53,275
+Primero el mínimo razonable:
+
+288
+00:16:53,275 --> 00:16:56,025
+si todo sale bien, ¿cuánto sería el impacto?
+
+289
+00:16:56,025 --> 00:16:57,776
+Segundo el máximo razonable:
+
+290
+00:16:57,776 --> 00:17:00,464
+si todo sale mal, sin catástrofes absurdas.
+
+291
+00:17:00,464 --> 00:17:02,902
+Y recién tercero el valor más probable.
+
+292
+00:17:02,902 --> 00:17:06,653
+Se pregunta primero por los extremos para evitar el anclaje:
+
+293
+00:17:06,653 --> 00:17:12,279
+si el experto dice primero el valor típico, luego tiende a dar extremos demasiado cercanos
+
+294
+00:17:12,279 --> 00:17:12,591
+a él.
+
+295
+00:17:12,591 --> 00:17:17,967
+Después pregunte la probabilidad, y por último qué otros riesgos se moverían junto con
+
+296
+00:17:17,967 --> 00:17:20,781
+este, lo que nos servirá para la correlación.
+
+297
+00:17:22,280 --> 00:17:24,544
+Incluso los expertos tienen sesgos.
+
+298
+00:17:24,544 --> 00:17:27,391
+El más importante es el exceso de confianza:
+
+299
+00:17:27,391 --> 00:17:29,396
+dan rangos demasiado estrechos.
+
+300
+00:17:29,396 --> 00:17:33,730
+Para contrarrestarlo, pida un caso real en que se superó el máximo;
+
+301
+00:17:33,730 --> 00:17:36,318
+si existe, amplíe el rango o use TRIGEN.
+
+302
+00:17:36,318 --> 00:17:39,747
+El anclaje se evita preguntando primero los extremos.
+
+303
+00:17:39,747 --> 00:17:45,181
+La disponibilidad hace sobrevalorar lo reciente, así que contraste con varias obras.
+
+304
+00:17:45,181 --> 00:17:48,803
+El optimismo se reduce consultando a más de una persona.
+
+305
+00:17:48,803 --> 00:17:50,744
+Y cuide dos errores prácticos:
+
+306
+00:17:50,744 --> 00:17:55,402
+confundir la moda con el peor caso, y contar dos veces el mismo impacto.
+
+307
+00:17:56,902 --> 00:18:02,333
+Cuando hay datos históricos, digamos quince o más observaciones de obras comparables, se
+
+308
+00:18:02,333 --> 00:18:04,246
+puede ajustar una distribución.
+
+309
+00:18:04,246 --> 00:18:07,825
+Primero reúna los datos en la misma unidad y actualizados.
+
+310
+00:18:07,825 --> 00:18:10,664
+Segundo, haga un histograma para ver la forma:
+
+311
+00:18:10,664 --> 00:18:14,984
+si es simétrico, si tiene cola a la derecha, si hay extremos aislados.
+
+312
+00:18:14,984 --> 00:18:16,958
+Tercero, calcule los parámetros:
+
+313
+00:18:16,958 --> 00:18:22,265
+promedio y desviación estándar para la normal o la lognormal, o forma y escala para la
+
+314
+00:18:22,265 --> 00:18:22,636
+gamma.
+
+315
+00:18:22,636 --> 00:18:26,770
+Cuarto, compare los extremos de la distribución con los observados.
+
+316
+00:18:26,770 --> 00:18:28,005
+Y quinto, documente.
+
+317
+00:18:28,005 --> 00:18:31,522
+Con pocos datos, es mejor usar PERT con criterio experto.
+
+318
+00:18:33,022 --> 00:18:33,817
+Parte cinco:
+
+319
+00:18:33,817 --> 00:18:35,541
+las veinte distribuciones.
+
+320
+00:18:35,541 --> 00:18:37,662
+Dedicamos una lámina a cada una.
+
+321
+00:18:37,662 --> 00:18:43,362
+En cada lámina verá cuándo usarla, qué va en cada parámetro, un ejemplo de obra con su
+
+322
+00:18:43,362 --> 00:18:46,146
+lectura, y los cuidados que hay que tener.
+
+323
+00:18:47,646 --> 00:18:51,846
+Este mapa agrupa las veinte distribuciones en siete familias.
+
+324
+00:18:51,846 --> 00:18:52,672
+Las simples:
+
+325
+00:18:52,672 --> 00:18:56,115
+constante, uniforme, discreta y discreta uniforme.
+
+326
+00:18:56,115 --> 00:18:57,423
+Las de tres puntos:
+
+327
+00:18:57,423 --> 00:19:00,866
+triangular, PERT y TRIGEN, que son las más usadas.
+
+328
+00:19:00,866 --> 00:19:02,518
+Las de control de forma:
+
+329
+00:19:02,518 --> 00:19:04,653
+PERT modificada y beta general.
+
+330
+00:19:04,653 --> 00:19:05,686
+Las simétricas:
+
+331
+00:19:05,686 --> 00:19:08,164
+normal, normal truncada y logística.
+
+332
+00:19:08,164 --> 00:19:09,748
+Las sesgadas positivas:
+
+333
+00:19:09,748 --> 00:19:12,502
+lognormal, gamma, Weibull y exponencial.
+
+334
+00:19:12,502 --> 00:19:13,604
+Las de extremos:
+
+335
+00:19:13,604 --> 00:19:14,705
+Gumbel y Pareto.
+
+336
+00:19:14,705 --> 00:19:15,807
+Y las de conteo:
+
+337
+00:19:15,807 --> 00:19:17,115
+Poisson y binomial.
+
+338
+00:19:17,115 --> 00:19:18,217
+Veamos cada una.
+
+339
+00:19:19,717 --> 00:19:22,383
+La distribución constante es la más simple.
+
+340
+00:19:22,383 --> 00:19:27,776
+Se usa cuando el impacto es un valor conocido con certeza si el riesgo ocurre, como una
+
+341
+00:19:27,776 --> 00:19:29,822
+multa fija por incumplir un hito.
+
+342
+00:19:29,822 --> 00:19:32,426
+Solo lleva un parámetro, pe uno, el valor.
+
+343
+00:19:32,426 --> 00:19:35,836
+Toda la incertidumbre está en si el riesgo ocurre o no.
+
+344
+00:19:35,836 --> 00:19:41,291
+Por ejemplo, una multa de doscientos cincuenta mil soles con probabilidad de treinta por
+
+345
+00:19:41,291 --> 00:19:46,871
+ciento aporta doscientos cincuenta mil en el treinta por ciento de las iteraciones, y cero
+
+346
+00:19:46,871 --> 00:19:47,677
+en las demás.
+
+347
+00:19:47,677 --> 00:19:48,173
+Cuidado:
+
+348
+00:19:48,173 --> 00:19:53,256
+si el monto depende de algo variable, como los días de atraso, ya no es constante.
+
+349
+00:19:54,756 --> 00:20:00,488
+La distribución uniforme asigna la misma probabilidad a todos los valores entre un mínimo
+
+350
+00:20:00,488 --> 00:20:01,260
+y un máximo.
+
+351
+00:20:01,260 --> 00:20:05,704
+Se usa cuando solo conocemos un rango y no hay un valor más probable.
+
+352
+00:20:05,704 --> 00:20:07,056
+Lleva dos parámetros:
+
+353
+00:20:07,056 --> 00:20:09,568
+pe uno, el mínimo, y pe dos, el máximo.
+
+354
+00:20:09,568 --> 00:20:14,334
+Por ejemplo, la demora de un permiso municipal entre diez y cuarenta días:
+
+355
+00:20:14,334 --> 00:20:18,841
+la media es veinticinco días y el percentil ochenta, treinta y cuatro.
+
+356
+00:20:18,841 --> 00:20:19,357
+Cuidado:
+
+357
+00:20:19,357 --> 00:20:24,959
+si el experto sí tiene una idea del valor típico, use PERT, porque la uniforme da mucho
+
+358
+00:20:24,959 --> 00:20:28,244
+peso a los extremos y suele inflar la contingencia.
+
+359
+00:20:29,743 --> 00:20:35,274
+La distribución triangular une el mínimo, el valor más probable y el máximo con líneas
+
+360
+00:20:35,274 --> 00:20:35,724
+rectas.
+
+361
+00:20:35,724 --> 00:20:37,782
+Es sencilla y fácil de explicar.
+
+362
+00:20:37,782 --> 00:20:39,196
+Lleva tres parámetros:
+
+363
+00:20:39,196 --> 00:20:40,611
+mínimo, moda y máximo.
+
+364
+00:20:40,611 --> 00:20:46,399
+Por ejemplo, el retraso en la aprobación de submittals con diez, veinte y cuarenta y cinco
+
+365
+00:20:46,399 --> 00:20:46,720
+días.
+
+366
+00:20:46,720 --> 00:20:50,064
+Su media es la suma de los tres dividida entre tres:
+
+367
+00:20:50,064 --> 00:20:54,566
+veinticinco días, y su percentil ochenta es de unos treinta y un días.
+
+368
+00:20:54,566 --> 00:20:55,080
+Cuidado:
+
+369
+00:20:55,080 --> 00:21:00,675
+la triangular da bastante peso a los extremos, así que su media sube más que la de PERT
+
+370
+00:21:00,675 --> 00:21:02,218
+cuando la cola es larga.
+
+371
+00:21:02,218 --> 00:21:07,813
+Y siempre debe cumplirse que el mínimo sea menor o igual que la moda, y la moda menor o
+
+372
+00:21:07,813 --> 00:21:09,099
+igual que el máximo.
+
+373
+00:21:10,599 --> 00:21:12,918
+PERT es la distribución recomendada.
+
+374
+00:21:12,918 --> 00:21:18,585
+Usa los mismos tres puntos que la triangular, pero con una curva suave que concentra más
+
+375
+00:21:18,585 --> 00:21:20,775
+peso cerca del valor más probable.
+
+376
+00:21:20,775 --> 00:21:26,378
+Es la opción por defecto para cualquier impacto de costo, plazo u horas hombre estimado
+
+377
+00:21:26,378 --> 00:21:27,345
+por un experto.
+
+378
+00:21:27,345 --> 00:21:33,012
+Por ejemplo, un sobrecosto por reprocesos con mínimo ochocientos mil soles, más probable
+
+379
+00:21:33,012 --> 00:21:35,910
+dos millones y medio, y máximo seis millones.
+
+380
+00:21:35,910 --> 00:21:41,578
+Su media se calcula como el mínimo más cuatro veces la moda más el máximo, todo dividido
+
+381
+00:21:41,578 --> 00:21:42,287
+entre seis:
+
+382
+00:21:42,287 --> 00:21:43,768
+dos coma ocho millones.
+
+383
+00:21:43,768 --> 00:21:44,348
+Recuerde:
+
+384
+00:21:44,348 --> 00:21:47,246
+la moda es lo más frecuente, no el peor caso.
+
+385
+00:21:48,745 --> 00:21:52,122
+Comparemos la triangular y PERT con los mismos datos:
+
+386
+00:21:52,122 --> 00:21:54,479
+diez, veinte y cuarenta y cinco días.
+
+387
+00:21:54,479 --> 00:21:58,175
+La curva azul, triangular, tiene más área en los extremos;
+
+388
+00:21:58,175 --> 00:22:01,233
+la naranja, PERT, se concentra cerca de la moda.
+
+389
+00:22:01,233 --> 00:22:06,776
+Por eso, con los mismos tres números, la triangular da una media y un percentil ochenta
+
+390
+00:22:06,776 --> 00:22:07,285
+mayores:
+
+391
+00:22:07,285 --> 00:22:08,560
+es más conservadora.
+
+392
+00:22:08,560 --> 00:22:11,490
+PERT refleja mejor que los extremos son raros.
+
+393
+00:22:11,490 --> 00:22:16,970
+Lo importante es elegir una y usarla de forma consistente en todo el registro, y nunca
+
+394
+00:22:16,970 --> 00:22:20,792
+cambiarla para ajustar el resultado a lo que uno quiere ver.
+
+395
+00:22:22,292 --> 00:22:27,973
+TRIGEN es una triangular que se construye con valores que rara vez se superan, en lugar de
+
+396
+00:22:27,973 --> 00:22:29,172
+extremos absolutos.
+
+397
+00:22:29,172 --> 00:22:33,085
+Es muy útil porque corrige el exceso de confianza del experto.
+
+398
+00:22:33,085 --> 00:22:34,600
+Lleva cuatro parámetros:
+
+399
+00:22:34,600 --> 00:22:40,217
+el valor bajo, la moda, el valor alto, y en pe cuatro el porcentaje de casos que queda en
+
+400
+00:22:40,217 --> 00:22:41,984
+cada cola, típicamente diez.
+
+401
+00:22:41,984 --> 00:22:42,742
+Por ejemplo:
+
+402
+00:22:42,742 --> 00:22:47,728
+rara vez menos de diez días, lo normal quince, rara vez más de treinta y cinco.
+
+403
+00:22:47,728 --> 00:22:53,093
+La macro calcula los extremos reales, que resultan más amplios, como muestra la curva
+
+404
+00:22:53,093 --> 00:22:54,671
+naranja frente a la gris.
+
+405
+00:22:54,671 --> 00:22:55,176
+Cuidado:
+
+406
+00:22:55,176 --> 00:23:00,793
+si el mínimo calculado sale negativo y el impacto no puede serlo, reduzca el porcentaje o
+
+407
+00:23:00,793 --> 00:23:01,361
+use PERT.
+
+408
+00:23:02,861 --> 00:23:08,567
+La PERT modificada agrega un cuarto parámetro, gamma, que controla cuánto se concentran
+
+409
+00:23:08,567 --> 00:23:10,731
+los valores alrededor de la moda.
+
+410
+00:23:10,731 --> 00:23:13,616
+Con gamma igual a cuatro es idéntica a PERT.
+
+411
+00:23:13,616 --> 00:23:18,076
+Con gamma alto, por ejemplo ocho, la curva se vuelve más puntiaguda:
+
+412
+00:23:18,076 --> 00:23:20,961
+el experto está muy seguro del valor típico.
+
+413
+00:23:20,961 --> 00:23:23,781
+Con gamma bajo, por ejemplo dos, se aplana:
+
+414
+00:23:23,781 --> 00:23:24,896
+está poco seguro.
+
+415
+00:23:24,896 --> 00:23:26,470
+Los extremos no cambian.
+
+416
+00:23:26,470 --> 00:23:31,585
+En el ejemplo, con gamma ocho el percentil ochenta baja, y con gamma dos sube.
+
+417
+00:23:31,585 --> 00:23:35,061
+Si no hay una razón clara, deje gamma igual a cuatro.
+
+418
+00:23:36,560 --> 00:23:42,281
+La beta general es una forma muy flexible entre un mínimo y un máximo, definida por dos
+
+419
+00:23:42,281 --> 00:23:44,450
+parámetros de forma, alfa y beta.
+
+420
+00:23:44,450 --> 00:23:48,067
+Si alfa es menor que beta, la cola va hacia la derecha;
+
+421
+00:23:48,067 --> 00:23:50,171
+si es mayor, hacia la izquierda;
+
+422
+00:23:50,171 --> 00:23:52,078
+si son iguales, es simétrica.
+
+423
+00:23:52,078 --> 00:23:53,656
+Lleva cuatro parámetros:
+
+424
+00:23:53,656 --> 00:23:55,497
+alfa, beta, mínimo y máximo.
+
+425
+00:23:55,497 --> 00:24:00,823
+Se usa cuando hay datos históricos acotados, como el porcentaje de desperdicio de
+
+426
+00:24:00,823 --> 00:24:05,228
+concreto, y se ajustan alfa y beta con una herramienta estadística.
+
+427
+00:24:05,228 --> 00:24:10,817
+Sin datos, es mejor PERT, que en realidad es una beta cuyos alfa y beta se calculan a
+
+428
+00:24:10,817 --> 00:24:12,527
+partir de los tres puntos.
+
+429
+00:24:14,026 --> 00:24:16,961
+La distribución normal es la conocida campana.
+
+430
+00:24:16,961 --> 00:24:22,449
+Describe una variación simétrica alrededor de un promedio, y admite valores negativos.
+
+431
+00:24:22,449 --> 00:24:23,789
+Lleva dos parámetros:
+
+432
+00:24:23,789 --> 00:24:25,958
+la media y la desviación estándar.
+
+433
+00:24:25,958 --> 00:24:26,916
+Una regla útil:
+
+434
+00:24:26,916 --> 00:24:32,658
+el sesenta y ocho por ciento de los casos cae a una desviación de la media, y el noventa y
+
+435
+00:24:32,658 --> 00:24:34,956
+cinco por ciento a dos desviaciones.
+
+436
+00:24:34,956 --> 00:24:40,635
+Por ejemplo, la variación del precio del acero con media cincuenta mil soles y desviación
+
+437
+00:24:40,635 --> 00:24:41,656
+veinticinco mil.
+
+438
+00:24:41,656 --> 00:24:42,166
+Cuidado:
+
+439
+00:24:42,166 --> 00:24:47,909
+si un valor negativo no tiene sentido, como en días u horas hombre, use la normal truncada
+
+440
+00:24:47,909 --> 00:24:50,206
+o una distribución sesgada positiva.
+
+441
+00:24:51,706 --> 00:24:56,369
+La normal truncada es una normal recortada entre un mínimo y un máximo.
+
+442
+00:24:56,369 --> 00:24:59,258
+Los valores fuera del rango no pueden salir.
+
+443
+00:24:59,258 --> 00:25:00,834
+Lleva cuatro parámetros:
+
+444
+00:25:00,834 --> 00:25:04,380
+media y desviación antes del recorte, mínimo y máximo.
+
+445
+00:25:04,380 --> 00:25:07,664
+Se usa cuando hay límites físicos o contractuales.
+
+446
+00:25:07,664 --> 00:25:13,049
+Por ejemplo, el reajuste de precios de un subcontrato de doce millones con un tope
+
+447
+00:25:13,049 --> 00:25:15,938
+contractual de más o menos cinco por ciento:
+
+448
+00:25:15,938 --> 00:25:20,338
+el impacto nunca supera seiscientos mil soles en ninguna dirección.
+
+449
+00:25:20,338 --> 00:25:20,863
+Cuidado:
+
+450
+00:25:20,863 --> 00:25:26,117
+si el recorte es asimétrico, la media real cambia respecto del parámetro pe uno.
+
+451
+00:25:27,616 --> 00:25:30,647
+La distribución logística se parece a la normal:
+
+452
+00:25:30,647 --> 00:25:35,952
+es simétrica alrededor de la media, pero tiene colas algo más pesadas, es decir, los
+
+453
+00:25:35,952 --> 00:25:38,226
+extremos son un poco más frecuentes.
+
+454
+00:25:38,226 --> 00:25:39,552
+Lleva dos parámetros:
+
+455
+00:25:39,552 --> 00:25:40,878
+la media y la escala.
+
+456
+00:25:40,878 --> 00:25:41,383
+Cuidado:
+
+457
+00:25:41,383 --> 00:25:43,846
+la escala no es la desviación estándar;
+
+458
+00:25:43,846 --> 00:25:48,077
+la desviación es la escala multiplicada por uno coma ochenta y uno.
+
+459
+00:25:48,077 --> 00:25:53,635
+Se usa con datos simétricos donde se observan más extremos de los que la normal predice,
+
+460
+00:25:53,635 --> 00:25:57,045
+por ejemplo la productividad diaria de las cuadrillas.
+
+461
+00:25:58,545 --> 00:26:03,163
+La lognormal nunca es negativa y tiene una cola larga hacia la derecha.
+
+462
+00:26:03,163 --> 00:26:08,886
+Es típica de costos y duraciones reales, donde unos pocos casos son mucho mayores que el
+
+463
+00:26:08,886 --> 00:26:09,276
+resto.
+
+464
+00:26:09,276 --> 00:26:10,642
+Lleva dos parámetros:
+
+465
+00:26:10,642 --> 00:26:15,585
+la media y la desviación estándar de los valores reales, no de su logaritmo.
+
+466
+00:26:15,585 --> 00:26:21,178
+Por ejemplo, la reparación de fisuras en viviendas vecinas con media ciento veinte mil
+
+467
+00:26:21,178 --> 00:26:23,194
+soles y desviación noventa mil.
+
+468
+00:26:23,194 --> 00:26:27,097
+Fíjese que la moda, la mediana y la media son muy distintas:
+
+469
+00:26:27,097 --> 00:26:31,389
+la mayoría de los casos son moderados, pero algunos son muy caros.
+
+470
+00:26:32,889 --> 00:26:35,911
+La gamma es positiva y sesgada a la derecha.
+
+471
+00:26:35,911 --> 00:26:38,589
+Su forma cambia con el parámetro forma:
+
+472
+00:26:38,589 --> 00:26:43,670
+con forma uno es una exponencial, y con forma alta se parece a una normal.
+
+473
+00:26:43,670 --> 00:26:45,112
+Lleva dos parámetros:
+
+474
+00:26:45,112 --> 00:26:46,142
+forma y escala.
+
+475
+00:26:46,142 --> 00:26:48,133
+La media es forma por escala.
+
+476
+00:26:48,133 --> 00:26:52,734
+Por ejemplo, horas hombre de rediseño con forma tres y escala cien:
+
+477
+00:26:52,734 --> 00:26:55,069
+media de trescientas horas hombre.
+
+478
+00:26:55,069 --> 00:27:00,082
+En el gráfico, las tres curvas tienen la misma media pero distinta forma.
+
+479
+00:27:00,082 --> 00:27:06,124
+Si tiene datos, la forma es la media al cuadrado dividida entre la varianza, y la escala
+
+480
+00:27:06,124 --> 00:27:08,803
+es la varianza dividida entre la media.
+
+481
+00:27:10,302 --> 00:27:15,334
+La exponencial describe situaciones con muchos valores pequeños y pocos grandes;
+
+482
+00:27:15,334 --> 00:27:17,912
+el valor más probable está cerca de cero.
+
+483
+00:27:17,912 --> 00:27:20,743
+Lleva un solo parámetro, y es muy importante:
+
+484
+00:27:20,743 --> 00:27:23,950
+en esta herramienta pe uno es la media, no la tasa.
+
+485
+00:27:23,950 --> 00:27:29,360
+En otros programas se pide la tasa, que es uno dividido entre la media, así que no las
+
+486
+00:27:29,360 --> 00:27:29,926
+confunda.
+
+487
+00:27:29,926 --> 00:27:34,831
+Por ejemplo, días de paralización por un evento aleatorio con media diez días:
+
+488
+00:27:34,831 --> 00:27:39,800
+la mediana es de unos siete días, pero el percentil noventa llega a veintitrés.
+
+489
+00:27:39,800 --> 00:27:44,329
+Su desviación es igual a su media, lo que indica una incertidumbre alta.
+
+490
+00:27:45,828 --> 00:27:51,029
+La Weibull es la distribución clásica de tiempos de falla y duración de equipos.
+
+491
+00:27:51,029 --> 00:27:52,395
+Lleva dos parámetros:
+
+492
+00:27:52,395 --> 00:27:53,955
+forma k y escala lambda.
+
+493
+00:27:53,955 --> 00:27:56,101
+La forma indica el tipo de falla:
+
+494
+00:27:56,101 --> 00:28:00,717
+menor que uno significa fallas tempranas, como defectos de instalación;
+
+495
+00:28:00,717 --> 00:28:02,732
+igual a uno es una exponencial;
+
+496
+00:28:02,732 --> 00:28:04,813
+y mayor que uno indica desgaste.
+
+497
+00:28:04,813 --> 00:28:10,664
+Por ejemplo, los días que una grúa torre queda fuera de servicio, con forma uno coma cinco
+
+498
+00:28:10,664 --> 00:28:11,574
+y escala ocho:
+
+499
+00:28:11,574 --> 00:28:15,345
+media de unos siete días y percentil ochenta de unos once.
+
+500
+00:28:15,345 --> 00:28:18,011
+Se usa cuando hay datos de mantenimiento.
+
+501
+00:28:19,510 --> 00:28:23,226
+La Gumbel es la distribución del máximo de muchos eventos:
+
+502
+00:28:23,226 --> 00:28:27,583
+por ejemplo, el peor aguacero del año o la crecida máxima de un río.
+
+503
+00:28:27,583 --> 00:28:28,929
+Lleva dos parámetros:
+
+504
+00:28:28,929 --> 00:28:31,620
+la ubicación, que es la moda, y la escala.
+
+505
+00:28:31,620 --> 00:28:35,016
+Se usa cuando el impacto depende de un valor extremo.
+
+506
+00:28:35,016 --> 00:28:40,719
+Por ejemplo, los días perdidos por la lluvia máxima de la temporada, con ubicación quince
+
+507
+00:28:40,719 --> 00:28:41,616
+y escala seis:
+
+508
+00:28:41,616 --> 00:28:46,998
+la moda es quince días, la media unos dieciocho y medio, y el percentil noventa casi
+
+509
+00:28:46,998 --> 00:28:47,767
+veintinueve.
+
+510
+00:28:47,767 --> 00:28:51,355
+Úsela solo si el impacto depende realmente de un máximo.
+
+511
+00:28:52,855 --> 00:28:54,995
+La Pareto tiene colas muy pesadas:
+
+512
+00:28:54,995 --> 00:28:59,777
+la mayoría de los casos están cerca del mínimo, pero unos pocos son enormes.
+
+513
+00:28:59,777 --> 00:29:01,098
+Lleva dos parámetros:
+
+514
+00:29:01,098 --> 00:29:04,245
+la forma, que debe ser mayor que uno, y el mínimo.
+
+515
+00:29:04,245 --> 00:29:08,398
+Se usa para montos de reclamos de terceros, siniestros o litigios.
+
+516
+00:29:08,398 --> 00:29:12,991
+Por ejemplo, un reclamo con mínimo cien mil soles y forma dos coma cinco:
+
+517
+00:29:12,991 --> 00:29:18,403
+la mediana es de unos ciento treinta mil, pero el percentil noventa y nueve supera los
+
+518
+00:29:18,403 --> 00:29:19,410
+seiscientos mil.
+
+519
+00:29:19,410 --> 00:29:19,913
+Cuidado:
+
+520
+00:29:19,913 --> 00:29:24,381
+con forma baja la dispersión es enorme y puede dominar la contingencia;
+
+521
+00:29:24,381 --> 00:29:26,961
+úsela solo si ese comportamiento es real.
+
+522
+00:29:28,460 --> 00:29:33,926
+La Poisson cuenta el número de eventos que ocurren en un periodo, cuando pueden ocurrir
+
+523
+00:29:33,926 --> 00:29:36,187
+varias veces de forma independiente.
+
+524
+00:29:36,187 --> 00:29:38,323
+Lleva un solo parámetro, la media.
+
+525
+00:29:38,323 --> 00:29:43,914
+Por ejemplo, los días de lluvia fuerte que paralizan vaciados en una temporada, con media
+
+526
+00:29:43,914 --> 00:29:44,354
+cuatro:
+
+527
+00:29:44,354 --> 00:29:46,678
+el percentil ochenta es de seis días.
+
+528
+00:29:46,678 --> 00:29:48,060
+Un cuidado importante:
+
+529
+00:29:48,060 --> 00:29:51,955
+el valor sorteado es el impacto, en la unidad de la dimensión.
+
+530
+00:29:51,955 --> 00:29:54,845
+La macro no multiplica el conteo por un costo.
+
+531
+00:29:54,845 --> 00:30:00,122
+Así que úsela cuando la unidad sea el conteo, como días, y si cada evento cuesta una
+
+532
+00:30:00,122 --> 00:30:03,263
+cantidad de soles, modele el costo total con PERT.
+
+533
+00:30:04,762 --> 00:30:10,200
+La binomial cuenta cuántos fracasos hay en un número conocido de intentos independientes,
+
+534
+00:30:10,200 --> 00:30:12,339
+cada uno con la misma probabilidad.
+
+535
+00:30:12,339 --> 00:30:13,622
+Lleva dos parámetros:
+
+536
+00:30:13,622 --> 00:30:17,227
+n, el número de intentos, y p, la probabilidad de cada uno.
+
+537
+00:30:17,227 --> 00:30:22,665
+Por ejemplo, veinte vaciados programados en temporada de lluvias, cada uno con quince por
+
+538
+00:30:22,665 --> 00:30:25,415
+ciento de probabilidad de postergarse un día:
+
+539
+00:30:25,415 --> 00:30:29,570
+la media es n por p, tres días, y el percentil ochenta, cuatro días.
+
+540
+00:30:29,570 --> 00:30:34,153
+Como en la Poisson, el resultado es un conteo en la unidad de la dimensión.
+
+541
+00:30:35,652 --> 00:30:41,245
+La discreta uniforme sortea un número entero entre un mínimo y un máximo, todos igual de
+
+542
+00:30:41,245 --> 00:30:41,880
+probables.
+
+543
+00:30:41,880 --> 00:30:43,723
+Lleva dos parámetros enteros:
+
+544
+00:30:43,723 --> 00:30:44,740
+mínimo y máximo.
+
+545
+00:30:44,740 --> 00:30:50,396
+Por ejemplo, los días adicionales de paro regional, que pueden ser cero, uno, dos o tres,
+
+546
+00:30:50,396 --> 00:30:53,700
+cada uno con veinticinco por ciento de probabilidad.
+
+547
+00:30:53,700 --> 00:30:55,734
+La media es uno coma cinco días.
+
+548
+00:30:55,734 --> 00:31:00,754
+Si algunos valores son más probables que otros, use la discreta con sus propias
+
+549
+00:31:00,754 --> 00:31:03,360
+probabilidades, que vemos a continuación.
+
+550
+00:31:04,860 --> 00:31:10,521
+La distribución discreta describe pocos escenarios posibles, cada uno con su probabilidad.
+
+551
+00:31:10,521 --> 00:31:12,407
+Lleva dos parámetros de texto:
+
+552
+00:31:12,407 --> 00:31:17,879
+en pe uno los valores separados por punto y coma, y en pe dos las probabilidades, en el
+
+553
+00:31:17,879 --> 00:31:20,898
+mismo orden, también separadas por punto y coma.
+
+554
+00:31:20,898 --> 00:31:21,904
+Deben sumar uno.
+
+555
+00:31:21,904 --> 00:31:27,439
+Por ejemplo, una penalidad que, si el riesgo ocurre, puede no aplicarse, con sesenta por
+
+556
+00:31:27,439 --> 00:31:27,879
+ciento;
+
+557
+00:31:27,879 --> 00:31:32,596
+aplicarse parcialmente, ciento cincuenta mil soles, con treinta por ciento;
+
+558
+00:31:32,596 --> 00:31:35,930
+o totalmente, cuatrocientos mil, con diez por ciento.
+
+559
+00:31:35,930 --> 00:31:38,320
+La media es ochenta y cinco mil soles.
+
+560
+00:31:38,320 --> 00:31:43,163
+Note que el cero aquí es un escenario adicional a la probabilidad del riesgo.
+
+561
+00:31:44,662 --> 00:31:45,372
+Parte seis:
+
+562
+00:31:45,372 --> 00:31:47,890
+casos especiales al llenar el registro.
+
+563
+00:31:47,890 --> 00:31:53,637
+Veremos cómo manejar varias dimensiones y sus unidades, las oportunidades, las respuestas
+
+564
+00:31:53,637 --> 00:31:57,963
+y el riesgo residual, la correlación, y los errores más frecuentes.
+
+565
+00:31:59,462 --> 00:32:03,671
+Cada dimensión se llena de forma independiente, en su propia unidad.
+
+566
+00:32:03,671 --> 00:32:05,589
+El costo en soles, no en miles.
+
+567
+00:32:05,589 --> 00:32:07,322
+El plazo en días calendario.
+
+568
+00:32:07,322 --> 00:32:11,779
+Y la ingeniería de diseño y de campo en horas hombre, no en días hombre.
+
+569
+00:32:11,779 --> 00:32:17,349
+Un riesgo puede usar distribuciones distintas en cada dimensión, por ejemplo PERT en costo
+
+570
+00:32:17,349 --> 00:32:18,710
+y triangular en plazo.
+
+571
+00:32:18,710 --> 00:32:20,196
+Y un cuidado importante:
+
+572
+00:32:20,196 --> 00:32:20,939
+no duplicar.
+
+573
+00:32:20,939 --> 00:32:26,138
+Si las horas hombre ya están valorizadas dentro del costo del riesgo, no las ingrese
+
+574
+00:32:26,138 --> 00:32:28,180
+además como dinero en otra parte;
+
+575
+00:32:28,180 --> 00:32:33,379
+las dimensiones de horas hombre sirven para medir la carga de trabajo de ingeniería.
+
+576
+00:32:34,878 --> 00:32:37,915
+Las oportunidades son riesgos con efecto positivo.
+
+577
+00:32:37,915 --> 00:32:42,835
+Se ingresan con tipo igual a oportunidad, su probabilidad, y una distribución con
+
+578
+00:32:42,835 --> 00:32:44,111
+parámetros positivos:
+
+579
+00:32:44,111 --> 00:32:46,844
+el ahorro se escribe como un número positivo.
+
+580
+00:32:46,844 --> 00:32:52,189
+La macro les aplica el signo negativo, de modo que restan del total en cada iteración en
+
+581
+00:32:52,189 --> 00:32:52,918
+que ocurren.
+
+582
+00:32:52,918 --> 00:32:58,263
+Por ejemplo, que el proveedor adelante la entrega del acero, con probabilidad de treinta
+
+583
+00:32:58,263 --> 00:33:00,875
+por ciento y un ahorro de tres a diez días.
+
+584
+00:33:00,875 --> 00:33:04,763
+Las oportunidades se marcan en verde en las hojas de resultados.
+
+585
+00:33:06,262 --> 00:33:08,851
+La herramienta permite evaluar respuestas.
+
+586
+00:33:08,851 --> 00:33:13,781
+Para cada riesgo se indica la estrategia, la probabilidad residual después de la
+
+587
+00:33:13,781 --> 00:33:19,267
+respuesta, un factor que multiplica el impacto, por ejemplo cero coma cinco si el impacto
+
+588
+00:33:19,267 --> 00:33:22,718
+baja a la mitad, y el costo de implementar la respuesta.
+
+589
+00:33:22,718 --> 00:33:24,690
+La distribución no se reescribe:
+
+590
+00:33:24,690 --> 00:33:25,923
+el factor la escala.
+
+591
+00:33:25,923 --> 00:33:30,915
+La macro simula antes y después con los mismos números aleatorios, de modo que la
+
+592
+00:33:30,915 --> 00:33:33,319
+diferencia se debe solo a la respuesta.
+
+593
+00:33:33,319 --> 00:33:38,126
+Y la respuesta conviene si la reducción del percentil ochenta supera su costo;
+
+594
+00:33:38,126 --> 00:33:41,023
+la hoja comparación muestra ese beneficio neto.
+
+595
+00:33:42,523 --> 00:33:46,392
+Algunos riesgos se mueven juntos porque comparten una causa.
+
+596
+00:33:46,392 --> 00:33:51,615
+Por ejemplo, si la Supervisión es lenta, se demoran varias aprobaciones a la vez.
+
+597
+00:33:51,615 --> 00:33:57,418
+Para reflejarlo, se pone el mismo nombre de grupo en la columna grupo de correlación, y la
+
+598
+00:33:57,418 --> 00:34:00,126
+intensidad en rho grupo, entre cero y uno:
+
+599
+00:34:00,126 --> 00:34:04,962
+cero coma tres es débil, cero coma cinco moderada y cero coma siete fuerte.
+
+600
+00:34:04,962 --> 00:34:10,056
+La correlación no cambia la media, pero sube el percentil ochenta y el noventa.
+
+601
+00:34:10,056 --> 00:34:13,602
+Ignorar una correlación real subestima la contingencia.
+
+602
+00:34:13,602 --> 00:34:19,341
+La hoja resultados muestra la correlación objetivo y la lograda, que es algo menor porque
+
+603
+00:34:19,341 --> 00:34:22,242
+en muchas iteraciones algún riesgo no ocurre.
+
+604
+00:34:23,742 --> 00:34:26,063
+Estos son los errores más frecuentes.
+
+605
+00:34:26,063 --> 00:34:28,636
+Meter la probabilidad dentro del impacto.
+
+606
+00:34:28,636 --> 00:34:30,455
+Poner el peor caso como moda.
+
+607
+00:34:30,455 --> 00:34:33,467
+Mezclar unidades, como soles con miles de soles.
+
+608
+00:34:33,467 --> 00:34:34,596
+Duplicar impactos.
+
+609
+00:34:34,596 --> 00:34:37,921
+Dar un orden incoherente entre mínimo, moda y máximo.
+
+610
+00:34:37,921 --> 00:34:39,489
+Usar mal la probabilidad.
+
+611
+00:34:39,489 --> 00:34:42,940
+Dar rangos demasiado estrechos por exceso de confianza.
+
+612
+00:34:42,940 --> 00:34:48,586
+Y confundir parámetros, como la escala con la desviación en la logística, o la tasa con la
+
+613
+00:34:48,586 --> 00:34:50,092
+media en la exponencial.
+
+614
+00:34:50,092 --> 00:34:55,613
+La validación detecta los errores de forma, pero los de concepto dependen de quien llena
+
+615
+00:34:55,613 --> 00:34:56,366
+el registro.
+
+616
+00:34:57,865 --> 00:34:58,664
+Parte siete:
+
+617
+00:34:58,664 --> 00:35:00,194
+ejecutar e interpretar.
+
+618
+00:35:00,194 --> 00:35:06,116
+Veremos cómo validar y correr la simulación, y cómo leer los resultados para proponer una
+
+619
+00:35:06,116 --> 00:35:07,780
+contingencia justificada.
+
+620
+00:35:09,280 --> 00:35:12,676
+Para ejecutar, abra el archivo y habilite las macros.
+
+621
+00:35:12,676 --> 00:35:15,303
+En la hoja parámetros hay cuatro botones.
+
+622
+00:35:15,303 --> 00:35:18,186
+Validar datos revisa el registro sin simular:
+
+623
+00:35:18,186 --> 00:35:23,953
+marca en rojo los errores que impiden correr, como un parámetro faltante o un mínimo mayor
+
+624
+00:35:23,953 --> 00:35:29,335
+que la moda, y en ámbar las advertencias, que permiten correr pero conviene revisar.
+
+625
+00:35:29,335 --> 00:35:33,116
+Correr simulación valida, simula y escribe todas las hojas.
+
+626
+00:35:33,116 --> 00:35:35,999
+Limpiar resultados borra las hojas de salida.
+
+627
+00:35:35,999 --> 00:35:38,242
+Y agregar dimensión crea una nueva.
+
+628
+00:35:38,242 --> 00:35:44,008
+Al terminar, un mensaje resume la corrida y muestra el percentil cincuenta y el ochenta de
+
+629
+00:35:44,008 --> 00:35:44,969
+cada dimensión.
+
+630
+00:35:46,469 --> 00:35:49,593
+La hoja resultados tiene un bloque por dimensión.
+
+631
+00:35:49,593 --> 00:35:54,757
+En costo, con los datos de prueba, la media del impacto de los riesgos es de unos
+
+632
+00:35:54,757 --> 00:36:00,048
+dieciséis millones de soles, muy parecida al valor monetario esperado total, lo que
+
+633
+00:36:00,048 --> 00:36:02,598
+confirma que la simulación es coherente.
+
+634
+00:36:02,598 --> 00:36:06,678
+La fila a es la reserva para contingencias al percentil ochenta:
+
+635
+00:36:06,678 --> 00:36:11,140
+veintiún coma tres millones, el diez coma siete por ciento de la base.
+
+636
+00:36:11,140 --> 00:36:13,563
+La fila b muestra la variante de Vose:
+
+637
+00:36:13,563 --> 00:36:17,961
+presupuestar la media y un colchón de unos cinco millones por encima.
+
+638
+00:36:17,961 --> 00:36:22,424
+La fila c es la reserva de gestión, y la d el presupuesto recomendado.
+
+639
+00:36:22,424 --> 00:36:26,759
+Al final, la precisión indica si las iteraciones fueron suficientes.
+
+640
+00:36:28,259 --> 00:36:33,023
+La curva S del costo muestra, para cada monto, la probabilidad de no superarlo.
+
+641
+00:36:33,023 --> 00:36:35,617
+La contingencia se lee en el nivel elegido.
+
+642
+00:36:35,617 --> 00:36:40,923
+Con ochenta por ciento, el percentil ochenta es de veintiún coma tres millones de soles.
+
+643
+00:36:40,923 --> 00:36:46,230
+El percentil cincuenta es de quince coma siete, y el noventa de veinticuatro coma siete:
+
+644
+00:36:46,230 --> 00:36:51,417
+pasar de ochenta a noventa por ciento de confianza cuesta unos tres coma tres millones
+
+645
+00:36:51,417 --> 00:36:51,658
+más.
+
+646
+00:36:51,658 --> 00:36:52,683
+Dos advertencias.
+
+647
+00:36:52,683 --> 00:36:55,518
+No sume los percentiles ochenta de cada riesgo:
+
+648
+00:36:55,518 --> 00:36:58,533
+la contingencia es el percentil ochenta del total.
+
+649
+00:36:58,533 --> 00:37:03,538
+Y en plazo, la macro suma los retrasos de todos los riesgos, lo que es conservador:
+
+650
+00:37:03,538 --> 00:37:05,347
+contrástelo con el cronograma.
+
+651
+00:37:06,847 --> 00:37:09,712
+Las demás hojas responden preguntas de gestión.
+
+652
+00:37:09,712 --> 00:37:13,308
+El tornado ordena los riesgos según cuánto mueven el total:
+
+653
+00:37:13,308 --> 00:37:16,660
+los primeros son donde conviene invertir en respuestas.
+
+654
+00:37:16,660 --> 00:37:22,146
+Rangos muestra el aporte de cada riesgo con sus percentiles y su valor monetario esperado.
+
+655
+00:37:22,146 --> 00:37:27,266
+La matriz de probabilidad e impacto ubica cada riesgo en una cuadrícula de cinco por
+
+656
+00:37:27,266 --> 00:37:29,643
+cinco, útil para reportes cualitativos.
+
+657
+00:37:29,643 --> 00:37:34,763
+Y comparación muestra las curvas S antes y después de las respuestas, cuánto baja el
+
+658
+00:37:34,763 --> 00:37:39,030
+percentil ochenta y si el beneficio supera el costo de las respuestas.
+
+659
+00:37:40,529 --> 00:37:44,244
+Terminamos con un checklist antes de presentar resultados.
+
+660
+00:37:44,244 --> 00:37:47,831
+Reemplace el costo y el plazo base por los del contrato.
+
+661
+00:37:47,831 --> 00:37:51,289
+Revise cada estimación con su dueño y anote la fuente.
+
+662
+00:37:51,289 --> 00:37:55,452
+Elija la distribución según lo que se sabe, con PERT por defecto.
+
+663
+00:37:55,452 --> 00:37:60,000
+Separe la probabilidad del impacto, revise unidades y evite duplicados.
+
+664
+00:37:60,000 --> 00:38:03,266
+Ingrese las oportunidades con parámetros positivos.
+
+665
+00:38:03,266 --> 00:38:06,660
+Defina la correlación de los riesgos con causa común.
+
+666
+00:38:06,660 --> 00:38:09,991
+Corrija los errores rojos y revise las advertencias.
+
+667
+00:38:09,991 --> 00:38:15,563
+Y confirme que la precisión sea suficiente y que la contingencia se lea en el percentil
+
+668
+00:38:15,563 --> 00:38:16,203
+del total.
+
+669
+00:38:16,203 --> 00:38:17,164
+Muchas gracias.

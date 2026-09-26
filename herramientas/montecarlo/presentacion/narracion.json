@@ -1,0 +1,282 @@
+[
+ {
+  "lamina": 1,
+  "texto": "Bienvenidos. En esta guía vamos a aprender a usar la herramienta de simulación Montecarlo para el análisis cuantitativo de riesgos del proyecto. La herramienta es un libro de Excel con una macro incluida, y permite estimar la contingencia de costo, de plazo y de horas hombre de ingeniería a partir del registro de riesgos. Pondremos especial atención en la parte conceptual, que es la más difícil: qué es una distribución de probabilidad, cómo se elige la adecuada para cada riesgo y qué número va en cada casilla."
+ },
+ {
+  "lamina": 2,
+  "texto": "Al terminar, usted podrá hacer seis cosas. Primero, entender qué es una distribución y por qué es mejor que un número fijo. Segundo, elegir la distribución adecuada para cada impacto. Tercero, llenar correctamente la probabilidad y los parámetros pe uno a pe cuatro de las veinte distribuciones disponibles. Cuarto, validar y correr la simulación. Quinto, interpretar la curva S, el tornado y la tabla de reservas. Y sexto, evaluar si las respuestas a los riesgos valen lo que cuestan. No se necesita formación previa en estadística: cada concepto se explica con ejemplos de obra."
+ },
+ {
+  "lamina": 3,
+  "texto": "La guía tiene siete partes. Empezamos con los conceptos de riesgo que usa la herramienta. Luego recorremos el libro de Excel y sus columnas. Las partes tres, cuatro y cinco, marcadas en ámbar, son el núcleo: la idea de distribución, cómo elegirla, y una lámina dedicada a cada una de las veinte distribuciones. Después vemos casos especiales, como oportunidades, respuestas y correlación. Y cerramos con la ejecución de la macro y la interpretación de los resultados, incluida la contingencia."
+ },
+ {
+  "lamina": 4,
+  "texto": "¿Por qué simular y no simplemente sumar? Hay tres prácticas comunes con problemas. El porcentaje fijo, por ejemplo diez por ciento, no se relaciona con los riesgos reales y es difícil de defender. La suma de peores casos supone que todos los riesgos ocurren a la vez y en su peor versión, lo que da una cifra exagerada. Y la suma de valores esperados da el promedio, pero no dice cuánto margen se necesita para estar cubiertos con cierta seguridad. La simulación combina los riesgos como ocurren en la realidad y entrega la probabilidad de no superar cada monto."
+ },
+ {
+  "lamina": 5,
+  "texto": "Parte uno: conceptos de riesgo. Repasamos el vocabulario del estándar del PMI que usa la herramienta: amenazas y oportunidades, las dos reservas, el valor monetario esperado y la idea de la simulación Montecarlo."
+ },
+ {
+  "lamina": 6,
+  "texto": "Según el PMI, un riesgo es un evento o condición incierta que, si ocurre, afecta al menos un objetivo del proyecto. Puede ser una amenaza, que aumenta el costo o el plazo, o una oportunidad, que los reduce. Además, conviene distinguir el riesgo individual, que es cada fila del registro, del riesgo general del proyecto, que es el efecto combinado de toda la incertidumbre. La simulación mide precisamente ese riesgo general: su resultado principal es la curva S del total."
+ },
+ {
+  "lamina": 7,
+  "texto": "El presupuesto se construye por capas. Abajo está la línea base, que es el costo y el plazo del contrato sin considerar riesgos. Encima va la reserva para contingencias, que cubre los riesgos identificados en el registro. Esta es la que calcula la simulación, normalmente como el percentil ochenta del impacto total. Y arriba va la reserva de gestión, para lo no previsto, que no se simula porque por definición no conocemos esos riesgos: se fija como un porcentaje de la base. La suma de las tres capas es el presupuesto recomendado."
+ },
+ {
+  "lamina": 8,
+  "texto": "El valor monetario esperado, o VME, es la probabilidad por el impacto medio. Por ejemplo, si la demora de aprobaciones tiene cincuenta y cinco por ciento de probabilidad y un impacto medio de unos seiscientos sesenta y siete mil soles, su VME es de unos trescientos sesenta y siete mil soles. En las oportunidades el VME es negativo, porque reduce el total. El VME sirve para ordenar riesgos y para comprobar la simulación, pero no dice cuánto margen hace falta: es un promedio, y el proyecto lo supera en muchos casos. Por eso la contingencia se lee en la curva S."
+ },
+ {
+  "lamina": 9,
+  "texto": "Una simulación Montecarlo consiste en jugar el proyecto miles de veces. En cada iteración, la computadora sortea qué riesgos ocurren y cuánto impactan, según las estimaciones del registro. Con diez mil iteraciones obtenemos diez mil totales posibles, y su distribución es el resultado. La precisión mejora con la raíz cuadrada del número de iteraciones: para reducir el error a la mitad se necesitan cuatro veces más iteraciones. El gráfico muestra cómo el error baja rápidamente al principio y luego cada vez más lento. La macro usa un generador de números aleatorios de alta calidad y una semilla, de modo que con la misma semilla el resultado es reproducible."
+ },
+ {
+  "lamina": 10,
+  "texto": "Parte dos: la herramienta. Veamos cómo está organizado el libro de Excel y qué información va en cada columna."
+ },
+ {
+  "lamina": 11,
+  "texto": "El flujo tiene seis pasos. Usted registra los riesgos y describe cada impacto con una distribución. Luego la macro valida los datos, juega diez mil escenarios, escribe los resultados y calcula la contingencia al nivel elegido. Su trabajo está en los dos primeros pasos y en la lectura final. Y es importante saber que la calidad del resultado depende casi por completo de esos dos primeros pasos: la macro calcula bien, pero no puede corregir una estimación mal planteada."
+ },
+ {
+  "lamina": 12,
+  "texto": "El libro tiene once hojas. INICIO explica el propósito y los pasos. GUIA es la ayuda sobre distribuciones para no especialistas. PARAMETROS, en ámbar, es la única hoja donde se ingresan datos. Las demás las escribe la macro: RESULTADOS con las reservas, CURVA S, TORNADO, RANGOS, la matriz de probabilidad e impacto, COMPARACION de antes y después, el detalle de la SIMULACION y la hoja TEORIA con toda la base conceptual y la bibliografía."
+ },
+ {
+  "lamina": 13,
+  "texto": "En la parte superior de PARAMETROS hay seis celdas de configuración. El costo base y el plazo base vienen con valores supuestos de doscientos millones de soles y setecientos treinta días: deben reemplazarse por los del contrato. Las iteraciones, por defecto diez mil, controlan la precisión. La semilla permite repetir exactamente los mismos resultados; si se deja vacía, cada corrida será distinta. El nivel de confianza, ochenta por ciento por defecto, define la reserva para contingencias y es una decisión de la empresa. Y la reserva de gestión es un porcentaje de la base para lo no previsto."
+ },
+ {
+  "lamina": 14,
+  "texto": "La tabla de dimensiones define los tipos de impacto. Vienen cuatro: costo en soles, plazo en días, e ingeniería de diseño e ingeniería de campo en horas hombre. Cada dimensión tiene sus propias columnas en el registro de riesgos. Es importante entender que las dimensiones no se suman entre sí: cada una tiene su propia curva S y su propia reserva, en su propia unidad. Si necesita otra dimensión, como calidad o seguridad, el botón agregar dimensión la crea con todas sus columnas, sin tocar el código."
+ },
+ {
+  "lamina": 15,
+  "texto": "Las primeras columnas del registro identifican el riesgo: su código, su nombre con la causa, el tipo, la categoría, la causa, el dueño, la estrategia de respuesta y el estado. De ellas, solo dos entran al cálculo. TIPO, porque las oportunidades restan del total. Y ACTIVO, porque las filas con ACTIVO igual a NO se ignoran. Los treinta y dos riesgos del proyecto tienen estado estimado por validar: sus números son preliminares y deben revisarse con cada dueño."
+ },
+ {
+  "lamina": 16,
+  "texto": "Las columnas de cuantificación son el corazón del modelo. PROBABILIDAD es un número entre cero y uno. Luego, para cada dimensión, hay un bloque de columnas: DIST, con el nombre de la distribución elegida de un menú de veinte; pe uno a pe cuatro, con sus parámetros; y AYUDA, que se llena sola y dice qué va en cada parámetro. Si la distribución de una dimensión se deja vacía, el riesgo no afecta esa dimensión. Al final hay columnas para correlación y para evaluar respuestas, que veremos en la parte seis."
+ },
+ {
+  "lamina": 17,
+  "texto": "Parte tres: la idea de distribución. Esta es la parte más importante y también la más difícil de entender, así que iremos paso a paso, siempre con ejemplos de obra."
+ },
+ {
+  "lamina": 18,
+  "texto": "Empecemos con la idea central. Tradicionalmente decimos: el sobrecosto será de seiscientos mil soles. Es un solo número, que no dice qué tan seguros estamos ni cuánto podría costar si las cosas salen mal. Una distribución describe lo que no sabemos: qué valores son posibles y cuáles son más probables. Con tres números, mínimo doscientos mil, más probable seiscientos mil y máximo un millón cuatrocientos mil, describimos todo el rango. La altura de la curva indica qué tan frecuente es cada valor: cerca de seiscientos mil es frecuente, y cerca del máximo es raro, pero posible."
+ },
+ {
+  "lamina": 19,
+  "texto": "¿Qué representa una distribución? Representa nuestro conocimiento. Si sabemos poco, el rango es ancho; si sabemos mucho, es estrecho. Ambos son válidos si son honestos. En el gráfico, la curva azul describe un retraso sobre el que sabemos poco, entre diez y cincuenta y cinco días, y la naranja uno que conocemos bien, entre veinte y treinta y dos días. La distribución se puede actualizar cuando llega información nueva, y se puede defender, porque cada número tiene una fuente que se anota en la columna de notas."
+ },
+ {
+  "lamina": 20,
+  "texto": "Cada riesgo responde dos preguntas distintas, y van en columnas distintas. La primera: ¿ocurre o no ocurre? Va en la columna probabilidad, como un número entre cero y uno. La segunda: si ocurre, ¿cuánto impacta? Va en la distribución de cada dimensión, y describe el impacto completo, suponiendo que el riesgo ya ocurrió. El error más común es multiplicar la probabilidad por el impacto al ingresar los datos. No lo haga: la macro ya lo hace en cada escenario. Si usted lo multiplica, el riesgo quedaría contado dos veces a la baja."
+ },
+ {
+  "lamina": 21,
+  "texto": "¿Cómo estimamos la probabilidad? Se puede partir de una escala verbal: muy improbable, entre cinco y diez por ciento; poco probable, hasta treinta; tan probable como no, hasta cincuenta; probable, hasta setenta; y casi seguro, por encima. Si hay datos históricos, úselos: si ocurrió en tres de diez obras similares, la probabilidad es cero coma tres. No ponga cero; si el riesgo no existe, desactívelo. Y si la probabilidad supera cincuenta por ciento, la macro lo advierte: conviene incluir el evento en la línea base. Recuerde que la probabilidad es una sola por riesgo, para todas sus dimensiones."
+ },
+ {
+  "lamina": 22,
+  "texto": "Veamos qué hace la macro en cada escenario, con el riesgo R cero cinco, que tiene probabilidad cero coma cuarenta y cinco. En cada iteración sortea un número entre cero y uno. Si sale menor que cero coma cuarenta y cinco, el riesgo ocurre, y entonces saca un valor de cada una de sus distribuciones: costo, plazo y horas hombre. Si el sorteo sale mayor, el riesgo no ocurre y aporta cero. Luego suma todos los riesgos para obtener el total de esa iteración. Como resultado, en unas cuatro mil quinientas de las diez mil iteraciones el riesgo ocurre, y en las demás aporta cero."
+ },
+ {
+  "lamina": 23,
+  "texto": "Un punto clave: si el riesgo ocurre, impacta a la vez en todas las dimensiones donde tiene distribución. R cero cinco tiene distribución en costo, plazo e ingeniería de diseño, y la de ingeniería de campo está vacía, así que no la afecta. Como la ocurrencia es un solo sorteo, la macro nunca produce un escenario donde el riesgo cueste dinero pero no retrase la obra. Lo que sí se sortea por separado es el valor dentro de cada dimensión: puede salir un costo alto con un retraso moderado, por ejemplo."
+ },
+ {
+  "lamina": 24,
+  "texto": "Cuando la macro suma los treinta y dos riesgos en cada iteración, obtiene diez mil totales. El histograma muestra cuántas iteraciones cayeron en cada rango. El centro está cerca de dieciséis millones de soles, que es lo más frecuente. Casi nunca sale cero, porque algún riesgo casi siempre ocurre, y casi nunca pasa de treinta y cinco millones, porque tendrían que ocurrir casi todos en su peor versión. Fíjese que la suma de los máximos de todos los riesgos sería mucho mayor: por eso no se suman peores casos."
+ },
+ {
+  "lamina": 25,
+  "texto": "Hay dos formas de leer una distribución. La primera es la densidad. La curva muestra dónde se concentran los valores. La cima es la moda, el valor más frecuente, aquí seiscientos mil soles. La cola derecha son los valores altos, poco frecuentes pero posibles. Y un concepto importante: el área bajo la curva entre dos puntos es la probabilidad de ese tramo. Por ejemplo, entre cuatrocientos mil y ochocientos mil cae más de la mitad de los casos. La altura por sí sola no es una probabilidad; lo es el área."
+ },
+ {
+  "lamina": 26,
+  "texto": "La segunda forma de leer una distribución es la curva acumulada, también llamada curva S. Para cada valor, indica qué porcentaje de los casos queda por debajo. De ahí salen los percentiles. El percentil diez es el valor que solo el diez por ciento de los casos no alcanza. El percentil cincuenta, o mediana, deja la mitad de cada lado. Y el percentil ochenta es el valor que no se supera en el ochenta por ciento de los casos. Esta es exactamente la lectura que usaremos para la contingencia, pero sobre la curva S del total del proyecto."
+ },
+ {
+  "lamina": 27,
+  "texto": "Cinco valores que se confunden a menudo. El mínimo es lo mejor razonable, no lo imposible. La moda es el valor más frecuente, la cima de la curva, aquí veinte días. La mediana deja la mitad de los casos de cada lado. La media es el promedio. Cuando la distribución tiene una cola hacia la derecha, como casi todos los sobrecostos y retrasos, la media es mayor que la moda: aquí veintidós coma cinco días frente a veinte. Y el máximo es lo peor razonable. En las distribuciones de tres puntos, el experto da la moda, no la media."
+ },
+ {
+  "lamina": 28,
+  "texto": "Al elegir una distribución, en realidad elegimos tres rasgos de su forma. El centro, que es el valor típico. El ancho, que es la cantidad de incertidumbre, y que determina en buena parte cuánta contingencia hará falta. Y el sesgo, que indica hacia dónde se extiende la cola. En obra, los impactos casi siempre tienen sesgo a la derecha: cuando las cosas salen mal, cuestan mucho más de lo que se ahorra cuando salen bien. Por eso las distribuciones asimétricas, como PERT, son tan usadas."
+ },
+ {
+  "lamina": 29,
+  "texto": "Parte cuatro: cómo elegir la distribución. La regla principal es sencilla: se elige según lo que sabemos del impacto, no según lo que suena más técnico."
+ },
+ {
+  "lamina": 30,
+  "texto": "El principio es elegir según la información disponible. Si la fuente es el juicio de un experto, que es lo más común en obra, se usan distribuciones que el experto pueda describir con palabras: tres puntos con PERT, TRIANGULAR o TRIGEN; un rango con UNIFORME; escenarios con DISCRETA; o un valor fijo con CONSTANTE. Si hay datos históricos, se pueden usar distribuciones que se ajustan a datos, como normal, lognormal o gamma. Y la regla práctica: si duda, use PERT. Es robusta, fácil de explicar y es la que recomienda la bibliografía."
+ },
+ {
+  "lamina": 31,
+  "texto": "Este árbol de decisión resume la elección. Pregúntese qué sabe del impacto. Si el valor es seguro, use constante. Si solo conoce un rango, uniforme. Si conoce mínimo, más probable y máximo, PERT o triangular. Si el experto habla de valores que rara vez se superan, TRIGEN. Si hay pocos escenarios con probabilidad conocida, discreta. Las cinco primeras, en ámbar, cubren el juicio experto. Las de abajo, en negro, se usan con datos o en casos particulares: simétricas, sesgadas, tiempos entre eventos, conteos y colas extremas."
+ },
+ {
+  "lamina": 32,
+  "texto": "Las palabras que usa el experto ya indican la distribución. Si dice fija, es constante. Si dice cualquiera dentro de un rango, uniforme. Si dice normalmente, o lo típico, está dando la moda: PERT. Si dice rara vez, está dando percentiles, no extremos absolutos: TRIGEN. Si habla de escenarios con porcentajes, discreta. Si cuenta eventos, Poisson. Si da un promedio con más o menos, normal. Y si dice que está muy seguro del valor típico, PERT modificada con un gamma alto. Escuche con atención y anote las palabras exactas en notas."
+ },
+ {
+  "lamina": 33,
+  "texto": "Para obtener los tres puntos, pregunte en este orden. Primero el mínimo razonable: si todo sale bien, ¿cuánto sería el impacto? Segundo el máximo razonable: si todo sale mal, sin catástrofes absurdas. Y recién tercero el valor más probable. Se pregunta primero por los extremos para evitar el anclaje: si el experto dice primero el valor típico, luego tiende a dar extremos demasiado cercanos a él. Después pregunte la probabilidad, y por último qué otros riesgos se moverían junto con este, lo que nos servirá para la correlación."
+ },
+ {
+  "lamina": 34,
+  "texto": "Incluso los expertos tienen sesgos. El más importante es el exceso de confianza: dan rangos demasiado estrechos. Para contrarrestarlo, pida un caso real en que se superó el máximo; si existe, amplíe el rango o use TRIGEN. El anclaje se evita preguntando primero los extremos. La disponibilidad hace sobrevalorar lo reciente, así que contraste con varias obras. El optimismo se reduce consultando a más de una persona. Y cuide dos errores prácticos: confundir la moda con el peor caso, y contar dos veces el mismo impacto."
+ },
+ {
+  "lamina": 35,
+  "texto": "Cuando hay datos históricos, digamos quince o más observaciones de obras comparables, se puede ajustar una distribución. Primero reúna los datos en la misma unidad y actualizados. Segundo, haga un histograma para ver la forma: si es simétrico, si tiene cola a la derecha, si hay extremos aislados. Tercero, calcule los parámetros: promedio y desviación estándar para la normal o la lognormal, o forma y escala para la gamma. Cuarto, compare los extremos de la distribución con los observados. Y quinto, documente. Con pocos datos, es mejor usar PERT con criterio experto."
+ },
+ {
+  "lamina": 36,
+  "texto": "Parte cinco: las veinte distribuciones. Dedicamos una lámina a cada una. En cada lámina verá cuándo usarla, qué va en cada parámetro, un ejemplo de obra con su lectura, y los cuidados que hay que tener."
+ },
+ {
+  "lamina": 37,
+  "texto": "Este mapa agrupa las veinte distribuciones en siete familias. Las simples: constante, uniforme, discreta y discreta uniforme. Las de tres puntos: triangular, PERT y TRIGEN, que son las más usadas. Las de control de forma: PERT modificada y beta general. Las simétricas: normal, normal truncada y logística. Las sesgadas positivas: lognormal, gamma, Weibull y exponencial. Las de extremos: Gumbel y Pareto. Y las de conteo: Poisson y binomial. Veamos cada una."
+ },
+ {
+  "lamina": 38,
+  "texto": "La distribución constante es la más simple. Se usa cuando el impacto es un valor conocido con certeza si el riesgo ocurre, como una multa fija por incumplir un hito. Solo lleva un parámetro, pe uno, el valor. Toda la incertidumbre está en si el riesgo ocurre o no. Por ejemplo, una multa de doscientos cincuenta mil soles con probabilidad de treinta por ciento aporta doscientos cincuenta mil en el treinta por ciento de las iteraciones, y cero en las demás. Cuidado: si el monto depende de algo variable, como los días de atraso, ya no es constante."
+ },
+ {
+  "lamina": 39,
+  "texto": "La distribución uniforme asigna la misma probabilidad a todos los valores entre un mínimo y un máximo. Se usa cuando solo conocemos un rango y no hay un valor más probable. Lleva dos parámetros: pe uno, el mínimo, y pe dos, el máximo. Por ejemplo, la demora de un permiso municipal entre diez y cuarenta días: la media es veinticinco días y el percentil ochenta, treinta y cuatro. Cuidado: si el experto sí tiene una idea del valor típico, use PERT, porque la uniforme da mucho peso a los extremos y suele inflar la contingencia."
+ },
+ {
+  "lamina": 40,
+  "texto": "La distribución triangular une el mínimo, el valor más probable y el máximo con líneas rectas. Es sencilla y fácil de explicar. Lleva tres parámetros: mínimo, moda y máximo. Por ejemplo, el retraso en la aprobación de submittals con diez, veinte y cuarenta y cinco días. Su media es la suma de los tres dividida entre tres: veinticinco días, y su percentil ochenta es de unos treinta y un días. Cuidado: la triangular da bastante peso a los extremos, así que su media sube más que la de PERT cuando la cola es larga. Y siempre debe cumplirse que el mínimo sea menor o igual que la moda, y la moda menor o igual que el máximo."
+ },
+ {
+  "lamina": 41,
+  "texto": "PERT es la distribución recomendada. Usa los mismos tres puntos que la triangular, pero con una curva suave que concentra más peso cerca del valor más probable. Es la opción por defecto para cualquier impacto de costo, plazo u horas hombre estimado por un experto. Por ejemplo, un sobrecosto por reprocesos con mínimo ochocientos mil soles, más probable dos millones y medio, y máximo seis millones. Su media se calcula como el mínimo más cuatro veces la moda más el máximo, todo dividido entre seis: dos coma ocho millones. Recuerde: la moda es lo más frecuente, no el peor caso."
+ },
+ {
+  "lamina": 42,
+  "texto": "Comparemos la triangular y PERT con los mismos datos: diez, veinte y cuarenta y cinco días. La curva azul, triangular, tiene más área en los extremos; la naranja, PERT, se concentra cerca de la moda. Por eso, con los mismos tres números, la triangular da una media y un percentil ochenta mayores: es más conservadora. PERT refleja mejor que los extremos son raros. Lo importante es elegir una y usarla de forma consistente en todo el registro, y nunca cambiarla para ajustar el resultado a lo que uno quiere ver."
+ },
+ {
+  "lamina": 43,
+  "texto": "TRIGEN es una triangular que se construye con valores que rara vez se superan, en lugar de extremos absolutos. Es muy útil porque corrige el exceso de confianza del experto. Lleva cuatro parámetros: el valor bajo, la moda, el valor alto, y en pe cuatro el porcentaje de casos que queda en cada cola, típicamente diez. Por ejemplo: rara vez menos de diez días, lo normal quince, rara vez más de treinta y cinco. La macro calcula los extremos reales, que resultan más amplios, como muestra la curva naranja frente a la gris. Cuidado: si el mínimo calculado sale negativo y el impacto no puede serlo, reduzca el porcentaje o use PERT."
+ },
+ {
+  "lamina": 44,
+  "texto": "La PERT modificada agrega un cuarto parámetro, gamma, que controla cuánto se concentran los valores alrededor de la moda. Con gamma igual a cuatro es idéntica a PERT. Con gamma alto, por ejemplo ocho, la curva se vuelve más puntiaguda: el experto está muy seguro del valor típico. Con gamma bajo, por ejemplo dos, se aplana: está poco seguro. Los extremos no cambian. En el ejemplo, con gamma ocho el percentil ochenta baja, y con gamma dos sube. Si no hay una razón clara, deje gamma igual a cuatro."
+ },
+ {
+  "lamina": 45,
+  "texto": "La beta general es una forma muy flexible entre un mínimo y un máximo, definida por dos parámetros de forma, alfa y beta. Si alfa es menor que beta, la cola va hacia la derecha; si es mayor, hacia la izquierda; si son iguales, es simétrica. Lleva cuatro parámetros: alfa, beta, mínimo y máximo. Se usa cuando hay datos históricos acotados, como el porcentaje de desperdicio de concreto, y se ajustan alfa y beta con una herramienta estadística. Sin datos, es mejor PERT, que en realidad es una beta cuyos alfa y beta se calculan a partir de los tres puntos."
+ },
+ {
+  "lamina": 46,
+  "texto": "La distribución normal es la conocida campana. Describe una variación simétrica alrededor de un promedio, y admite valores negativos. Lleva dos parámetros: la media y la desviación estándar. Una regla útil: el sesenta y ocho por ciento de los casos cae a una desviación de la media, y el noventa y cinco por ciento a dos desviaciones. Por ejemplo, la variación del precio del acero con media cincuenta mil soles y desviación veinticinco mil. Cuidado: si un valor negativo no tiene sentido, como en días u horas hombre, use la normal truncada o una distribución sesgada positiva."
+ },
+ {
+  "lamina": 47,
+  "texto": "La normal truncada es una normal recortada entre un mínimo y un máximo. Los valores fuera del rango no pueden salir. Lleva cuatro parámetros: media y desviación antes del recorte, mínimo y máximo. Se usa cuando hay límites físicos o contractuales. Por ejemplo, el reajuste de precios de un subcontrato de doce millones con un tope contractual de más o menos cinco por ciento: el impacto nunca supera seiscientos mil soles en ninguna dirección. Cuidado: si el recorte es asimétrico, la media real cambia respecto del parámetro pe uno."
+ },
+ {
+  "lamina": 48,
+  "texto": "La distribución logística se parece a la normal: es simétrica alrededor de la media, pero tiene colas algo más pesadas, es decir, los extremos son un poco más frecuentes. Lleva dos parámetros: la media y la escala. Cuidado: la escala no es la desviación estándar; la desviación es la escala multiplicada por uno coma ochenta y uno. Se usa con datos simétricos donde se observan más extremos de los que la normal predice, por ejemplo la productividad diaria de las cuadrillas."
+ },
+ {
+  "lamina": 49,
+  "texto": "La lognormal nunca es negativa y tiene una cola larga hacia la derecha. Es típica de costos y duraciones reales, donde unos pocos casos son mucho mayores que el resto. Lleva dos parámetros: la media y la desviación estándar de los valores reales, no de su logaritmo. Por ejemplo, la reparación de fisuras en viviendas vecinas con media ciento veinte mil soles y desviación noventa mil. Fíjese que la moda, la mediana y la media son muy distintas: la mayoría de los casos son moderados, pero algunos son muy caros."
+ },
+ {
+  "lamina": 50,
+  "texto": "La gamma es positiva y sesgada a la derecha. Su forma cambia con el parámetro forma: con forma uno es una exponencial, y con forma alta se parece a una normal. Lleva dos parámetros: forma y escala. La media es forma por escala. Por ejemplo, horas hombre de rediseño con forma tres y escala cien: media de trescientas horas hombre. En el gráfico, las tres curvas tienen la misma media pero distinta forma. Si tiene datos, la forma es la media al cuadrado dividida entre la varianza, y la escala es la varianza dividida entre la media."
+ },
+ {
+  "lamina": 51,
+  "texto": "La exponencial describe situaciones con muchos valores pequeños y pocos grandes; el valor más probable está cerca de cero. Lleva un solo parámetro, y es muy importante: en esta herramienta pe uno es la media, no la tasa. En otros programas se pide la tasa, que es uno dividido entre la media, así que no las confunda. Por ejemplo, días de paralización por un evento aleatorio con media diez días: la mediana es de unos siete días, pero el percentil noventa llega a veintitrés. Su desviación es igual a su media, lo que indica una incertidumbre alta."
+ },
+ {
+  "lamina": 52,
+  "texto": "La Weibull es la distribución clásica de tiempos de falla y duración de equipos. Lleva dos parámetros: forma k y escala lambda. La forma indica el tipo de falla: menor que uno significa fallas tempranas, como defectos de instalación; igual a uno es una exponencial; y mayor que uno indica desgaste. Por ejemplo, los días que una grúa torre queda fuera de servicio, con forma uno coma cinco y escala ocho: media de unos siete días y percentil ochenta de unos once. Se usa cuando hay datos de mantenimiento."
+ },
+ {
+  "lamina": 53,
+  "texto": "La Gumbel es la distribución del máximo de muchos eventos: por ejemplo, el peor aguacero del año o la crecida máxima de un río. Lleva dos parámetros: la ubicación, que es la moda, y la escala. Se usa cuando el impacto depende de un valor extremo. Por ejemplo, los días perdidos por la lluvia máxima de la temporada, con ubicación quince y escala seis: la moda es quince días, la media unos dieciocho y medio, y el percentil noventa casi veintinueve. Úsela solo si el impacto depende realmente de un máximo."
+ },
+ {
+  "lamina": 54,
+  "texto": "La Pareto tiene colas muy pesadas: la mayoría de los casos están cerca del mínimo, pero unos pocos son enormes. Lleva dos parámetros: la forma, que debe ser mayor que uno, y el mínimo. Se usa para montos de reclamos de terceros, siniestros o litigios. Por ejemplo, un reclamo con mínimo cien mil soles y forma dos coma cinco: la mediana es de unos ciento treinta mil, pero el percentil noventa y nueve supera los seiscientos mil. Cuidado: con forma baja la dispersión es enorme y puede dominar la contingencia; úsela solo si ese comportamiento es real."
+ },
+ {
+  "lamina": 55,
+  "texto": "La Poisson cuenta el número de eventos que ocurren en un periodo, cuando pueden ocurrir varias veces de forma independiente. Lleva un solo parámetro, la media. Por ejemplo, los días de lluvia fuerte que paralizan vaciados en una temporada, con media cuatro: el percentil ochenta es de seis días. Un cuidado importante: el valor sorteado es el impacto, en la unidad de la dimensión. La macro no multiplica el conteo por un costo. Así que úsela cuando la unidad sea el conteo, como días, y si cada evento cuesta una cantidad de soles, modele el costo total con PERT."
+ },
+ {
+  "lamina": 56,
+  "texto": "La binomial cuenta cuántos fracasos hay en un número conocido de intentos independientes, cada uno con la misma probabilidad. Lleva dos parámetros: n, el número de intentos, y p, la probabilidad de cada uno. Por ejemplo, veinte vaciados programados en temporada de lluvias, cada uno con quince por ciento de probabilidad de postergarse un día: la media es n por p, tres días, y el percentil ochenta, cuatro días. Como en la Poisson, el resultado es un conteo en la unidad de la dimensión."
+ },
+ {
+  "lamina": 57,
+  "texto": "La discreta uniforme sortea un número entero entre un mínimo y un máximo, todos igual de probables. Lleva dos parámetros enteros: mínimo y máximo. Por ejemplo, los días adicionales de paro regional, que pueden ser cero, uno, dos o tres, cada uno con veinticinco por ciento de probabilidad. La media es uno coma cinco días. Si algunos valores son más probables que otros, use la discreta con sus propias probabilidades, que vemos a continuación."
+ },
+ {
+  "lamina": 58,
+  "texto": "La distribución discreta describe pocos escenarios posibles, cada uno con su probabilidad. Lleva dos parámetros de texto: en pe uno los valores separados por punto y coma, y en pe dos las probabilidades, en el mismo orden, también separadas por punto y coma. Deben sumar uno. Por ejemplo, una penalidad que, si el riesgo ocurre, puede no aplicarse, con sesenta por ciento; aplicarse parcialmente, ciento cincuenta mil soles, con treinta por ciento; o totalmente, cuatrocientos mil, con diez por ciento. La media es ochenta y cinco mil soles. Note que el cero aquí es un escenario adicional a la probabilidad del riesgo."
+ },
+ {
+  "lamina": 59,
+  "texto": "Parte seis: casos especiales al llenar el registro. Veremos cómo manejar varias dimensiones y sus unidades, las oportunidades, las respuestas y el riesgo residual, la correlación, y los errores más frecuentes."
+ },
+ {
+  "lamina": 60,
+  "texto": "Cada dimensión se llena de forma independiente, en su propia unidad. El costo en soles, no en miles. El plazo en días calendario. Y la ingeniería de diseño y de campo en horas hombre, no en días hombre. Un riesgo puede usar distribuciones distintas en cada dimensión, por ejemplo PERT en costo y triangular en plazo. Y un cuidado importante: no duplicar. Si las horas hombre ya están valorizadas dentro del costo del riesgo, no las ingrese además como dinero en otra parte; las dimensiones de horas hombre sirven para medir la carga de trabajo de ingeniería."
+ },
+ {
+  "lamina": 61,
+  "texto": "Las oportunidades son riesgos con efecto positivo. Se ingresan con tipo igual a oportunidad, su probabilidad, y una distribución con parámetros positivos: el ahorro se escribe como un número positivo. La macro les aplica el signo negativo, de modo que restan del total en cada iteración en que ocurren. Por ejemplo, que el proveedor adelante la entrega del acero, con probabilidad de treinta por ciento y un ahorro de tres a diez días. Las oportunidades se marcan en verde en las hojas de resultados."
+ },
+ {
+  "lamina": 62,
+  "texto": "La herramienta permite evaluar respuestas. Para cada riesgo se indica la estrategia, la probabilidad residual después de la respuesta, un factor que multiplica el impacto, por ejemplo cero coma cinco si el impacto baja a la mitad, y el costo de implementar la respuesta. La distribución no se reescribe: el factor la escala. La macro simula antes y después con los mismos números aleatorios, de modo que la diferencia se debe solo a la respuesta. Y la respuesta conviene si la reducción del percentil ochenta supera su costo; la hoja comparación muestra ese beneficio neto."
+ },
+ {
+  "lamina": 63,
+  "texto": "Algunos riesgos se mueven juntos porque comparten una causa. Por ejemplo, si la Supervisión es lenta, se demoran varias aprobaciones a la vez. Para reflejarlo, se pone el mismo nombre de grupo en la columna grupo de correlación, y la intensidad en rho grupo, entre cero y uno: cero coma tres es débil, cero coma cinco moderada y cero coma siete fuerte. La correlación no cambia la media, pero sube el percentil ochenta y el noventa. Ignorar una correlación real subestima la contingencia. La hoja resultados muestra la correlación objetivo y la lograda, que es algo menor porque en muchas iteraciones algún riesgo no ocurre."
+ },
+ {
+  "lamina": 64,
+  "texto": "Estos son los errores más frecuentes. Meter la probabilidad dentro del impacto. Poner el peor caso como moda. Mezclar unidades, como soles con miles de soles. Duplicar impactos. Dar un orden incoherente entre mínimo, moda y máximo. Usar mal la probabilidad. Dar rangos demasiado estrechos por exceso de confianza. Y confundir parámetros, como la escala con la desviación en la logística, o la tasa con la media en la exponencial. La validación detecta los errores de forma, pero los de concepto dependen de quien llena el registro."
+ },
+ {
+  "lamina": 65,
+  "texto": "Parte siete: ejecutar e interpretar. Veremos cómo validar y correr la simulación, y cómo leer los resultados para proponer una contingencia justificada."
+ },
+ {
+  "lamina": 66,
+  "texto": "Para ejecutar, abra el archivo y habilite las macros. En la hoja parámetros hay cuatro botones. Validar datos revisa el registro sin simular: marca en rojo los errores que impiden correr, como un parámetro faltante o un mínimo mayor que la moda, y en ámbar las advertencias, que permiten correr pero conviene revisar. Correr simulación valida, simula y escribe todas las hojas. Limpiar resultados borra las hojas de salida. Y agregar dimensión crea una nueva. Al terminar, un mensaje resume la corrida y muestra el percentil cincuenta y el ochenta de cada dimensión."
+ },
+ {
+  "lamina": 67,
+  "texto": "La hoja resultados tiene un bloque por dimensión. En costo, con los datos de prueba, la media del impacto de los riesgos es de unos dieciséis millones de soles, muy parecida al valor monetario esperado total, lo que confirma que la simulación es coherente. La fila a es la reserva para contingencias al percentil ochenta: veintiún coma tres millones, el diez coma siete por ciento de la base. La fila b muestra la variante de Vose: presupuestar la media y un colchón de unos cinco millones por encima. La fila c es la reserva de gestión, y la d el presupuesto recomendado. Al final, la precisión indica si las iteraciones fueron suficientes."
+ },
+ {
+  "lamina": 68,
+  "texto": "La curva S del costo muestra, para cada monto, la probabilidad de no superarlo. La contingencia se lee en el nivel elegido. Con ochenta por ciento, el percentil ochenta es de veintiún coma tres millones de soles. El percentil cincuenta es de quince coma siete, y el noventa de veinticuatro coma siete: pasar de ochenta a noventa por ciento de confianza cuesta unos tres coma tres millones más. Dos advertencias. No sume los percentiles ochenta de cada riesgo: la contingencia es el percentil ochenta del total. Y en plazo, la macro suma los retrasos de todos los riesgos, lo que es conservador: contrástelo con el cronograma."
+ },
+ {
+  "lamina": 69,
+  "texto": "Las demás hojas responden preguntas de gestión. El tornado ordena los riesgos según cuánto mueven el total: los primeros son donde conviene invertir en respuestas. Rangos muestra el aporte de cada riesgo con sus percentiles y su valor monetario esperado. La matriz de probabilidad e impacto ubica cada riesgo en una cuadrícula de cinco por cinco, útil para reportes cualitativos. Y comparación muestra las curvas S antes y después de las respuestas, cuánto baja el percentil ochenta y si el beneficio supera el costo de las respuestas."
+ },
+ {
+  "lamina": 70,
+  "texto": "Terminamos con un checklist antes de presentar resultados. Reemplace el costo y el plazo base por los del contrato. Revise cada estimación con su dueño y anote la fuente. Elija la distribución según lo que se sabe, con PERT por defecto. Separe la probabilidad del impacto, revise unidades y evite duplicados. Ingrese las oportunidades con parámetros positivos. Defina la correlación de los riesgos con causa común. Corrija los errores rojos y revise las advertencias. Y confirme que la precisión sea suficiente y que la contingencia se lea en el percentil del total. Muchas gracias."
+ }
+]
