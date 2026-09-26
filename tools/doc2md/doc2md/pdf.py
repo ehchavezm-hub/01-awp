@@ -93,9 +93,10 @@ def convertir(
     except Exception as e:
         if modelos is None:
             raise RuntimeError(
-                f"{e}. Si Docling no pudo descargar sus modelos (se bajan de huggingface.co la "
-                "primera vez), ejecútalo con internet o descárgalos con "
-                "`docling-tools models download` y pásalos con --modelos."
+                f"{e}. Probablemente Docling no pudo descargar sus modelos: la primera vez se "
+                "bajan de huggingface.co. Revisa tu conexión a internet o si la red de tu "
+                "empresa bloquea ese sitio (en ese caso, descárgalos en otra red con "
+                "`docling-tools models download` y usa --modelos)."
             ) from e
         raise
     if conv.status not in (ConversionStatus.SUCCESS, ConversionStatus.PARTIAL_SUCCESS):

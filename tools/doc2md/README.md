@@ -20,9 +20,16 @@ exactamente qué páginas quedaron fieles y cuáles hay que revisar a mano.
 ## Uso rápido en Windows (sin escribir comandos)
 
 1. Instala [Python](https://www.python.org/downloads/) y marca **"Add Python to PATH"**.
-2. Haz doble clic en **`instalar.bat`** (solo la primera vez).
-3. Arrastra tus PDF o EPUB sobre **`convertir.bat`**. Los resultados quedan en la
-   carpeta `resultados`.
+2. Haz doble clic en **`doc2md.bat`**. La primera vez instala todo (unos minutos)
+   y crea el acceso directo **doc2md** en el escritorio.
+3. Se abre una página en tu navegador: **arrastra ahí tus PDF o EPUB**. Verás el
+   avance de cada uno y, al terminar, botones para ver el Markdown, ver el informe,
+   descargar un .zip o abrir la carpeta. Los resultados quedan en `resultados/`.
+
+Todo se procesa en tu computadora (la página solo escucha en `127.0.0.1`). Deja
+abierta la ventana negra mientras lo uses; ciérrala para salir.
+
+La aplicación también se puede iniciar con `python -m doc2md.app`.
 
 ## Instalación
 

@@ -7,7 +7,7 @@ import logging
 import sys
 from pathlib import Path
 
-from . import reporte
+from .conversion import Opciones, convertir
 
 
 def _argumentos(argv: list[str] | None) -> argparse.Namespace:
@@ -39,42 +39,21 @@ def _argumentos(argv: list[str] | None) -> argparse.Namespace:
 
 
 def convertir_archivo(origen: Path, args: argparse.Namespace) -> bool:
-    nombre = origen.stem
-    salida_md = args.salida / f"{nombre}.md"
-    dir_imagenes = args.salida / f"{nombre}_imagenes"
-    ruta_reporte = args.salida / f"{nombre}.reporte.md"
-    args.salida.mkdir(parents=True, exist_ok=True)
-
-    tipo = origen.suffix.lower()
-    if tipo == ".pdf":
-        from . import pdf
-
-        md, resultados, avisos = pdf.convertir(
-            origen, salida_md, dir_imagenes,
-            ocr=args.ocr,
-            idiomas=[i.strip() for i in args.idiomas.split(",") if i.strip()],
-            conservar_encabezados=args.conservar_encabezados,
-            modelos=args.modelos,
-        )
-    elif tipo == ".epub":
-        from . import epub
-
-        md, resultados, avisos = epub.convertir(origen, salida_md, dir_imagenes)
-    else:
-        raise ValueError(f"Formato no soportado: {origen.suffix} (solo .pdf y .epub)")
-
-    salida_md.write_text(md, encoding="utf-8")
-    if dir_imagenes.exists() and not any(dir_imagenes.iterdir()):
-        dir_imagenes.rmdir()
-    ok = reporte.escribir(ruta_reporte, origen, salida_md, resultados, args.umbral, avisos)
-
-    revisar = [r.etiqueta for r in resultados if not r.aprobado(args.umbral)]
-    print(f"{'OK     ' if ok else 'REVISAR'}  {origen.name} -> {salida_md}")
+    opciones = Opciones(
+        umbral=args.umbral,
+        ocr=args.ocr,
+        idiomas=[i.strip() for i in args.idiomas.split(",") if i.strip()],
+        conservar_encabezados=args.conservar_encabezados,
+        modelos=args.modelos,
+    )
+    r = convertir(origen, args.salida, opciones)
+    revisar = [u.etiqueta for u in r.por_revisar]
+    print(f"{'OK     ' if r.ok else 'REVISAR'}  {origen.name} -> {r.markdown}")
     if revisar:
-        print(f"         {len(revisar)} de {len(resultados)} por revisar: {', '.join(revisar[:10])}"
+        print(f"         {len(revisar)} de {len(r.resultados)} por revisar: {', '.join(revisar[:10])}"
               + (" …" if len(revisar) > 10 else ""))
-    print(f"         informe: {ruta_reporte}")
-    return ok
+    print(f"         informe: {r.informe}")
+    return r.ok
 
 
 def main(argv: list[str] | None = None) -> int:
