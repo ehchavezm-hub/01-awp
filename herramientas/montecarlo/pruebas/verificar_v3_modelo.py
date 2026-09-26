@@ -9,7 +9,7 @@ calls = [("PruebaModelo", [N, 12345.0, "EJEMPLOS"]), ("PruebaModelo", [N, 12345.
          ("PruebaModelo", [N, 12345.0, "REAL"]), ("PruebaModelo", [N, 12345.0, "REAL"]),
          ("PruebaModelo", [N, 999.0, "REAL"]),
          ("PruebaMemoria", ["CORREL"]), ("PruebaMemoria", ["OPORT"]), ("PruebaMemoria", ["DESPUES"]),
-         ("PruebaBordes", []), ("PruebaQuintaDimension", []), ("PruebaValidacion", []),
+         ("PruebaBordes", []), ("PruebaQuintaDimension", [N]), ("PruebaValidacion", []),
          ("PruebaSalidas", [N])]
 os.environ["SAVE_AS"] = "salida_lo_v3.xlsx"
 out = main("MonteCarlo_Prueba.xlsm", calls)

@@ -326,13 +326,13 @@ EH:
 End Function
 
 ' 7) Una quinta dimension agregada en la hoja (sin tocar el codigo).
-Public Function PruebaQuintaDimension() As String
+Public Function PruebaQuintaDimension(ByVal N As Long) As String
     Dim errs As String, nErr As Long, encR As Range, cuerpoR As Range, nC As Long, i As Long, k As Long
     Dim cD As Range, eD As Variant, ok As Boolean, cId As Long
     On Error GoTo EH
     PrColActivo "R-", "SI"
     PrColActivo "EJ-", "NO"
-    hjParametros.Range("Iteraciones").Value = 2000
+    hjParametros.Range("Iteraciones").Value = N
     Set cD = PrRango("D_CUERPO")
     eD = PrRango("D_ENC").Value
     cD.Cells(5, ColEnc(eD, "CLAVE")).Value = "CALIDAD"
@@ -364,6 +364,9 @@ Public Function PruebaQuintaDimension() As String
     gSinGraficos = True
     NucleoSimulacion
     PruebaQuintaDimension = PrResumen()
+    ' Limpieza: quitar la dimension de prueba
+    cD.Rows(5).ClearContents
+    encR.Cells(1, nC + 1).Resize(cuerpoR.Rows.Count + 1, 5).ClearContents
     Exit Function
 EH:
     PruebaQuintaDimension = "ERROR " & Err.Number & ": " & Err.Description
