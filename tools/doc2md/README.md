@@ -17,6 +17,13 @@ exactamente qué páginas quedaron fieles y cuáles hay que revisar a mano.
 - **Encabezados y pies de página.** Se omiten del cuerpo, pero cada palabra
   omitida queda listada en el informe. Con `--conservar-encabezados` se mantienen.
 
+## Uso rápido en Windows (sin escribir comandos)
+
+1. Instala [Python](https://www.python.org/downloads/) y marca **"Add Python to PATH"**.
+2. Haz doble clic en **`instalar.bat`** (solo la primera vez).
+3. Arrastra tus PDF o EPUB sobre **`convertir.bat`**. Los resultados quedan en la
+   carpeta `resultados`.
+
 ## Instalación
 
 ```bash
