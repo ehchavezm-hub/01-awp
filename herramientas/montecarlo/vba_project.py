@@ -140,6 +140,45 @@ def _dir_stream(modules):
     return bytes(d)
 
 
+# ---------------------------------------------------------------------------
+# Cifrado de datos del stream PROJECT (MS-OVBA 2.4.3): CMG, DPB y GC
+# ---------------------------------------------------------------------------
+
+def clave_proyecto(project_id: str) -> int:
+    """Clave = suma de los bytes del texto del ID (con llaves), modulo 256."""
+    return sum(("{%s}" % project_id).encode(CODEPAGE)) & 0xFF
+
+
+def cifrar_dato(data: bytes, project_id: str, seed: int) -> str:
+    version = 2
+    proj_key = clave_proyecto(project_id)
+    out = bytearray([seed, seed ^ version, seed ^ proj_key])
+    unenc1, enc1, enc2 = proj_key, seed ^ proj_key, seed ^ version
+    ignored = (seed & 6) // 2
+    payload = bytes([0] * ignored) + struct.pack("<I", len(data)) + data
+    for i, b in enumerate(payload):
+        be = b ^ ((enc2 + unenc1) & 0xFF)
+        out.append(be)
+        enc2, enc1, unenc1 = enc1, be, b
+    return out.hex().upper()
+
+
+def descifrar_dato(hexstr: str):
+    b = bytes.fromhex(hexstr)
+    seed, venc, pkenc = b[0], b[1], b[2]
+    version, proj_key = seed ^ venc, seed ^ pkenc
+    unenc1, enc1, enc2 = proj_key, pkenc, venc
+    ignored = (seed & 6) // 2
+    out = []
+    for be in b[3:]:
+        x = be ^ ((enc2 + unenc1) & 0xFF)
+        enc2, enc1, unenc1 = enc1, be, x
+        out.append(x)
+    data = bytes(out[ignored:])
+    n = struct.unpack("<I", data[:4])[0]
+    return version, proj_key, data[4:4 + n]
+
+
 def _project_stream(modules, project_id):
     lines = ['ID="{%s}"' % project_id]
     for m in modules:
@@ -151,9 +190,9 @@ def _project_stream(modules, project_id):
         'Name="VBAProject"',
         'HelpContextID="0"',
         'VersionCompatible32="393222000"',
-        'CMG="7F7DA5285BD8DEDCDEDCDEDCDEDC"',
-        'DPB="FEFC24A9DC575A585A585A"',
-        'GC="7D7FA72659A45AA45A5B"',
+        'CMG="%s"' % cifrar_dato(struct.pack("<I", 0), project_id, 0x42),   # sin proteccion
+        'DPB="%s"' % cifrar_dato(b"\x00", project_id, 0x5A),                # sin contrasena
+        'GC="%s"' % cifrar_dato(b"\xFF", project_id, 0x37),                  # visible
         "",
         "[Host Extender Info]",
         "&H00000001={3832D640-CF90-11CF-8E43-00A0C911005A};VBE;&H00000000",

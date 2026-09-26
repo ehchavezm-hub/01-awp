@@ -1,39 +1,25 @@
-# Análisis de riesgos — Simulación Montecarlo (Excel con macro)
+# Análisis cuantitativo de riesgos — Simulación Montecarlo (Excel con macro) · v3
 
 | Archivo | Qué es |
 |---|---|
-| `MonteCarlo_Riesgos.xlsm` | **Entregable.** Libro con el proyecto VBA incrustado (`xl/vbaProject.bin`) y 3 botones en PARAMETROS. |
-| `MonteCarlo.bas` | Respaldo del módulo (Alt+F11 › Archivo › Importar). `ThisWorkbook` no lleva código, por eso no hay `.cls`. |
-| `build_xlsm.py`, `vba_project.py` | Regeneran el `.xlsm` desde el `.bas` (`python3 build_xlsm.py`). Requiere `xlsxwriter`. |
-| `pruebas/` | Verificación automática (LibreOffice headless + numpy) y chequeo estático del VBA. |
+| `MonteCarlo_Riesgos.xlsm` | **Entregable.** Libro con la macro incrustada y **abierta** (sin contraseña ni bloqueo), 11 hojas en español y 4 botones. |
+| `MonteCarlo.bas` | Respaldo del módulo (Alt+F11 › Archivo › Importar). `ThisWorkbook` y las hojas no llevan código, por eso no hay `.cls`. |
+| `Trazabilidad_Metodologia.md` | Requisitos M1–M17 de los `.md` y dónde quedó implementado cada uno. |
+| `Informe_Verificacion.md` | Tabla de mapeo de `Ejemplo.xlsm`, paleta aplicada y resultados de todas las comprobaciones. |
+| `build_xlsm.py`, `vba_project.py`, `datos_riesgos.py`, `contenido.py` | Regeneran el libro: `python3 build_xlsm.py` (requiere `xlsxwriter` y `openpyxl`). |
+| `entrada/` | `Ejemplo.xlsm` (base de riesgos) y `plantilla_ppt.pptx` (paleta Bloomberg). |
+| `pruebas/` | Pruebas automáticas: ejecución del VBA en LibreOffice, referencia numpy y verificador estático. |
 
 ## Uso
-1. Abrir el `.xlsm` y **Habilitar contenido**. Si Windows bloquea las macros de un archivo descargado:
-   clic derecho › Propiedades › marcar **Desbloquear**.
-2. PARAMETROS: costo/plazo base (opcional), iteraciones, semilla (vacía = aleatoria) y tabla `tblRiesgos`.
-3. **✔ VALIDAR DATOS** → **▶ CORRER SIMULACIÓN**. **✖ LIMPIAR RESULTADOS** vacía las hojas de salida.
 
-El proyecto VBA se guarda **sin p-code** (solo código fuente, MS-OVBA `_VBA_PROJECT` versión 0xFFFF):
-Excel lo compila al abrir, en 32 o 64 bits y en cualquier idioma.
+1. Abra el `.xlsm` y pulse **Habilitar contenido**. Si Windows bloquea las macros de un archivo descargado: clic derecho › Propiedades › **Desbloquear**.
+2. En **PARAMETROS** reemplace el costo base (S/ 200 M) y el plazo base (730 días), que son **supuestos**.
+3. Valide con cada dueño las **estimaciones preliminares** de R-01…R-32 (ESTADO = «ESTIMADO – VALIDAR»).
+4. **✔ VALIDAR DATOS** → **▶ CORRER SIMULACIÓN**. **＋ AGREGAR DIMENSIÓN** crea una dimensión nueva sin tocar el código.
 
-## Verificación realizada
-| Comprobación | Resultado |
-|---|---|
-| olevba extrae el módulo completo; descompresión idéntica byte a byte al `.bas` | ✅ |
-| Código fuente 100 % ASCII (tildes vía `U("ó")` → `ChrW`) | ✅ 0 bytes > 127 |
-| `Type`/`Const` antes del primer procedimiento; ningún `Array()` en arreglo tipado; sin variables sin declarar (`pruebas/lint_vba.py`, probado con errores sembrados) | ✅ |
-| Nombres `CostoBase`, `PlazoBase`, `Iteraciones`, `Semilla`; tabla `tblRiesgos`; CodeNames `sh*` | ✅ |
-| 3 botones con `OnAction` → `RunMonteCarlo`, `ValidarDatos`, `ClearResults` | ✅ |
-| Motor VBA ejecutado en LibreOffice, semilla 12345, N = 10,000 vs numpy N = 1,000,000: P50/P80/P90 y medias de costo y plazo | ✅ todas dentro de ±1 % (criterio ±3 %) |
-| 7 distribuciones (200,000 muestras) vs media y desviación teóricas | ✅ dentro de ±0.3 % |
-| Misma semilla → resultados idénticos; otra semilla → distintos | ✅ |
-| Casos borde: Mín = Máx, fila inactiva, filas vacías, probabilidad 0 y 1 | ✅ sin errores |
-| Validación: 6 tipos de error detectados y marcados en rojo; filas inactivas ignoradas | ✅ |
-| Escritura de RESULTADOS, CURVA_S (tablas), TORNADO, RANGOS, SIMULACION | ✅ (en LibreOffice) |
+## Cómo se genera la macro sin Excel
 
-**No verificable en este entorno (requiere Excel):** la creación de gráficos (LibreOffice no implementa
-`SeriesCollection.NewSeries`) y la lectura por `ListObjects` (LibreOffice no los implementa; el parser sí se
-probó pasándole el rango de la tabla). Ese código usa solo miembros estándar del modelo de objetos de Excel.
-Si algo falla al primer uso, el mensaje de error indica la etapa y el riesgo/fila.
+`vba_project.py` escribe el `vbaProject.bin` según MS-OVBA: solo código fuente, sin p-code (`_VBA_PROJECT` versión 0xFFFF y `MODULEOFFSET = 0`). Excel compila el código al abrir el libro, en 32 o 64 bits.
+Los campos de protección CMG, DPB y GC se **cifran con la clave del ID del proyecto** (suma de los bytes del ID, módulo 256). En la v1 se habían copiado de otro proyecto; por eso Excel dejó `Ejemplo.xlsm` «bloqueado para visualización». Corregido en la v3 y verificado descifrando los tres campos.
 
-Para repetir las pruebas: `python3 build_xlsm.py --test && cd pruebas && python3 verificar.py`.
+Para repetir las pruebas: `python3 build_xlsm.py --test && cd pruebas && python3 verificar_v3_dist.py && python3 verificar_v3_modelo.py`.
