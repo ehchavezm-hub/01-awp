@@ -417,19 +417,3 @@ Public Function PruebaValidacion() As String
 EH:
     PruebaValidacion = "ERROR " & Err.Number & ": " & Err.Description
 End Function
-
-Public Function PruebaDiag(ByVal nn As Long, ByVal rr As Long) As String
-    Dim paso As String
-    On Error GoTo EH
-    gN = nn: gNR = rr: gND = 1
-    paso = "gM": ReDim gM(1 To gN, 1 To gNR, 1 To gND)
-    paso = "gM asignar": gM(5, 2, 1) = 3
-    paso = "gOcc": ReDim gOcc(1 To gNR)
-    paso = "local3d"
-    Dim x() As Double
-    ReDim x(1 To gN, 1 To gNR, 1 To gND)
-    PruebaDiag = "OK"
-    Exit Function
-EH:
-    PruebaDiag = "falla en " & paso & ": " & Err.Description
-End Function
