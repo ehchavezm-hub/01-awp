@@ -171,8 +171,8 @@ Private gMD() As Double           ' (iteracion, riesgo, dimension) despues de re
 Private gTot() As Double          ' (iteracion, dimension)
 Private gTotD() As Double         ' (iteracion, dimension)
 Private gOcc() As Long            ' (riesgo) numero de ocurrencias
-Private gOrd() As Variant         ' (dimension): totales ordenados antes
-Private gOrdD() As Variant        ' (dimension): totales ordenados despues
+Private gOrdM() As Double         ' (iteracion, dimension): totales ordenados antes
+Private gOrdDM() As Double        ' (iteracion, dimension): totales ordenados despues
 Private gNG As Long
 Private gGrupoNom() As String
 Private gGrupoObj() As Double
@@ -254,7 +254,7 @@ Public Sub EjecutarSimulacion()
     If gNAdv > 0 Then msg = msg & ChrW$(8226) & " Advertencias: " & gNAdv & U(" (vea la hoja RESULTADOS)") & vbLf
     msg = msg & vbLf & "Nivel de confianza: " & Format$(gNivel, "0%") & vbLf
     For d = 1 To gND
-        s = gOrd(d)
+        Ordenados d, False, s
         msg = msg & gD(d).Nombre & " (" & gD(d).Unidad & "):  P50 = " & Format$(Percentil(s, gN, 50), gD(d).Formato) & _
               "   P" & Format$(gNivel * 100, "0") & " = " & Format$(Percentil(s, gN, gNivel * 100), gD(d).Formato) & vbLf
     Next d
@@ -1687,8 +1687,10 @@ Private Sub NucleoSimulacion()
     AplicarCorrelacion
 
     gEtapa = "calculando totales"
-    ReDim gTot(1 To gN, 1 To gND)
-    If gHayDespues Then ReDim gTotD(1 To gN, 1 To gND)
+    ReDim gTot(1 To nIt, 1 To nDi)
+    If gHayDespues Then
+        ReDim gTotD(1 To nIt, 1 To nDi)
+    End If
     For d = 1 To gND
         For i = 1 To gN
             For r = 1 To gNR
@@ -1705,16 +1707,23 @@ Private Sub NucleoSimulacion()
         End If
     Next d
 
-    ReDim gOrd(1 To gND)
-    ReDim gOrdD(1 To gND)
+    ' Totales ordenados (matrices 2D: se evita guardar arreglos dentro de Variant)
+    ReDim gOrdM(1 To nIt, 1 To nDi)
+    If gHayDespues Then
+        ReDim gOrdDM(1 To nIt, 1 To nDi)
+    End If
     For d = 1 To gND
         ColumnaTotal gTot, d, gN, s
         QuickSort s, 1, gN
-        gOrd(d) = s
+        For i = 1 To gN
+            gOrdM(i, d) = s(i)
+        Next i
         If gHayDespues Then
             ColumnaTotal gTotD, d, gN, s
             QuickSort s, 1, gN
-            gOrdD(d) = s
+            For i = 1 To gN
+                gOrdDM(i, d) = s(i)
+            Next i
         End If
     Next d
 End Sub
@@ -1868,6 +1877,15 @@ Private Sub ColumnaRiesgo(ByVal r As Long, ByVal d As Long, ByVal N As Long, dst
     For i = 1 To N
         dst(i) = gM(i, r, d)
     Next i
+End Sub
+
+' Totales ordenados de la dimension d (despues = True: escenario despues de respuestas).
+Private Sub Ordenados(ByVal d As Long, ByVal despues As Boolean, dst() As Double)
+    If despues Then
+        ColumnaTotal gOrdDM, d, gN, dst
+    Else
+        ColumnaTotal gOrdM, d, gN, dst
+    End If
 End Sub
 
 Private Sub ColumnaTotal(m() As Double, ByVal d As Long, ByVal N As Long, dst() As Double)
@@ -2149,7 +2167,7 @@ Private Sub EscribirResultados()
     Encabezado ws.Cells(fila + 1, 2).Resize(1, 10)
     ReDim a(1 To gND, 1 To 10)
     For d = 1 To gND
-        s = gOrd(d)
+        Ordenados d, False, s
         m = EstMedia(s, gN)
         pn = Percentil(s, gN, gNivel * 100)
         rg = ReservaGestion(d)
@@ -2181,7 +2199,7 @@ Private Sub EscribirResultados()
     pcts = Array(0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100)
     For d = 1 To gND
         gDimActual = d
-        s = gOrd(d)
+        Ordenados d, False, s
         m = EstMedia(s, gN)
         sd = EstDesv(s, gN, m)
         pn = Percentil(s, gN, gNivel * 100)
@@ -2337,7 +2355,7 @@ Private Sub EscribirCurvaS()
     fila = 5
     For d = 1 To gND
         gDimActual = d
-        s = gOrd(d)
+        Ordenados d, False, s
         hay = (s(gN) > s(1))
         Seccion ws.Cells(fila, 2), UCase$(gD(d).Nombre) & " (" & gD(d).Unidad & ")"
         ws.Cells(fila + 1, 2).Resize(1, 2).Value = Array("PROBABILIDAD ACUMULADA", "IMPACTO (" & gD(d).Unidad & ")")
@@ -2529,7 +2547,7 @@ Private Sub EscribirRangos()
     gRiesgoActual = 0
     For d = 1 To gND
         k = k + 1
-        s = gOrd(d)
+        Ordenados d, False, s
         vmeTot = 0
         For r = 1 To gNR
             vmeTot = vmeTot + VME(r, d)
@@ -2776,8 +2794,8 @@ Private Sub EscribirComparacion()
     etiquetas = Array("P10", "P50", "P80", "P90", "P" & Format$(gNivel * 100, "0") & " (nivel elegido)")
     For d = 1 To gND
         gDimActual = d
-        s = gOrd(d)
-        sd = gOrdD(d)
+        Ordenados d, False, s
+        Ordenados d, True, sd
         Seccion ws.Cells(fila, 2), UCase$(gD(d).Nombre) & " (" & gD(d).Unidad & ")"
         ws.Cells(fila + 1, 2).Resize(1, 4).Value = Array(U("M\u00C9TRICA"), "ANTES", U("DESPU\u00C9S"), U("DIFERENCIA (antes \u2212 despu\u00E9s)"))
         Encabezado ws.Cells(fila + 1, 2).Resize(1, 4)

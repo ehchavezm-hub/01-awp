@@ -29,7 +29,7 @@ End Function
 Private Function PrResumen() As String
     Dim d As Long, s() As Double, r As Long, vmeS As Double, res As String, g As Long
     For d = 1 To gND
-        s = gOrd(d)
+        Ordenados d, False, s
         vmeS = 0
         For r = 1 To gNR
             vmeS = vmeS + VME(r, d)
@@ -239,11 +239,11 @@ Public Function PruebaMemoria(ByVal caso As String) As String
             PrDist 2, D_PERT, 50, 100, 150
             gR(1).Prob = 0.5: gR(2).Prob = 0.4
             NucleoSimulacion
-            s = gOrd(1)
+            Ordenados 1, False, s
             m1 = EstMedia(s, gN)
             gR(2).Tipo = "OPORTUNIDAD": gR(2).Signo = -1
             NucleoSimulacion
-            s = gOrd(1)
+            Ordenados 1, False, s
             m2 = EstMedia(s, gN)
             gR(2).Signo = 1
             PruebaMemoria = "M_AMENAZA=" & PrNum(m1) & "|M_OPORT=" & PrNum(m2) & "|DIF=" & PrNum(m1 - m2) & _
@@ -259,7 +259,7 @@ Public Function PruebaMemoria(ByVal caso As String) As String
             gHayDespues = True
             gCostoRespTotal = 3000
             NucleoSimulacion
-            sd = gOrdD(1)
+            Ordenados 1, True, sd
             PruebaMemoria = "P80_DESPUES=" & PrNum(Percentil(sd, gN, 80)) & "|MIN=" & PrNum(sd(1)) & "|MAX=" & PrNum(sd(gN))
     End Select
     Exit Function
