@@ -7,6 +7,7 @@
  * Rutas:
  *   GET /api/buscar?q=texto&tipo=todos|noticia|paper|libro   -> resultados en JSON
  *   GET /api/descargar/:id                                    -> descarga el documento abierto
+ *   GET /api/semana                                           -> novedades de los últimos 7 días
  *   GET /api/estado                                           -> comprobación rápida
  *   Cualquier otra ruta                                       -> archivos de la carpeta public/
  */
@@ -18,7 +19,8 @@ const path = require('path');
 const { Readable } = require('stream');
 const config = require('./servidor/config');
 const buscador = require('./servidor/buscador');
-const { traerConTiempo } = require('./servidor/fuentes/utilidades');
+const { obtenerSemana } = require('./servidor/semana');
+const { traerConTiempo, crearCache } = require('./servidor/fuentes/utilidades');
 
 const TIPOS_MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -31,6 +33,18 @@ const TIPOS_MIME = {
   '.webmanifest': 'application/manifest+json'
 };
 const TIPOS_VALIDOS = ['todos', 'noticia', 'paper', 'libro'];
+const cacheSemana = crearCache(30);
+
+async function manejarSemana(res) {
+  let datos = cacheSemana.obtener('semana');
+  if (!datos) {
+    datos = config.fuentesEnVivo
+      ? await obtenerSemana()
+      : { generado: null, dias: 7, fuentes: [], resultados: [] };
+    if (datos.resultados.length) cacheSemana.guardar('semana', datos);
+  }
+  responderJson(res, 200, datos);
+}
 
 function responderJson(res, estado, datos) {
   res.writeHead(estado, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -96,6 +110,8 @@ const servidor = http.createServer(async (req, res) => {
       res.writeHead(405).end();
     } else if (url.pathname === '/api/estado') {
       responderJson(res, 200, { ok: true, fuentesEnVivo: config.fuentesEnVivo });
+    } else if (url.pathname === '/api/semana') {
+      await manejarSemana(res);
     } else if (url.pathname === '/api/buscar') {
       await manejarBusqueda(res, url.searchParams);
     } else if (url.pathname.startsWith('/api/descargar/')) {

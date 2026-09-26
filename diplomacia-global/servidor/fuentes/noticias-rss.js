@@ -1,57 +1,94 @@
 /*
- * FUENTE: NOTICIAS POR RSS (titulares reales)
- * Lee los "feeds" RSS configurados en servidor/config.js (por defecto, Noticias ONU en español).
- * Para agregar otro medio, añada { nombre, url } a config.feedsNoticias.
+ * FUENTE: NOTICIAS POR RSS (titulares reales de fuentes de prestigio)
+ * Lee los medios de public/js/fuentes-prestigio.js. Entiende RSS y Atom.
+ * De los medios generales solo toma las noticias sobre temas internacionales.
  */
 'use strict';
 
 const config = require('../config');
+const Fuentes = require('../../public/js/fuentes-prestigio.js');
 const { traerConTiempo, limpiarTexto, recortar, idDesdeTexto } = require('./utilidades');
 
+const MAX_POR_MEDIO = 15;
+
 function etiqueta(xml, nombre) {
-  const m = xml.match(new RegExp(`<${nombre}[^>]*>([\\s\\S]*?)</${nombre}>`, 'i'));
+  const m = xml.match(new RegExp(`<${nombre}(?:\\s[^>]*)?>([\\s\\S]*?)</${nombre}>`, 'i'));
   return m ? limpiarTexto(m[1]) : '';
 }
 
-/** Convierte el texto XML de un feed RSS en noticias con el formato común. */
-function interpretarRss(xml, nombreFuente) {
-  const items = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) || [];
-  return items.map((item) => {
-    const enlace = etiqueta(item, 'link') || etiqueta(item, 'guid');
-    const fechaTexto = etiqueta(item, 'pubDate') || etiqueta(item, 'dc:date');
-    const fecha = fechaTexto && !isNaN(Date.parse(fechaTexto))
-      ? new Date(fechaTexto).toISOString().slice(0, 10)
-      : '';
+function enlaceAtom(xml) {
+  const alterno = xml.match(/<link[^>]*rel=["']alternate["'][^>]*href=["']([^"']+)["']/i) ||
+                  xml.match(/<link[^>]*href=["']([^"']+)["']/i);
+  return alterno ? alterno[1] : '';
+}
+
+function aFecha(texto) {
+  const t = Date.parse(texto);
+  return isNaN(t) ? '' : new Date(t).toISOString();
+}
+
+/**
+ * Convierte el XML de un feed (RSS o Atom) en noticias con el formato común.
+ * @param {string} xml
+ * @param {Object|string} medio  Objeto de fuentes-prestigio.js o solo el nombre.
+ */
+function interpretarRss(xml, medio) {
+  if (typeof medio === 'string') medio = { nombre: medio, especializado: true };
+  const bloques = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) || xml.match(/<entry[\s>][\s\S]*?<\/entry>/gi) || [];
+
+  return bloques.map((b) => {
+    const enlace = etiqueta(b, 'link') || enlaceAtom(b) || etiqueta(b, 'guid');
+    const titulo = etiqueta(b, 'title');
+    const resumen = recortar(etiqueta(b, 'description') || etiqueta(b, 'summary') || etiqueta(b, 'content'), 280);
     return {
-      id: idDesdeTexto('rss', enlace || etiqueta(item, 'title')),
+      id: idDesdeTexto('rss', enlace || titulo),
       tipo: 'noticia',
-      titulo: etiqueta(item, 'title'),
-      resumen: recortar(etiqueta(item, 'description'), 280),
-      autor: etiqueta(item, 'dc:creator') || nombreFuente,
-      fuente: nombreFuente,
-      fecha,
+      titulo,
+      resumen,
+      autor: etiqueta(b, 'dc:creator') || etiqueta(b, 'name') || medio.nombre,
+      fuente: medio.nombre,
+      tipoFuente: medio.tipoFuente || 'Medio de referencia',
+      idioma: medio.idioma || 'es',
+      fecha: aFecha(etiqueta(b, 'pubDate') || etiqueta(b, 'dc:date') || etiqueta(b, 'published') || etiqueta(b, 'updated')),
       enlace,
       descarga: null,
       etiquetas: [],
       origen: 'RSS'
     };
-  }).filter((n) => n.titulo && n.enlace);
+  })
+    .filter((n) => n.titulo && /^https?:\/\//.test(n.enlace))
+    .filter((n) => medio.especializado || Fuentes.esRelevante(n.titulo, n.resumen))
+    .slice(0, MAX_POR_MEDIO);
+}
+
+/** Lee todos los medios. Devuelve noticias y un informe de qué fuente respondió. */
+async function leerTodos(ms = config.tiempoEsperaMs) {
+  const resultados = await Promise.allSettled(
+    Fuentes.medios.map(async (medio) => {
+      const r = await traerConTiempo(medio.url, ms, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DiplomaciaGlobal/1.0)' }
+      });
+      return interpretarRss(await r.text(), medio);
+    })
+  );
+  const informe = resultados.map((r, i) => ({
+    fuente: Fuentes.medios[i].nombre,
+    ok: r.status === 'fulfilled',
+    cantidad: r.status === 'fulfilled' ? r.value.length : 0
+  }));
+  const noticias = resultados.filter((r) => r.status === 'fulfilled').flatMap((r) => r.value);
+  return { noticias, informe };
 }
 
 module.exports = {
-  nombre: 'Noticias RSS',
+  nombre: 'Noticias de prestigio',
   tipos: ['noticia'],
   interpretarRss,
+  leerTodos,
 
   async buscar() {
-    const resultados = await Promise.allSettled(
-      config.feedsNoticias.map(async (feed) => {
-        const r = await traerConTiempo(feed.url, config.tiempoEsperaMs);
-        return interpretarRss(await r.text(), feed.nombre);
-      })
-    );
-    const noticias = resultados.filter((r) => r.status === 'fulfilled').flatMap((r) => r.value);
-    if (!noticias.length && resultados.length) throw new Error('Ningún feed de noticias respondió');
+    const { noticias, informe } = await leerTodos();
+    if (!noticias.length && informe.length) throw new Error('Ningún medio respondió');
     return noticias;
   }
 };

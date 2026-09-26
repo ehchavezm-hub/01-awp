@@ -1,34 +1,52 @@
 /*
  * APLICACIÓN PRINCIPAL
- * Une todas las piezas: menú, buscador, filtros, voz, tamaño de letra y ayuda.
+ * Une todas las piezas: menú, buscador, novedades de la semana, filtros, voz,
+ * tamaño de letra y ayuda.
  */
 (function (DG) {
   'use strict';
 
   var $ = function (id) { return document.getElementById(id); };
   var SECCIONES = ['buscar', 'noticias', 'papers', 'libros'];
-  var TIPO_DE_SECCION = { noticias: 'noticia', papers: 'paper', libros: 'libro' };
+  var TIPO_DE_SECCION = { papers: 'paper', libros: 'libro' };
   var NOMBRE_TIPO = { todos: '', noticia: ' en Noticias', paper: ' en Papers', libro: ' en Libros' };
   var cargadas = {};
+  var vista = 'busqueda'; // 'busqueda' o 'semana': qué se muestra en la zona de resultados
 
   var acciones = {
     alDescargar: function () {
-      DG.Interfaz.avisar('¡Descarga iniciada con éxito! Encontrará el archivo en su carpeta «Descargas».');
+      DG.Interfaz.avisar(DG.Datos.hayServidor()
+        ? '¡Descarga iniciada con éxito! Encontrará el archivo en su carpeta «Descargas».'
+        : '¡Descarga iniciada con éxito! Si el documento se abre en una pestaña nueva, pulse el botón de descarga del navegador para guardarlo.');
     },
     alCompartir: function () {
       DG.Interfaz.avisar('Abriendo WhatsApp… elija a quién enviarlo.');
     }
   };
 
-  /* ------------------------ Avisos de las fuentes ------------------------ */
-  function mostrarAvisoModo(respuesta) {
+  /* ------------------------------ Utilidades ------------------------------ */
+  function tipoElegido() {
+    var marcado = document.querySelector('input[name="tipo"]:checked');
+    return marcado ? marcado.value : 'todos';
+  }
+
+  function idiomaElegido() {
+    var marcado = document.querySelector('input[name="idioma"]:checked');
+    return marcado ? marcado.value : 'todos';
+  }
+
+  function plural(n, uno, varios) { return n + ' ' + (n === 1 ? uno : varios); }
+
+  function fechaCorta(d) {
+    var meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+                 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    return d.getDate() + ' de ' + meses[d.getMonth()];
+  }
+
+  function mostrarAvisoServidor(respuesta) {
     var aviso = $('aviso-modo');
-    if (respuesta.modo === 'local') {
-      aviso.textContent = 'Está viendo el catálogo de demostración (sin conexión al servidor). Para ver noticias reales, inicie la aplicación con «npm start».';
-      aviso.hidden = false;
-    } else if (respuesta.avisos.length) {
-      aviso.textContent = 'Algunas fuentes de internet no respondieron en este momento. Le mostramos nuestro catálogo guardado; puede intentarlo de nuevo más tarde.';
-      aviso.title = respuesta.avisos.join(' '); // detalle técnico, para quien lo necesite
+    if (respuesta.avisos && respuesta.avisos.length) {
+      aviso.textContent = 'Algunas fuentes no respondieron en este momento. Le mostramos lo que tenemos guardado; puede intentarlo de nuevo más tarde.';
       aviso.hidden = false;
     } else {
       aviso.hidden = true;
@@ -36,12 +54,9 @@
   }
 
   /* ------------------------------ Búsqueda ------------------------------ */
-  function tipoElegido() {
-    var marcado = document.querySelector('input[name="tipo"]:checked');
-    return marcado ? marcado.value : 'todos';
-  }
-
   function buscar() {
+    vista = 'busqueda';
+    $('filtro-idioma').hidden = true;
     var consulta = $('caja-busqueda').value.trim();
     var tipo = tipoElegido();
     var lista = $('lista-buscar');
@@ -49,7 +64,7 @@
     DG.Interfaz.mostrarCargando(lista, estado);
 
     DG.Datos.buscar({ consulta: consulta, tipo: tipo }).then(function (r) {
-      mostrarAvisoModo(r);
+      mostrarAvisoServidor(r);
       var resultados = r.resultados;
       if (!consulta) {
         // Sin texto: se muestran solo los recomendados para no abrumar.
@@ -62,7 +77,7 @@
         mensaje = 'No encontramos resultados para «' + consulta + '»' + NOMBRE_TIPO[tipo] +
                   '. Pruebe con otras palabras, elija «Todos» o pulse uno de los temas sugeridos.';
       } else if (consulta) {
-        mensaje = 'Encontramos ' + n + (n === 1 ? ' resultado' : ' resultados') + ' para «' + consulta + '»' + NOMBRE_TIPO[tipo] + '.';
+        mensaje = 'Encontramos ' + plural(n, 'resultado', 'resultados') + ' para «' + consulta + '»' + NOMBRE_TIPO[tipo] + '.';
       } else {
         mensaje = 'Le recomendamos estos ' + n + ' documentos' + NOMBRE_TIPO[tipo] + ' para empezar. Escriba un tema para buscar otros.';
       }
@@ -70,20 +85,84 @@
     });
   }
 
+  /* ---------------------- Novedades de la última semana ---------------------- */
+  function verSemana() {
+    vista = 'semana';
+    $('filtro-idioma').hidden = false;
+    $('aviso-modo').hidden = true;
+    var consulta = $('caja-busqueda').value.trim();
+    var tipo = tipoElegido();
+    var lista = $('lista-buscar');
+    var estado = $('estado-buscar');
+    DG.Interfaz.mostrarCargando(lista, estado);
+    estado.textContent = 'Buscando las novedades de la última semana… un momento, por favor.';
+
+    DG.Datos.semana({ consulta: consulta, idioma: idiomaElegido() }).then(function (r) {
+      var resultados = r.resultados.filter(function (d) { return tipo === 'todos' || d.tipo === tipo; });
+      var sobre = consulta ? ' sobre «' + consulta + '»' : '';
+      var hasta = new Date();
+      var desde = new Date(hasta.getTime() - r.dias * 86400000);
+      var periodo = ' (del ' + fechaCorta(desde) + ' al ' + fechaCorta(hasta) + ')';
+      var mensaje;
+
+      if (!r.generado) {
+        mensaje = 'En este momento no podemos consultar las novedades. Por favor, inténtelo de nuevo en unos minutos.';
+      } else if (!resultados.length) {
+        mensaje = 'No encontramos novedades' + sobre + NOMBRE_TIPO[tipo] + ' en los últimos ' + r.dias + ' días. ' +
+                  (consulta ? 'Pruebe con otro tema, o borre la caja de búsqueda para ver todas las novedades.' : 'Elija «Todos» para ver más.');
+      } else {
+        var fuentes = {};
+        resultados.forEach(function (d) { fuentes[d.fuente] = true; });
+        mensaje = 'Novedades de los últimos ' + r.dias + ' días' + periodo + sobre + NOMBRE_TIPO[tipo] + ': ' +
+                  plural(resultados.length, 'publicación', 'publicaciones') + ' de ' +
+                  plural(Object.keys(fuentes).length, 'fuente de prestigio', 'fuentes de prestigio') + '. Las más recientes, primero.';
+      }
+      DG.Interfaz.mostrarResultados(lista, estado, resultados, mensaje, acciones);
+    });
+  }
+
+  function mostrarActualizacion() {
+    DG.Datos.semana().then(function (r) {
+      if (!r.generado) return;
+      var d = new Date(r.generado);
+      var hora = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+      var dia = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      $('pie-actualizado').textContent = 'Novedades actualizadas por última vez el ' +
+        DG.Interfaz.formatearFecha(dia) + ' a las ' + hora + '.';
+    });
+  }
+
+  /* ------------------------------ Secciones ------------------------------ */
+  function cargarNoticias() {
+    var lista = $('lista-noticias');
+    var estado = $('estado-noticias');
+    DG.Interfaz.mostrarCargando(lista, estado);
+    DG.Datos.semana().then(function (r) {
+      var noticias = r.resultados.filter(function (d) { return d.tipo === 'noticia'; });
+      if (noticias.length) {
+        DG.Interfaz.mostrarResultados(lista, estado, noticias,
+          plural(noticias.length, 'noticia', 'noticias') + ' de los últimos ' + r.dias + ' días. Las más recientes, primero.', acciones);
+        return;
+      }
+      // Sin conexión con las fuentes: se muestran textos explicativos de ejemplo.
+      var ejemplos = window.CATALOGO_DIPLOMACIA.filter(function (d) { return d.tipo === 'noticia'; });
+      DG.Interfaz.mostrarResultados(lista, estado, ejemplos,
+        'En este momento no podemos traer las noticias del día. Mientras tanto, le dejamos estos textos que explican temas de actualidad.', acciones);
+    });
+  }
+
   function cargarSeccion(seccion) {
     if (cargadas[seccion]) return;
+    cargadas[seccion] = true;
+    if (seccion === 'noticias') { cargarNoticias(); return; }
+
     var lista = $('lista-' + seccion);
     var estado = $('estado-' + seccion);
     DG.Interfaz.mostrarCargando(lista, estado);
     DG.Datos.buscar({ consulta: '', tipo: TIPO_DE_SECCION[seccion] }).then(function (r) {
-      mostrarAvisoModo(r);
-      var resultados = r.resultados;
-      if (seccion === 'libros') {
-        // Primero los destacados, luego el resto.
-        resultados = resultados.filter(function (d) { return d.destacado; })
-          .concat(resultados.filter(function (d) { return !d.destacado; }));
-      }
-      cargadas[seccion] = true;
+      // Primero los destacados, luego el resto.
+      var resultados = r.resultados.filter(function (d) { return d.destacado; })
+        .concat(r.resultados.filter(function (d) { return !d.destacado; }));
       DG.Interfaz.mostrarResultados(lista, estado, resultados, resultados.length + ' documentos disponibles.', acciones);
     });
   }
@@ -137,9 +216,17 @@
       buscar();
     });
 
-    // Al cambiar el filtro se repite la búsqueda automáticamente.
+    $('btn-semana').addEventListener('click', function () {
+      verSemana();
+      $('estado-buscar').scrollIntoView({ block: 'start' });
+    });
+
+    // Al cambiar un filtro se repite lo que se estaba viendo.
     document.querySelectorAll('input[name="tipo"]').forEach(function (radio) {
-      radio.addEventListener('change', buscar);
+      radio.addEventListener('change', function () { (vista === 'semana' ? verSemana : buscar)(); });
+    });
+    document.querySelectorAll('input[name="idioma"]').forEach(function (radio) {
+      radio.addEventListener('change', verSemana);
     });
 
     $('sugerencias').addEventListener('click', function (e) {
@@ -166,6 +253,7 @@
 
     window.addEventListener('hashchange', function () { mostrarSeccion(true); });
     mostrarSeccion(false);
+    mostrarActualizacion();
 
     // Al abrir la página, se muestran los destacados para que no aparezca vacía.
     buscar();

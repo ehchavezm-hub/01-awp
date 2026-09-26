@@ -8,7 +8,8 @@
     "start": "node servidor.js",
     "sin-internet": "node servidor.js --sin-internet",
     "test": "node --test pruebas/pruebas.test.js",
-    "css": "tailwindcss -i ./estilos-fuente/tailwind.css -o ./public/css/tailwind.css --minify"
+    "css": "tailwindcss -i ./estilos-fuente/tailwind.css -o ./public/css/tailwind.css --minify",
+    "actualizar": "node herramientas/actualizar-semana.js"
   },
   "engines": {
     "node": ">=18"

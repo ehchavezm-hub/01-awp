@@ -6,6 +6,10 @@ on:
       - main
   # Permite lanzar la publicación a mano desde la pestaña Actions.
   workflow_dispatch:
+  # Cada 4 horas: vuelve a publicar para actualizar las "Novedades de la última semana"
+  # de Diplomacia Global (https://ehchavezm-hub.github.io/01-awp/diplomacia/).
+  schedule:
+    - cron: "23 */4 * * *"
 
 permissions:
   contents: read
@@ -35,6 +39,23 @@ jobs:
 
       - name: Construir la web (falla si hay errores o enlaces rotos)
         run: mkdocs build --strict
+
+      # ---------- Diplomacia Global (aplicación en /diplomacia/) ----------
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Diplomacia Global — actualizar novedades de la última semana
+        # Si alguna fuente de noticias falla, se omite; nunca detiene la publicación.
+        continue-on-error: true
+        timeout-minutes: 5
+        run: node diplomacia-global/herramientas/actualizar-semana.js
+
+      - name: Diplomacia Global — copiar la aplicación a la web
+        run: |
+          mkdir -p site/diplomacia
+          cp -r diplomacia-global/public/. site/diplomacia/
 
       - name: Preparar la web para GitHub Pages
         uses: actions/upload-pages-artifact@v3

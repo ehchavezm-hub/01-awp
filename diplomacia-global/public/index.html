@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diplomacia Global — Buscador de noticias, estudios y libros</title>
-  <meta name="description" content="Buscador sencillo de noticias, estudios académicos y libros sobre diplomacia, relaciones internacionales y geopolítica.">
-  <meta name="theme-color" content="#0b2545">
+  <title>Diplomacia Global — Noticias, estudios y libros sobre diplomacia</title>
+  <meta name="description" content="Buscador sencillo de noticias, estudios académicos y libros sobre diplomacia, relaciones internacionales y geopolítica, solo de fuentes de prestigio.">
+  <meta name="theme-color" content="#990F3D">
   <link rel="icon" href="img/icono.svg" type="image/svg+xml">
 
   <!-- Tailwind CSS ya compilado (no requiere internet). Ver "npm run css" en el README. -->
@@ -16,18 +16,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="bg-marfil text-tinta font-sans leading-relaxed">
+<body class="bg-papel text-pizarra font-sans leading-relaxed">
 
   <a href="#contenido" class="saltar-enlace">Saltar al contenido principal</a>
 
   <!-- ======================= ENCABEZADO ======================= -->
-  <header class="bg-marino text-white">
+  <header class="bg-clarete text-white">
     <div class="max-w-5xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between gap-4">
       <a href="#buscar" class="flex items-center gap-3 no-underline text-white rounded-lg">
         <img src="img/icono.svg" alt="" width="56" height="56" class="w-14 h-14">
         <span>
-          <span class="block text-3xl font-bold leading-tight">Diplomacia Global</span>
-          <span class="block text-lg text-blue-100">Noticias, estudios y libros sobre las relaciones entre países</span>
+          <span class="block text-3xl font-bold leading-tight titular">Diplomacia Global</span>
+          <span class="block text-lg text-papel">Noticias, estudios y libros sobre las relaciones entre países</span>
         </span>
       </a>
 
@@ -47,7 +47,7 @@
     </div>
 
     <!-- ======================= MENÚ PRINCIPAL ======================= -->
-    <nav aria-label="Menú principal" class="bg-marino-claro">
+    <nav aria-label="Menú principal" class="bg-pizarra">
       <ul class="max-w-5xl mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-4 gap-3">
         <li>
           <a href="#buscar" class="pestana" data-seccion="buscar">
@@ -83,11 +83,24 @@
 
     <!-- ======================= SECCIÓN: BUSCAR ======================= -->
     <section id="seccion-buscar" data-seccion="buscar" aria-labelledby="titulo-buscar">
-      <h1 id="titulo-buscar" class="text-4xl font-bold text-marino mb-2" tabindex="-1">¿Qué desea encontrar?</h1>
+      <h1 id="titulo-buscar" class="titular text-4xl font-bold text-clarete mb-2" tabindex="-1">¿Qué desea encontrar?</h1>
       <p class="text-xl mb-6">Escriba un tema, un país o el nombre de un autor y pulse el botón <strong>Buscar</strong>.</p>
 
-      <form id="formulario-busqueda" role="search" class="bg-white border-2 border-marino rounded-2xl p-5 md:p-8 shadow-sm" novalidate>
-        <label for="caja-busqueda" class="block text-2xl font-bold text-marino mb-3">Escriba aquí un país, tema o autor</label>
+      <!-- ============ NOVEDADES DE LA ÚLTIMA SEMANA ============ -->
+      <div class="caja-semana mb-8">
+        <div class="flex-1">
+          <h2 class="titular text-2xl font-bold text-pizarra">¿Qué pasó esta semana en el mundo?</h2>
+          <p class="text-lg mt-1">Lo más importante de los <strong>últimos 7 días</strong>, solo de fuentes de gran prestigio: la ONU, Foreign Affairs, BBC, El País y revistas académicas líderes.</p>
+          <p class="text-lg mt-1 text-gris">Si antes escribe un tema en la caja de búsqueda, le mostraremos solo las novedades sobre ese tema.</p>
+        </div>
+        <button type="button" id="btn-semana" class="boton boton-semana">
+          <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 15 2 2 4-4"/></svg>
+          Ver novedades de la última semana
+        </button>
+      </div>
+
+      <form id="formulario-busqueda" role="search" class="bg-white border-2 border-pizarra rounded-2xl p-5 md:p-8" novalidate>
+        <label for="caja-busqueda" class="block text-2xl font-bold text-pizarra mb-3">Escriba aquí un país, tema o autor</label>
         <div class="flex flex-col md:flex-row gap-3">
           <input id="caja-busqueda" name="q" type="search" autocomplete="off" enterkeyhint="search"
                  class="caja-busqueda flex-1"
@@ -98,7 +111,7 @@
             Buscar
           </button>
         </div>
-        <p id="ayuda-busqueda" class="text-lg mt-3">Puede escribir en español o en inglés. No importan las mayúsculas ni las tildes.</p>
+        <p id="ayuda-busqueda" class="text-lg mt-3 text-gris">Puede escribir en español o en inglés. No importan las mayúsculas ni las tildes.</p>
 
         <div class="mt-4 flex flex-wrap items-center gap-3">
           <button type="button" id="btn-voz" class="boton boton-secundario" aria-describedby="estado-voz">
@@ -109,7 +122,7 @@
         </div>
 
         <fieldset class="mt-6">
-          <legend class="text-2xl font-bold text-marino mb-3">¿Qué busca?</legend>
+          <legend class="text-2xl font-bold text-pizarra mb-3">¿Qué busca?</legend>
           <div class="flex flex-wrap gap-3">
             <label class="pastilla"><input type="radio" name="tipo" value="todos" checked><span>Todos</span></label>
             <label class="pastilla"><input type="radio" name="tipo" value="noticia"><span><span aria-hidden="true">📰</span> Noticias</span></label>
@@ -120,7 +133,7 @@
       </form>
 
       <div class="mt-6">
-        <p class="text-xl font-bold text-marino mb-3">¿No sabe por dónde empezar? Pulse un tema:</p>
+        <p class="text-xl font-bold text-pizarra mb-3">¿No sabe por dónde empezar? Pulse un tema:</p>
         <div class="flex flex-wrap gap-3" id="sugerencias">
           <button type="button" class="sugerencia">Guerra Fría</button>
           <button type="button" class="sugerencia">Tratados de Paz</button>
@@ -131,6 +144,15 @@
       </div>
 
       <div id="zona-resultados-buscar" class="mt-10">
+        <div id="filtro-idioma" class="mb-5" hidden>
+          <fieldset>
+            <legend class="text-xl font-bold text-pizarra mb-3">¿En qué idioma?</legend>
+            <div class="flex flex-wrap gap-3">
+              <label class="pastilla"><input type="radio" name="idioma" value="todos" checked><span>Todos los idiomas</span></label>
+              <label class="pastilla"><input type="radio" name="idioma" value="es"><span>Solo en español</span></label>
+            </div>
+          </fieldset>
+        </div>
         <p id="estado-buscar" class="estado-resultados" role="status" aria-live="polite"></p>
         <ol id="lista-buscar" class="lista-resultados" aria-labelledby="estado-buscar"></ol>
       </div>
@@ -138,33 +160,38 @@
 
     <!-- ======================= SECCIÓN: NOTICIAS ======================= -->
     <section id="seccion-noticias" data-seccion="noticias" aria-labelledby="titulo-noticias" hidden>
-      <h1 id="titulo-noticias" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Últimas Noticias</h1>
-      <p class="text-xl mb-6">Lo más reciente sobre diplomacia y relaciones entre países, de la más nueva a la más antigua.</p>
+      <h1 id="titulo-noticias" class="titular text-4xl font-bold text-clarete mb-2" tabindex="-1">Últimas Noticias</h1>
+      <p class="text-xl mb-6">Noticias de los últimos 7 días sobre diplomacia y relaciones entre países, de la más nueva a la más antigua. Solo de organismos internacionales y medios de referencia mundial.</p>
       <p id="estado-noticias" class="estado-resultados" role="status" aria-live="polite"></p>
       <ol id="lista-noticias" class="lista-resultados" aria-labelledby="titulo-noticias"></ol>
     </section>
 
     <!-- ======================= SECCIÓN: PAPERS ======================= -->
     <section id="seccion-papers" data-seccion="papers" aria-labelledby="titulo-papers" hidden>
-      <h1 id="titulo-papers" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Papers Académicos</h1>
-      <p class="text-xl mb-6">Estudios de universidades y documentos oficiales. Algunos se pueden descargar gratis.</p>
+      <h1 id="titulo-papers" class="titular text-4xl font-bold text-clarete mb-2" tabindex="-1">Papers Académicos</h1>
+      <p class="text-xl mb-6">Estudios de las revistas académicas más prestigiosas y documentos oficiales. Algunos se pueden descargar gratis.</p>
       <p id="estado-papers" class="estado-resultados" role="status" aria-live="polite"></p>
       <ol id="lista-papers" class="lista-resultados" aria-labelledby="titulo-papers"></ol>
     </section>
 
     <!-- ======================= SECCIÓN: LIBROS ======================= -->
     <section id="seccion-libros" data-seccion="libros" aria-labelledby="titulo-libros" hidden>
-      <h1 id="titulo-libros" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Libros Destacados</h1>
+      <h1 id="titulo-libros" class="titular text-4xl font-bold text-clarete mb-2" tabindex="-1">Libros Destacados</h1>
       <p class="text-xl mb-6">Obras clásicas y actuales para entender la diplomacia. Los libros antiguos de dominio público se pueden descargar.</p>
       <p id="estado-libros" class="estado-resultados" role="status" aria-live="polite"></p>
       <ol id="lista-libros" class="lista-resultados" aria-labelledby="titulo-libros"></ol>
     </section>
   </main>
 
-  <footer class="border-t-2 border-marino mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-8 text-lg space-y-2">
-      <p><strong>Diplomacia Global</strong> reúne información de fuentes públicas: Noticias ONU, Crossref (revistas académicas), Proyecto Gutenberg y la Oficina de Asuntos Jurídicos de la ONU.</p>
-      <p>Las tarjetas marcadas como <strong>«Contenido de ejemplo»</strong> son textos de demostración que explican un tema; no son noticias reales.</p>
+  <footer class="bg-papel-suave border-t-4 border-clarete mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-lg space-y-3">
+      <p class="titular text-xl font-bold text-clarete">Fuentes de prestigio que consultamos</p>
+      <p><strong>Organismos:</strong> Naciones Unidas (Noticias ONU). <strong>Análisis:</strong> Foreign Affairs, Foreign Policy, The Diplomat, International Crisis Group, Brookings.
+         <strong>Medios de referencia:</strong> BBC, El País, France 24, DW, The Guardian, The New York Times, Al Jazeera.
+         <strong>Revistas académicas:</strong> International Organization, International Security, World Politics, International Affairs y otras.
+         <strong>Documentos y libros:</strong> ONU (tratados oficiales) y Proyecto Gutenberg.</p>
+      <p class="text-gris">Las tarjetas marcadas <strong>«Contenido de ejemplo»</strong> solo aparecen si no hay conexión con las fuentes: explican un tema, no son noticias reales.</p>
+      <p id="pie-actualizado" class="text-gris"></p>
     </div>
   </footer>
 
@@ -173,15 +200,16 @@
 
   <!-- ======================= VENTANA DE AYUDA ======================= -->
   <dialog id="dialogo-ayuda" class="dialogo" aria-labelledby="titulo-ayuda">
-    <h2 id="titulo-ayuda" class="text-3xl font-bold text-marino mb-4">Cómo usar Diplomacia Global</h2>
+    <h2 id="titulo-ayuda" class="titular text-3xl font-bold text-clarete mb-4">Cómo usar Diplomacia Global</h2>
     <ol class="text-xl space-y-4 list-decimal pl-7">
       <li><strong>Escriba</strong> un tema en la caja grande (por ejemplo, «Guerra Fría») o pulse <strong>Buscar hablando</strong> y dígalo en voz alta.</li>
       <li>Si quiere, elija <strong>qué busca</strong>: noticias, papers o libros.</li>
       <li>Pulse el botón azul <strong>Buscar</strong>.</li>
+      <li>¿Quiere saber qué pasó en los últimos días? Pulse el botón amarillo <strong>Ver novedades de la última semana</strong>.</li>
       <li>En cada resultado puede:
         <ul class="list-disc pl-7 mt-2 space-y-1">
           <li><strong>Visitar enlace original</strong>: abre la página de origen en una pestaña nueva.</li>
-          <li><strong>Descargar documento</strong>: guarda el archivo en su carpeta «Descargas».</li>
+          <li><strong>Descargar documento</strong>: guarda el archivo en su equipo.</li>
           <li><strong>Compartir por WhatsApp</strong>: envía el enlace a un familiar o amigo.</li>
         </ul>
       </li>
@@ -194,6 +222,8 @@
 
   <!-- Datos y lógica (archivos separados, en este orden). -->
   <script src="datos/catalogo.js"></script>
+  <script src="js/fuentes-prestigio.js"></script>
+  <script src="js/crossref.js"></script>
   <script src="js/motor-busqueda.js"></script>
   <script src="js/servicio-datos.js"></script>
   <script src="js/interfaz.js"></script>

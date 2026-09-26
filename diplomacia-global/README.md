@@ -5,12 +5,32 @@ diplomacia, relaciones internacionales y geopolítica.
 Está pensado para personas mayores y para quien no tiene mucha experiencia con la tecnología:
 letra grande, alto contraste, botones amplios y todo a un máximo de dos clics.
 
+## 🔗 Enlace para compartir
+
+> **https://ehchavezm-hub.github.io/01-awp/diplomacia/**
+
+Este es el enlace que se envía a las personas usuarias (por WhatsApp, correo, etc.).
+No necesitan instalar ni configurar nada: lo abren en el navegador del celular o la computadora
+y ya pueden usarla.
+
+**Cómo se mantiene al día (automático):**
+
+1. La aplicación se publica con **GitHub Pages**, junto a la web de este repositorio
+   (flujo `.github/workflows/publicar-web.yml`).
+2. **Cada 4 horas**, GitHub Actions consulta las fuentes de prestigio, guarda las novedades de
+   la última semana en `public/datos/ultima-semana.json` y vuelve a publicar la página.
+3. Cada vez que se fusiona un cambio en la rama `main`, también se vuelve a publicar.
+
+Para forzar una actualización a mano: pestaña **Actions** del repositorio →
+**Publicar web en GitHub Pages** → **Run workflow**.
+
 ---
 
 ## ✨ Qué puede hacer
 
 | Función | Cómo se usa |
 |---|---|
+| 📅 **Novedades de la última semana** | Botón amarillo al comienzo de la página. Muestra lo publicado en los últimos 7 días **solo por fuentes de gran prestigio**, de lo más nuevo a lo más antiguo. Si antes se escribe un tema, muestra solo las novedades sobre ese tema. Se puede elegir «Solo en español». |
 | 🔍 **Buscar** | Escriba un tema, país o autor en la caja grande y pulse **Buscar**. No importan mayúsculas ni tildes, y entiende español e inglés («ONU» = «United Nations»). |
 | 🎙️ **Buscar hablando** | Pulse el botón del micrófono y diga lo que busca (Chrome, Edge o Safari). |
 | 🏷️ **Filtros** | Botones grandes: *Todos*, *Noticias*, *Papers / Investigaciones*, *Libros*. |
@@ -20,22 +40,33 @@ letra grande, alto contraste, botones amplios y todo a un máximo de dos clics.
 | 🔠 **A+ / A−** | Agranda o achica toda la letra (se recuerda para la próxima visita). |
 | 📚 **Mi biblioteca** | Busca **dentro** de sus propios libros (.md o .txt) y muestra el párrafo y el capítulo. |
 
-### De dónde salen los datos
+### Solo fuentes de prestigio
 
-| Fuente | Qué aporta | ¿Necesita internet? |
-|---|---|---|
-| **Catálogo local** (`public/datos/catalogo.js`) | Libros clásicos y actuales, papers fundamentales, tratados de la ONU (PDF) y noticias **de ejemplo** | No |
-| **Noticias ONU (RSS)** | Titulares reales y recientes, en español | Sí |
-| **Crossref** (API gratuita) | Millones de artículos académicos reales | Sí |
-| **Mi biblioteca** (carpeta `biblioteca/`) | Fragmentos de sus propios libros | No |
+La lista completa está en **`public/js/fuentes-prestigio.js`** (para añadir o quitar una fuente,
+se edita solo ese archivo).
 
-> Si internet falla, la aplicación **nunca queda en blanco**: muestra el catálogo local y un aviso amable.
-> Las tarjetas marcadas **«Contenido de ejemplo»** son textos de demostración, no noticias reales;
-> desaparecen en cuanto llegan titulares reales de Noticias ONU.
+| Tipo | Fuentes |
+|---|---|
+| **Organismos internacionales** | Noticias ONU (español), UN News — Paz y seguridad |
+| **Revistas y centros de análisis** | Foreign Affairs, Foreign Policy, The Diplomat, International Crisis Group, Brookings Institution |
+| **Medios de referencia mundial** | BBC Mundo, El País, France 24, DW, BBC News, The Guardian, The New York Times, Al Jazeera |
+| **Revistas académicas** (vía Crossref) | International Organization, International Security, World Politics, Foreign Affairs, International Affairs, International Studies Quarterly, Journal of Conflict Resolution, Journal of Peace Research, European Journal of International Relations, Review of International Studies, Survival, Diplomacy & Statecraft, The Hague Journal of Diplomacy |
+| **Documentos y libros** (catálogo) | Tratados oficiales de la ONU, Proyecto Gutenberg y obras clásicas de referencia |
+
+De los **medios generales** (BBC, El País, NYT…) solo se toman las noticias que tratan temas
+diplomáticos o internacionales (cumbres, tratados, sanciones, ONU, OTAN, conflictos…). Los
+organismos y revistas especializadas se incluyen completos.
+
+> Si ninguna fuente responde, la aplicación **nunca queda en blanco**: muestra el catálogo y un
+> mensaje amable. Las tarjetas **«Contenido de ejemplo»** (textos que explican un tema, no
+> noticias reales) solo aparecen en ese caso.
 
 ---
 
 ## 🚀 Cómo probarla en su computadora (paso a paso)
+
+> Esta parte es solo para quien quiera modificar la aplicación. Las personas usuarias solo
+> necesitan el enlace de arriba.
 
 ### Opción A — La más rápida (sin instalar nada)
 
@@ -132,16 +163,19 @@ diplomacia-global/
 ├── README.md                     ← Este archivo
 ├── package.json                  ← Comandos: npm start, npm test, npm run css
 ├── servidor.js                   ← Servidor web (Node.js, sin dependencias)
+├── herramientas/
+│   └── actualizar-semana.js      ← Genera las novedades de la semana (lo usa GitHub Actions)
 ├── tailwind.config.js            ← Colores y fuente de Tailwind CSS
 ├── estilos-fuente/
 │   └── tailwind.css              ← Entrada de Tailwind (solo para regenerar el CSS)
 ├── servidor/
 │   ├── config.js                 ← Ajustes: puerto, fuentes en vivo, feeds RSS…
 │   ├── buscador.js               ← Combina todas las fuentes, quita duplicados y ordena
+│   ├── semana.js                 ← Novedades de los últimos 7 días
 │   └── fuentes/                  ← Un archivo por cada origen de datos
 │       ├── catalogo-local.js
-│       ├── noticias-rss.js       ← Noticias ONU (y cualquier otro feed RSS)
-│       ├── crossref.js           ← Papers académicos reales
+│       ├── noticias-rss.js       ← Noticias de los medios de prestigio (RSS y Atom)
+│       ├── crossref.js           ← Papers de revistas de prestigio
 │       ├── biblioteca-personal.js← Búsqueda dentro de sus libros
 │       └── utilidades.js
 ├── public/                       ← Lo que ve la persona usuaria
@@ -149,11 +183,15 @@ diplomacia-global/
 │   ├── css/
 │   │   ├── tailwind.css          ← Tailwind ya compilado (no requiere internet)
 │   │   └── estilos.css           ← Estilos de accesibilidad propios
-│   ├── datos/catalogo.js         ← Catálogo de demostración (editable)
+│   ├── datos/
+│   │   ├── catalogo.js           ← Catálogo de libros, papers y documentos (editable)
+│   │   └── ultima-semana.json    ← Novedades de la semana (lo rellena GitHub Actions)
 │   ├── img/icono.svg
 │   └── js/
+│       ├── fuentes-prestigio.js  ← ⭐ Lista de fuentes de prestigio (editable)
+│       ├── crossref.js           ← Consulta de revistas académicas (navegador y servidor)
 │       ├── motor-busqueda.js     ← Búsqueda sin tildes, con sinónimos (navegador y servidor)
-│       ├── servicio-datos.js     ← Pide datos al servidor o usa el catálogo local
+│       ├── servicio-datos.js     ← Obtiene los datos (servidor, web publicada o archivo)
 │       ├── interfaz.js           ← Dibuja las tarjetas y los avisos
 │       ├── voz.js                ← Búsqueda por voz
 │       └── app.js                ← Une todo: menú, filtros, letra, ayuda
@@ -161,7 +199,7 @@ diplomacia-global/
 │   ├── LEEME.md
 │   └── libros.json
 └── pruebas/
-    └── pruebas.test.js           ← 18 pruebas automáticas (npm test)
+    └── pruebas.test.js           ← 25 pruebas automáticas (npm test)
 ```
 
 ---
@@ -206,28 +244,48 @@ Google Scholar no ofrece una API pública oficial.
 
 ---
 
+## 🎨 Colores (plantilla «dip_ppt»)
+
+Se usa la paleta editorial de la plantilla (estilo Financial Times), comprobando que cada
+combinación cumpla el contraste WCAG AA:
+
+| Uso | Color | Contraste |
+|---|---|---|
+| Fondo de página | FT Pink `#FFF1E5` | — |
+| Texto principal | Slate Black `#33302E` | 11,8 : 1 sobre el fondo |
+| Cabecera y titulares | FT Claret `#990F3D` | 8,4 : 1 con texto blanco |
+| Menú | Slate Black `#33302E` | 13,1 : 1 con texto blanco |
+| Botón «Buscar» y enlaces | Oxford Blue `#0F5499` | 7,6 : 1 con texto blanco |
+| Botón «Novedades de la semana» | Saffron `#F2AF26` | 6,8 : 1 con texto Slate |
+| Fondos suaves | FT Pink Light `#F2E9DC` | — |
+| Texto secundario | Gray Dark FT `#66605A` | 5,6 : 1 sobre el fondo |
+| Descargas | FT Green, tono oscuro `#007A3D` | 5,5 : 1 con texto blanco |
+| Papers / análisis | Purple Opinion `#593380` | 7,9 : 1 sobre Pink Light |
+
+El **Gray FT `#A8A49D`** de la plantilla no se usa para texto: sobre el fondo rosado solo alcanza
+2,2 : 1. En su lugar se usa Gray Dark FT. Los titulares van en letra con serifa (Georgia), como
+en la plantilla; el texto, en Atkinson Hyperlegible.
+
 ## ♿ Accesibilidad (WCAG 2.1 AA)
 
 - Texto base de **18 px**, ampliable hasta 27 px con **A+**. Títulos de tarjeta de ~29 px.
-- Contraste de **14,9:1** en el texto principal (azul marino `#0b2545` sobre marfil `#fdfbf5`);
-  todos los botones y etiquetas superan **7:1**.
+- Todo el texto supera **5 : 1** de contraste (el mínimo exigido es 4,5 : 1); los botones, **6,8 : 1**.
 - Botones y enlaces de **56 px** de alto como mínimo (se comprobó que ninguno baja de 44 px, en
   escritorio ni en celular).
 - Iconos **siempre acompañados de texto**.
-- Contorno de foco ámbar de 4 px para quien navega con teclado; enlace «Saltar al contenido».
+- Contorno de foco de 4 px para quien navega con teclado; enlace «Saltar al contenido».
 - Resultados y avisos anunciados a lectores de pantalla (`aria-live`); al cambiar de pestaña, el
   foco pasa al título de la sección.
+- Resultados de **10 en 10** con un botón grande «Ver 10 resultados más», para no abrumar.
 - Filtros hechos con botones de opción reales (se manejan con el teclado y el lector de pantalla).
 - Respeta «reducir movimiento» del sistema y el modo de alto contraste de Windows.
-- Fuente **Atkinson Hyperlegible**, creada para personas con baja visión (si no hay internet, se usa Verdana).
 - Sin desplazamiento horizontal en celulares (probado a 390 px de ancho).
-
----
 
 ## 🧪 Para desarrolladores
 
 ```bash
-npm test          # 18 pruebas: catálogo, motor de búsqueda, fuentes, servidor y descargas
+npm test          # 25 pruebas: catálogo, búsqueda, fuentes de prestigio, novedades, servidor y descargas
+npm run actualizar  # genera public/datos/ultima-semana.json (necesita internet)
 npm install       # solo si va a cambiar clases de Tailwind…
 npm run css       # …y regenerar public/css/tailwind.css
 ```
@@ -236,7 +294,7 @@ npm run css       # …y regenerar public/css/tailwind.css
 documentos del catálogo o resultados ya mostrados (no es un proxy abierto); todo el texto
 externo se inserta con `textContent`, nunca como HTML.
 
-**Pendiente de comprobar con conexión:** los conectores de Noticias ONU y Crossref se probaron
-con datos simulados. El entorno donde se construyó no tenía acceso a internet, así que tampoco
-se comprobaron los enlaces externos del catálogo (Gutenberg, ONU, DOI). Conviene revisarlos una
-vez con `npm start`.
+**Pendiente de comprobar con conexión:** las fuentes externas (RSS de los medios, Crossref) se
+probaron con datos simulados, porque el entorno donde se construyó no tenía acceso a internet.
+La primera ejecución de GitHub Actions mostrará en su registro qué fuentes respondieron
+(✔ / ✘); si alguna dirección RSS cambió, basta corregirla en `public/js/fuentes-prestigio.js`.

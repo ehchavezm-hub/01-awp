@@ -50,6 +50,15 @@
     return String(anio || fecha);
   }
 
+  /** Para noticias recientes: "hoy", "ayer" o "hace 3 días". */
+  function haceCuanto(fecha, ahora) {
+    var t = Date.parse(fecha);
+    if (isNaN(t) || !/^\d{4}-\d{2}-\d{2}T/.test(fecha)) return '';
+    var dias = Math.floor(((ahora || new Date()) - t) / 86400000);
+    if (dias < 0 || dias > 13) return '';
+    return dias === 0 ? 'hoy' : dias === 1 ? 'ayer' : 'hace ' + dias + ' días';
+  }
+
   function dato(lista, nombre, valor) {
     var fila = crear('div');
     fila.appendChild(crear('dt', null, nombre + ': '));
@@ -86,7 +95,10 @@
     etiqueta.appendChild(document.createTextNode(doc.fragmento ? tipo.nombre + ' · Fragmento de mi biblioteca' : tipo.nombre));
     cabecera.appendChild(etiqueta);
     if (doc.ejemplo) cabecera.appendChild(crear('span', 'etiqueta-ejemplo', 'Contenido de ejemplo'));
-    if (doc.descarga) cabecera.appendChild(crear('span', 'etiqueta-tipo', 'Acceso libre ✓')).setAttribute('data-tipo', 'paper');
+    var cuando = haceCuanto(doc.fecha);
+    if (cuando) cabecera.appendChild(crear('span', 'etiqueta-extra', 'Publicado ' + cuando)).setAttribute('data-clase', 'nuevo');
+    if (doc.idioma === 'en') cabecera.appendChild(crear('span', 'etiqueta-extra', 'En inglés'));
+    if (doc.descarga) cabecera.appendChild(crear('span', 'etiqueta-extra', 'Acceso libre ✓')).setAttribute('data-clase', 'libre');
     tarjeta.appendChild(cabecera);
 
     // Título
@@ -104,8 +116,9 @@
 
     // Datos
     var datos = crear('dl', 'datos-tarjeta');
-    dato(datos, 'Autor', doc.autor || 'No indicado');
-    dato(datos, doc.ejemplo ? 'Enlace a' : 'Fuente', doc.fuente || 'No indicada');
+    if (doc.autor !== doc.fuente) dato(datos, 'Autor', doc.autor || 'No indicado');
+    dato(datos, doc.ejemplo ? 'Enlace a' : 'Fuente',
+      (doc.fuente || 'No indicada') + (doc.tipoFuente ? ' (' + doc.tipoFuente.toLowerCase() + ')' : ''));
     if (doc.fragmento) dato(datos, 'Ubicación', doc.ubicacion);
     else dato(datos, 'Fecha', formatearFecha(doc.fecha));
     tarjeta.appendChild(datos);
@@ -137,7 +150,7 @@
       descargar.appendChild(document.createTextNode('Descargar documento (' + doc.descarga.formato + ')'));
       descargar.addEventListener('click', function () { acciones.alDescargar(doc); });
       botones.appendChild(descargar);
-    } else if (!doc.fragmento) {
+    } else if (!doc.fragmento && doc.tipo !== 'noticia') {
       var nota = crear('p', 'nota-sin-descarga');
       nota.appendChild(icono('info'));
       nota.appendChild(document.createTextNode('No es de descarga libre. Puede leerlo en el enlace original.'));
@@ -159,18 +172,55 @@
     return item;
   }
 
-  /** Muestra la lista de resultados y un mensaje de estado. */
+  var POR_PAGINA = 10;
+
+  function quitarVerMas(lista) {
+    var siguiente = lista.nextElementSibling;
+    if (siguiente && siguiente.classList.contains('boton-ver-mas')) siguiente.remove();
+  }
+
+  /**
+   * Muestra la lista de resultados (de 10 en 10, para no abrumar) y un mensaje de estado.
+   */
   function mostrarResultados(lista, estado, resultados, mensaje, acciones) {
     lista.replaceChildren();
+    quitarVerMas(lista);
     estado.classList.remove('cargando');
     estado.textContent = mensaje;
-    var fragmento = document.createDocumentFragment();
-    resultados.forEach(function (doc) { fragmento.appendChild(crearTarjeta(doc, acciones)); });
-    lista.appendChild(fragmento);
+    var mostrados = 0;
+
+    function mostrarMas() {
+      var fragmento = document.createDocumentFragment();
+      var primeraNueva = null;
+      resultados.slice(mostrados, mostrados + POR_PAGINA).forEach(function (doc) {
+        var tarjeta = crearTarjeta(doc, acciones);
+        if (!primeraNueva) primeraNueva = tarjeta;
+        fragmento.appendChild(tarjeta);
+      });
+      mostrados = Math.min(resultados.length, mostrados + POR_PAGINA);
+      lista.appendChild(fragmento);
+      quitarVerMas(lista);
+      if (mostrados < resultados.length) {
+        var boton = crear('button', 'boton boton-ver-mas');
+        boton.type = 'button';
+        var restantes = resultados.length - mostrados;
+        boton.textContent = 'Ver ' + Math.min(POR_PAGINA, restantes) + ' resultados más (quedan ' + restantes + ')';
+        boton.addEventListener('click', function () {
+          var siguiente = mostrarMas();
+          // Se lleva el foco al primer resultado nuevo, para seguir leyendo desde ahí.
+          var titulo = siguiente && siguiente.querySelector('h2');
+          if (titulo) { titulo.setAttribute('tabindex', '-1'); titulo.focus(); }
+        });
+        lista.after(boton);
+      }
+      return primeraNueva;
+    }
+    mostrarMas();
   }
 
   function mostrarCargando(lista, estado) {
     lista.replaceChildren();
+    quitarVerMas(lista);
     estado.textContent = 'Buscando… un momento, por favor.';
     estado.classList.add('cargando');
   }
@@ -191,6 +241,7 @@
     mostrarResultados: mostrarResultados,
     mostrarCargando: mostrarCargando,
     avisar: avisar,
-    formatearFecha: formatearFecha
+    formatearFecha: formatearFecha,
+    haceCuanto: haceCuanto
   };
 })(window.DG = window.DG || {});

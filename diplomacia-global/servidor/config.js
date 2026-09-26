@@ -27,10 +27,7 @@ module.exports = {
   // Correo opcional para Crossref (recomendado por ellos; da un servicio más estable).
   correoCrossref: process.env.CORREO_CROSSREF || '',
 
-  // Noticias por RSS. Puede agregar más: { nombre, url }.
-  feedsNoticias: [
-    { nombre: 'Noticias ONU', url: 'https://news.un.org/feed/subscribe/es/news/all/rss.xml' }
-  ],
+  // Las fuentes de noticias y revistas están en public/js/fuentes-prestigio.js
 
   // Carpetas
   carpetaPublica: path.join(__dirname, '..', 'public'),
