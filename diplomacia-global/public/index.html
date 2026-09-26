@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diplomacia Global — Buscador de noticias, estudios y libros</title>
+  <meta name="description" content="Buscador sencillo de noticias, estudios académicos y libros sobre diplomacia, relaciones internacionales y geopolítica.">
+  <meta name="theme-color" content="#0b2545">
+  <link rel="icon" href="img/icono.svg" type="image/svg+xml">
+
+  <!-- Tailwind CSS ya compilado (no requiere internet). Ver "npm run css" en el README. -->
+  <link rel="stylesheet" href="css/tailwind.css">
+  <!-- Fuente diseñada para personas con baja visión (si no carga, se usa Verdana). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="bg-marfil text-tinta font-sans leading-relaxed">
+
+  <a href="#contenido" class="saltar-enlace">Saltar al contenido principal</a>
+
+  <!-- ======================= ENCABEZADO ======================= -->
+  <header class="bg-marino text-white">
+    <div class="max-w-5xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between gap-4">
+      <a href="#buscar" class="flex items-center gap-3 no-underline text-white rounded-lg">
+        <img src="img/icono.svg" alt="" width="56" height="56" class="w-14 h-14">
+        <span>
+          <span class="block text-3xl font-bold leading-tight">Diplomacia Global</span>
+          <span class="block text-lg text-blue-100">Noticias, estudios y libros sobre las relaciones entre países</span>
+        </span>
+      </a>
+
+      <div class="w-full md:w-auto flex flex-wrap items-center gap-3" role="group" aria-label="Opciones de lectura">
+        <span class="w-full sm:w-auto text-lg" id="etiqueta-tamano">Tamaño del texto:</span>
+        <button type="button" id="btn-letra-menos" class="boton-cabecera" aria-describedby="etiqueta-tamano">
+          <span aria-hidden="true" class="text-xl">A−</span><span class="sr-only">Letra más pequeña</span>
+        </button>
+        <button type="button" id="btn-letra-mas" class="boton-cabecera" aria-describedby="etiqueta-tamano">
+          <span aria-hidden="true" class="text-2xl">A+</span><span class="sr-only">Letra más grande</span>
+        </button>
+        <button type="button" id="btn-ayuda" class="boton-cabecera gap-2">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          Ayuda
+        </button>
+      </div>
+    </div>
+
+    <!-- ======================= MENÚ PRINCIPAL ======================= -->
+    <nav aria-label="Menú principal" class="bg-marino-claro">
+      <ul class="max-w-5xl mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <li>
+          <a href="#buscar" class="pestana" data-seccion="buscar">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Buscar</span>
+          </a>
+        </li>
+        <li>
+          <a href="#noticias" class="pestana" data-seccion="noticias">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+            <span>Últimas Noticias</span>
+          </a>
+        </li>
+        <li>
+          <a href="#papers" class="pestana" data-seccion="papers">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
+            <span>Papers Académicos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#libros" class="pestana" data-seccion="libros">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+            <span>Libros Destacados</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" class="max-w-5xl mx-auto px-4 py-8" tabindex="-1">
+
+    <p id="aviso-modo" class="aviso-info mb-6" hidden></p>
+
+    <!-- ======================= SECCIÓN: BUSCAR ======================= -->
+    <section id="seccion-buscar" data-seccion="buscar" aria-labelledby="titulo-buscar">
+      <h1 id="titulo-buscar" class="text-4xl font-bold text-marino mb-2" tabindex="-1">¿Qué desea encontrar?</h1>
+      <p class="text-xl mb-6">Escriba un tema, un país o el nombre de un autor y pulse el botón <strong>Buscar</strong>.</p>
+
+      <form id="formulario-busqueda" role="search" class="bg-white border-2 border-marino rounded-2xl p-5 md:p-8 shadow-sm" novalidate>
+        <label for="caja-busqueda" class="block text-2xl font-bold text-marino mb-3">Escriba aquí un país, tema o autor</label>
+        <div class="flex flex-col md:flex-row gap-3">
+          <input id="caja-busqueda" name="q" type="search" autocomplete="off" enterkeyhint="search"
+                 class="caja-busqueda flex-1"
+                 placeholder="Por ejemplo: Guerra Fría o Tratados de Paz"
+                 aria-describedby="ayuda-busqueda">
+          <button type="submit" class="boton boton-principal text-2xl px-8">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            Buscar
+          </button>
+        </div>
+        <p id="ayuda-busqueda" class="text-lg mt-3">Puede escribir en español o en inglés. No importan las mayúsculas ni las tildes.</p>
+
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <button type="button" id="btn-voz" class="boton boton-secundario" aria-describedby="estado-voz">
+            <svg class="icono-grande" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>
+            <span id="texto-btn-voz">Buscar hablando</span>
+          </button>
+          <span id="estado-voz" class="text-lg" aria-live="polite"></span>
+        </div>
+
+        <fieldset class="mt-6">
+          <legend class="text-2xl font-bold text-marino mb-3">¿Qué busca?</legend>
+          <div class="flex flex-wrap gap-3">
+            <label class="pastilla"><input type="radio" name="tipo" value="todos" checked><span>Todos</span></label>
+            <label class="pastilla"><input type="radio" name="tipo" value="noticia"><span><span aria-hidden="true">📰</span> Noticias</span></label>
+            <label class="pastilla"><input type="radio" name="tipo" value="paper"><span><span aria-hidden="true">📄</span> Papers / Investigaciones</span></label>
+            <label class="pastilla"><input type="radio" name="tipo" value="libro"><span><span aria-hidden="true">📘</span> Libros</span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="mt-6">
+        <p class="text-xl font-bold text-marino mb-3">¿No sabe por dónde empezar? Pulse un tema:</p>
+        <div class="flex flex-wrap gap-3" id="sugerencias">
+          <button type="button" class="sugerencia">Guerra Fría</button>
+          <button type="button" class="sugerencia">Tratados de Paz</button>
+          <button type="button" class="sugerencia">Naciones Unidas</button>
+          <button type="button" class="sugerencia">Negociación</button>
+          <button type="button" class="sugerencia">Embajadas</button>
+        </div>
+      </div>
+
+      <div id="zona-resultados-buscar" class="mt-10">
+        <p id="estado-buscar" class="estado-resultados" role="status" aria-live="polite"></p>
+        <ol id="lista-buscar" class="lista-resultados" aria-labelledby="estado-buscar"></ol>
+      </div>
+    </section>
+
+    <!-- ======================= SECCIÓN: NOTICIAS ======================= -->
+    <section id="seccion-noticias" data-seccion="noticias" aria-labelledby="titulo-noticias" hidden>
+      <h1 id="titulo-noticias" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Últimas Noticias</h1>
+      <p class="text-xl mb-6">Lo más reciente sobre diplomacia y relaciones entre países, de la más nueva a la más antigua.</p>
+      <p id="estado-noticias" class="estado-resultados" role="status" aria-live="polite"></p>
+      <ol id="lista-noticias" class="lista-resultados" aria-labelledby="titulo-noticias"></ol>
+    </section>
+
+    <!-- ======================= SECCIÓN: PAPERS ======================= -->
+    <section id="seccion-papers" data-seccion="papers" aria-labelledby="titulo-papers" hidden>
+      <h1 id="titulo-papers" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Papers Académicos</h1>
+      <p class="text-xl mb-6">Estudios de universidades y documentos oficiales. Algunos se pueden descargar gratis.</p>
+      <p id="estado-papers" class="estado-resultados" role="status" aria-live="polite"></p>
+      <ol id="lista-papers" class="lista-resultados" aria-labelledby="titulo-papers"></ol>
+    </section>
+
+    <!-- ======================= SECCIÓN: LIBROS ======================= -->
+    <section id="seccion-libros" data-seccion="libros" aria-labelledby="titulo-libros" hidden>
+      <h1 id="titulo-libros" class="text-4xl font-bold text-marino mb-2" tabindex="-1">Libros Destacados</h1>
+      <p class="text-xl mb-6">Obras clásicas y actuales para entender la diplomacia. Los libros antiguos de dominio público se pueden descargar.</p>
+      <p id="estado-libros" class="estado-resultados" role="status" aria-live="polite"></p>
+      <ol id="lista-libros" class="lista-resultados" aria-labelledby="titulo-libros"></ol>
+    </section>
+  </main>
+
+  <footer class="border-t-2 border-marino mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-lg space-y-2">
+      <p><strong>Diplomacia Global</strong> reúne información de fuentes públicas: Noticias ONU, Crossref (revistas académicas), Proyecto Gutenberg y la Oficina de Asuntos Jurídicos de la ONU.</p>
+      <p>Las tarjetas marcadas como <strong>«Contenido de ejemplo»</strong> son textos de demostración que explican un tema; no son noticias reales.</p>
+    </div>
+  </footer>
+
+  <!-- ======================= AVISO FLOTANTE ======================= -->
+  <div id="aviso" class="aviso-flotante" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <!-- ======================= VENTANA DE AYUDA ======================= -->
+  <dialog id="dialogo-ayuda" class="dialogo" aria-labelledby="titulo-ayuda">
+    <h2 id="titulo-ayuda" class="text-3xl font-bold text-marino mb-4">Cómo usar Diplomacia Global</h2>
+    <ol class="text-xl space-y-4 list-decimal pl-7">
+      <li><strong>Escriba</strong> un tema en la caja grande (por ejemplo, «Guerra Fría») o pulse <strong>Buscar hablando</strong> y dígalo en voz alta.</li>
+      <li>Si quiere, elija <strong>qué busca</strong>: noticias, papers o libros.</li>
+      <li>Pulse el botón azul <strong>Buscar</strong>.</li>
+      <li>En cada resultado puede:
+        <ul class="list-disc pl-7 mt-2 space-y-1">
+          <li><strong>Visitar enlace original</strong>: abre la página de origen en una pestaña nueva.</li>
+          <li><strong>Descargar documento</strong>: guarda el archivo en su carpeta «Descargas».</li>
+          <li><strong>Compartir por WhatsApp</strong>: envía el enlace a un familiar o amigo.</li>
+        </ul>
+      </li>
+      <li>¿Letra pequeña? Use los botones <strong>A+</strong> y <strong>A−</strong> de arriba.</li>
+    </ol>
+    <form method="dialog" class="mt-6">
+      <button class="boton boton-principal w-full md:w-auto">Entendido, cerrar la ayuda</button>
+    </form>
+  </dialog>
+
+  <!-- Datos y lógica (archivos separados, en este orden). -->
+  <script src="datos/catalogo.js"></script>
+  <script src="js/motor-busqueda.js"></script>
+  <script src="js/servicio-datos.js"></script>
+  <script src="js/interfaz.js"></script>
+  <script src="js/voz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

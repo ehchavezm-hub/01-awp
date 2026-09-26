@@ -1,0 +1,5 @@
+/* Archivo de entrada de Tailwind. El resultado se guarda en public/css/tailwind.css
+   Para regenerarlo tras cambiar clases en el HTML/JS:  npm install  y luego  npm run css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

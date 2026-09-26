@@ -1,0 +1,20 @@
+{
+  "name": "diplomacia-global",
+  "version": "1.0.0",
+  "description": "Buscador accesible de noticias, papers y libros sobre diplomacia y relaciones internacionales.",
+  "main": "servidor.js",
+  "private": true,
+  "scripts": {
+    "start": "node servidor.js",
+    "sin-internet": "node servidor.js --sin-internet",
+    "test": "node --test pruebas/pruebas.test.js",
+    "css": "tailwindcss -i ./estilos-fuente/tailwind.css -o ./public/css/tailwind.css --minify"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

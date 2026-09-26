@@ -1,0 +1,5 @@
+node_modules/
+# Los libros personales no se publican (derechos de autor)
+biblioteca/*
+!biblioteca/LEEME.md
+!biblioteca/libros.json
