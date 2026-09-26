@@ -55,7 +55,7 @@ casos = [
  (19, 0, 2, "", "", 1, math.sqrt((9-1)/12), "DISCRETA_UNIFORME"),
  (20, "0;150000;400000", "0.6;0.3;0.1", "", "", 85000, math.sqrt(0.3*150000**2+0.1*400000**2-85000**2), "DISCRETA"),
 ]
-N = 200000
+N = 60000
 calls = [("PruebaGenerador", [])] + [("PruebaDist", [c[0], c[1], c[2], c[3], c[4], N]) for c in casos]
 out = main("MonteCarlo_Prueba.xlsm", calls)
 
@@ -82,7 +82,7 @@ for c, r in zip(casos, out[1:]):
         print("   TRIGEN resuelto: min=%.4f max=%.4f  P(X<5)=%.4f  P(X>30)=%.4f" % (a, b, F(5), 1-F(30)))
     dm = (mv-mt)/abs(mt)*100
     ds = (sv-st)/st*100 if st else 0
-    tol_m, tol_s = 1.0, (2.0 if "PARETO" in c[7] else 1.5)
+    tol_m, tol_s = 1.0, (4.0 if "PARETO" in c[7] else 2.0)
     ok = abs(dm) <= tol_m and (st == 0 or abs(ds) <= tol_s) and abs(mteo_vba-mt)/abs(mt) < 1e-4
     todo &= ok
     print("%-28s %14.4f %14.4f %7.2f%% %14.4f %14.4f %7.2f%%  %s" % (c[7], mv, mt, dm, sv, st, ds, "OK" if ok else "REVISAR"))

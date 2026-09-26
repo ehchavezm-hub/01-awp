@@ -4,3 +4,4 @@ pruebas/salida_lo*.xlsx
 vbaProject.bin
 *.tmp
 .~lock.*
+pruebas/*.log
