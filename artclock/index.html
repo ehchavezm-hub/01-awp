@@ -1548,13 +1548,13 @@ const THEMES = {
 
   /* 8 ─────────────── MATISSE · Recortes ─────────────── */
   matisse: {
-    name: 'Matisse', artist: 'Henri Matisse', work: 'Polinesia, el mar · Papiers découpés, 1946', accent: '#ff9a3c',
-    sphere: 'radial-gradient(circle at 35% 35%,#e9e4d8 0 18%,#b5541c 19% 36%,#1b3a8a 37% 70%,#3a5fa8 71%)',
+    name: 'Matisse', artist: 'Henri Matisse', work: 'Polinesia, el mar · Papiers découpés, 1946', accent: '#d9953a',
+    sphere: 'radial-gradient(circle at 35% 35%,#ece6d6 0 18%,#b5741c 19% 36%,#1d2f55 37% 70%,#3a5680 71%)',
     init(A) {
       const { w, h } = A, S = this, m = Math.min(w, h);
       const bs = Math.max(120, m / 3.2); S.bc = Math.ceil(w / bs); S.br = Math.ceil(h / bs); S.bw = w / S.bc; S.bh = h / S.br;
       S.blocks = [];
-      for (let j = 0; j < S.br; j++) for (let i = 0; i < S.bc; i++) S.blocks.push({ i, j, c: Math.random() < .1 ? pick(['#f08a24', '#ef6f9a', '#2f9e6a']) : ((i + j) % 2 ? '#1b3fa0' : '#4a78d6') });
+      for (let j = 0; j < S.br; j++) for (let i = 0; i < S.bc; i++) S.blocks.push({ i, j, c: Math.random() < .12 ? pick(['#b5741c', '#4f6b4a', '#2a2a2e']) : ((i + j) % 2 ? '#1d2f55' : '#3a5680') });
       const gen = {
         algae() { const n = 7, pts = []; for (let k = 0; k < 64; k++) { const a = k / 64 * TAU, r = .5 + .5 * Math.pow(Math.abs(Math.sin(a * n / 2)), .7); pts.push([Math.cos(a) * r * .75, Math.sin(a) * r * 1.2]); } return pts; },
         star() { const pts = []; for (let k = 0; k < 10; k++) { const a = k / 10 * TAU - Math.PI / 2, r = k % 2 ? .38 : 1; pts.push([Math.cos(a) * r, Math.sin(a) * r]); } return pts; },
@@ -1566,9 +1566,9 @@ const THEMES = {
       S.shapes = S.blocks.flatMap(b => {
         const out = []; const n = Math.random() < .25 ? 2 : 1;
         for (let k = 0; k < n; k++) {
-          const ty = pick(types); const light = b.c === '#1b3fa0' || b.c === '#4a78d6';
+          const ty = pick(types); const light = b.c === '#1d2f55' || b.c === '#3a5680';
           out.push({ x: (b.i + .5) * S.bw + rand(-.2, .2) * S.bw, y: (b.j + .5) * S.bh + rand(-.2, .2) * S.bh, s: Math.min(S.bw, S.bh) * rand(.22, .36) * (ty === 'bird' ? .7 : 1), pts: gen[ty](), rot: rand(TAU), ph: rand(TAU),
-            c: light ? pick(['#fbf7ef', '#fbf7ef', '#fbf7ef', '#f7cf3a', '#ef6f9a', '#f08a24', '#111']) : pick(['#fbf7ef', '#1b3fa0', '#111']) });
+            c: light ? pick(['#ece6d6', '#ece6d6', '#ece6d6', '#c98a2e', '#9c4a2a', '#6b8a5a', '#161616']) : pick(['#ece6d6', '#1d2f55', '#161616']) });
         }
         return out;
       });
@@ -1576,7 +1576,7 @@ const THEMES = {
     frame(A) {
       const { ctx, w, h, t } = A, S = this;
       for (const b of S.blocks) { ctx.fillStyle = b.c; ctx.fillRect(Math.floor(b.i * S.bw), Math.floor(b.j * S.bh), Math.ceil(S.bw) + 1, Math.ceil(S.bh) + 1); }
-      ctx.strokeStyle = 'rgba(10,20,60,.12)'; ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(10,15,30,.18)'; ctx.lineWidth = 2;
       for (let i = 1; i < S.bc; i++) { ctx.beginPath(); ctx.moveTo(i * S.bw, 0); ctx.lineTo(i * S.bw, h); ctx.stroke(); }
       for (let j = 1; j < S.br; j++) { ctx.beginPath(); ctx.moveTo(0, j * S.bh); ctx.lineTo(w, j * S.bh); ctx.stroke(); }
       for (const s of S.shapes) {
@@ -1591,37 +1591,38 @@ const THEMES = {
 
   /* 9 ─────────────── WARHOL · Pop Art ─────────────── */
   warhol: {
-    name: 'Warhol', light: true, artist: 'Andy Warhol', work: 'Flowers · Pop Art serigráfico, 1964', accent: '#4fb3e8',
-    sphere: 'conic-gradient(#b0322a 0 25%,#c9a227 0 50%,#1f6fa8 0 75%,#2e6b45 0)',
+    name: 'Warhol', light: true, artist: 'Andy Warhol', work: 'Dollar Sign · Pop Art serigráfico, 1981', accent: '#e3b23c',
+    sphere: 'conic-gradient(#9e3b2a 0 25%,#d4a017 0 50%,#1f3a5f 0 75%,#4b5d2a 0)',
+    // Pares fondo / tinta en tonos sobrios; cada panel pasa de uno a otro
+    pals: [['#1f3a5f', '#d4a017'], ['#4b5d2a', '#e8dfc8'], ['#9e3b2a', '#1d1d1f'], ['#1f6f6f', '#d9772b'], ['#4a5563', '#e3c34a'], ['#222226', '#c0392b'], ['#3a6ea5', '#e8dfc8'], ['#b39b6b', '#1f3a5f']],
     init(A) {
       const { ctx, w, h } = A, S = this;
       const target = Math.max(170, Math.min(w, h) / 2.4);
       S.cols = Math.max(2, Math.round(w / target)); S.rows = Math.max(2, Math.round(h / target));
       S.cw = w / S.cols; S.ch = h / S.rows;
-      S.panels = Array.from({ length: S.cols * S.rows }, (_, i) => ({ hue: (i * 67) % 360, ph: rand(TAU), rot: rand(TAU) }));
+      S.panels = Array.from({ length: S.cols * S.rows }, (_, i) => ({ off: (i % S.cols + Math.floor(i / S.cols)) * .6 + rand(.3), ph: rand(TAU), rot: rand(-.2, .2) }));
+      S.pal = S.pals.map(p => p.map(hexToRgb));
       const pc = document.createElement('canvas'); pc.width = pc.height = 8; const p = pc.getContext('2d');
       p.fillStyle = '#000'; p.beginPath(); p.arc(4, 4, 1.4, 0, TAU); p.fill();
       S.pat = ctx.createPattern(pc, 'repeat');
     },
-    flower(ctx, x, y, r, rot, fill) {
-      ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-      const petals = () => { ctx.beginPath(); for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2; ctx.moveTo(Math.cos(a) * r * .55 + r * .5, Math.sin(a) * r * .55); ctx.arc(Math.cos(a) * r * .55, Math.sin(a) * r * .55, r * .5, 0, TAU); } };
-      ctx.translate(r * .08, r * .08); petals(); ctx.fillStyle = '#111'; ctx.fill(); ctx.translate(-r * .08, -r * .08);
-      petals(); ctx.fillStyle = fill; ctx.fill();
-      ctx.fillStyle = '#111'; ctx.beginPath(); ctx.arc(0, 0, r * .22, 0, TAU); ctx.fill();
-      ctx.restore();
-    },
+    mix(a, b, f) { return [lerp(a[0], b[0], f), lerp(a[1], b[1], f), lerp(a[2], b[2], f)]; },
     frame(A) {
-      const { ctx, w, h, t } = A, S = this;
+      const { ctx, w, h, t } = A, S = this, n = S.pal.length;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       S.panels.forEach((p, i) => {
-        const cx = i % S.cols, cy = Math.floor(i / S.cols), x = cx * S.cw, y = cy * S.ch;
-        const hue = (p.hue + t * 14) % 360;
-        ctx.fillStyle = `hsl(${hue},92%,56%)`; ctx.fillRect(x, y, S.cw + 1, S.ch + 1);
-        ctx.fillStyle = `hsl(${(hue + 40) % 360},85%,35%)`;
-        for (let k = 0; k < 7; k++) { ctx.fillRect(x + k * S.cw / 7 + S.cw * .03, y + S.ch * .7 + Math.sin(k * 2.1 + p.ph) * S.ch * .08, S.cw * .05, S.ch * .4); }
-        const r = Math.min(S.cw, S.ch) * .18, pulse = 1 + .06 * Math.sin(t * 2 + p.ph);
-        const cols = [`hsl(${(hue + 180) % 360},95%,60%)`, `hsl(${(hue + 120) % 360},95%,62%)`, `hsl(${(hue + 240) % 360},90%,65%)`, '#fff7e0'];
-        [[.3, .3], [.7, .32], [.32, .7], [.7, .68]].forEach(([fx, fy], k) => S.flower(ctx, x + fx * S.cw, y + fy * S.ch, r * pulse, p.rot + t * .6 * (k % 2 ? 1 : -1), cols[(k + i) % 4]));
+        const x = (i % S.cols) * S.cw, y = Math.floor(i / S.cols) * S.ch;
+        // Ola de color: cada panel cambia de par con un desfase diagonal
+        const k = t / 3.5 + p.off, i0 = Math.floor(k) % n, i1 = (i0 + 1) % n, f = clamp((k % 1 - .7) / .3, 0, 1);
+        const bg = S.mix(S.pal[i0][0], S.pal[i1][0], f), ink = S.mix(S.pal[i0][1], S.pal[i1][1], f);
+        ctx.fillStyle = rgba(bg, 1); ctx.fillRect(x, y, S.cw + 1, S.ch + 1);
+        // Signo de dólar serigrafiado con desfase de registro
+        const sz = Math.min(S.cw, S.ch) * .72 * (1 + .06 * Math.sin(t * 2 + p.ph)), mis = Math.min(S.cw, S.ch) * (.02 + .02 * Math.sin(t * 1.3 + p.ph));
+        ctx.save(); ctx.translate(x + S.cw / 2, y + S.ch / 2); ctx.rotate(p.rot + Math.sin(t * .8 + p.ph) * .12);
+        ctx.font = `800 ${sz}px 'Atkinson Hyperlegible',Georgia,serif`;
+        ctx.fillStyle = 'rgba(15,15,18,.85)'; ctx.fillText('$', mis, mis);
+        ctx.fillStyle = rgba(ink, 1); ctx.fillText('$', 0, 0);
+        ctx.restore();
       });
       ctx.globalAlpha = .12; ctx.fillStyle = S.pat; ctx.fillRect(0, 0, w, h); ctx.globalAlpha = 1;
       ctx.strokeStyle = '#111'; ctx.lineWidth = 4;
