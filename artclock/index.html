@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ffd23f'/%3E%3Ccircle cx='22' cy='24' r='7' fill='%23e63946'/%3E%3Ccircle cx='42' cy='22' r='6' fill='%233a86ff'/%3E%3Ccircle cx='40' cy='42' r='8' fill='%232a9d8f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
    1. TOKENS DE DISEÑO
@@ -25,8 +25,8 @@
   --card:rgba(10,14,28,var(--glass));
   --card-solid:rgba(12,16,30,.92);
   --good:#34d399; --warn:#fbbf24; --bad:#f87171;
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'Atkinson Hyperlegible Mono','Atkinson Hyperlegible',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1167,7 +1167,7 @@ const THEMES = {
   /* 1 ─────────────── MONDRIAN · Neoplasticismo ─────────────── */
   mondrian: {
     name: 'Mondrian', light: true, artist: 'Piet Mondrian', work: 'Composición con rojo, amarillo y azul · Neoplasticismo, 1930', accent: '#ff5a4a',
-    sphere: 'conic-gradient(#d62b1f 0 25%,#f2efe6 0 50%,#1f3f98 0 75%,#f5c518 0)',
+    sphere: 'conic-gradient(#9e2f25 0 25%,#d6d2c6 0 50%,#1f3a6e 0 75%,#b8912a 0)',
     init(A) {
       const { w, h } = A, S = this; S.lw = Math.max(6, Math.min(w, h) * .012);
       const pal = ['#f2efe6', '#f2efe6', '#f2efe6', '#ebe5d6', '#d62b1f', '#1f3f98', '#f5c518', '#f2efe6', '#16161a'];
@@ -1205,7 +1205,7 @@ const THEMES = {
   /* 2 ─────────────── VAN GOGH · La noche estrellada ─────────────── */
   vangogh: {
     name: 'Van Gogh', artist: 'Vincent van Gogh', work: 'La noche estrellada · Postimpresionismo, 1889', accent: '#f7d354', trail: true,
-    sphere: 'radial-gradient(circle at 35% 35%,#fff3b0 0 12%,#e8c547 18%,#2f5fb3 40%,#0b1a3a 80%)',
+    sphere: 'radial-gradient(circle at 35% 35%,#e6d8a0 0 10%,#b8912a 18%,#2a4d8a 42%,#0b1a3a 80%)',
     init(A) {
       const { ctx, w, h } = A, S = this, m = Math.min(w, h);
       const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#081436'); g.addColorStop(1, '#1b3570');
@@ -1399,8 +1399,8 @@ const THEMES = {
 
   /* 5 ─────────────── KANDINSKY · Composición VIII ─────────────── */
   kandinsky: {
-    name: 'Kandinsky', light: true, artist: 'Wassily Kandinsky', work: 'Composición VIII · Abstracción geométrica, 1923', accent: '#9b7bff',
-    sphere: 'radial-gradient(circle,#111 0 16%,#7b3fa0 17% 34%,#ef6f9a 35% 52%,#f5c518 53% 70%,#efe6d2 71%)',
+    name: 'Kandinsky', light: true, artist: 'Wassily Kandinsky', work: 'Composición VIII · Abstracción geométrica, 1923', accent: '#6f9bd1',
+    sphere: 'radial-gradient(circle,#111 0 16%,#1f3a6e 17% 34%,#9e2f25 35% 52%,#b8912a 53% 70%,#d6d0be 71%)',
     init(A) {
       const { w, h } = A, S = this, m = Math.min(w, h);
       const pal = ['#1d3557', '#e63946', '#f4a261', '#2a9d8f', '#7b3fa0', '#f5c518', '#111111', '#ef6f9a', '#3a86ff', '#6a994e'];
@@ -1444,7 +1444,7 @@ const THEMES = {
   /* 6 ─────────────── MONET · Nenúfares ─────────────── */
   monet: {
     name: 'Monet', light: true, artist: 'Claude Monet', work: 'Los nenúfares · Impresionismo, 1899–1926', accent: '#8fd3c7',
-    sphere: 'radial-gradient(circle at 40% 40%,#f3d9ec 0 14%,#a8cfd6 30%,#84b39a 55%,#35607a 90%)',
+    sphere: 'radial-gradient(circle at 40% 40%,#cfd8d4 0 12%,#7fa3a8 30%,#4f7a64 58%,#2c4f63 90%)',
     init(A) {
       const { w, h } = A, S = this, m = Math.min(w, h);
       const n = Math.round(clamp(w * h / 2400, 250, 700));
@@ -1531,7 +1531,7 @@ const THEMES = {
   /* 8 ─────────────── MATISSE · Recortes ─────────────── */
   matisse: {
     name: 'Matisse', artist: 'Henri Matisse', work: 'Polinesia, el mar · Papiers découpés, 1946', accent: '#ff9a3c',
-    sphere: 'radial-gradient(circle at 35% 35%,#fbf7ef 0 18%,#f08a24 19% 36%,#1b3fa0 37% 70%,#3f6fd1 71%)',
+    sphere: 'radial-gradient(circle at 35% 35%,#e9e4d8 0 18%,#b5541c 19% 36%,#1b3a8a 37% 70%,#3a5fa8 71%)',
     init(A) {
       const { w, h } = A, S = this, m = Math.min(w, h);
       const bs = Math.max(120, m / 3.2); S.bc = Math.ceil(w / bs); S.br = Math.ceil(h / bs); S.bw = w / S.bc; S.bh = h / S.br;
@@ -1573,8 +1573,8 @@ const THEMES = {
 
   /* 9 ─────────────── WARHOL · Pop Art ─────────────── */
   warhol: {
-    name: 'Warhol', light: true, artist: 'Andy Warhol', work: 'Flowers · Pop Art serigráfico, 1964', accent: '#ff3d9a',
-    sphere: 'conic-gradient(#ff2e88 0 25%,#ffe600 0 50%,#00c2ff 0 75%,#7cff4f 0)',
+    name: 'Warhol', light: true, artist: 'Andy Warhol', work: 'Flowers · Pop Art serigráfico, 1964', accent: '#4fb3e8',
+    sphere: 'conic-gradient(#b0322a 0 25%,#c9a227 0 50%,#1f6fa8 0 75%,#2e6b45 0)',
     init(A) {
       const { ctx, w, h } = A, S = this;
       const target = Math.max(170, Math.min(w, h) / 2.4);
@@ -1614,8 +1614,8 @@ const THEMES = {
 
   /* 10 ─────────────── KAHLO · Flora mexicana ─────────────── */
   kahlo: {
-    name: 'Kahlo', artist: 'Frida Kahlo', work: 'Flora y color de México · Inspirado en su obra', accent: '#ff5fa2',
-    sphere: 'radial-gradient(circle at 40% 35%,#ffb703 0 18%,#f08a24 19% 30%,#d81b60 31% 52%,#0f3d2e 53%)',
+    name: 'Kahlo', artist: 'Frida Kahlo', work: 'Flora y color de México · Inspirado en su obra', accent: '#e0a040',
+    sphere: 'radial-gradient(circle at 40% 35%,#c9a227 0 18%,#b5541c 19% 32%,#6e2a1c 33% 54%,#0f3d2e 55%)',
     init(A) {
       const { w, h } = A, S = this, m = Math.min(w, h);
       const greens = ['#1f6f43', '#2e8b57', '#145a32', '#3fa34d', '#0b4d2c', '#5cb85c', '#236b3a'];
