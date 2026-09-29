@@ -229,6 +229,16 @@ export const RECURSOS = [
   "quien": "Líder de WFP y planificadores",
   "categoria": "Capacitación",
   "formulario": null
+ },
+ {
+  "nombre": "Guía de la aplicación AWP",
+  "archivo": "presentacion/aplicacion_awp.pptx",
+  "tipo": "pptx",
+  "para": "130 láminas con capturas reales de la aplicación: acceso, recorrido guiado, recursos, portafolio, asistente, dashboard, fases, avance AWP, hitos, seguridad y lo que viene. La narración completa está en las notas.",
+  "cuando": "Capacitación de quienes empiezan a usar la aplicación.",
+  "quien": "AWP Champion o quien administre la aplicación",
+  "categoria": "Capacitación",
+  "formulario": null
  }
 ];
 export const PRESENTACION = {
