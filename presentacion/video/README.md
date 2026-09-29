@@ -6,7 +6,8 @@ Video narrado en español latinoamericano que recorre las 122 láminas de `prese
 
 | Archivo | Contenido |
 |---|---|
-| `implementacion_awp.mp4` | Video 1920 × 1080 con narración, subtítulos en español (pista opcional) y capítulos por módulo. |
+| `implementacion_awp.mp4` | Video 1920 × 1080 (54 MB) con narración, subtítulos en español (pista opcional) y capítulos por módulo. |
+| `implementacion_awp_720p.mp4` | Versión ligera 1280 × 720 (27 MB), con audio mono; para enviar por correo o chat. |
 | `implementacion_awp.srt` | Subtítulos sincronizados por frase, para subirlos aparte (por ejemplo, a YouTube o a una plataforma de capacitación). |
 | `guion_a.py`, `guion_b.py` | Guion de narración de cada lámina (1–60 y 61–122). Es el lugar para corregir o ajustar lo que dice la voz. |
 | `pronunciacion.py` | Cómo debe leer la voz las siglas (AWP → "a doble u pe") y los términos en inglés (Workface Planning → "uórkfeis plánin"). Solo afecta al audio. |
