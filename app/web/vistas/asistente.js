@@ -222,6 +222,8 @@ export function VistaAsistente() {
     leerBorrador(CLAVE).then(b => { if (b && (b.datos?.nombre || b.datos?.codigo)) setRecuperable(r => (tocadoRef.v ? null : b)); });
   }, []);
   const tocadoRef = useState({ v: false })[0];
+  // Con errores a la vista, se revalida al escribir: cada campo corregido deja de marcarse en rojo.
+  useEffect(() => { setErrores(prev => Object.keys(prev).length ? validar(s.paso, s, codigos) : prev); }, [s]);
 
   // Acepta un objeto o una función (estado anterior → nuevo), para no perder cambios rápidos seguidos.
   const set = upd => { tocadoRef.v = true; setTocado(true); setRecuperable(null); setS(prev => { const nuevo = typeof upd === 'function' ? upd(prev) : upd; setGuardado(guardarBorrador(CLAVE, nuevo)); return nuevo; }); };
