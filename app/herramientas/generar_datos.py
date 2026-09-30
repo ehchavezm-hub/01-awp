@@ -126,6 +126,12 @@ def recursos():
         "cuando": "Capacitación de quienes empiezan a usar la aplicación.", "quien": "AWP Champion o quien administre la aplicación",
         "categoria": "Capacitación", "formulario": None,
     })
+    lista.append({
+        "nombre": "Path of Construction (PoC)", "archivo": "presentacion/path_of_construction.pptx", "tipo": "pptx",
+        "para": "114 láminas sobre la ruta de construcción: elementos, línea de tiempo del proyecto tipo, proceso en tres pasos, taller IPP, responsables (RACI), fechas hacia atrás de EWP, CWP y RAS, control y lecciones. Narración completa en las notas.",
+        "cuando": "Antes del primer taller de Path of Construction de cada fase.", "quien": "AWP Champion (lo presenta) y Gerente de Construcción",
+        "categoria": "Capacitación", "formulario": None,
+    })
     return lista
 
 
