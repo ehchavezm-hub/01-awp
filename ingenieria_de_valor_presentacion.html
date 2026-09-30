@@ -1,0 +1,2318 @@
+<title>Ingeniería de Valor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap">
+<style>
+/* ── Design tokens ── Tableau minimalist palette + Roboto ── */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f7fa;
+  --bg-card: #ffffff;
+  --fg: #2d3748;
+  --fg-light: #718096;
+  --heading: #44546a;
+  --blue: #4472c4;
+  --orange: #ed7d31;
+  --gold: #ffc000;
+  --green: #70ad47;
+  --lblue: #5b9bd5;
+  --gray: #a5a5a5;
+  --border: #e2e8f0;
+  --tag: #eef2ff;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a202c; --bg-alt: #2d3748; --bg-card: #2d3748;
+    --fg: #e2e8f0; --fg-light: #a0aec0; --heading: #90cdf4;
+    --blue: #63b3ed; --orange: #f6ad55; --gold: #f6e05e;
+    --green: #9ae6b4; --lblue: #90cdf4; --gray: #718096;
+    --border: #4a5568; --tag: #2a4365;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a202c; --bg-alt: #2d3748; --bg-card: #2d3748;
+  --fg: #e2e8f0; --fg-light: #a0aec0; --heading: #90cdf4;
+  --blue: #63b3ed; --orange: #f6ad55; --gold: #f6e05e;
+  --green: #9ae6b4; --lblue: #90cdf4; --gray: #718096;
+  --border: #4a5568; --tag: #2a4365;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Roboto', sans-serif; }
+body { background: var(--bg); color: var(--fg); }
+
+/* ── Slide engine ── */
+#deck { width: 100vw; height: 100%; position: relative; overflow: hidden; }
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 48px 64px 72px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+  background: var(--bg);
+  overflow-y: auto;
+}
+.slide.active { opacity: 1; pointer-events: all; }
+
+/* ── Navigation bar ── */
+#nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 52px; background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; z-index: 100;
+}
+#progress { position: fixed; bottom: 52px; left: 0; right: 0; height: 3px; background: var(--border); }
+#progress-bar { height: 100%; background: var(--blue); transition: width .3s ease; }
+.nav-btn {
+  background: none; border: 1.5px solid var(--border); border-radius: 6px;
+  padding: 6px 18px; cursor: pointer; font-family: 'Roboto', sans-serif;
+  font-size: 13px; font-weight: 500; color: var(--fg);
+  transition: background .15s, border-color .15s;
+}
+.nav-btn:hover { background: var(--tag); border-color: var(--blue); color: var(--blue); }
+#slide-counter { font-size: 13px; color: var(--fg-light); font-weight: 400; letter-spacing: .03em; }
+#toc-btn {
+  background: none; border: none; cursor: pointer; font-size: 13px;
+  color: var(--fg-light); font-family: 'Roboto', sans-serif; padding: 4px 8px;
+}
+#toc-btn:hover { color: var(--blue); }
+
+/* ── TOC overlay ── */
+#toc-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  z-index: 200; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+#toc-overlay.open { opacity: 1; pointer-events: all; }
+#toc-box {
+  background: var(--bg); border-radius: 12px; padding: 32px;
+  max-width: 680px; width: 92%; max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 24px 48px rgba(0,0,0,.2);
+}
+#toc-box h3 { font-size: 16px; font-weight: 700; color: var(--heading); margin-bottom: 16px; }
+.toc-section { margin-bottom: 12px; }
+.toc-section-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+.toc-item {
+  display: flex; align-items: center; gap: 10px; padding: 5px 8px;
+  border-radius: 6px; cursor: pointer; transition: background .15s;
+  font-size: 13px; color: var(--fg);
+}
+.toc-item:hover { background: var(--tag); }
+.toc-num { font-size: 11px; color: var(--fg-light); min-width: 24px; }
+
+/* ── Slide typography ── */
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
+}
+.slide-title {
+  font-size: clamp(26px, 3.5vw, 44px); font-weight: 700;
+  color: var(--heading); line-height: 1.15; text-wrap: balance;
+  margin-bottom: 6px;
+}
+.slide-subtitle {
+  font-size: clamp(14px, 1.8vw, 20px); font-weight: 300;
+  color: var(--fg-light); margin-bottom: 28px; line-height: 1.4;
+}
+.rule { height: 3px; width: 48px; background: var(--blue); border-radius: 2px; margin-bottom: 28px; }
+.rule-orange { background: var(--orange); }
+.rule-gold { background: var(--gold); }
+.rule-green { background: var(--green); }
+.body-text { font-size: clamp(13px, 1.5vw, 16px); font-weight: 400; line-height: 1.75; color: var(--fg); }
+.body-light { font-weight: 300; }
+
+/* ── Cover slide ── */
+.cover-bg {
+  background: linear-gradient(135deg, var(--heading) 0%, #2c4a6e 100%);
+  color: #fff; padding: 0 !important;
+}
+.cover-inner {
+  display: flex; flex-direction: column; justify-content: center;
+  height: 100%; padding: 64px; gap: 0;
+}
+.cover-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 20px;
+}
+.cover-title {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 900; line-height: 1.05;
+  color: #fff; margin-bottom: 16px; text-wrap: balance;
+}
+.cover-title span { color: var(--gold); }
+.cover-sub {
+  font-size: clamp(16px, 2vw, 22px); font-weight: 300; color: rgba(255,255,255,.75);
+  max-width: 560px; line-height: 1.5; margin-bottom: 48px;
+}
+.cover-strip {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.cover-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.12); border-radius: 100px;
+  padding: 8px 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.9);
+}
+.cover-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Section divider slide ── */
+.section-div {
+  background: var(--bg-alt);
+}
+.sec-number {
+  font-size: clamp(80px, 12vw, 140px); font-weight: 900;
+  color: var(--border); line-height: 1; margin-bottom: -12px; user-select: none;
+}
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+.sec-title {
+  font-size: clamp(28px, 4vw, 52px); font-weight: 700; color: var(--heading);
+  line-height: 1.2; text-wrap: balance;
+}
+
+/* ── Two-column layout ── */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: start; }
+@media (max-width: 700px) {
+  .cols, .cols-3 { grid-template-columns: 1fr; gap: 20px; }
+  .slide { padding: 24px 20px 72px; }
+  .cover-inner { padding: 28px; }
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 22px;
+}
+.card-accent { border-top: 3px solid var(--blue); }
+.card-orange { border-top: 3px solid var(--orange); }
+.card-gold { border-top: 3px solid var(--gold); }
+.card-green { border-top: 3px solid var(--green); }
+.card h4 { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+.card p, .card li { font-size: 13px; line-height: 1.7; color: var(--fg); }
+.card ul { padding-left: 16px; }
+
+/* ── Bullet list ── */
+.blist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.blist li {
+  padding-left: 20px; position: relative;
+  font-size: clamp(13px, 1.5vw, 15px); line-height: 1.65; color: var(--fg);
+}
+.blist li::before {
+  content: ''; position: absolute; left: 0; top: .55em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+}
+.blist.orange li::before { background: var(--orange); }
+.blist.gold li::before { background: var(--gold); }
+.blist.green li::before { background: var(--green); }
+
+/* ── Stat tiles ── */
+.stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.stat {
+  flex: 1; min-width: 120px; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px;
+}
+.stat-num {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 900;
+  color: var(--blue); line-height: 1; margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label { font-size: 12px; font-weight: 500; color: var(--fg-light); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── Callout ── */
+.callout {
+  background: var(--tag); border-left: 4px solid var(--blue);
+  border-radius: 0 8px 8px 0; padding: 14px 18px;
+  font-size: clamp(13px, 1.5vw, 15px); font-weight: 400; line-height: 1.65; color: var(--fg);
+}
+.callout-orange { background: #fff7f3; border-color: var(--orange); }
+.callout-gold { background: #fffbea; border-color: var(--gold); }
+.callout strong { font-weight: 700; color: var(--heading); }
+
+/* ── Quote ── */
+.quote {
+  border-left: 3px solid var(--gold);
+  padding: 12px 20px; margin: 12px 0;
+  font-size: clamp(15px, 2vw, 19px); font-weight: 300;
+  font-style: italic; line-height: 1.6; color: var(--fg);
+}
+.quote cite { display: block; font-size: 12px; font-style: normal; font-weight: 600; color: var(--fg-light); margin-top: 8px; letter-spacing: .04em; }
+
+/* ── Phase badge ── */
+.phase-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: #fff; border-radius: 100px;
+  padding: 5px 14px; font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  margin-bottom: 16px;
+}
+.phase-badge.orange { background: var(--orange); }
+.phase-badge.gold { background: var(--gold); color: var(--heading); }
+.phase-badge.green { background: var(--green); }
+
+/* ── Timeline ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: flex; gap: 16px; align-items: stretch; }
+.tl-left { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
+.tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 4px; }
+.tl-line { flex: 1; width: 2px; background: var(--border); margin: 2px 0; }
+.tl-content { padding-bottom: 20px; flex: 1; }
+.tl-year { font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: .05em; margin-bottom: 4px; }
+.tl-text { font-size: 13px; line-height: 1.65; color: var(--fg); }
+
+/* ── Table ── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: var(--bg-alt); color: var(--heading); font-weight: 700; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--blue); white-space: nowrap; }
+td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--fg); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--tag); }
+
+/* ── FAST diagram ── */
+.fast-wrap { display: flex; align-items: center; gap: 0; overflow-x: auto; padding: 8px 0; }
+.fast-node {
+  background: var(--blue); color: #fff; border-radius: 8px;
+  padding: 10px 14px; font-size: 12px; font-weight: 600; text-align: center;
+  min-width: 100px; flex-shrink: 0;
+}
+.fast-node.secondary { background: var(--lblue); }
+.fast-node.basic { background: var(--heading); }
+.fast-arrow { font-size: 18px; color: var(--gray); padding: 0 6px; flex-shrink: 0; }
+
+/* ── Value formula ── */
+.formula {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; flex-wrap: wrap; margin: 20px 0;
+}
+.f-box {
+  background: var(--bg-alt); border: 2px solid var(--border);
+  border-radius: 12px; padding: 16px 28px; text-align: center;
+}
+.f-box.highlight { border-color: var(--blue); background: var(--tag); }
+.f-num { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: var(--blue); line-height: 1; }
+.f-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--fg-light); margin-top: 4px; }
+.f-op { font-size: clamp(24px, 3vw, 36px); font-weight: 300; color: var(--gray); }
+
+/* ── Icon label ── */
+.icon-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+.icon-circle {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; background: var(--tag);
+}
+.icon-circle.orange { background: #fff3ec; }
+.icon-circle.gold { background: #fffbea; }
+.icon-circle.green { background: #f0fff4; }
+.icon-body h5 { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 3px; }
+.icon-body p { font-size: 13px; line-height: 1.65; color: var(--fg); }
+
+/* ── Agenda grid ── */
+.agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.agenda-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  cursor: pointer; transition: border-color .15s, background .15s;
+}
+.agenda-item:hover { border-color: var(--blue); background: var(--tag); }
+.agenda-num {
+  font-size: 20px; font-weight: 900; color: var(--border);
+  min-width: 32px; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.agenda-text h5 { font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 2px; }
+.agenda-text p { font-size: 11px; color: var(--fg-light); }
+@media (max-width: 600px) { .agenda-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div id="deck">
+
+<!-- ───────────────────── SLIDE 1: COVER ───────────────────── -->
+<div class="slide active cover-bg" id="s1">
+  <div class="cover-inner">
+    <div class="cover-tag">Metodología de Optimización de Proyectos</div>
+    <div class="cover-title">Ingeniería<br>de <span>Valor</span></div>
+    <div class="cover-sub">Maximizando el valor funcional en proyectos de construcción, infraestructura y defensa mediante metodología sistemática</div>
+    <div class="cover-strip">
+      <div class="cover-pill"><div class="cover-dot" style="background:#ffc000"></div>55 Láminas</div>
+      <div class="cover-pill"><div class="cover-dot" style="background:#70ad47"></div>Metodología VE Completa</div>
+      <div class="cover-pill"><div class="cover-dot" style="background:#ed7d31"></div>Casos de Estudio Reales</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 2: AGENDA ───────────────────── -->
+<div class="slide" id="s2">
+  <div class="eyebrow">Índice</div>
+  <div class="slide-title">Contenido de la Presentación</div>
+  <div class="rule"></div>
+  <div class="agenda-grid">
+    <div class="agenda-item"><div class="agenda-num">01</div><div class="agenda-text"><h5>Introducción e Historia</h5><p>Orígenes y evolución de la IV</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">02</div><div class="agenda-text"><h5>Fundamentos Conceptuales</h5><p>Función, Valor, Costo y ecuaciones</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">03</div><div class="agenda-text"><h5>El Plan de Trabajo VE</h5><p>Las 8 fases de la metodología</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">04</div><div class="agenda-text"><h5>Análisis Funcional</h5><p>FAST diagram e índice de valor</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">05</div><div class="agenda-text"><h5>El Equipo VE</h5><p>Composición, roles y certificación</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">06</div><div class="agenda-text"><h5>Aplicaciones Prácticas</h5><p>Construcción, vial, puentes, defensa</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">07</div><div class="agenda-text"><h5>Propuesta de Cambio (VECP)</h5><p>Estructura, ahorro y casos reales</p></div></div>
+    <div class="agenda-item"><div class="agenda-num">08</div><div class="agenda-text"><h5>Implementación y Futuro</h5><p>Programa IV, métricas y tendencias</p></div></div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 3: ¿QUÉ ES? ───────────────────── -->
+<div class="slide" id="s3">
+  <div class="eyebrow">Definición</div>
+  <div class="slide-title">¿Qué es la Ingeniería de Valor?</div>
+  <div class="rule"></div>
+  <div class="quote">
+    "La aplicación sistemática de técnicas reconocidas por equipos multidisciplinarios que identifican la función de un producto o servicio; establecen un valor para esa función; generan alternativas mediante el uso del pensamiento creativo; y proporcionan las funciones necesarias, de manera confiable, al costo total más bajo."
+    <cite>— SAVE International / West Virginia DOT Value Engineering Manual, 2004</cite>
+  </div>
+  <div class="cols" style="margin-top:20px">
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Los tres preceptos básicos</div>
+      <ul class="blist orange">
+        <li><strong>Revisión organizada</strong> — equipos multidisciplinarios que conocen distintos aspectos del problema estudiado</li>
+        <li><strong>Enfoque orientado a funciones</strong> — identificar las funciones esenciales y el costo asociado a cada una</li>
+        <li><strong>Pensamiento creativo</strong> — explorar formas alternativas de realizar las mismas funciones a menor costo</li>
+      </ul>
+    </div>
+    <div>
+      <div class="callout">
+        <strong>En esencia:</strong> la IV responde a la pregunta<br>
+        <em>"¿Qué más logrará el propósito del producto, servicio o proceso que estamos estudiando?"</em>
+      </div>
+      <div style="margin-top:16px">
+        <div class="eyebrow">También conocida como</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+          <span style="background:var(--tag);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--blue)">Análisis de Valor</span>
+          <span style="background:var(--tag);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--blue)">Gestión de Valor</span>
+          <span style="background:var(--tag);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--blue)">Value Management</span>
+          <span style="background:var(--tag);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--blue)">Value Analysis (VA)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 4: IMPACTO EN NÚMEROS ───────────────────── -->
+<div class="slide" id="s4">
+  <div class="eyebrow">Impacto Comprobado</div>
+  <div class="slide-title">La IV en Cifras</div>
+  <div class="rule rule-gold"></div>
+  <div class="stats" style="margin-bottom:24px">
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">10–40<span style="font-size:60%">%</span></div><div class="stat-label">Ahorro típico en costo total del proyecto</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--orange)">$3–$10</div><div class="stat-label">Retorno por cada $1 invertido en IV</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--gold)">20+</div><div class="stat-label">Años de historia del programa IV en el DoD</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">40+</div><div class="stat-label">Países con programas activos de IV</div></div>
+  </div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow">¿Cuándo se aplica con mayor éxito?</div>
+      <ul class="blist">
+        <li>En las primeras etapas del diseño (antes del 35% de avance)</li>
+        <li>En proyectos de alto costo o alta complejidad técnica</li>
+        <li>Cuando existe presión presupuestaria y necesidad de reducir costos sin sacrificar calidad</li>
+        <li>Cuando hay nuevas tecnologías o materiales disponibles no contemplados en el diseño original</li>
+      </ul>
+    </div>
+    <div>
+      <div class="callout-orange callout" style="margin-bottom:12px">
+        <strong>Regla del 80/20:</strong> El 80% de los costos innecesarios de un proyecto son resultado de sólo el 20% de sus componentes — la IV identifica y ataca precisamente ese 20%.
+      </div>
+      <div class="callout">
+        <strong>Momento óptimo:</strong> Cada dólar gastado en IV durante la fase conceptual genera hasta 10 veces más ahorro que el mismo dólar gastado durante la construcción.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 5: SECCIÓN HISTORIA ───────────────────── -->
+<div class="slide section-div" id="s5">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">01</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">Historia y Evolución de la Ingeniería de Valor</div>
+    <div style="height:3px;width:64px;background:var(--orange);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:480px">De la escasez de materiales en la posguerra a una disciplina global de optimización de valor</p>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 6: GE 1947 ───────────────────── -->
+<div class="slide" id="s6">
+  <div class="eyebrow">Historia — El Origen</div>
+  <div class="slide-title">General Electric, 1947: El Accidente que Cambió Todo</div>
+  <div class="rule rule-orange"></div>
+  <div class="cols">
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-year">1947</div>
+            <div class="tl-text">El <strong>asbesto</strong> — material de construcción predominante — escasea tras la Segunda Guerra Mundial. GE no puede obtener suficiente para sus contratos.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-year">1947–1952</div>
+            <div class="tl-text">GE encarga a <strong>Lawrence D. Miles</strong> liderar un equipo para encontrar materiales alternativos. Descubren que los sustitutos a menudo funcionan igual o mejor, a menor costo.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-year">1952</div>
+            <div class="tl-text">Miles sistematiza el proceso y lo denomina <strong>"Análisis de Valor"</strong>. El equipo recibe presupuesto de $3M y 5 años para desarrollar la metodología.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot" style="background:var(--green)"></div></div>
+          <div class="tl-content">
+            <div class="tl-year">1954+</div>
+            <div class="tl-text">Los ahorros logrados hacen que otras empresas adopten el concepto. La metodología se extiende por toda la industria manufacturera norteamericana.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card card-orange">
+        <h4>El hallazgo clave de Miles</h4>
+        <p>Las personas no compran productos — compran <strong>funciones</strong>. Un cliente no compra un taladro; compra <em>agujeros en la pared</em>. Esta distinción fundamental es el núcleo de toda la metodología VE.</p>
+      </div>
+      <div style="margin-top:16px">
+        <div class="callout">
+          <strong>El principio original:</strong> "Cualquier técnica que pueda desarrollarse para identificar y eliminar costos que no contribuyan a la calidad, uso, ciclo de vida o apariencia deseada por el cliente, es legítima."
+          <br><em>— Lawrence D. Miles, GE</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 7: LAWRENCE MILES ───────────────────── -->
+<div class="slide" id="s7">
+  <div class="eyebrow">Historia — El Fundador</div>
+  <div class="slide-title">Lawrence D. Miles: Padre de la Ingeniería de Valor</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <ul class="blist">
+        <li>Ingeniero eléctrico de General Electric, comenzó su carrera en compras estratégicas</li>
+        <li>Desarrolló el proceso de "Análisis de Valor" entre 1947 y 1952 ante la escasez de materiales de posguerra</li>
+        <li>Publicó el libro <strong>"Techniques of Value Analysis and Engineering"</strong> en 1961, la biblia de la disciplina</li>
+        <li>Fundó la <strong>Society of American Value Engineers (SAVE)</strong>, hoy SAVE International</li>
+        <li>Definió el concepto de función con la célebre fórmula: <em>verbo + sustantivo cuantificable</em></li>
+        <li>Demostró que el 20-25% del costo de cualquier producto proviene de costos innecesarios — costos sin función</li>
+        <li>Recibió la Medalla Lawrence D. Miles, que hoy lleva su nombre y se otorga anualmente por excelencia en IV</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:16px">
+        <h4>Legado conceptual</h4>
+        <p>Miles estableció que el precio de algo no determina su valor. El valor real se mide en relación con la función que proporciona: <strong>V = Función / Costo</strong>. Esta ecuación sigue siendo el corazón de toda metodología de IV.</p>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Frase de Miles:</strong> "El valor más alto viene de la comprensión más profunda de la función. Cuando entendemos perfectamente qué debe hacer algo, podemos encontrar infinitas formas de hacerlo mejor."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 8: EXPANSIÓN ───────────────────── -->
+<div class="slide" id="s8">
+  <div class="eyebrow">Historia — Expansión Global</div>
+  <div class="slide-title">De la Manufactura al Mundo: Expansión de la IV</div>
+  <div class="rule rule-green"></div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">1954 — US Navy Bureau of Ships</div>
+        <div class="tl-text">La Marina norteamericana adopta el Análisis de Valor y lo rebautiza como <strong>"Value Engineering"</strong> por ser aplicado por ingenieros de diseño. Primera aplicación en el sector gobierno/defensa.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">1963 — Departamento de Defensa (DoD)</div>
+        <div class="tl-text">El DoD establece formalmente su programa de IV, haciéndolo <strong>obligatorio</strong> en la mayoría de contratos. Se crea el incentivo de compartir ahorros entre el contratista y el gobierno (cláusula VE).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">1955–1965 — Japón</div>
+        <div class="tl-text">La IV llega a Japón en 1955 pero no despega hasta 1960. Seminarios del Instituto de Administración de Negocios de Japón introducen el Análisis de Valor. La metodología se convierte en pilar del milagro industrial japonés de los 60-70.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">1970–1990 — Europa y construcción</div>
+        <div class="tl-text">Reino Unido, Alemania y Francia adoptan la metodología en infraestructura. La industria de la construcción descubre que la IV funciona aún mejor en proyectos complejos que en manufactura.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--gold)"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">1990–Hoy — América Latina y globalización</div>
+        <div class="tl-text">México, Brasil, Colombia y Perú integran la IV en sus normas de contratación pública. Organismos como el BID y el Banco Mundial la exigen en proyectos de infraestructura financiados internacionalmente.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 9: IV EN DOD ───────────────────── -->
+<div class="slide" id="s9">
+  <div class="eyebrow">Historia — Departamento de Defensa</div>
+  <div class="slide-title">La IV en el Departamento de Defensa de los EE.UU.</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:16px">El DoD ha sido el mayor impulsor institucional de la Ingeniería de Valor a nivel mundial. Desde 1963, su programa ha generado miles de millones de dólares en ahorros documentados.</p>
+      <ul class="blist">
+        <li><strong>Áreas de aplicación:</strong> construcción, diseño de equipos, logística, mantenimiento, software, publicaciones técnicas, embalaje y pruebas</li>
+        <li><strong>Cláusula VECP:</strong> los contratistas que presentan propuestas de cambio aprobadas comparten los ahorros con el gobierno (usualmente 50/50)</li>
+        <li><strong>Obligatoriedad:</strong> desde junio de 1962, la mayoría de contratos del DoD deben incluir cláusulas VE</li>
+        <li><strong>Publicación DoD 4245.8-H</strong> (1986): el manual de referencia que codifica toda la práctica VE para el gobierno federal</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Áreas específicas del DoD con IV</h4>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:5px;margin-top:8px">
+          <li style="font-size:12px;color:var(--fg)">🏗️ Construcción e instalaciones militares</li>
+          <li style="font-size:12px;color:var(--fg)">⚙️ Modificaciones de diseño de sistemas de armas</li>
+          <li style="font-size:12px;color:var(--fg)">📦 Embalaje, manejo y transporte</li>
+          <li style="font-size:12px;color:var(--fg)">🔧 Mantenimiento y soporte logístico</li>
+          <li style="font-size:12px;color:var(--fg)">💻 Programas de software y flujos de proceso</li>
+          <li style="font-size:12px;color:var(--fg)">📋 Especificaciones, normas y procedimientos</li>
+          <li style="font-size:12px;color:var(--fg)">🧪 Equipos de prueba y certificación</li>
+        </ul>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Resultado comprobado:</strong> El DoD reporta consistentemente que cada $1 invertido en su programa VE genera entre $3 y $15 en ahorros documentados.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 10: IV EN CONSTRUCCIÓN ───────────────────── -->
+<div class="slide" id="s10">
+  <div class="eyebrow">Historia — Construcción</div>
+  <div class="slide-title">La IV en la Industria de la Construcción</div>
+  <div class="rule rule-orange"></div>
+  <div class="body-text" style="margin-bottom:20px">A diferencia de la manufactura donde la IV nació, la industria de la construcción presenta características únicas que hacen la metodología especialmente valiosa — y también más retadora.</div>
+  <div class="cols-3">
+    <div class="card card-accent">
+      <h4>El método tradicional: obstáculo para la IV</h4>
+      <p>El esquema Diseño–Licitación–Construcción separa a arquitectos, ingenieros y constructores, impidiendo la colaboración temprana necesaria para crear valor real. Cada especialista optimiza su parte sin ver el todo.</p>
+    </div>
+    <div class="card card-orange">
+      <h4>El enfoque integrado: aliado de la IV</h4>
+      <p>El modelo Design–Build (Diseño y Construcción integrados) permite que los equipos trabajen holísticamente desde las etapas conceptuales, cuando el potencial de ahorro es máximo y los cambios cuestan menos.</p>
+    </div>
+    <div class="card card-green">
+      <h4>El propietario define el valor</h4>
+      <p>En D&amp;C integrado, el propietario puede especificar exactamente qué significa "valor" para él: estética, flexibilidad, velocidad de entrega, costo del ciclo de vida o combinaciones de estos factores.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:20px">
+    <strong>Principio clave:</strong> La IV tiene mayor impacto cuando se aplica temprano. Durante la conceptualización, cada $1 de IV puede generar $100 de ahorro; durante la construcción, el mismo dólar apenas genera $1 de ahorro — la curva de impacto vs. avance es exponencialmente decreciente.
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 11: SECCIÓN FUNDAMENTOS ───────────────────── -->
+<div class="slide section-div" id="s11">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">02</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">Fundamentos Conceptuales de la Ingeniería de Valor</div>
+    <div style="height:3px;width:64px;background:var(--gold);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:480px">Función, Valor y Costo: los tres pilares que sostienen toda la metodología</p>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 12: TRES PILARES ───────────────────── -->
+<div class="slide" id="s12">
+  <div class="eyebrow">Fundamentos</div>
+  <div class="slide-title">Los Tres Pilares: Función, Costo y Valor</div>
+  <div class="rule rule-gold"></div>
+  <div class="formula">
+    <div class="f-box">
+      <div class="f-num" style="color:var(--green)">F</div>
+      <div class="f-label">Función</div>
+    </div>
+    <div class="f-op">/</div>
+    <div class="f-box">
+      <div class="f-num" style="color:var(--orange)">C</div>
+      <div class="f-label">Costo</div>
+    </div>
+    <div class="f-op">=</div>
+    <div class="f-box highlight">
+      <div class="f-num">V</div>
+      <div class="f-label">Valor</div>
+    </div>
+  </div>
+  <div class="cols-3" style="margin-top:8px">
+    <div class="card card-green">
+      <h4>🔧 Función</h4>
+      <p>Lo que algo <strong>hace</strong> o debe <strong>lograr</strong>. Se expresa siempre con un verbo activo + un sustantivo cuantificable. Ejemplo: "transmitir fuerza", "contener fluido", "soportar carga".</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--fg-light)">Es la razón de ser del elemento. Sin función, no hay valor.</p>
+    </div>
+    <div class="card card-orange">
+      <h4>💰 Costo</h4>
+      <p>El monto total de recursos necesarios para <strong>adquirir, utilizar y mantener</strong> las funciones especificadas durante todo el ciclo de vida del producto o servicio.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--fg-light)">Incluye adquisición, operación, mantenimiento, disposición final.</p>
+    </div>
+    <div class="card card-accent">
+      <h4>⭐ Valor</h4>
+      <p>La relación entre las funciones proporcionadas y su costo. El valor se <strong>maximiza</strong> cuando las funciones requeridas se logran al costo más bajo posible, sin comprometer confiabilidad ni calidad.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--fg-light)">El objetivo de la IV es siempre aumentar V.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 13: TIPOS DE FUNCIÓN ───────────────────── -->
+<div class="slide" id="s13">
+  <div class="eyebrow">Fundamentos — Función</div>
+  <div class="slide-title">La Función: Concepto y Clasificación</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--green)">Definición operativa</div>
+      <p class="body-text" style="margin-bottom:16px">En IV, la <strong>función</strong> es el propósito o uso específico previsto para algo. Se describe en la expresión más simple y precisa posible, usando únicamente <strong>dos palabras: verbo activo + sustantivo cuantificable</strong>.</p>
+      <div class="card" style="margin-bottom:12px">
+        <h4>Ejemplos de funciones bien definidas</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Elemento</th><th>Función</th></tr>
+          <tr><td>Tornillo</td><td>Sujetar componentes</td></tr>
+          <tr><td>Viga</td><td>Soportar carga</td></tr>
+          <tr><td>Válvula</td><td>Controlar flujo</td></tr>
+          <tr><td>Aislamiento</td><td>Reducir calor</td></tr>
+          <tr><td>Pintura</td><td>Proteger superficie</td></tr>
+        </table></div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Tipos de función</div>
+      <div class="icon-row">
+        <div class="icon-circle orange">🎯</div>
+        <div class="icon-body">
+          <h5>Función Básica (FB)</h5>
+          <p>La razón principal de existencia del elemento. Sin ella, el componente no sirve. Es la función que el usuario compra. No se puede eliminar — sólo mejorar cómo se realiza.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle">➕</div>
+        <div class="icon-body">
+          <h5>Función Secundaria (FS)</h5>
+          <p>Resultado de cómo se eligió implementar la función básica. Puede ser necesaria (requerida por diseño) o estética (mejora apariencia o confort). Candidata principal para eliminación o sustitución.</p>
+        </div>
+      </div>
+      <div class="callout-gold callout" style="margin-top:8px">
+        <strong>Clave de la IV:</strong> El análisis busca mantener las Funciones Básicas al 100% mientras elimina o reduce las Funciones Secundarias innecesarias.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 14: TIPOS DE VALOR ───────────────────── -->
+<div class="slide" id="s14">
+  <div class="eyebrow">Fundamentos — Valor</div>
+  <div class="slide-title">Los Tipos de Valor en la IV</div>
+  <div class="rule rule-gold"></div>
+  <div class="body-text" style="margin-bottom:20px">El "valor" no es un concepto único — existen cuatro dimensiones de valor que la IV considera, y el equipo debe identificar cuál o cuáles son prioritarias para el cliente.</div>
+  <div class="cols" style="gap:16px">
+    <div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:var(--tag)">💎</div>
+        <div class="icon-body">
+          <h5>Valor de Uso</h5>
+          <p>Las propiedades y cualidades que hacen posible el trabajo o servicio. Es el valor funcional principal — ¿qué puede hacer el producto? Mide la aptitud para la función.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle orange">🏷️</div>
+        <div class="icon-body">
+          <h5>Valor de Costo</h5>
+          <p>La suma de mano de obra, material y otros costos requeridos para producir el elemento. Es la inversión total para obtener las funciones. El denominador de la ecuación V = F/C.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="icon-row">
+        <div class="icon-circle gold">✨</div>
+        <div class="icon-body">
+          <h5>Valor Estético (Estima)</h5>
+          <p>Las propiedades que hacen deseable poseer o usar algo. Incluye apariencia, acabados, marca, confort visual. Relevante cuando el cliente valora la percepción tanto como la función.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle green">♻️</div>
+        <div class="icon-body">
+          <h5>Valor de Intercambio</h5>
+          <p>Las propiedades o cualidades que permiten intercambiar el artículo por otro o por dinero. Valor de reventa, de rescate o de reutilización al fin del ciclo de vida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px">
+    <strong>La IV maximiza el Valor de Uso</strong> minimizando el Valor de Costo, mientras se preservan o mejoran el Valor Estético y de Intercambio según las prioridades del cliente.
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 15: COSTO CICLO VIDA ───────────────────── -->
+<div class="slide" id="s15">
+  <div class="eyebrow">Fundamentos — Costo</div>
+  <div class="slide-title">El Costo del Ciclo de Vida (Life Cycle Cost)</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:16px">La IV no se limita al costo de adquisición — considera el <strong>costo total del ciclo de vida</strong>, que incluye todas las erogaciones desde el diseño hasta la disposición final. Esta perspectiva holística revela oportunidades invisibles si sólo se mira el precio inicial.</p>
+      <div class="card card-accent">
+        <h4>Componentes del LCC</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Costo de adquisición:</strong> diseño, ingeniería, materiales, construcción, puesta en marcha</li>
+          <li><strong>Costo de operación:</strong> energía, personal, consumibles durante la vida útil</li>
+          <li><strong>Costo de mantenimiento:</strong> preventivo, correctivo, repuestos, paros de planta</li>
+          <li><strong>Costo de disposición:</strong> demolición, desmantelamiento, remediación ambiental, valor residual</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="callout-orange callout" style="margin-bottom:16px">
+        <strong>El iceberg del costo:</strong> El costo de adquisición representa sólo el 15–30% del costo total del ciclo de vida de una instalación. El 70–85% restante son costos de operación y mantenimiento — la parte invisible del iceberg que la IV ayuda a optimizar.
+      </div>
+      <div class="card">
+        <h4>Ejemplo: Edificio de oficinas</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Componente</th><th>% del LCC</th></tr>
+          <tr><td>Diseño y construcción</td><td>25%</td></tr>
+          <tr><td>Energía (25 años)</td><td>35%</td></tr>
+          <tr><td>Mantenimiento (25 años)</td><td>28%</td></tr>
+          <tr><td>Renovación y demolición</td><td>12%</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 16: LO QUE NO ES IV ───────────────────── -->
+<div class="slide" id="s16">
+  <div class="eyebrow">Fundamentos — Aclaraciones</div>
+  <div class="slide-title">Lo que <span style="color:var(--orange)">NO</span> es la Ingeniería de Valor</div>
+  <div class="rule rule-orange"></div>
+  <div class="body-text" style="margin-bottom:20px">La IV frecuentemente se malinterpreta. Aclarar qué NO es la IV es tan importante como definir qué sí es — las confusiones generan resistencia institucional y aplicaciones incorrectas.</div>
+  <div class="cols-3">
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No es "ingeniería buena"</h4>
+      <p>La ingeniería convencional de calidad no equivale a IV. La IV es un proceso estructurado y deliberado con fases, equipo multidisciplinario y técnicas específicas — no el buen criterio profesional normal.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No es reducción de costos</h4>
+      <p>La reducción de costos común "abarata" el producto al disminuir especificaciones o calidad. La IV mantiene o mejora el desempeño funcional mientras optimiza el costo — es un enfoque de <em>valor</em>, no de recorte.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No es programa de sugerencias</h4>
+      <p>No es un buzón de ideas ni una revisión de rutina del proyecto. Es un taller formal con equipo especializado, metodología definida, análisis funcional riguroso y propuestas documentadas.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No es revisión de diseño</h4>
+      <p>Una revisión de diseño busca errores en el diseño actual. La IV cuestiona si el diseño mismo es la mejor manera de lograr las funciones requeridas — es un cuestionamiento más profundo.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No aplica a todo</h4>
+      <p>La IV tiene un costo propio que debe justificarse con el ahorro potencial. No es eficiente aplicarla a proyectos pequeños o elementos de bajo costo donde la relación costo/beneficio no se justifica.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>❌ No cuestiona la necesidad</h4>
+      <p>La IV parte de que el proyecto es necesario y el cliente tiene razón. Su trabajo es optimizar cómo se logran las funciones, no si el proyecto debe existir — eso es análisis estratégico, no IV.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────── SLIDE 17: OBSTÁCULOS ───────────────────── -->
+<div class="slide" id="s17">
+  <div class="eyebrow">Fundamentos — Barreras al Valor</div>
+  <div class="slide-title">Obstáculos Comunes para la Efectividad de Costos</div>
+  <div class="rule"></div>
+  <div class="body-text" style="margin-bottom:16px">La IV reconoce que existen barreras sociales, psicológicas y organizacionales que crean costos innecesarios. Identificarlas es el primer paso para eliminarlas.</div>
+  <div class="cols">
+    <div>
+      <ul class="blist orange">
+        <li><strong>Falta de información:</strong> demasiadas decisiones se basan en suposiciones y sentimientos en lugar de datos concretos, generalmente por falta de tiempo</li>
+        <li><strong>Pensamiento habitual:</strong> aplicación rígida de estándares y tradiciones sin considerar cambios en función, tecnología o contexto económico actual</li>
+        <li><strong>Riesgo de pérdida personal:</strong> la comodidad de adherirse a procedimientos establecidos inhibe la innovación — nadie quiere "mover el barco"</li>
+        <li><strong>Creencias erróneas:</strong> insensibilidad a nuevas necesidades o mala experiencia previa con materiales en contextos distintos</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="blist orange">
+        <li><strong>Renuencia a consultar:</strong> los profesionales a menudo no admiten ignorancia en aspectos especializados, perdiendo oportunidades de mejora</li>
+        <li><strong>Actitudes negativas:</strong> falta de reconocimiento a la creatividad y la innovación dentro de la organización</li>
+        <li><strong>Sobre-especificación:</strong> los costos aumentan exponencialmente al especificar tolerancias más estrechas o acabados más finos de los necesarios</li>
+        <li><strong>Malas relaciones humanas:</strong> en proyectos complejos, la falta de comunicación, los celos y la fricción entre equipos generan duplicaciones y costos redundantes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDES 18–55 ═══════════════════ -->
+
+<!-- SLIDE 18: SECCIÓN METODOLOGÍA -->
+<div class="slide section-div" id="s18">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">03</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">El Plan de Trabajo VE<br>La Metodología de 8 Fases</div>
+    <div style="height:3px;width:64px;background:var(--blue);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:520px">Un proceso estructurado y repetible que transforma la creatividad en propuestas de valor concretas y documentadas</p>
+  </div>
+</div>
+
+<!-- SLIDE 19: VISIÓN GENERAL JOB PLAN -->
+<div class="slide" id="s19">
+  <div class="eyebrow">Metodología</div>
+  <div class="slide-title">El Plan de Trabajo VE — Visión General</div>
+  <div class="rule"></div>
+  <p class="body-text" style="margin-bottom:20px">El Plan de Trabajo (Job Plan) es la secuencia estructurada de actividades que guía al equipo VE. No es un proceso lineal rígido — permite iteraciones — pero sus fases siempre siguen un orden lógico de análisis → creatividad → evaluación → acción.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+    <div style="flex:1;min-width:140px;background:var(--blue);color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">0</div>
+      <div style="font-size:12px;font-weight:600">Orientación</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Selección del proyecto</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:var(--lblue);color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">1</div>
+      <div style="font-size:12px;font-weight:600">Información</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Recopilación de datos</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:var(--green);color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">2</div>
+      <div style="font-size:12px;font-weight:600">Análisis Funcional</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">FAST diagram</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:var(--gold);color:var(--heading);border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">3</div>
+      <div style="font-size:12px;font-weight:600">Especulación</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Creatividad</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:var(--orange);color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">4</div>
+      <div style="font-size:12px;font-weight:600">Evaluación</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Filtro de ideas</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:#7c3aed;color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">5</div>
+      <div style="font-size:12px;font-weight:600">Desarrollo</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Propuestas detalladas</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:var(--heading);color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">6</div>
+      <div style="font-size:12px;font-weight:600">Presentación</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">VEP / VECP</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:#1a202c;color:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+      <div style="font-size:20px;font-weight:900;margin-bottom:4px">7</div>
+      <div style="font-size:12px;font-weight:600">Implementación</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Ejecución y auditoría</div>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Duración típica:</strong> Un taller VE formal (fases 1–6) dura 40 horas (5 días). La fase 7 se extiende semanas o meses según la complejidad de las propuestas aprobadas.
+  </div>
+</div>
+
+<!-- SLIDE 20: FASE 0 ORIENTACIÓN -->
+<div class="slide" id="s20">
+  <div class="phase-badge">Fase 0</div>
+  <div class="slide-title">Orientación y Selección del Proyecto</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">No todo proyecto justifica un estudio VE. La fase de orientación determina si el esfuerzo y el costo del taller están justificados por el potencial de mejora y el tamaño del proyecto.</p>
+      <div class="eyebrow" style="color:var(--blue)">Criterios de selección de proyectos VE</div>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Proyectos de alto costo:</strong> tipicamente > $25M (o el umbral que defina la organización)</li>
+        <li><strong>Alta complejidad técnica:</strong> múltiples disciplinas, tecnologías nuevas, interfaces complejas</li>
+        <li><strong>Proyectos repetitivos:</strong> donde una mejora se multiplica en muchas unidades</li>
+        <li><strong>Cronograma crítico:</strong> retrasos tienen alto impacto en costo o en ingresos</li>
+        <li><strong>Diseño con restricciones blandas:</strong> donde las especificaciones pueden renegociarse</li>
+        <li><strong>Proyectos con sobrecostos históricos:</strong> categorías con recurrencia de desviaciones</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Actividades de orientación</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Identificar los problemas específicos a resolver</li>
+          <li>Evaluar el potencial de ganancia de cada problema</li>
+          <li>Priorizar los problemas por impacto esperado</li>
+          <li>Redactar el alcance y objetivo del estudio VE</li>
+          <li>Establecer factores de evaluación</li>
+          <li>Determinar la composición del equipo</li>
+          <li>Recopilar datos preliminares del proyecto</li>
+          <li>Preparar la logística del taller</li>
+        </ul>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Timing crítico:</strong> La IV debe realizarse temprano en la fase de diseño (conceptual o diseño básico). Aplicarla durante la construcción reduce drásticamente el potencial de ahorro.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 21: FASE 1 INFORMACIÓN -->
+<div class="slide" id="s21">
+  <div class="phase-badge">Fase 1</div>
+  <div class="slide-title">Fase de Información: Conocer el Proyecto a Fondo</div>
+  <div class="rule rule-green"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">El equipo VE no puede mejorar lo que no comprende. La fase de información construye el conocimiento compartido necesario para que el equipo multidisciplinario pueda cuestionar el diseño desde múltiples ángulos.</p>
+      <div class="eyebrow" style="color:var(--green)">Principios de recopilación de información</div>
+      <ul class="blist green" style="margin-top:10px">
+        <li><strong>Reunir todos los tipos de información:</strong> técnica, económica, de mercado, normativa, ambiental</li>
+        <li><strong>Ir a la mejor fuente:</strong> el diseñador original, el operador, el usuario final, el cliente</li>
+        <li><strong>Obtener información completa y pertinente:</strong> no sólo lo que se conoce, sino lo que falta</li>
+        <li><strong>Trabajar con hechos específicos,</strong> no con suposiciones o percepciones</li>
+        <li><strong>Obtener todos los costos disponibles</strong> incluyendo estimados de ciclo de vida</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-green" style="margin-bottom:14px">
+        <h4>Entregables de la Fase de Información</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Resumen ejecutivo del proyecto (alcance, costo, cronograma)</li>
+          <li>Planos y especificaciones técnicas clave</li>
+          <li>Estimado de costos por partida/sistema</li>
+          <li>Historial de cambios y decisiones de diseño</li>
+          <li>Restricciones normativas, ambientales y del cliente</li>
+          <li>Listado inicial de funciones del sistema</li>
+          <li>Definición del alcance del estudio VE</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Reglas del taller:</strong> En la primera sesión se establecen las "reglas de convivencia": respeto mutuo, sin jerarquías durante el análisis, todas las ideas son válidas, se evalúan las funciones — no las personas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 22: ANÁLISIS FUNCIONAL -->
+<div class="slide" id="s22">
+  <div class="phase-badge" style="background:var(--green)">Fase 2</div>
+  <div class="slide-title">Análisis Funcional: El Corazón de la IV</div>
+  <div class="rule rule-green"></div>
+  <div class="body-text" style="margin-bottom:16px">El análisis funcional es la fase que distingue la IV de cualquier otra metodología de optimización. Al describir el sistema como un conjunto de <strong>funciones</strong> (no como componentes físicos), el equipo libera su pensamiento de las soluciones existentes.</div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--green)">Los 6 pasos del análisis funcional</div>
+      <ul class="blist green" style="margin-top:10px">
+        <li><strong>Determinar las funciones:</strong> listar todas las funciones del sistema usando verbo + sustantivo</li>
+        <li><strong>Clasificar las funciones:</strong> básicas vs. secundarias; necesarias vs. estéticas</li>
+        <li><strong>Desarrollar relaciones funcionales:</strong> construir el diagrama FAST</li>
+        <li><strong>Estimar el costo de cada función:</strong> ¿cuánto cuesta realizar cada función?</li>
+        <li><strong>Calcular el valor de cada función:</strong> índice Costo/Valor</li>
+        <li><strong>Identificar oportunidades:</strong> funciones con alto costo y bajo valor son blancos prioritarios</li>
+      </ul>
+    </div>
+    <div>
+      <div class="callout-orange callout" style="margin-bottom:14px">
+        <strong>La pregunta clave del análisis funcional:</strong><br>
+        "¿Qué hace este componente?" (función básica)<br>
+        "¿Por qué hace eso?" (función de nivel superior)<br>
+        "¿Cómo lo hace?" (función de nivel inferior)<br><br>
+        Estas tres preguntas construyen el diagrama FAST.
+      </div>
+      <div class="card card-orange">
+        <h4>Ley de Pareto aplicada</h4>
+        <p>En la mayoría de los proyectos, el 20% de los componentes o sistemas representan el 80% del costo total. El análisis funcional identifica exactamente ese 20% prioritario donde la IV debe enfocarse.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 23: DIAGRAMA FAST -->
+<div class="slide" id="s23">
+  <div class="phase-badge" style="background:var(--green)">Fase 2 — FAST</div>
+  <div class="slide-title">El Diagrama FAST: Mapeando las Relaciones Funcionales</div>
+  <div class="rule rule-green"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px"><strong>FAST</strong> (Function Analysis System Technique) es una herramienta gráfica que representa las relaciones entre funciones usando las preguntas <em>¿Cómo? → ¿Por qué?</em> de forma horizontal y ¿Cuándo? en forma vertical.</p>
+      <div class="card card-green">
+        <h4>Lectura del diagrama FAST</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>→ ¿Cómo?</strong> (de izquierda a derecha): desciende al nivel de detalle — ¿cómo se realiza esta función?</li>
+          <li><strong>← ¿Por qué?</strong> (de derecha a izquierda): sube al nivel de propósito — ¿por qué se realiza esta función?</li>
+          <li><strong>↑↓ ¿Cuándo?</strong> (vertical): funciones que ocurren simultáneamente o son condicionantes</li>
+          <li>Las funciones fuera del "alcance" (líneas verticales) son contexto externo al estudio</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--green);margin-bottom:10px">Ejemplo: FAST de un Puente</div>
+      <div class="fast-wrap">
+        <div class="fast-node basic">Satisfacer<br>usuario</div>
+        <div class="fast-arrow">→</div>
+        <div class="fast-node">Facilitar<br>tránsito</div>
+        <div class="fast-arrow">→</div>
+        <div class="fast-node secondary">Salvar<br>obstáculo</div>
+        <div class="fast-arrow">→</div>
+        <div class="fast-node secondary">Transmitir<br>carga</div>
+      </div>
+      <div style="margin-top:8px;margin-bottom:8px">
+        <div style="font-size:11px;color:var(--fg-light);margin-bottom:6px">Funciones secundarias:</div>
+        <div class="fast-wrap">
+          <div class="fast-node secondary" style="background:var(--lblue)">Soportar<br>estructura</div>
+          <div class="fast-arrow">→</div>
+          <div class="fast-node secondary" style="background:var(--lblue)">Resistir<br>cargas</div>
+          <div class="fast-arrow">→</div>
+          <div class="fast-node secondary" style="background:var(--lblue)">Distribuir<br>esfuerzos</div>
+        </div>
+      </div>
+      <div class="callout" style="font-size:12px">
+        El FAST revela qué funciones son <strong>básicas</strong> (izquierda del diagrama) y cuáles son medios para lograr otras. Las funciones de la derecha son las más sustituibles.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 24: ÍNDICE DE VALOR -->
+<div class="slide" id="s24">
+  <div class="phase-badge" style="background:var(--green)">Fase 2 — Costos</div>
+  <div class="slide-title">Costo por Función e Índice de Valor</div>
+  <div class="rule rule-green"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:16px">Una vez construido el FAST, el equipo asigna el costo de cada componente físico a las funciones que realiza. Esto permite calcular cuánto cuesta cada función y compararlo con su valor percibido.</p>
+      <div class="card card-green">
+        <h4>Proceso de asignación de costos</h4>
+        <ol style="padding-left:20px;font-size:13px;line-height:1.8;color:var(--fg);margin-top:8px">
+          <li>Listar todos los componentes del sistema con sus costos</li>
+          <li>Para cada componente, identificar qué función(es) realiza</li>
+          <li>Si realiza múltiples funciones, distribuir el costo proporcionalmente</li>
+          <li>Sumar el costo total asignado a cada función</li>
+          <li>Comparar el costo asignado con el "valor mínimo" (worth) de la función</li>
+        </ol>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <h4>Ejemplo: Función "Soportar carga" en puente</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Función</th><th>Costo ($)</th><th>Valor (Worth)</th><th>Índice C/V</th></tr>
+          <tr><td>Soportar carga</td><td>820,000</td><td>600,000</td><td style="color:var(--orange);font-weight:700">1.37</td></tr>
+          <tr><td>Distribuir esfuerzos</td><td>340,000</td><td>320,000</td><td style="color:var(--green);font-weight:700">1.06</td></tr>
+          <tr><td>Proteger superficie</td><td>280,000</td><td>80,000</td><td style="color:var(--orange);font-weight:700">3.50</td></tr>
+          <tr><td>Mejorar estética</td><td>160,000</td><td>40,000</td><td style="color:var(--orange);font-weight:700">4.00</td></tr>
+        </table></div>
+      </div>
+      <div class="callout-orange callout">
+        <strong>Interpretación:</strong> Índice C/V > 1.2 indica oportunidad de mejora. Las funciones "Proteger superficie" (3.5) y "Mejorar estética" (4.0) son blancos prioritarios del estudio.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 25: FASE 3 ESPECULACIÓN -->
+<div class="slide" id="s25">
+  <div class="phase-badge" style="background:var(--gold);color:var(--heading)">Fase 3</div>
+  <div class="slide-title">Fase de Especulación: Liberando la Creatividad</div>
+  <div class="rule rule-gold"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La especulación es la fase más creativa y, paradójicamente, la más difícil. Requiere suspender el juicio crítico temporalmente para generar la mayor cantidad posible de ideas alternativas para realizar las funciones identificadas.</p>
+      <div class="eyebrow" style="color:var(--gold)">El desafío de la creatividad en entornos técnicos</div>
+      <ul class="blist gold" style="margin-top:10px">
+        <li>Los ingenieros y técnicos están entrenados para analizar y criticar — la especulación requiere el modo opuesto</li>
+        <li>El miedo al ridículo inhibe las ideas más innovadoras, que a menudo son las más valiosas</li>
+        <li>La experiencia puede ser un obstáculo: "siempre lo hemos hecho así" es el enemigo del valor</li>
+        <li>Las ideas aparentemente absurdas pueden inspirar soluciones brillantes mediante asociación</li>
+        <li>El facilitador VE tiene la responsabilidad de crear un espacio seguro para la creatividad</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-gold">
+        <h4>Las reglas de la especulación</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Sin crítica durante la generación:</strong> todas las ideas se anotan, ninguna se descarta en el momento</li>
+          <li><strong>Cantidad sobre calidad:</strong> el objetivo es generar el mayor número de ideas posibles</li>
+          <li><strong>Combinar y mejorar:</strong> las ideas de otros pueden inspirar nuevas combinaciones</li>
+          <li><strong>Libertad total:</strong> no hay restricciones de presupuesto, normativa o factibilidad en esta fase</li>
+          <li><strong>Todos participan igual:</strong> la jerarquía se suspende durante el brainstorming</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 26: TÉCNICAS CREATIVAS -->
+<div class="slide" id="s26">
+  <div class="phase-badge" style="background:var(--gold);color:var(--heading)">Fase 3 — Herramientas</div>
+  <div class="slide-title">Técnicas Creativas para Generar Alternativas de Valor</div>
+  <div class="rule rule-gold"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">Técnicas de asociación libre</div>
+      <div class="icon-row">
+        <div class="icon-circle gold">🧠</div>
+        <div class="icon-body">
+          <h5>Brainstorming Clásico</h5>
+          <p>El facilitador presenta la función a mejorar. El equipo genera ideas libremente durante 20-40 minutos sin filtros. Todas las ideas se capturan en una pizarra o post-its. Luego se agrupan por similitud.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle gold">🎭</div>
+        <div class="icon-body">
+          <h5>Técnica Gordon</h5>
+          <p>El facilitador presenta el problema de forma abstracta, sin revelar el contexto real. Los participantes generan ideas generales que luego se trasladan al problema concreto. Evita el pensamiento convergente prematuro.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Técnicas organizadas</div>
+      <div class="icon-row">
+        <div class="icon-circle orange">📋</div>
+        <div class="icon-body">
+          <h5>Técnica del Catálogo</h5>
+          <p>Se revisan catálogos, especificaciones y literatura técnica buscando componentes y métodos alternativos que puedan realizar la función. Muy efectiva para encontrar sustitutos de materiales y tecnologías.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle orange">🔢</div>
+        <div class="icon-body">
+          <h5>Análisis Morfológico</h5>
+          <p>Se construye una matriz con los sub-problemas en columnas y las posibles soluciones en filas. Al combinar una solución de cada columna se obtienen propuestas completas. Genera sistemáticamente centenares de combinaciones.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle orange">📝</div>
+        <div class="icon-body">
+          <h5>Listado de Atributos</h5>
+          <p>Se listan los atributos del elemento actual y se busca mejorar, modificar o eliminar cada uno. Estructura el pensamiento alternativo de forma sistemática.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 27: FASE 4 EVALUACIÓN -->
+<div class="slide" id="s27">
+  <div class="phase-badge" style="background:var(--orange)">Fase 4</div>
+  <div class="slide-title">Fase de Evaluación: Del Caos Creativo a las Mejores Alternativas</div>
+  <div class="rule rule-orange"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">Después de la especulación, el equipo puede tener entre 50 y 200 ideas. La fase de evaluación las filtra sistemáticamente hasta seleccionar las 3-8 con mayor potencial para desarrollar en detalle.</p>
+      <div class="eyebrow" style="color:var(--orange)">El proceso de evaluación en 6 pasos</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li><strong>Eliminar ideas de bajo potencial:</strong> primer filtro rápido por consenso del equipo</li>
+        <li><strong>Agrupar ideas similares:</strong> consolidar variantes de la misma solución en una propuesta</li>
+        <li><strong>Asignar "champions":</strong> cada idea seleccionada tiene un defensor que la profundiza</li>
+        <li><strong>Listar ventajas y desventajas</strong> de cada idea de forma objetiva</li>
+        <li><strong>Clasificar las ideas</strong> por criterios ponderados (costo, factibilidad, impacto)</li>
+        <li><strong>Seleccionar para desarrollo</strong> las ideas con mayor puntaje combinado</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>Método de Ponderación por Criterios</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Criterio</th><th>Peso</th><th>Idea A</th><th>Idea B</th></tr>
+          <tr><td>Reducción de costo</td><td>40%</td><td>8</td><td>6</td></tr>
+          <tr><td>Factibilidad técnica</td><td>30%</td><td>7</td><td>9</td></tr>
+          <tr><td>Tiempo de implementación</td><td>20%</td><td>6</td><td>8</td></tr>
+          <tr><td>Aceptación del cliente</td><td>10%</td><td>9</td><td>7</td></tr>
+          <tr><td><strong>Total ponderado</strong></td><td><strong>100%</strong></td><td style="color:var(--orange);font-weight:700"><strong>7.5</strong></td><td><strong>7.4</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="callout">
+        La ponderación hace explícitas las prioridades del cliente y elimina sesgos personales del equipo. Los pesos se acuerdan antes de evaluar las ideas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 28: FASE 5 DESARROLLO -->
+<div class="slide" id="s28">
+  <div class="phase-badge" style="background:#7c3aed">Fase 5</div>
+  <div class="slide-title">Fase de Desarrollo: Convirtiendo Ideas en Propuestas Sólidas</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">Las ideas seleccionadas se desarrollan en propuestas formales de valor con suficiente detalle técnico y económico para ser evaluadas por el cliente y el equipo de proyecto.</p>
+      <div class="eyebrow" style="color:#7c3aed">Contenido de cada propuesta VE</div>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Descripción del diseño actual</strong> y sus costos desglosados</li>
+        <li><strong>Descripción de la alternativa propuesta</strong> con planos esquemáticos si aplica</li>
+        <li><strong>Comparación de costos</strong> de adquisición, operación y ciclo de vida</li>
+        <li><strong>Análisis de ventajas y desventajas</strong> técnicas, funcionales y de riesgo</li>
+        <li><strong>Plan de implementación</strong> con pasos, responsables y tiempos estimados</li>
+        <li><strong>Análisis de riesgo:</strong> identificar qué puede salir mal y cómo mitigarlo</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="border-top:3px solid #7c3aed;margin-bottom:14px">
+        <h4>Análisis del Costo del Ciclo de Vida en el Desarrollo</h4>
+        <p style="margin-bottom:8px">El desarrollo debe incluir el LCC cuando la propuesta tiene implicaciones en operación y mantenimiento. Una solución más cara de instalar puede ser más barata en 20 años.</p>
+        <p><strong>Fórmula simplificada LCC:</strong></p>
+        <p style="font-family:monospace;font-size:12px;background:var(--bg-alt);padding:8px;border-radius:4px;margin-top:4px">LCC = Costo₀ + Σ(Operaciónₜ × FVP) + Σ(Mantenimientoₜ × FVP) - Valor_residual</p>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Criterio de decisión:</strong> Una propuesta VE es viable si: (a) mantiene o mejora las funciones básicas, (b) reduce el costo total del ciclo de vida, y (c) puede implementarse dentro del cronograma del proyecto.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 29: FASE 6 PRESENTACIÓN -->
+<div class="slide" id="s29">
+  <div class="phase-badge">Fase 6</div>
+  <div class="slide-title">Fase de Presentación: Vendiendo el Valor</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La mejor propuesta VE puede fracasar si no se presenta de manera convincente. El equipo debe comunicar no sólo el ahorro, sino la equivalencia funcional o mejora de la alternativa.</p>
+      <div class="eyebrow">Razones comunes de rechazo de propuestas VE</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li>Percepción de reducción de calidad o funcionalidad</li>
+        <li>Falta de documentación técnica suficiente para evaluar</li>
+        <li>Impacto en el cronograma del proyecto no estimado</li>
+        <li>Resistencia del diseñador original (ego profesional)</li>
+        <li>Riesgos técnicos no mitigados en la propuesta</li>
+        <li>Conflictos con normativas o especificaciones del cliente</li>
+        <li>Presentación confusa o poco profesional del equipo VE</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Estructura del reporte VE escrito</h4>
+        <ol style="padding-left:20px;font-size:13px;line-height:1.9;color:var(--fg);margin-top:8px">
+          <li>Resumen ejecutivo con ahorro potencial total</li>
+          <li>Descripción del alcance y metodología del estudio</li>
+          <li>Por cada propuesta: descripción, comparación, costos, recomendación</li>
+          <li>Plan de implementación de las propuestas aceptadas</li>
+          <li>Apéndices técnicos y cálculos de respaldo</li>
+        </ol>
+      </div>
+      <div class="callout">
+        <strong>Clave de la presentación oral:</strong> 15 minutos por propuesta. Enfocarse en qué hace la alternativa (funciones mantenidas), cuánto ahorra (costo vs. costo actual), y qué necesita para implementarse (acción requerida del cliente).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 30: FASE 7 IMPLEMENTACIÓN -->
+<div class="slide" id="s30">
+  <div class="phase-badge" style="background:var(--heading)">Fase 7</div>
+  <div class="slide-title">Fases de Implementación y Auditoría</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--heading)">Implementación</div>
+      <p class="body-text" style="margin-bottom:14px">La implementación convierte las propuestas aprobadas en cambios reales al proyecto. Sin ella, el estudio VE es un ejercicio académico — el valor sólo se realiza cuando los cambios se ejecutan.</p>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Preparar el reporte escrito final</strong> con propuestas aceptadas y rechazadas</li>
+        <li><strong>Aumentar la probabilidad de aprobación:</strong> anticipar objeciones y prepararles respuesta</li>
+        <li><strong>Monitorear el progreso</strong> de implementación de cada propuesta</li>
+        <li><strong>Agilizar la implementación:</strong> identificar y eliminar obstáculos burocráticos</li>
+        <li><strong>Dar seguimiento:</strong> verificar que los ahorros proyectados se materializaron</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--gray)">Auditoría</div>
+      <p class="body-text" style="margin-bottom:14px">La fase de auditoría cierra el ciclo, verificando que los ahorros prometidos se realizaron y documentando las lecciones aprendidas para futuros estudios.</p>
+      <div class="card">
+        <h4>Lista de verificación de auditoría</h4>
+        <ul style="list-style:none;padding:0;font-size:13px;line-height:1.9">
+          <li>☐ ¿Se implementaron todas las propuestas aceptadas?</li>
+          <li>☐ ¿Los ahorros reales = ahorros proyectados?</li>
+          <li>☐ ¿Se mantuvieron las funciones básicas comprometidas?</li>
+          <li>☐ ¿El cronograma de implementación se cumplió?</li>
+          <li>☐ ¿Qué obstáculos se encontraron y cómo se resolvieron?</li>
+          <li>☐ ¿Qué se aprendió para el próximo estudio VE?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 31: SECCIÓN EQUIPO VE -->
+<div class="slide section-div" id="s31">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">04</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">El Equipo de Ingeniería de Valor</div>
+    <div style="height:3px;width:64px;background:var(--green);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:480px">La fuerza de la IV reside en la diversidad multidisciplinaria del equipo y en la habilidad del facilitador</p>
+  </div>
+</div>
+
+<!-- SLIDE 32: COMPOSICIÓN DEL EQUIPO -->
+<div class="slide" id="s32">
+  <div class="eyebrow">El Equipo VE</div>
+  <div class="slide-title">Composición del Equipo Multidisciplinario</div>
+  <div class="rule rule-green"></div>
+  <div class="body-text" style="margin-bottom:20px">El poder de la IV radica en la diversidad del equipo. La sinergia de perspectivas distintas genera ideas que ningún especialista individual podría concebir. Un equipo homogéneo produce pensamiento convergente — exactamente lo opuesto a lo que la IV necesita.</div>
+  <div class="cols-3">
+    <div class="card card-green">
+      <h4>Composición típica</h4>
+      <ul style="list-style:none;padding:0;font-size:13px;line-height:1.9">
+        <li>🏗️ Ingeniero civil / estructural</li>
+        <li>⚙️ Ingeniero mecánico</li>
+        <li>🔌 Ingeniero eléctrico</li>
+        <li>🏛️ Arquitecto</li>
+        <li>💰 Especialista en costos</li>
+        <li>⚖️ Especialista en compras</li>
+        <li>🔧 Especialista en construcción</li>
+        <li>🌍 Experto ambiental</li>
+        <li>👥 Facilitador VE certificado</li>
+      </ul>
+    </div>
+    <div class="card card-accent">
+      <h4>Tamaño ideal del equipo</h4>
+      <div class="stat" style="margin:8px 0">
+        <div class="stat-num" style="color:var(--blue)">5–8</div>
+        <div class="stat-label">Miembros para un taller VE efectivo</div>
+      </div>
+      <p style="font-size:13px">Con menos de 5 miembros pierde diversidad de perspectivas. Con más de 10, la dinámica grupal se vuelve inmanejable y la productividad cae. El facilitador no cuenta en el número activo.</p>
+    </div>
+    <div class="card card-gold">
+      <h4>Perfil del miembro ideal</h4>
+      <ul class="blist" style="margin-top:8px">
+        <li>Mente abierta y disposición a cuestionar</li>
+        <li>Conocimiento técnico en su especialidad</li>
+        <li>Habilidades de comunicación</li>
+        <li>Tolerancia a la ambigüedad</li>
+        <li>Capacidad de trabajo en equipo</li>
+        <li>No vinculado emocionalmente al diseño actual</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 33: EL COORDINADOR -->
+<div class="slide" id="s33">
+  <div class="eyebrow">El Equipo VE</div>
+  <div class="slide-title">El Facilitador y Coordinador de IV</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:16px">El <strong>Coordinador / Facilitador VE</strong> es el rol más crítico del proceso. No necesita ser el mayor experto técnico — necesita ser un maestro del proceso VE y un líder de equipos capaz de manejar la dinámica grupal.</p>
+      <div class="eyebrow" style="color:var(--blue)">Responsabilidades principales</div>
+      <ul class="blist" style="margin-top:10px">
+        <li>Administrar y monitorear el programa VE de la organización</li>
+        <li>Seleccionar los proyectos candidatos para estudios VE</li>
+        <li>Conformar y entrenar el equipo multidisciplinario</li>
+        <li>Facilitar todas las fases del taller VE</li>
+        <li>Asegurar que el proceso siga la metodología correctamente</li>
+        <li>Mantener registros y documentar resultados</li>
+        <li>Reportar ahorros acumulados a la dirección</li>
+        <li>Coordinar con diseñadores originales durante implementación</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Certificación CVS — Certified Value Specialist</h4>
+        <p style="margin-bottom:8px">La certificación CVS de SAVE International es el estándar global para facilitadores VE. Requiere:</p>
+        <ul class="blist" style="margin-top:8px">
+          <li>Mínimo 3,000 horas de práctica documentada en estudios VE</li>
+          <li>Examen escrito de metodología y práctica VE</li>
+          <li>Presentación oral ante un panel de CVS activos</li>
+          <li>Membresía activa en SAVE International</li>
+          <li>Educación continua para renovar la certificación</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Habilidades blandas críticas:</strong> El facilitador debe saber crear un ambiente donde el ingeniero senior y el técnico de obra contribuyan con igual confianza. La gestión del ego profesional es su mayor desafío.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 34: DINÁMICA GRUPAL -->
+<div class="slide" id="s34">
+  <div class="eyebrow">El Equipo VE</div>
+  <div class="slide-title">Dinámica Social y Gestión del Cambio en los Talleres VE</div>
+  <div class="rule rule-orange"></div>
+  <div class="body-text" style="margin-bottom:20px">La dimensión social del proceso VE es tan importante como la técnica. El facilitador debe dominar la dinámica grupal para convertir un grupo de especialistas en un equipo creativo cohesionado.</div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Inhibidores de creatividad a gestionar</div>
+      <div class="icon-row">
+        <div class="icon-circle orange">🚫</div>
+        <div class="icon-body"><h5>El crítico prematuro</h5><p>Juzga las ideas antes de que puedan desarrollarse. El facilitador debe establecer claramente que durante la especulación no hay crítica permitida.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle orange">👑</div>
+        <div class="icon-body"><h5>La jerarquía tóxica</h5><p>El director que habla primero y todos los demás asienten. El facilitador debe asegurar que todos participen antes de que la persona de mayor rango hable.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle orange">😰</div>
+        <div class="icon-body"><h5>El miedo al diseñador original</h5><p>El equipo no quiere "ofender" al diseñador cuestionando su trabajo. Separar el análisis del sistema de la evaluación de la persona es fundamental.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--green)">Técnicas del facilitador VE experto</div>
+      <div class="icon-row">
+        <div class="icon-circle green">✅</div>
+        <div class="icon-body"><h5>Round Robin</h5><p>Cada persona contribuye una idea en ronda, garantizando participación igualitaria sin importar jerarquía.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle green">📝</div>
+        <div class="icon-body"><h5>Brainwriting</h5><p>Las ideas se escriben en papel antes de compartirlas. Elimina el sesgo de "anclaje" hacia la primera idea expresada en voz alta.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle green">🎯</div>
+        <div class="icon-body"><h5>Preguntas orientadas</h5><p>"¿De qué otra manera podría realizarse esta función?" enfoca la creatividad sin limitar las respuestas posibles.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 35: SECCIÓN APLICACIONES -->
+<div class="slide section-div" id="s35">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">05</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">Aplicaciones Prácticas de la Ingeniería de Valor</div>
+    <div style="height:3px;width:64px;background:var(--orange);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:520px">Construcción, infraestructura vial, puentes, obras hidráulicas y el sector defensa</p>
+  </div>
+</div>
+
+<!-- SLIDE 36: IV EN CONSTRUCCIÓN -->
+<div class="slide" id="s36">
+  <div class="eyebrow">Aplicaciones</div>
+  <div class="slide-title">IV en Proyectos de Construcción</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La construcción es uno de los campos donde la IV genera mayor impacto. La complejidad de los proyectos, la multidisciplinariedad de los equipos y los altos montos involucrados crean condiciones ideales.</p>
+      <div class="eyebrow" style="color:var(--blue)">Sistemas típicamente estudiados en IV de edificios</div>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Sistema estructural:</strong> tipo de estructura, cimentación, materiales, dimensionamiento</li>
+        <li><strong>Envolvente:</strong> muros, ventanas, aislamiento, cubiertas — alto impacto en eficiencia energética</li>
+        <li><strong>Sistemas MEP:</strong> mecánico, eléctrico y plomería — 30-40% del costo de un edificio</li>
+        <li><strong>Circulaciones:</strong> elevadores, escaleras, distribución de espacios</li>
+        <li><strong>Especificaciones de acabados:</strong> frecuentemente sobre-especificados en proyectos públicos</li>
+        <li><strong>Métodos constructivos:</strong> prefabricación vs. in situ, secuencias de obra</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Esquemas para la IV en construcción</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Taller VE durante anteproyecto:</strong> máximo potencial, mínimo costo de cambio</li>
+          <li><strong>Taller VE durante proyecto ejecutivo:</strong> menor potencial pero aún viable antes de licitación</li>
+          <li><strong>VECP del contratista:</strong> el constructor propone cambios durante la obra; comparte el ahorro</li>
+          <li><strong>IV post-ocupación:</strong> para futuras instalaciones similares, aprendizaje continuo</li>
+        </ul>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Caso documentado:</strong> En una instalación hospitalaria, un taller VE durante el diseño básico identificó $4.2M de ahorro en el sistema HVAC al proponer distribución de aire por desplazamiento en lugar de mezcla forzada, manteniendo igual confort y mejorando calidad del aire.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 37: IV CARRETERAS -->
+<div class="slide" id="s37">
+  <div class="eyebrow">Aplicaciones — Infraestructura Vial</div>
+  <div class="slide-title">IV en Carreteras e Infraestructura Vial</div>
+  <div class="rule rule-orange"></div>
+  <div class="body-text" style="margin-bottom:14px">La infraestructura vial fue uno de los primeros campos donde el gobierno norteamericano aplicó IV de forma sistemática. La Administración Federal de Carreteras (FHWA) y el West Virginia DOT han desarrollado manuales específicos de IV para este sector.</div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Elementos a estudiar en carreteras</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li><strong>Alineamiento horizontal y vertical:</strong> ¿es el trazo óptimo para el tráfico y el terreno?</li>
+        <li><strong>Sección transversal:</strong> número de carriles, anchos, bermas, medianas — frecuentemente sobre-diseñadas</li>
+        <li><strong>Pavimento:</strong> concreto hidráulico vs. asfalto — análisis de LCC revela sorpresas</li>
+        <li><strong>Obras de drenaje:</strong> tipo de alcantarillas, cunetas, obras de paso — alto costo, candidatos a VE</li>
+        <li><strong>Estructuras menores:</strong> muros de contención, taludes, señalamiento</li>
+        <li><strong>Interacciones con el ambiente:</strong> mitigación, gestión de material de corte</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>Comparativa: Concreto Hidráulico vs. Asfalto</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Criterio</th><th>Concreto</th><th>Asfalto</th></tr>
+          <tr><td>Costo inicial</td><td>Alto</td><td>Bajo</td></tr>
+          <tr><td>Vida útil</td><td>30-40 años</td><td>10-15 años</td></tr>
+          <tr><td>Mantenimiento</td><td>Bajo</td><td>Alto</td></tr>
+          <tr><td>LCC 30 años</td><td style="color:var(--green);font-weight:700">Menor</td><td style="color:var(--orange);font-weight:700">Mayor</td></tr>
+          <tr><td>Velocidad de obra</td><td>Lenta</td><td>Rápida</td></tr>
+        </table></div>
+      </div>
+      <div class="callout">
+        La IV para carreteras es <strong>obligatoria en México</strong> para proyectos federales > $50M USD, conforme a la Ley de Obras Públicas. Las propuestas aprobadas se documentan en la <em>Bitácora de IV</em>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 38: IV PUENTES -->
+<div class="slide" id="s38">
+  <div class="eyebrow">Aplicaciones — Caso de Estudio</div>
+  <div class="slide-title">IV en Puentes: Caso Puente "Las Lajas III"</div>
+  <div class="rule rule-gold"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">Descripción del proyecto</div>
+      <p class="body-text" style="margin-bottom:14px">El Puente Las Lajas III es un puente carretero de 120m de longitud con 4 claros. La estructura original contemplaba trabes de concreto preesforzado convencionales con alas precoladas.</p>
+      <div class="card card-gold">
+        <h4>Elementos estudiados en el taller VE</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Superestructura:</strong> losas, trabes, diafragmas, apoyos de neopreno</li>
+          <li><strong>Subestructura:</strong> pilas, caballetes, cimentaciones</li>
+          <li><strong>Accesos:</strong> terraplenes de aproximación, muros de ala</li>
+          <li><strong>Obras complementarias:</strong> drenaje, señalamiento, iluminación</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Propuesta VE aprobada — Superestructura</div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>Cambio propuesto: Sistema de trabes</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Aspecto</th><th>Diseño original</th><th>Propuesta VE</th></tr>
+          <tr><td>Sistema</td><td>Trabes I conv.</td><td>Trabes cajón</td></tr>
+          <tr><td>Losas</td><td>Precoladas</td><td>Colada en obra</td></tr>
+          <tr><td>Diafragmas</td><td>Concreto</td><td>Metálicos</td></tr>
+          <tr><td>Costo total</td><td>$18.4M</td><td style="color:var(--green);font-weight:700">$14.8M</td></tr>
+          <tr><td><strong>Ahorro</strong></td><td></td><td style="color:var(--green);font-weight:700">$3.6M (19.6%)</td></tr>
+        </table></div>
+      </div>
+      <div class="callout">
+        <strong>Funciones mantenidas:</strong> capacidad de carga, durabilidad, geometría vial, normativa sismorresistente — la propuesta fue aceptada por la SCT con modificaciones menores al refuerzo de las losas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 39: IV OBRAS HIDRÁULICAS -->
+<div class="slide" id="s39">
+  <div class="eyebrow">Aplicaciones — Obras Hidráulicas</div>
+  <div class="slide-title">IV en Obras Hidráulicas: Presas y Sistemas de Agua</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">Las obras hidráulicas presentan características especiales para la IV: son proyectos únicos, de alto costo, con múltiples tecnologías disponibles y un ciclo de vida de 50-100 años donde el LCC es determinante.</p>
+      <div class="card card-accent">
+        <h4>Caso: Concreto Compactado con Rodillo (CCR) vs. Concreto Convencional</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Criterio</th><th>Conv.</th><th>CCR</th></tr>
+          <tr><td>Costo/m³</td><td>$180</td><td style="color:var(--green)">$95</td></tr>
+          <tr><td>Velocidad de colado</td><td>400 m³/día</td><td style="color:var(--green)">3,000 m³/día</td></tr>
+          <tr><td>Resistencia 28 días</td><td>28 MPa</td><td>20 MPa</td></tr>
+          <tr><td>Calor de hidratación</td><td>Alto</td><td style="color:var(--green)">Bajo</td></tr>
+          <tr><td>Control de calidad</td><td>Sencillo</td><td>Riguroso</td></tr>
+        </table></div>
+        <p style="font-size:12px;margin-top:8px;color:var(--fg-light)">Para presas de gravedad, el CCR puede reducir hasta un 40% el costo de la cortina. La IV evalúa caso por caso considerando tamaño, materiales disponibles y requerimientos hidráulicos.</p>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--green)">Sistemas candidatos a IV en obras hidráulicas</div>
+      <ul class="blist green" style="margin-top:10px">
+        <li><strong>Cortina / presa:</strong> tipo estructural (arco, gravedad, enrocamiento), material, cimentación</li>
+        <li><strong>Obras de desvío:</strong> ataguías, conductos de desvío — frecuentemente sobre-diseñadas</li>
+        <li><strong>Vertedor:</strong> tipo (lámina libre, cimacio, sifón), capacidad de descarga</li>
+        <li><strong>Obra de toma:</strong> tipo y número de compuertas, sistema de control, materiales</li>
+        <li><strong>Planta hidroeléctrica:</strong> tipo de turbinas, capacidad instalada, sala de máquinas</li>
+        <li><strong>Sistemas de instrumentación:</strong> tipo, densidad, sistemas de monitoreo remoto</li>
+        <li><strong>Caminos de acceso:</strong> especificaciones de diseño vs. volúmenes de tráfico real</li>
+      </ul>
+      <div class="callout" style="margin-top:12px">
+        <strong>Resultado documentado:</strong> En un proyecto de presa de 60m, la aplicación de IV durante el diseño básico generó un 23% de reducción en el costo total al optimizar el diseño de la cortina y simplificar las obras de control hidráulico.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 40: VECP -->
+<div class="slide" id="s40">
+  <div class="eyebrow">Aplicaciones — VECP</div>
+  <div class="slide-title">La Propuesta de Cambio de Ingeniería de Valor (VECP)</div>
+  <div class="rule rule-orange"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La <strong>VECP</strong> (Value Engineering Change Proposal) es el mecanismo formal mediante el cual un contratista propone cambios al contrato que reducen costos, comparten los ahorros con el propietario y no comprometen las funciones requeridas.</p>
+      <div class="card card-orange">
+        <h4>Estructura de una VECP</h4>
+        <ol style="padding-left:20px;font-size:13px;line-height:1.9;color:var(--fg);margin-top:8px">
+          <li>Descripción del requisito contractual actual</li>
+          <li>Descripción del cambio propuesto</li>
+          <li>Costos de implementación del cambio</li>
+          <li>Costo del contrato original vs. con el cambio</li>
+          <li>Costo de vida útil: antes y después</li>
+          <li>Efectos colaterales en otras partes del contrato</li>
+          <li>Plazo estimado para aprobación e implementación</li>
+          <li>Cálculo del ahorro neto compartible</li>
+        </ol>
+      </div>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Mecanismo de reparto de ahorros</h4>
+        <div class="formula" style="margin:12px 0;gap:10px">
+          <div class="f-box" style="flex:1;min-width:80px">
+            <div class="f-num" style="font-size:28px;color:var(--green)">50%</div>
+            <div class="f-label">Propietario</div>
+          </div>
+          <div class="f-op" style="font-size:24px">+</div>
+          <div class="f-box" style="flex:1;min-width:80px">
+            <div class="f-num" style="font-size:28px;color:var(--orange)">50%</div>
+            <div class="f-label">Contratista</div>
+          </div>
+          <div class="f-op" style="font-size:24px">=</div>
+          <div class="f-box highlight" style="flex:1;min-width:80px">
+            <div class="f-num" style="font-size:28px">100%</div>
+            <div class="f-label">Ahorro total</div>
+          </div>
+        </div>
+        <p style="font-size:13px">La distribución típica es 50/50, aunque puede variar según lo estipulado en el contrato. En contratos del DoD, el gobierno retiene el 55% y el contratista recibe el 45%.</p>
+      </div>
+      <div class="callout">
+        <strong>Incentivo del sistema:</strong> El contratista tiene motivo económico directo para innovar. Una VECP que ahorre $2M genera $1M de ganancia adicional para el constructor — sin reducir la calidad del trabajo.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 41: CASOS DE ÉXITO -->
+<div class="slide" id="s41">
+  <div class="eyebrow">Aplicaciones — Casos Reales</div>
+  <div class="slide-title">Casos de Éxito: Ahorros Documentados en IV</div>
+  <div class="rule rule-gold"></div>
+  <div class="stats" style="margin-bottom:20px">
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">$11.5B</div><div class="stat-label">Ahorros acumulados del DoD 1965–2005</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--orange)">$4.8B</div><div class="stat-label">Ahorros civiles FHWA en carreteras</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">35–40%</div><div class="stat-label">Reducción típica en proyectos con IV temprana</div></div>
+  </div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--blue)">Casos del Ejército de los EE.UU.</div>
+      <ul class="blist" style="margin-top:8px">
+        <li><strong>Sistema de comunicaciones SINCGARS:</strong> $48M de ahorro al simplificar la antena sin perder cobertura</li>
+        <li><strong>Almacenes de municiones:</strong> $23M de ahorro en 15 instalaciones al rediseñar el sistema de ventilación</li>
+        <li><strong>Vehículo Bradley:</strong> $156M de ahorro en el programa completo, mejorando al mismo tiempo la mantenibilidad</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Casos de la Fuerza Aérea</div>
+      <ul class="blist orange" style="margin-top:8px">
+        <li><strong>Motor F-100 (F-16):</strong> $12M de ahorro por ciclo de producción al simplificar el montaje del turbofan</li>
+        <li><strong>Base aérea Edwards:</strong> $8.2M de ahorro en la remodelación de hangares de prueba</li>
+        <li><strong>DFAS (Defense Finance):</strong> $73M de ahorro en 5 años al digitalizar procesos mediante IV de procedimientos</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:16px">
+    <strong>Patrón consistente:</strong> En todos los casos documentados, el ahorro superó en al menos 3:1 el costo del estudio VE. La mayoría de los programas reportan retornos de 5:1 a 10:1 sobre la inversión en IV.
+  </div>
+</div>
+
+<!-- SLIDE 42: SECCIÓN IMPLEMENTACIÓN ORGANIZACIONAL -->
+<div class="slide section-div" id="s42">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%">
+    <div class="sec-number">06</div>
+    <div class="sec-label">Sección</div>
+    <div class="sec-title">Implementación de un Programa IV en una Organización</div>
+    <div style="height:3px;width:64px;background:var(--lblue);border-radius:2px;margin-top:24px"></div>
+    <p style="font-size:15px;color:var(--fg-light);margin-top:16px;max-width:520px">Desde el compromiso directivo hasta las métricas de éxito: cómo institucionalizar la Ingeniería de Valor</p>
+  </div>
+</div>
+
+<!-- SLIDE 43: FACTORES DE ÉXITO -->
+<div class="slide" id="s43">
+  <div class="eyebrow">Implementación Organizacional</div>
+  <div class="slide-title">Factores Críticos de Éxito de un Programa IV</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--blue)">Factores organizacionales</div>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Compromiso de la alta dirección:</strong> sin respaldo ejecutivo visible, la IV se convierte en un ejercicio sin consecuencias. Los directivos deben destinar recursos y exigir resultados.</li>
+        <li><strong>Coordinador VE dedicado:</strong> una persona responsable de administrar el programa, seleccionar proyectos y dar seguimiento a los ahorros</li>
+        <li><strong>Capacitación en todos los niveles:</strong> la dirección debe entender los principios, los jefes de proyecto aplicarlos, y los técnicos participar en talleres</li>
+        <li><strong>Integración en el proceso de diseño:</strong> la IV debe ser un paso obligatorio del procedimiento de desarrollo de proyectos, no opcional</li>
+        <li><strong>Sistema de seguimiento de ahorros:</strong> documentar y reportar los ahorros generados justifica el programa ante la organización</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Condiciones del entorno de proyecto</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li><strong>Acceso temprano al diseño:</strong> el estudio VE debe realizarse cuando aún hay flexibilidad para cambiar</li>
+        <li><strong>Información completa:</strong> los costos, planos y especificaciones deben estar disponibles antes del taller</li>
+        <li><strong>Autoridad para implementar:</strong> el equipo VE debe tener acceso al tomador de decisiones que puede aprobar cambios</li>
+        <li><strong>Tiempo suficiente:</strong> un taller VE no puede comprimirse en un día — requiere mínimo 3 días para ser efectivo</li>
+        <li><strong>Equipo sin conflictos:</strong> los diseñadores originales participan como asesores técnicos, no como defensores del diseño</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 44: PROGRAMA IV -->
+<div class="slide" id="s44">
+  <div class="eyebrow">Implementación</div>
+  <div class="slide-title">Estableciendo un Programa IV en una Organización</div>
+  <div class="rule rule-green"></div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">Paso 1: Diagnóstico y compromiso directivo</div>
+        <div class="tl-text">Presentar la metodología a la alta dirección. Demostrar con casos reales el ROI típico. Obtener compromiso formal de recursos: coordinador, presupuesto para talleres, tiempo del equipo en proyectos piloto.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">Paso 2: Selección y capacitación del coordinador</div>
+        <div class="tl-text">Identificar al futuro Coordinador VE, idealmente un profesional senior con habilidades técnicas y liderazgo. Enviarlo a capacitación certificada (SAVE International o equivalente local). Objetivo a 3 años: certificación CVS.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--gold)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">Paso 3: Proyecto piloto con consultor externo</div>
+        <div class="tl-text">Seleccionar un proyecto de alto costo en fase de diseño básico. Contratar un CVS externo para co-facilitar el primer taller. Documentar meticulosamente el proceso, los resultados y los ahorros obtenidos.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">Paso 4: Institucionalización del proceso</div>
+        <div class="tl-text">Incorporar la IV como requisito formal en el Manual de Procedimientos de Proyectos. Definir umbrales de costo para estudios obligatorios. Establecer el sistema de reporte de ahorros a la dirección.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--heading)"></div></div>
+      <div class="tl-content">
+        <div class="tl-year">Paso 5: Mejora continua y expansión</div>
+        <div class="tl-text">Analizar resultados de cada estudio, identificar lecciones aprendidas y mejorar el proceso. Expandir la IV a nuevas áreas: procesos administrativos, compras estratégicas, gestión de mantenimiento.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 45: MÉTRICAS Y ROI -->
+<div class="slide" id="s45">
+  <div class="eyebrow">Implementación — Métricas</div>
+  <div class="slide-title">Métricas y ROI del Programa de IV</div>
+  <div class="rule rule-gold"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">KPIs del programa VE</div>
+      <div class="card" style="margin-bottom:14px">
+        <h4>Métricas de actividad</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Número de estudios VE realizados por año</li>
+          <li>Porcentaje del presupuesto de proyectos cubierto por IV</li>
+          <li>Número de propuestas generadas por taller (promedio)</li>
+          <li>Tasa de aprobación de propuestas VE (%)</li>
+          <li>Tiempo promedio de aprobación e implementación</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Métricas de resultados</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Ahorro total acumulado por año ($/año)</li>
+          <li>ROI del programa: ahorro/costo del programa VE</li>
+          <li>Porcentaje de reducción de costo promedio por proyecto</li>
+          <li>Satisfacción del cliente con calidad funcional</li>
+          <li>Ahorros en ciclo de vida vs. ahorro en adquisición</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card card-gold" style="margin-bottom:14px">
+        <h4>Benchmarks internacionales</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Organización</th><th>ROI típico</th></tr>
+          <tr><td>DoD (promedio histórico)</td><td style="color:var(--green);font-weight:700">8:1</td></tr>
+          <tr><td>FHWA (carreteras)</td><td style="color:var(--green);font-weight:700">12:1</td></tr>
+          <tr><td>Organismos estatales EUA</td><td style="color:var(--green);font-weight:700">5–7:1</td></tr>
+          <tr><td>Sector privado construcción</td><td style="color:var(--green);font-weight:700">4–6:1</td></tr>
+          <tr><td>Proyectos industriales</td><td style="color:var(--green);font-weight:700">6–10:1</td></tr>
+        </table></div>
+      </div>
+      <div class="callout">
+        <strong>Meta mínima aceptable:</strong> Un programa IV es viable cuando su ROI es ≥ 3:1 (cada $1 invertido en IV genera al menos $3 en ahorros). La mayoría de programas bien gestionados supera el 5:1.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 46: IV Y SOSTENIBILIDAD -->
+<div class="slide" id="s46">
+  <div class="eyebrow">Tendencias</div>
+  <div class="slide-title">IV y Sostenibilidad: La Convergencia con la Construcción Verde</div>
+  <div class="rule rule-green"></div>
+  <div class="body-text" style="margin-bottom:16px">La Ingeniería de Valor y la sostenibilidad son aliadas naturales. Ambas buscan optimizar el valor total del proyecto a lo largo del ciclo de vida — la sostenibilidad añade los costos ambientales y sociales a la ecuación.</div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--green)">Sinergias IV–Sostenibilidad</div>
+      <ul class="blist green" style="margin-top:10px">
+        <li><strong>LCC extendido:</strong> la IV ya considera el ciclo de vida; la sostenibilidad añade costos de carbono, agua y energía al análisis</li>
+        <li><strong>Reducción de sobre-especificación:</strong> materiales y sistemas dimensionados al mínimo necesario = menor huella ambiental</li>
+        <li><strong>Análisis funcional:</strong> al cuestionar cada componente, la IV identifica funciones que pueden eliminarse sin pérdida de valor, reduciendo el consumo de materiales</li>
+        <li><strong>Materiales alternativos:</strong> la fase creativa frecuentemente descubre materiales más sostenibles y económicos</li>
+        <li><strong>Eficiencia operativa:</strong> la IV orientada al LCC naturalmente favorece soluciones de menor consumo energético</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-green" style="margin-bottom:14px">
+        <h4>IV aplicada a criterios LEED</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Optimización de sistemas HVAC: reducción de consumo energético 20-35%</li>
+          <li>Iluminación: rediseño funcional reduce watts/m² sin perder confort visual</li>
+          <li>Agua: sistemas alternativos de captación, reciclaje y uso eficiente</li>
+          <li>Materiales: sustitución por opciones recicladas, locales o de menor energía incorporada</li>
+          <li>Sitio: optimización del diseño del sitio para reducir infraestructura</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Tendencia actual:</strong> Los certificadores LEED y EDGE están incorporando talleres VE como herramienta recomendada para alcanzar puntos de eficiencia sin incremento de costo en proyectos certificados.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 47: IV EN LATINOAMÉRICA -->
+<div class="slide" id="s47">
+  <div class="eyebrow">Contexto Regional</div>
+  <div class="slide-title">La Ingeniería de Valor en México y América Latina</div>
+  <div class="rule rule-orange"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La IV llega a América Latina en los años 90 impulsada principalmente por organismos multilaterales (BID, Banco Mundial) y por la internacionalización de empresas constructoras. México fue el pionero regional al incorporarla en su legislación de obras públicas.</p>
+      <div class="eyebrow" style="color:var(--orange)">Marco normativo en México</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li><strong>Ley de Obras Públicas y Servicios:</strong> artículos que establecen la obligatoriedad de la IV en contratos mayores a $50M USD</li>
+        <li><strong>Normas SCT:</strong> la Secretaría de Comunicaciones tiene procedimientos específicos de IV para carreteras y puentes</li>
+        <li><strong>IMSS e ISSSTE:</strong> aplican IV en sus programas de construcción de hospitales e instalaciones médicas</li>
+        <li><strong>CFE y PEMEX:</strong> incorporan IV en proyectos de infraestructura energética de gran escala</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>Condiciones ideales para la IV en México</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li>Industria de la construcción en constante crecimiento con proyectos de escala creciente</li>
+          <li>Demanda de infraestructura hidráulica, energética y de transporte sin precedentes</li>
+          <li>Presupuestos públicos bajo presión — la IV es políticamente atractiva</li>
+          <li>Creciente profesionalización del sector con ingenieros certificados internacionalmente</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Desafío cultural:</strong> En México y Latinoamérica, la barrera principal es la resistencia del diseñador a que su trabajo sea cuestionado por un equipo externo. Superar este obstáculo cultural requiere presentar la IV como mejora colaborativa, no como auditoría crítica.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 48: OBSTÁCULOS EN PRÁCTICA -->
+<div class="slide" id="s48">
+  <div class="eyebrow">Implementación — Obstáculos</div>
+  <div class="slide-title">Obstáculos Prácticos en la Implementación de la IV</div>
+  <div class="rule"></div>
+  <div class="cols-3">
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <h4>🏛️ Institucionales</h4>
+      <ul class="blist" style="margin-top:8px">
+        <li>Falta de mandato claro de la dirección</li>
+        <li>No hay presupuesto asignado para IV</li>
+        <li>Los procedimientos de licitación no contemplan la IV</li>
+        <li>No existe el rol de Coordinador VE</li>
+        <li>Los contratos no incluyen cláusulas VECP</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <h4>⏱️ De cronograma</h4>
+      <ul class="blist" style="margin-top:8px">
+        <li>La IV "llega tarde" cuando el diseño ya está avanzado</li>
+        <li>No hay tiempo para el taller en el programa del proyecto</li>
+        <li>La presión por iniciar obra cancela el proceso VE</li>
+        <li>Los cambios aprobados no se implementan por tiempo</li>
+        <li>El ciclo de aprobación de propuestas es demasiado largo</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <h4>👥 Humanos</h4>
+      <ul class="blist" style="margin-top:8px">
+        <li>Resistencia del diseñador original al cambio</li>
+        <li>Equipos sin entrenamiento en metodología VE</li>
+        <li>Facilitadores sin experiencia real</li>
+        <li>Conflicto de intereses en el equipo</li>
+        <li>Falta de continuidad (rotación de personal clave)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:20px">
+    <strong>Estrategia para superar obstáculos:</strong> El mejor argumento para la IV siempre es un caso de éxito propio. Un proyecto piloto bien documentado — con ahorros reales, visibles y atribuibles — vence la resistencia institucional mejor que cualquier presentación teórica.
+  </div>
+</div>
+
+<!-- SLIDE 49: IV EN ERA DIGITAL -->
+<div class="slide" id="s49">
+  <div class="eyebrow">Tendencias — Digital</div>
+  <div class="slide-title">La IV en la Era Digital: Herramientas y BIM</div>
+  <div class="rule rule-lblue"></div>
+  <div class="cols">
+    <div>
+      <p class="body-text" style="margin-bottom:14px">La digitalización de los proyectos de construcción, liderada por el Building Information Modeling (BIM), está transformando la práctica de la IV al proporcionar datos de costo y función en tiempo real durante el diseño.</p>
+      <div class="eyebrow" style="color:var(--lblue)">BIM como habilitador de la IV</div>
+      <ul class="blist" style="margin-top:10px">
+        <li><strong>Extracción automática de cantidades:</strong> el modelo BIM 5D proporciona estimados de costo instantáneos para cualquier alternativa propuesta durante el taller VE</li>
+        <li><strong>Simulación energética:</strong> el análisis BIM permite evaluar propuestas de eficiencia energética en horas, no días</li>
+        <li><strong>Clash detection:</strong> las propuestas VE se revisan virtualmente para detectar incompatibilidades antes de implementar</li>
+        <li><strong>Colaboración remota:</strong> talleres VE virtuales con equipos distribuidos geográficamente, reduciendo costos de logística</li>
+        <li><strong>Digital twin para LCC:</strong> el gemelo digital del proyecto permite calcular costos de ciclo de vida con mayor precisión</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="border-top:3px solid var(--lblue);margin-bottom:14px">
+        <h4>Herramientas digitales para IV</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Software de análisis funcional:</strong> herramientas especializadas como e-Value® para construir diagramas FAST digitales y calcular índices de valor</li>
+          <li><strong>Plataformas de colaboración:</strong> MIRO, Mentimeter y similares para talleres VE virtuales con brainstorming digital</li>
+          <li><strong>Análisis Monte Carlo:</strong> simulación probabilística del LCC para propuestas con incertidumbre en costos operativos</li>
+          <li><strong>IA generativa:</strong> herramientas de inteligencia artificial comienzan a generar alternativas de diseño funcional para la fase de especulación</li>
+        </ul>
+      </div>
+      <div class="callout-gold callout">
+        <strong>Convergencia futura:</strong> La integración de IV + BIM + IA generativa promete talleres VE donde el equipo puede ver, simular y costear alternativas en tiempo real, multiplicando la efectividad del proceso.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 50: EDUCACIÓN Y CERTIFICACIÓN -->
+<div class="slide" id="s50">
+  <div class="eyebrow">Profesionalización</div>
+  <div class="slide-title">Educación, Formación y Certificación en IV</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--blue)">Programa de certificación SAVE International</div>
+      <div class="icon-row">
+        <div class="icon-circle">📚</div>
+        <div class="icon-body"><h5>Associate Value Specialist (AVS)</h5><p>Certificación de entrada para profesionales con al menos 1,500 horas de práctica VE. Requiere examen escrito de conceptos fundamentales.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#fff3ec">🏆</div>
+        <div class="icon-body"><h5>Certified Value Specialist (CVS)</h5><p>El estándar de oro global. Requiere 3,000+ horas de práctica, examen escrito y presentación oral ante panel de CVS. Es el título de mayor reconocimiento en la disciplina.</p></div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle gold">👨‍🏫</div>
+        <div class="icon-body"><h5>Fellow of SAVE International (FSAVE)</h5><p>Reconocimiento honorífico por contribuciones excepcionales a la disciplina. Solo se otorga a CVS con trayectoria destacada en práctica, investigación o divulgación.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="card card-accent" style="margin-bottom:14px">
+        <h4>Programas de formación universitaria</h4>
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Defense Acquisition University (DAU):</strong> cursos obligatorios de IV para funcionarios del DoD: CON 104, ACQ 201, CLC 132</li>
+          <li><strong>UNAM — Facultad de Ingeniería:</strong> asignatura optativa de IV en Ingeniería Civil con proyecto de aplicación real</li>
+          <li><strong>TEC de Monterrey:</strong> módulo de IV dentro del Diplomado de Dirección de Proyectos</li>
+          <li><strong>Universidad de Piura (UDEP):</strong> IV integrada en el programa de Ingeniería Civil como materia del último año</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Educación continua:</strong> Los CVS activos deben completar 60 PDUs (Professional Development Units) cada 3 años, incluyendo participación en talleres, conferencias SAVE o publicaciones técnicas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 51: IV EN SECTOR PRIVADO -->
+<div class="slide" id="s51">
+  <div class="eyebrow">Aplicaciones — Sector Privado</div>
+  <div class="slide-title">La IV en el Sector Privado de la Construcción</div>
+  <div class="rule rule-orange"></div>
+  <div class="body-text" style="margin-bottom:14px">A diferencia del sector público donde la IV es frecuentemente obligatoria, en el sector privado su adopción es voluntaria pero creciente, impulsada por la presión competitiva y la demanda de los inversionistas por mayor eficiencia.</div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Modelos de aplicación en el sector privado</div>
+      <ul class="blist orange" style="margin-top:10px">
+        <li><strong>IV como servicio al cliente:</strong> empresas de D&amp;B ofrecen talleres VE como diferenciador competitivo, garantizando ahorros mínimos</li>
+        <li><strong>IV interna del desarrollador:</strong> inmobiliarias y desarrolladores aplican IV a sus proyectos tipo para optimizar el portafolio completo</li>
+        <li><strong>IV contractual (VECP):</strong> contratos EPC incluyen cláusulas VECP que incentivan al contratista a proponer mejoras</li>
+        <li><strong>IV en proyectos BOT/PPP:</strong> en concesiones, la IV reduce el costo capex, mejorando los modelos financieros del proyecto</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>La IV en el proceso Diseño y Construcción (D&amp;C)</h4>
+        <p>El modelo D&amp;C crea el ambiente más propicio para la IV porque:</p>
+        <ul class="blist" style="margin-top:8px">
+          <li>Un solo equipo integrado controla tanto el diseño como la construcción</li>
+          <li>El propietario puede definir el "valor" según sus propias prioridades</li>
+          <li>La retroalimentación entre disciplinas es instantánea</li>
+          <li>La responsabilidad no está dividida — todos tienen incentivo para optimizar</li>
+          <li>Las propuestas de valor se pueden implementar sin negociar entre múltiples contratistas independientes</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>Ventaja competitiva:</strong> Las empresas de D&amp;B que ofrecen IV documentada como parte de su propuesta tienen tasas de adjudicación significativamente más altas en licitaciones privadas donde el cliente es sofisticado.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 52: INTEGRACIÓN CON OTRAS METODOLOGÍAS -->
+<div class="slide" id="s52">
+  <div class="eyebrow">Tendencias</div>
+  <div class="slide-title">IV Integrada con Otras Metodologías de Optimización</div>
+  <div class="rule rule-lblue"></div>
+  <div class="cols">
+    <div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#f0fff4">🔄</div>
+        <div class="icon-body">
+          <h5>IV + Lean Construction</h5>
+          <p>Lean elimina desperdicios en procesos constructivos; la IV elimina costos innecesarios en el diseño. Juntas forman un sistema de optimización continua que cubre desde el concepto hasta la obra terminada.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#fefce8">📊</div>
+        <div class="icon-body">
+          <h5>IV + Risk Management</h5>
+          <p>La fase de desarrollo de la IV incluye análisis de riesgo de las propuestas. La gestión de riesgos ayuda a priorizar qué propuestas implementar primero según su relación ahorro/riesgo.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#eff6ff">🎯</div>
+        <div class="icon-body">
+          <h5>IV + Target Value Design</h5>
+          <p>TVD establece metas de costo antes del diseño; la IV es la herramienta que ayuda al equipo a diseñar dentro de esas metas sin sacrificar funciones. La combinación es la práctica más avanzada en proyectos complejos.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#fdf4ff">⭐</div>
+        <div class="icon-body">
+          <h5>IV + Six Sigma</h5>
+          <p>Six Sigma mejora la calidad de procesos; la IV optimiza el valor de funciones. En proyectos industriales, se aplican de forma complementaria: Six Sigma en procesos productivos, IV en el diseño de instalaciones.</p>
+        </div>
+      </div>
+      <div class="icon-row">
+        <div class="icon-circle" style="background:#fff7ed">🤖</div>
+        <div class="icon-body">
+          <h5>IV + Inteligencia Artificial</h5>
+          <p>La IA generativa puede procesar miles de alternativas de diseño funcional en la fase de especulación, amplificando la capacidad creativa del equipo. Los modelos de lenguaje asisten en el análisis de funciones.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:12px">
+        <strong>Principio de integración:</strong> Ninguna metodología es suficiente por sí sola en proyectos de alta complejidad. La IV proporciona la visión funcional que orienta todas las demás herramientas hacia el valor del cliente.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 53: EL FUTURO DE LA IV -->
+<div class="slide" id="s53">
+  <div class="eyebrow">Perspectivas</div>
+  <div class="slide-title">El Futuro de la Ingeniería de Valor</div>
+  <div class="rule rule-gold"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">Tendencias que transformarán la IV</div>
+      <ul class="blist gold" style="margin-top:10px">
+        <li><strong>IV como servicio digital:</strong> plataformas SaaS que guían a equipos en talleres VE virtuales con soporte de IA para la generación de alternativas</li>
+        <li><strong>Análisis de datos masivos:</strong> bases de datos de proyectos anteriores permitirán predecir dónde se encuentran las mayores oportunidades de valor antes del taller</li>
+        <li><strong>Realidad virtual en IV:</strong> el equipo podrá "caminar" por alternativas de diseño durante el taller, evaluando la función en su contexto real</li>
+        <li><strong>IV en economía circular:</strong> la metodología se extenderá a diseñar para la reutilización, el desmontaje y la regeneración de materiales</li>
+        <li><strong>IV de procesos digitales:</strong> aplicación a software, sistemas de información, procesos de datos — no sólo activos físicos</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card card-gold" style="margin-bottom:14px">
+        <h4>La IV en el contexto de los ODS</h4>
+        <p>Los Objetivos de Desarrollo Sostenible de la ONU están creando una nueva demanda de IV que considera el valor social y ambiental junto al económico:</p>
+        <ul class="blist" style="margin-top:8px">
+          <li>ODS 9 (Industria e infraestructura): IV como herramienta de optimización de proyectos</li>
+          <li>ODS 11 (Ciudades sostenibles): IV para maximizar el valor urbano</li>
+          <li>ODS 12 (Producción responsable): IV para reducir desperdicio de materiales</li>
+          <li>ODS 13 (Acción climática): IV para reducir huella de carbono de proyectos</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <strong>La IV en 2035:</strong> Los expertos proyectan que la IV se convertirá en una competencia básica esperada de todos los ingenieros de proyecto, no sólo de especialistas certificados — similar a como sucedió con la gestión de proyectos.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 54: CONCLUSIONES -->
+<div class="slide" id="s54">
+  <div class="eyebrow">Conclusiones</div>
+  <div class="slide-title">Conclusiones: El Valor de la Ingeniería de Valor</div>
+  <div class="rule"></div>
+  <div class="cols">
+    <div>
+      <div class="eyebrow" style="color:var(--blue)">Lo que aprendimos</div>
+      <ul class="blist" style="margin-top:10px">
+        <li>La IV es una <strong>metodología sistemática</strong>, no un ejercicio de reducción de costos. Su objetivo es maximizar el valor funcional, no "abaratar" el proyecto</li>
+        <li>El <strong>análisis funcional</strong> es el corazón de la IV: al ver el proyecto como funciones, liberamos el pensamiento de las soluciones existentes</li>
+        <li>La <strong>diversidad del equipo</strong> es la mayor fortaleza de la IV — la sinergia de perspectivas diferentes genera valor que ningún especialista individual puede crear</li>
+        <li>La IV tiene mayor impacto cuando se aplica <strong>temprano en el ciclo de vida</strong> del proyecto, durante las fases conceptuales y de diseño básico</li>
+        <li>El <strong>costo del ciclo de vida</strong> debe ser la unidad de medida de todo análisis VE — no el costo inicial de adquisición</li>
+        <li>Un programa IV bien gestionado genera retornos de <strong>5:1 a 12:1</strong> sobre la inversión en el proceso</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--orange)">Principios fundamentales a recordar</div>
+      <div class="card card-orange" style="margin-bottom:14px">
+        <h4>La ecuación que lo resume todo</h4>
+        <div class="formula" style="margin:12px 0">
+          <div class="f-box highlight">
+            <div class="f-num">V</div>
+            <div class="f-label">Valor</div>
+          </div>
+          <div class="f-op">=</div>
+          <div class="f-box">
+            <div class="f-num" style="color:var(--green)">F</div>
+            <div class="f-label">Función</div>
+          </div>
+          <div class="f-op">/</div>
+          <div class="f-box">
+            <div class="f-num" style="color:var(--orange)">C</div>
+            <div class="f-label">Costo</div>
+          </div>
+        </div>
+        <p style="font-size:13px;margin-top:4px">Para maximizar V: aumentar F (más funciones por el mismo precio), reducir C (mismas funciones a menor costo), o ambas simultáneamente.</p>
+      </div>
+      <div class="callout-gold callout">
+        <strong>La pregunta que cambia todo:</strong> "¿De qué otra manera podría realizarse esta función?" — si todos los ingenieros de proyecto la hicieran habitualmente, la IV ya estaría incorporada en el ADN de cada proyecto.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 55: CIERRE -->
+<div class="slide cover-bg" id="s55">
+  <div class="cover-inner" style="justify-content:space-between">
+    <div>
+      <div class="cover-tag" style="margin-bottom:32px">Ingeniería de Valor — Presentación completa</div>
+      <div class="cover-title" style="font-size:clamp(32px,5vw,60px)">Crear más<br>valor con<br><span>menos costo.</span></div>
+      <div class="cover-sub" style="margin-top:20px">La Ingeniería de Valor no es un gasto adicional en el proyecto — es la inversión más rentable que un equipo de proyecto puede hacer antes de que comience la construcción.</div>
+    </div>
+    <div>
+      <div style="border-top:1px solid rgba(255,255,255,.2);padding-top:24px;margin-top:24px">
+        <div style="font-size:12px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">Referencias principales</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• SAVE International — Value Methodology Standard, 2015</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• DoD 4245.8-H — Value Engineering Handbook, March 1986</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• IDA Paper P-4114 — Value Engineering Handbook, 2006</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• WVDOT — Value Engineering Manual, 2004 (rev. 2014)</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• Miles, L.D. — Techniques of Value Analysis and Engineering, 1961</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7)">• Calzeta, M.A. — Tesis IV, UNAM Facultad de Ingeniería, 2012</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end deck -->
+<!-- Navigation -->
+<div id="progress"><div id="progress-bar"></div></div>
+<div id="nav">
+  <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">← Anterior</button>
+  <div style="display:flex;align-items:center;gap:12px">
+    <button id="toc-btn" onclick="toggleToc()">☰ Índice</button>
+    <span id="slide-counter">1 / 55</span>
+  </div>
+  <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Siguiente →</button>
+</div>
+
+<!-- TOC Overlay -->
+<div id="toc-overlay" onclick="closeTocOutside(event)">
+  <div id="toc-box">
+    <h3>Índice de Contenidos</h3>
+    <div id="toc-list"></div>
+  </div>
+</div>
+
+<script>
+const TOTAL = document.querySelectorAll('.slide').length;
+let cur = 0;
+
+const tocData = [
+  {sec:"Portada e Introducción", items:[
+    [0,"Portada"],[1,"Índice de contenidos"],[2,"¿Qué es la IV?"],[3,"IV en cifras"],
+  ]},
+  {sec:"01 Historia", items:[
+    [4,"Sección: Historia"],[5,"GE 1947: El origen"],[6,"Lawrence D. Miles"],[7,"Expansión global"],[8,"IV en el DoD"],[9,"IV en construcción"],
+  ]},
+  {sec:"02 Fundamentos", items:[
+    [10,"Sección: Fundamentos"],[11,"Los tres pilares: F, C, V"],[12,"Tipos de función"],[13,"Tipos de valor"],[14,"Costo del ciclo de vida"],[15,"Lo que NO es IV"],[16,"Obstáculos al valor"],
+  ]},
+  {sec:"03 Metodología — Plan de Trabajo", items:[
+    [17,"Sección: Metodología"],[18,"Plan de Trabajo IV"],[19,"Fase 1: Orientación"],[20,"Fase 2: Información"],
+    [21,"Fase 3: Análisis Funcional"],[22,"Fase 4: Especulación"],[23,"Fase 5: Evaluación"],[24,"Fase 6: Desarrollo"],
+    [25,"Fase 7: Presentación"],[26,"Fase 8: Implementación"],[27,"Diagrama FAST"],
+  ]},
+  {sec:"04 Equipo de Trabajo", items:[
+    [28,"Sección: Equipo"],[29,"Composición del equipo"],[30,"El Coordinador IV"],[31,"Dinámica del taller"],[32,"Certificación CVS"],
+  ]},
+  {sec:"05 Aplicaciones", items:[
+    [33,"Sección: Aplicaciones"],[34,"Construcción"],[35,"Vías y carreteras"],[36,"Caso: Puente Las Lajas III"],
+    [37,"Obras hidráulicas"],[38,"VECP"],[39,"DoD y sector defensa"],
+  ]},
+  {sec:"06 Implementación", items:[
+    [40,"Sección: Implementación"],[41,"Factores de éxito"],[42,"Creación de programa"],[43,"Métricas y ROI"],
+    [44,"Sostenibilidad"],[45,"LATAM"],
+  ]},
+  {sec:"07 Tendencias y Futuro", items:[
+    [46,"Sección: Digital/BIM"],[47,"BIM e IV"],[48,"Educación y CVS"],[49,"Sector privado"],
+    [50,"Integración metodológica"],[51,"Futuro de la IV"],[52,"Conclusiones"],[53,"Cierre"],
+  ]},
+];
+
+function buildToc() {
+  const el = document.getElementById('toc-list');
+  let html = '';
+  tocData.forEach(sec => {
+    html += `<div class="toc-section"><div class="toc-section-title">${sec.sec}</div>`;
+    sec.items.forEach(([idx, title]) => {
+      html += `<div class="toc-item" onclick="goTo(${idx});closeToc()"><span class="toc-num">${idx+1}</span>${title}</div>`;
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+buildToc();
+
+function goTo(n) {
+  document.querySelectorAll('.slide')[cur].classList.remove('active');
+  cur = n;
+  document.querySelectorAll('.slide')[cur].classList.add('active');
+  document.getElementById('slide-counter').textContent = `${cur+1} / ${TOTAL}`;
+  document.getElementById('progress-bar').style.width = `${((cur+1)/TOTAL)*100}%`;
+  document.getElementById('prev-btn').disabled = cur === 0;
+  document.getElementById('next-btn').disabled = cur === TOTAL - 1;
+}
+
+function changeSlide(d) { if(cur+d>=0 && cur+d<TOTAL) goTo(cur+d); }
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') changeSlide(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') changeSlide(-1);
+});
+
+function toggleToc() { document.getElementById('toc-overlay').classList.toggle('open'); }
+function closeToc() { document.getElementById('toc-overlay').classList.remove('open'); }
+function closeTocOutside(e) { if(e.target===document.getElementById('toc-overlay')) closeToc(); }
+
+goTo(0);
+</script>
