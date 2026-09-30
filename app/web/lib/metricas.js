@@ -49,3 +49,11 @@ export function avancePorEtapa(actividades, etapas) {
   });
 }
 
+
+// Presupuesto en USD, abreviado para tarjetas y tablas: «USD 50 M», «USD 1,2 M», «USD 850 000».
+export function usd(n) {
+  if (n == null || n === '' || isNaN(Number(n))) return '';
+  n = Number(n);
+  if (n >= 1e6) return 'USD ' + (n / 1e6).toLocaleString('es-PE', { maximumFractionDigits: 1 }) + ' M';
+  return 'USD ' + Math.round(n).toLocaleString('es-PE');
+}

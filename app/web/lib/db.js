@@ -40,6 +40,7 @@ export function traducirError(e) {
     case '23502': return new ErrorAmigable('Falta un dato obligatorio.', 'Completa los campos marcados con *.', e);
     case '42501': return new ErrorAmigable('No tienes permiso para hacer esto en este proyecto.', 'Si deberías tenerlo, pide al propietario del proyecto que te dé acceso de editor.', e);
     case 'P0001': return new ErrorAmigable(e.message, e.hint, e);
+    case 'PGRST204': if (/presupuesto_usd/.test(texto)) return new ErrorAmigable('La base de datos aún no tiene el campo «Presupuesto (USD)».', 'Pide a quien administra Supabase que ejecute app/supabase/migraciones/001_presupuesto_usd.sql en el SQL Editor.', e); break;
     case 'PGRST301':
     case 'PGRST303': return new ErrorAmigable('Tu sesión expiró.', 'Vuelve a iniciar sesión.', e);
   }

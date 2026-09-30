@@ -22,11 +22,11 @@ const POS_HITO = { H1: 0, H2: .083, H3: .125, H4: .167, H5: .208, H6: .333, H7: 
 
 const vacio = () => ({
   paso: 0,
-  datos: { codigo: '', nombre: '', cliente: '', ubicacion: '', tipo: '', fecha_inicio: '', fecha_fin: '', responsable: '', estado: 'Planificado', descripcion: '' },
+  datos: { codigo: '', nombre: '', cliente: '', ubicacion: '', tipo: '', presupuesto_usd: '', fecha_inicio: '', fecha_fin: '', responsable: '', estado: 'Planificado', descripcion: '' },
   fases: [], personas: {}, hitos: [], firmaHitos: '',
 });
 
-function proponerFases(d) {
+export function proponerFases(d) {
   return FASES_KIT.map((k, i) => ({
     numero: i + 1, nombre: k.nombre, alcance: '', estado: 'Planificada',
     fecha_inicio: interpolar(d.fecha_inicio, d.fecha_fin, k.ini), fecha_fin: interpolar(d.fecha_inicio, d.fecha_fin, k.fin),
@@ -35,7 +35,7 @@ function proponerFases(d) {
   }));
 }
 
-function proponerHitos(d, fases, cat) {
+export function proponerHitos(d, fases, cat) {
   const lista = [];
   const h0 = cat.find(h => h.codigo === 'H0');
   lista.push({ fase: null, codigo: 'H0', nombre: h0.nombre, criterio: h0.criterio, evidencia: h0.evidencia, aprueba: h0.aprueba, fecha_plan: sumarDias(d.fecha_inicio, 30) > d.fecha_fin ? d.fecha_fin : sumarDias(d.fecha_inicio, 30) });
@@ -57,6 +57,7 @@ function validar(paso, s, codigosExistentes) {
     else if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,14}$/.test(d.codigo.trim())) e.codigo = 'Usa hasta 15 letras, números o guiones, sin espacios. Ejemplo: PTN-2027.';
     else if (codigosExistentes.includes(d.codigo.trim().toUpperCase())) e.codigo = 'Ya tienes un proyecto con ese código. Elige otro.';
     if (!d.nombre.trim()) e.nombre = 'El nombre es obligatorio. Ejemplo: «Planta de tratamiento Norte».';
+    if (d.presupuesto_usd !== '' && d.presupuesto_usd != null && !(Number(d.presupuesto_usd) >= 0)) e.presupuesto_usd = 'Escribe el monto en USD, sin puntos ni comas. Ejemplo: 50000000.';
     if (!d.fecha_inicio) e.fecha_inicio = 'Indica la fecha de inicio: sirve para proponer las fases y los hitos.';
     if (!d.fecha_fin) e.fecha_fin = 'Indica la fecha de fin estimada.';
     else if (d.fecha_inicio && d.fecha_fin <= d.fecha_inicio) e.fecha_fin = `La fecha de fin debe ser posterior al inicio (${fmt(d.fecha_inicio)}).`;
@@ -97,6 +98,7 @@ function PasoDatos({ s, set, e }) {
       <${Campo} etiqueta="Cliente"><input value=${d.cliente} onInput=${x => c('cliente', x.target.value)} /><//>
       <${Campo} etiqueta="Ubicación"><input value=${d.ubicacion} onInput=${x => c('ubicacion', x.target.value)} placeholder="Ciudad, región" /><//>
       <${Campo} etiqueta="Tipo de proyecto"><select value=${d.tipo} onChange=${x => c('tipo', x.target.value)}><option value="">Elige…</option>${TIPOS.map(t => html`<option value=${t}>${t}</option>`)}</select><//>
+      <${Campo} etiqueta="Presupuesto (USD)" error=${e.presupuesto_usd} ayuda="Costo total instalado estimado. Ejemplo: 50000000 para USD 50 M."><input type="number" min="0" step="1000" value=${d.presupuesto_usd} onInput=${x => c('presupuesto_usd', x.target.value)} placeholder="50000000" /><//>
       <${Campo} etiqueta="Responsable del proyecto" ayuda="Quien responde por el proyecto (por ejemplo, el Gerente de Proyecto)."><input value=${d.responsable} onInput=${x => c('responsable', x.target.value)} /><//>
       <${Campo} etiqueta="Fecha de inicio" req error=${e.fecha_inicio} ayuda="Incluye la planificación temprana (FEL)."><input type="date" value=${d.fecha_inicio} onInput=${x => c('fecha_inicio', x.target.value)} /><//>
       <${Campo} etiqueta="Fecha de fin estimada" req error=${e.fecha_fin}><input type="date" value=${d.fecha_fin} onInput=${x => c('fecha_fin', x.target.value)} /><//>
@@ -175,12 +177,15 @@ function Resumen({ s }) {
 }
 
 // ---------------------------------------------------------------- creación
-async function crear(s, catalogos) {
+export async function crear(s, catalogos) {
   const d = s.datos;
   const proyecto = await q(sb.from('proyectos').insert({
     codigo: d.codigo.trim().toUpperCase(), nombre: d.nombre.trim(), cliente: d.cliente || null, ubicacion: d.ubicacion || null,
     tipo: d.tipo || null, fecha_inicio: d.fecha_inicio, fecha_fin: d.fecha_fin, responsable: d.responsable || null,
     estado: d.estado, descripcion: d.descripcion || null,
+    // Solo se envía si se indicó, para no depender de la migración 001 cuando no se usa.
+    ...(d.presupuesto_usd !== '' && d.presupuesto_usd != null ? { presupuesto_usd: Number(d.presupuesto_usd) } : {}),
+    ...(s.es_ejemplo ? { es_ejemplo: true } : {}),
   }).select().single());
   try {
     const fases = await q(sb.from('fases').insert(s.fases.map(f => ({
