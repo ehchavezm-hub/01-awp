@@ -89,6 +89,24 @@ Sirve para que los enlaces de «recuperar contraseña» lleven a la aplicación.
 
 ---
 
+## Actualizaciones de la base de datos (migraciones)
+
+Cuando una nueva versión de la aplicación necesita un campo nuevo, se publica un archivo en `app/supabase/migraciones/`. Aplícalo una sola vez, en orden, igual que el script del paso 3:
+
+1. En Supabase abre **SQL Editor** → **New query**.
+2. Abre el archivo de la migración en GitHub, pulsa **Raw**, copia todo el texto y pégalo.
+3. Pulsa **Run**. Debe aparecer *Success. No rows returned*.
+
+Las migraciones se pueden repetir sin riesgo: si el cambio ya existe, no hacen nada.
+
+| Migración | Qué agrega | Necesaria para |
+|---|---|---|
+| `001_presupuesto_usd.sql` | Campo **Presupuesto (USD)** del proyecto | Registrar el presupuesto y cargar los proyectos de ejemplo |
+
+Si instalas la base de datos desde cero con `esquema.sql`, las migraciones ya están incluidas.
+
+---
+
 ## Bueno saber
 
 - **Pausa por inactividad:** en el plan gratuito, si nadie usa el proyecto durante 7 días, Supabase lo pausa. Tus datos no se pierden: entra a **https://supabase.com/dashboard**, abre el proyecto y pulsa **Restore project**. Tarda unos minutos.

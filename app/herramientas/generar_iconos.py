@@ -19,7 +19,7 @@ chevron-left chevron-down check circle-alert clock filter image arrow-right awar
 x menu save info triangle-alert log-out file pencil trash-2 archive archive-restore eye eye-off
 lock mail key-round user settings history rocket party-popper circle-check-big circle-dashed
 circle-dot circle arrow-left external-link book-open list calendar map-pin briefcase target
-refresh-cw ellipsis-vertical house printer
+refresh-cw ellipsis-vertical house printer wallet flask-conical
 """.split()
 
 carpeta = Path(sys.argv[1])

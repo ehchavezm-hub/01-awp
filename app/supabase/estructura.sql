@@ -122,6 +122,7 @@ create table public.proyectos (
   ubicacion       text,
   tipo            text,
   descripcion     text,
+  presupuesto_usd numeric check (presupuesto_usd >= 0),
   fecha_inicio    date,
   fecha_fin       date,
   responsable     text,

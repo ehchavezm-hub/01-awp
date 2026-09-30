@@ -26,7 +26,8 @@ function Datos({ d, recargar }) {
     try {
       await q(sb.from('proyectos').update({ codigo: f.codigo.toUpperCase(), nombre: f.nombre.trim(), cliente: f.cliente || null, ubicacion: f.ubicacion || null, tipo: f.tipo || null,
         responsable: f.responsable || null, estado: f.estado, descripcion: f.descripcion || null, fecha_inicio: f.fecha_inicio || null, fecha_fin: f.fecha_fin || null,
-        fecha_corte: f.fecha_corte || null }).eq('id', d.proyecto.id));
+        fecha_corte: f.fecha_corte || null,
+        ...('presupuesto_usd' in d.proyecto ? { presupuesto_usd: f.presupuesto_usd === '' || f.presupuesto_usd == null ? null : Number(f.presupuesto_usd) } : {}) }).eq('id', d.proyecto.id));
       avisar('Datos del proyecto guardados.'); recargar();
     } catch (err2) { avisarError(err2); }
   };
@@ -41,6 +42,7 @@ function Datos({ d, recargar }) {
       <${Campo} etiqueta="Inicio"><input type="date" value=${f.fecha_inicio || ''} onInput=${x => c('fecha_inicio', x.target.value)} /><//>
       <${Campo} etiqueta="Fin" error=${e.fecha_fin}><input type="date" value=${f.fecha_fin || ''} onInput=${x => c('fecha_fin', x.target.value)} /><//>
       <${Campo} etiqueta="Estado"><select value=${f.estado} onChange=${x => c('estado', x.target.value)}>${ESTADOS.map(t => html`<option value=${t}>${t}</option>`)}</select><//>
+      ${'presupuesto_usd' in d.proyecto && html`<${Campo} etiqueta="Presupuesto (USD)" ayuda="Costo total instalado estimado, en dólares."><input type="number" min="0" step="1000" value=${f.presupuesto_usd ?? ''} onInput=${x => c('presupuesto_usd', x.target.value)} /><//>`}
       <${Campo} etiqueta="Fecha de corte" ayuda="Vacía = hoy. Úsala para ver el proyecto «como estaba» en una fecha (por ejemplo, para un reporte mensual)."><input type="date" value=${f.fecha_corte || ''} onInput=${x => c('fecha_corte', x.target.value)} /><//>
       <${Campo} etiqueta="Descripción" ancho><textarea rows="3" value=${f.descripcion || ''} onInput=${x => c('descripcion', x.target.value)}></textarea><//>
     </div>

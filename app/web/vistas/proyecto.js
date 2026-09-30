@@ -5,7 +5,7 @@ import { obtener, avisarError, useEstado } from '../lib/estado.js';
 import { Ic, Chip, Anillo, Vacio, AyudaModulo, Contexto, colorEstado, Termino } from '../lib/ui.js';
 import { BarrasH, LineaTiempo, Tendencia, estadoHito } from '../lib/graficos.js';
 import { fmt, hace, dias } from '../lib/fechas.js';
-import { corteDe, atrasados, proximos, metaALaFecha, semaforo, TEXTO_SEMAFORO, avancePorEtapa, porcentajeTotal } from '../lib/metricas.js';
+import { corteDe, atrasados, proximos, metaALaFecha, semaforo, TEXTO_SEMAFORO, avancePorEtapa, porcentajeTotal, usd } from '../lib/metricas.js';
 import { proximoPaso, revisarInsignias, INSIGNIAS } from '../lib/guia.js';
 import { MODULOS, disponible } from '../datos/modulos.js';
 import { VistaFases } from './fases.js';
@@ -16,6 +16,7 @@ import { VistaEditar } from './editar.js';
 export const COLOR_FASE = n => ['var(--f1)', 'var(--f2)', 'var(--f3)'][(n - 1) % 3];
 const NOMBRE_TABLA = { proyectos: 'el proyecto', fases: 'una fase', personas: 'el equipo', avance_actividades: 'el checklist AWP', hitos: 'un hito', raci: 'la matriz RACI', cwa: 'una CWA', paquetes: 'un paquete', restricciones: 'una restricción', riesgos: 'un riesgo', lecciones: 'una lección', kpi_semanal: 'los KPI', documentos: 'un documento' };
 const ACCION = { INSERT: 'creó', UPDATE: 'actualizó', DELETE: 'borró' };
+const ACCION_TU = { INSERT: 'creaste', UPDATE: 'actualizaste', DELETE: 'borraste' };
 
 async function cargarProyecto(id, catalogos) {
   const [proyecto, fases, personas, avance, hitos, insignias, instantaneas, auditoria, miembro] = await Promise.all([
@@ -158,7 +159,7 @@ function Resumen({ d, catalogos, recargar }) {
         <p class="leer">Quién cambió qué y cuándo (registro automático).</p>
         ${d.auditoria.length ? html`<ul class="lista actividad-reciente">${d.auditoria.slice(0, 8).map(a => html`<li style="cursor:default">
           <span style="color:var(--texto-3)"><${Ic} n=${a.accion === 'DELETE' ? 'trash-2' : a.accion === 'INSERT' ? 'plus' : 'pencil'} /></span>
-          <div class="t"><b style="font-weight:400">${a.usuario_id === yo ? 'Tú' : 'Otro usuario'} ${ACCION[a.accion]} ${NOMBRE_TABLA[a.tabla] || a.tabla}${a.accion === 'UPDATE' && a.cambios?.estado ? `: estado «${a.cambios.estado.despues}»` : ''}</b><small>${hace(a.fecha)}</small></div></li>`)}</ul>`
+          <div class="t"><b style="font-weight:400">${a.usuario_id === yo ? 'Tú ' + ACCION_TU[a.accion] : 'Otro usuario ' + ACCION[a.accion]} ${NOMBRE_TABLA[a.tabla] || a.tabla}${a.accion === 'UPDATE' && a.cambios?.estado ? `: estado «${a.cambios.estado.despues}»` : ''}</b><small>${hace(a.fecha)}</small></div></li>`)}</ul>`
           : html`<p style="color:var(--texto-2);margin:0">Aún no hay cambios registrados.</p>`}
       </div>
     </div>
@@ -215,7 +216,7 @@ export function VistaProyecto({ id, ruta }) {
       ${sub !== 'resumen' && html`<${Ic} n="chevron-right" style="width:14px" /><span>${sub === 'editar' ? 'Editar proyecto' : modulo?.nombre}</span>`}</nav>
     <div class="titulo-pantalla">
       <div><h1>${p.nombre}</h1>
-        <p>${p.codigo}${p.cliente ? ' · Cliente: ' + p.cliente : ''}${p.ubicacion ? ' · ' + p.ubicacion : ''}
+        <p>${p.codigo}${p.cliente ? ' · Cliente: ' + p.cliente : ''}${p.ubicacion ? ' · ' + p.ubicacion : ''}${p.presupuesto_usd != null ? ' · ' + usd(p.presupuesto_usd) : ''}
           ${faseActual && html` · <span class="chip chip-fase" style=${'background:' + COLOR_FASE(faseActual.numero)}>Fase ${faseActual.numero} en ejecución</span>`}
           ${' '}<${Chip} estado=${est}>${TEXTO_SEMAFORO[est]}<//>${p.archivado ? html` <${Chip} estado="neutro" icono="archive">Archivado<//>` : ''}</p></div>
       ${puedeEditar && sub !== 'editar' && html`<div class="acciones"><a class="btn" href=${`#/p/${p.id}/editar`}><${Ic} n="settings" />Editar proyecto</a></div>`}

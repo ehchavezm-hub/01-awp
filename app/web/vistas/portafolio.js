@@ -1,11 +1,12 @@
 // Portafolio: todos los proyectos en tarjetas, gráfico comparativo y tabla.
 import { html, useEffect, useMemo, useState } from '../vendor/preact-htm.js';
 import { sb, q } from '../lib/db.js';
-import { avisarError } from '../lib/estado.js';
-import { Ic, Chip, Anillo, Vacio, colorEstado } from '../lib/ui.js';
+import { avisar, avisarError, confirmar, obtener } from '../lib/estado.js';
+import { Ic, Chip, Anillo, Vacio, colorEstado, celebrar } from '../lib/ui.js';
+import { cargarEjemplos, quitarEjemplos } from '../lib/ejemplos.js';
 import { BarrasH } from '../lib/graficos.js';
 import { fmt } from '../lib/fechas.js';
-import { avanceAWP, atrasados, proximos, corteDe, semaforo, metaALaFecha, TEXTO_SEMAFORO } from '../lib/metricas.js';
+import { avanceAWP, atrasados, proximos, corteDe, semaforo, metaALaFecha, TEXTO_SEMAFORO, usd } from '../lib/metricas.js';
 import { ir } from '../lib/rutas.js';
 
 const ESTADOS = ['Planificado', 'En ejecución', 'En pausa', 'Cerrado'];
@@ -44,7 +45,7 @@ function TarjetaProyecto({ p }) {
   return html`<article class="tarjeta proyecto" onClick=${() => ir('/p/' + p.id)} tabindex="0" onKeyDown=${e => e.key === 'Enter' && ir('/p/' + p.id)} role="link" aria-label=${'Abrir ' + p.nombre}>
     <div class="proyecto-cab"><${Anillo} pct=${p.awp} tam=${58} grosor=${6} color=${colorEstado(p.semaforo)} />
       <div style="min-width:0"><h3>${p.nombre}</h3><div class="cod">${p.codigo}${p.faseActual && html` · <span class="chip chip-fase" style=${`background:${COLOR_FASE(p.faseActual.numero)};padding:0 8px;font-size:11.5px`}>Fase ${p.faseActual.numero}</span>`}${p.archivado && ' · Archivado'}</div></div></div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap"><${Chip} estado=${p.semaforo}>${TEXTO_SEMAFORO[p.semaforo]}<//><${Chip} estado="neutro" icono="briefcase">${p.estado}<//></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><${Chip} estado=${p.semaforo}>${TEXTO_SEMAFORO[p.semaforo]}<//><${Chip} estado="neutro" icono="briefcase">${p.estado}<//>${p.presupuesto_usd != null && html`<${Chip} estado="neutro" icono="wallet">${usd(p.presupuesto_usd)}<//>`}${p.es_ejemplo && html`<${Chip} estado="atencion" icono="flask-conical">Ejemplo<//>`}</div>
     <div class="mini num">
       <div class=${p.atrasados ? 'rojo' : ''}><b>${p.atrasados}</b>hitos atrasados</div>
       <div class=${p.vencidas ? 'rojo' : ''}><b>${p.vencidas}</b>restricciones vencidas</div>
@@ -57,7 +58,29 @@ function TarjetaProyecto({ p }) {
 export function VistaPortafolio() {
   const [datos, setDatos] = useState(null);
   const [f, setF] = useState({ buscar: '', estado: '', tipo: '', responsable: '', archivados: false, fase: '' });
-  useEffect(() => { cargar().then(setDatos).catch(e => { avisarError(e); setDatos([]); }); }, []);
+  const [trabajando, setTrabajando] = useState(null);
+  const recargar = () => cargar().then(setDatos).catch(e => { avisarError(e); setDatos([]); });
+  useEffect(() => { recargar(); }, []);
+  const hayEjemplos = (datos || []).some(p => p.es_ejemplo);
+  const cargarLosEjemplos = async () => {
+    const ok = await confirmar({ titulo: 'Cargar proyectos de ejemplo', boton: 'Cargar ejemplos',
+      texto: 'Se crean 3 proyectos marcados como «Ejemplo», de USD 50 M, 100 M y 200 M, con fases, equipo, checklist AWP, hitos, CWA, paquetes, restricciones, riesgos y tendencia, en distintos momentos de su implementación. Puedes quitarlos después con un clic. Tarda alrededor de un minuto.' });
+    if (!ok) return;
+    setTrabajando('Preparando…');
+    try {
+      const creados = await cargarEjemplos(obtener().catalogos, setTrabajando);
+      celebrar(); avisar(creados.length ? `¡Listo! Se cargaron ${creados.length} proyectos de ejemplo.` : 'Los proyectos de ejemplo ya estaban cargados.');
+    } catch (e) { avisarError(e); }
+    setTrabajando(null); recargar();
+  };
+  const quitarLosEjemplos = async () => {
+    const ok = await confirmar({ titulo: 'Quitar los proyectos de ejemplo', boton: 'Quitar ejemplos', peligro: true,
+      texto: 'Se borran los proyectos marcados como «Ejemplo» con todos sus datos. Tus proyectos no se tocan.' });
+    if (!ok) return;
+    setTrabajando('Quitando ejemplos…');
+    try { const n = await quitarEjemplos(setTrabajando); avisar(`Se quitaron ${n} proyectos de ejemplo.`); } catch (e) { avisarError(e); }
+    setTrabajando(null); recargar();
+  };
   const cambiar = (k, v) => setF({ ...f, [k]: v });
 
   const lista = useMemo(() => (datos || []).filter(p =>
@@ -66,8 +89,10 @@ export function VistaPortafolio() {
     (!f.buscar || [p.codigo, p.nombre, p.cliente, p.ubicacion].join(' ').toLowerCase().includes(f.buscar.toLowerCase()))), [datos, f]);
 
   if (!datos) return html`<main><div class="cargando-inicial"><span class="girador"></span>Cargando tus proyectos…</div></main>`;
+  if (trabajando) return html`<main><div class="cargando-inicial"><span class="girador"></span>${trabajando}</div></main>`;
 
   const activos = lista.filter(p => p.estado !== 'Cerrado');
+  const presupuesto = activos.reduce((a, p) => a + (Number(p.presupuesto_usd) || 0), 0);
   const prom = lista.length ? lista.reduce((a, p) => a + p.awp, 0) / lista.length : 0;
   const totAtrasados = lista.reduce((a, p) => a + p.atrasados, 0);
   const totVencidas = lista.reduce((a, p) => a + p.vencidas, 0);
@@ -84,13 +109,16 @@ export function VistaPortafolio() {
 
   return html`<main>
     <div class="titulo-pantalla">
-      <div><h1>Tu portafolio AWP</h1><p>${activos.length} proyecto${activos.length === 1 ? '' : 's'} activo${activos.length === 1 ? '' : 's'}${datos.length ? '' : ' · empieza creando el primero'}</p></div>
-      <div class="acciones"><a class="btn btn-primario" href="#/proyectos/nuevo" data-tour="nuevo"><${Ic} n="plus" />Nuevo proyecto</a></div>
+      <div><h1>Tu portafolio AWP</h1><p>${activos.length} proyecto${activos.length === 1 ? '' : 's'} activo${activos.length === 1 ? '' : 's'}${presupuesto ? ' · ' + usd(presupuesto) + ' en cartera' : ''}${datos.length ? '' : ' · empieza creando el primero'}</p></div>
+      <div class="acciones">${hayEjemplos ? html`<button class="btn" onClick=${quitarLosEjemplos}><${Ic} n="trash-2" />Quitar ejemplos</button>`
+        : html`<button class="btn" onClick=${cargarLosEjemplos}><${Ic} n="flask-conical" />Cargar proyectos de ejemplo</button>`}
+        <a class="btn btn-primario" href="#/proyectos/nuevo" data-tour="nuevo"><${Ic} n="plus" />Nuevo proyecto</a></div>
     </div>
 
     ${!datos.length ? html`<div class="tarjeta"><${Vacio} ilustracion="proyectos" titulo="Aún no tienes proyectos"
         texto="Un proyecto reúne sus fases, el checklist de implementación AWP, los hitos H0–H10 y, más adelante, paquetes, restricciones, riesgos y KPI. El asistente te guía en 4 pasos.">
         <a class="btn btn-primario" href="#/proyectos/nuevo"><${Ic} n="rocket" />Crear mi primer proyecto</a>
+        <button class="btn" onClick=${cargarLosEjemplos}><${Ic} n="flask-conical" />Cargar proyectos de ejemplo</button>
         <a class="btn" href="#/recursos"><${Ic} n="library" />Ver los recursos del kit</a><//></div>` : html`
 
     <button class="btn btn-filtros-movil" onClick=${e => e.currentTarget.nextElementSibling.classList.toggle('abiertos')}><${Ic} n="filter" />Filtros</button>
@@ -126,9 +154,10 @@ export function VistaPortafolio() {
       <div class="tarjeta">
         <h2>Resumen comparativo</h2>
         <p class="leer">Semáforo: rojo con 2 o más hitos atrasados o restricciones vencidas; ámbar con 1 atrasado o un hito que vence en 7 días.</p>
-        <div class="tabla-env"><table class="tabla-movil num"><thead><tr><th>Proyecto</th><th>AWP</th><th>Atrasados</th><th>Estado</th></tr></thead>
+        <div class="tabla-env"><table class="tabla-movil num"><thead><tr><th>Proyecto</th><th>Presupuesto</th><th>AWP</th><th>Atrasados</th><th>Estado</th></tr></thead>
           <tbody>${lista.map(p => html`<tr onClick=${() => ir('/p/' + p.id)}>
             <td data-etq="Proyecto"><b>${p.codigo}</b><br /><small style="color:var(--texto-2)">${p.nombre}</small></td>
+            <td data-etq="Presupuesto" style="white-space:nowrap">${p.presupuesto_usd != null ? usd(p.presupuesto_usd) : '—'}</td>
             <td data-etq="AWP"><div style="display:flex;gap:8px;align-items:center;white-space:nowrap"><div class="barra-mini"><i style=${`width:${p.awp}%;background:${colorEstado(p.semaforo)}`}></i></div>${Math.round(p.awp)} %</div></td>
             <td data-etq="Hitos atrasados">${p.atrasados}</td>
             <td data-etq="Estado"><${Chip} estado=${p.semaforo}>${TEXTO_SEMAFORO[p.semaforo]}<//></td></tr>`)}</tbody></table></div>
