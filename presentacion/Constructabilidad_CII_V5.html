@@ -8,7 +8,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-.reveal{font-family:'Atkinson Hyperlegible','Inter',sans-serif;background:#1D1D1F;}
+.reveal{font-family:'Atkinson Hyperlegible','Inter',sans-serif;background:#EEF2F8;}
 .reveal .slides section{
   width:1280px;height:720px;color:#1D1D1F;
   position:relative;overflow:hidden;text-align:left;padding:0;
@@ -88,9 +88,27 @@ ul.bullets li::before{
   position:absolute;top:0;left:0;right:0;height:64px;
   display:flex;align-items:center;padding:0 20px 0 28px;gap:12px;
 }
-.hdr h1{font-size:26px;font-weight:700;color:#1D1D1F;line-height:1.15;flex:1;}
+.hdr h1{font-size:21px;font-weight:700;color:#1D1D1F;line-height:1.15;flex:1;}
 .hdr .hdr-icon{width:44px;height:44px;flex-shrink:0;}
 .divider-line{height:3px;border-radius:2px;margin:6px 0 16px;width:50px;}
+
+/* overflow & readability fixes */
+ul.bullets li{font-size:13.5px;margin-bottom:9px;}
+.card-item .card-body{font-size:11.5px;}
+.card-item .card-title{font-size:13px;}
+.text-col{overflow:hidden;}
+.col-box ul li{font-size:12px;}
+.body-inner{overflow:hidden;}
+/* section divider readability */
+.reveal .slides section[data-background-color="#1D1D2E"],
+.reveal .slides section[data-background-color="#0A74E3"],
+.reveal .slides section[data-background-color="#0E9E9E"],
+.reveal .slides section[data-background-color="#27AE60"],
+.reveal .slides section[data-background-color="#D4620A"],
+.reveal .slides section[data-background-color="#8E44AD"],
+.reveal .slides section[data-background-color="#C0392B"] {color:#fff;}
+/* smaller stat numbers */
+.stat-num{font-size:36px;}
 </style>
 </head>
 <body>
@@ -102,7 +120,7 @@ ul.bullets li::before{
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg, #0A74E312 0%, #FFFFFF 60%)"></div>
 <div style="position:absolute;left:28px;top:0;bottom:36px;width:600px;display:flex;flex-direction:column;justify-content:center;padding-left:12px;">
   <div style="font-size:12px;font-weight:700;letter-spacing:3px;color:#0A74E3;margin-bottom:16px;text-transform:uppercase;">GESTIÓN DE PROYECTOS · CII · AWP</div>
-  <div style="font-size:44px;font-weight:700;line-height:1.1;color:#1D1D1F;margin-bottom:12px;">Constructabilidad CII</div>
+  <div style="font-size:36px;font-weight:700;line-height:1.1;color:#1D1D1F;margin-bottom:12px;">Constructabilidad CII</div>
   <div style="width:70px;height:4px;background:#0A74E3;border-radius:2px;margin-bottom:18px;"></div>
   <div style="font-size:18px;color:#6C757D;line-height:1.5;">Fundamentos, Metodología y Aplicación Práctica en Proyectos de Ingeniería y Construcción</div>
 </div>
@@ -379,11 +397,11 @@ sin sobrecosto</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#0A74E3 0%,#0A74E3CC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">01</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">01</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 01</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Introducción y Definición</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Introducción y Definición</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Constructabilidad, AWP y los fundamentos para transformar la ejecución de proyectos de ingeniería y construcción</div>
 </div>
@@ -529,11 +547,11 @@ Estructuras</text><line x1="820" y1="210" x2="820" y2="220" stroke="#27AE60" str
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#0E9E9E 0%,#0E9E9ECC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">02</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">02</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 02</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase I: Planificación y Estudios Preliminares</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase I: Planificación y Estudios Preliminares</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Estrategia de proyecto, PDRI, alineamiento organizacional y fundamentos para el Plan de Ejecución AWP</div>
 </div>
@@ -704,11 +722,11 @@ Estructuras</text><line x1="820" y1="210" x2="820" y2="220" stroke="#27AE60" str
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#27AE60 0%,#27AE60CC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">03</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">03</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 03</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase II: Diseño e Ingeniería</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase II: Diseño e Ingeniería</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Engineering Deliverables Schedule, paquetes de diseño por CWP, revisiones de constructabilidad y auditorías AWP</div>
 </div>
@@ -787,11 +805,11 @@ Estructuras</text><line x1="820" y1="210" x2="820" y2="220" stroke="#27AE60" str
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#D4620A 0%,#D4620ACC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">04</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">04</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 04</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase III: Procura, Construcción y Puesta en Marcha</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Fase III: Procura, Construcción y Puesta en Marcha</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Workface Planning, IWP en campo, gestión de constraints y comisionamiento integrado con AWP</div>
 </div>
@@ -974,11 +992,11 @@ en Campo</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#8E44AD 0%,#8E44ADCC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">05</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">05</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 05</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Herramientas y Plataformas AWP</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Herramientas y Plataformas AWP</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Software de gestión AWP, integración BIM-P6, sistemas de control de paquetes y plataformas de workface planning</div>
 </div>
@@ -1048,11 +1066,11 @@ en Campo</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#C0392B 0%,#C0392BCC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">06</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">06</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 06</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Casos de Éxito y Benchmarking</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Casos de Éxito y Benchmarking</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Proyectos reales con AWP implementado: resultados medidos, lecciones aprendidas y datos comparativos de la industria</div>
 </div>
@@ -1177,11 +1195,11 @@ base benchmark CII</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#2C3E8C 0%,#2C3E8CCC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 07</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Implementación Estratégica en Cosapi</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Implementación Estratégica en Cosapi</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Diagnóstico de madurez, plan de acción 90 días, KPIs corporativos y hoja de ruta para el programa AWP Cosapi 2025-2030</div>
 </div>
@@ -1357,11 +1375,11 @@ benchmarkados</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#0E9E9E 0%,#0E9E9ECC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 07</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Tendencias Digitales y Sostenibilidad</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Tendencias Digitales y Sostenibilidad</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">BIM avanzado, IA en proyectos, gemelos digitales, construcción verde y AWP sostenible para el 2030</div>
 </div>
@@ -1544,11 +1562,11 @@ benchmarkados</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#2C3E8C 0%,#2C3E8CCC 100%);"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
 <div style="position:absolute;left:0;top:0;bottom:0;width:160px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
-  <div style="font-size:86px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
+  <div style="font-size:68px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;">07</div>
 </div>
 <div style="position:absolute;left:180px;top:0;bottom:36px;right:20px;display:flex;flex-direction:column;justify-content:center;">
   <div style="font-size:13px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px;">SECCIÓN 07</div>
-  <div style="font-size:48px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Plan de Acción Cosapi 2025-2030</div>
+  <div style="font-size:38px;font-weight:700;color:white;line-height:1.1;margin-bottom:16px;">Plan de Acción Cosapi 2025-2030</div>
   <div style="width:80px;height:4px;background:rgba(255,255,255,0.6);border-radius:2px;margin-bottom:20px;"></div>
   <div style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.5;max-width:800px;">Diagnóstico, implementación, certificación y benchmark del programa AWP corporativo</div>
 </div>
@@ -1963,8 +1981,8 @@ líder AWP en Perú</div>
 <div class="stripe" style="background:#0A74E3"></div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#0A74E315 0%,#ffffff 70%)"></div>
 <div style="position:absolute;left:0;right:0;top:0;bottom:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;">
-  <div style="font-size:80px;line-height:1;">💬</div>
-  <div style="font-size:52px;font-weight:700;color:#1D1D1F;text-align:center;">Preguntas y Respuestas</div>
+  <div style="font-size:64px;line-height:1;">💬</div>
+  <div style="font-size:42px;font-weight:700;color:#1D1D1F;text-align:center;">Preguntas y Respuestas</div>
   <div style="width:90px;height:5px;background:#0A74E3;border-radius:3px;"></div>
   <div style="font-size:20px;color:#6C757D;text-align:center;max-width:700px;line-height:1.6;">¿Qué aspectos de la implementación AWP en Cosapi les generan más dudas o interés?</div>
   <div style="display:flex;gap:24px;margin-top:16px;">
@@ -2457,7 +2475,7 @@ diagnóstico AWP</div>
 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg, #2C3E8C12 0%, #FFFFFF 60%)"></div>
 <div style="position:absolute;left:28px;top:0;bottom:36px;width:600px;display:flex;flex-direction:column;justify-content:center;padding-left:12px;">
   <div style="font-size:12px;font-weight:700;letter-spacing:3px;color:#2C3E8C;margin-bottom:16px;text-transform:uppercase;">COSAPI S.A. · AWP 2025-2030</div>
-  <div style="font-size:44px;font-weight:700;line-height:1.1;color:#1D1D1F;margin-bottom:12px;">Juntos Construimos Mejor</div>
+  <div style="font-size:36px;font-weight:700;line-height:1.1;color:#1D1D1F;margin-bottom:12px;">Juntos Construimos Mejor</div>
   <div style="width:70px;height:4px;background:#2C3E8C;border-radius:2px;margin-bottom:18px;"></div>
   <div style="font-size:18px;color:#6C757D;line-height:1.5;">La transformación AWP de Cosapi comienza con una decisión. Esta semana.</div>
 </div>
