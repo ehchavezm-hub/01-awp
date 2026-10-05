@@ -1,3 +1,4 @@
 # Web generada por "mkdocs build"
 site/
 __pycache__/
+*.mp4
