@@ -37,11 +37,29 @@ import os, re, subprocess, sys
 from pathlib import Path
 
 
+def find_ffmpeg() -> str:
+    """Busca ffmpeg: primero en la carpeta del script, luego en PATH."""
+    local = Path(__file__).parent / "ffmpeg.exe"
+    if local.exists():
+        return str(local)
+    local2 = Path(__file__).parent / "ffmpeg"
+    if local2.exists():
+        return str(local2)
+    return "ffmpeg"  # confía en el PATH
+
+
+FFMPEG = find_ffmpeg()
+
+
 def check_ffmpeg():
     try:
-        subprocess.run(['ffmpeg', '-version'], capture_output=True, check=True)
+        subprocess.run([FFMPEG, '-version'], capture_output=True, check=True)
     except (FileNotFoundError, subprocess.CalledProcessError):
-        sys.exit("❌ ffmpeg no encontrado.\n   Descarga desde https://ffmpeg.org/download.html y agrega al PATH.")
+        sys.exit(
+            "❌ ffmpeg no encontrado.\n"
+            "   Descarga ffmpeg-release-essentials.zip desde https://www.gyan.dev/ffmpeg/builds/\n"
+            "   Extrae y copia ffmpeg.exe a la misma carpeta que este script."
+        )
 
 
 def export_slides_ppt(pptx_path: str, out_dir: str,
@@ -75,8 +93,9 @@ def export_slides_ppt(pptx_path: str, out_dir: str,
 
 
 def get_duration(audio_path: str) -> float:
+    ffprobe = FFMPEG.replace('ffmpeg', 'ffprobe')
     r = subprocess.run(
-        ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+        [ffprobe, '-v', 'error', '-show_entries', 'format=duration',
          '-of', 'default=noprint_wrappers=1:nokey=1', audio_path],
         capture_output=True, text=True)
     try:
@@ -88,7 +107,7 @@ def get_duration(audio_path: str) -> float:
 def make_clip(img: str, audio: str, out_mp4: str, pause: float):
     duration = get_duration(audio) + pause
     subprocess.run([
-        'ffmpeg', '-y', '-loglevel', 'error',
+        FFMPEG, '-y', '-loglevel', 'error',
         '-loop', '1', '-framerate', '1', '-i', img,
         '-i', audio,
         '-c:v', 'libx264', '-preset', 'fast', '-tune', 'stillimage',
@@ -147,7 +166,7 @@ def main():
             f.write(f"file '{Path(p).resolve()}'\n")
 
     subprocess.run([
-        'ffmpeg', '-y', '-loglevel', 'warning',
+        FFMPEG, '-y', '-loglevel', 'warning',
         '-f', 'concat', '-safe', '0',
         '-i', list_txt,
         '-c:v', 'libx264', '-crf', '22', '-preset', 'medium',
