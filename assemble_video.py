@@ -77,7 +77,8 @@ def export_slides_ppt(pptx_path: str, out_dir: str,
     print("  Abriendo PowerPoint...")
     ppt = comtypes.client.CreateObject("PowerPoint.Application")
     ppt.Visible = True
-    prs = ppt.Presentations.Open(pptx_abs, ReadOnly=True, WithWindow=False)
+    # WithWindow=True evita el error "could not open the file" en modo protegido
+    prs = ppt.Presentations.Open(pptx_abs, ReadOnly=True, WithWindow=True)
     total = prs.Slides.Count
     paths = []
     for i in range(1, total + 1):
@@ -93,15 +94,17 @@ def export_slides_ppt(pptx_path: str, out_dir: str,
 
 
 def get_duration(audio_path: str) -> float:
-    ffprobe = FFMPEG.replace('ffmpeg', 'ffprobe')
+    """Obtiene duración con ffmpeg (no necesita ffprobe separado)."""
     r = subprocess.run(
-        [ffprobe, '-v', 'error', '-show_entries', 'format=duration',
-         '-of', 'default=noprint_wrappers=1:nokey=1', audio_path],
+        [FFMPEG, '-i', audio_path],
         capture_output=True, text=True)
-    try:
-        return float(r.stdout.strip())
-    except ValueError:
-        return 3.0
+    # ffmpeg escribe la duración en stderr: "Duration: HH:MM:SS.ss"
+    import re
+    m = re.search(r'Duration:\s*(\d+):(\d+):([\d.]+)', r.stderr)
+    if m:
+        h, mn, s = int(m.group(1)), int(m.group(2)), float(m.group(3))
+        return h * 3600 + mn * 60 + s
+    return 3.0
 
 
 def make_clip(img: str, audio: str, out_mp4: str, pause: float):
