@@ -62,6 +62,18 @@ def check_ffmpeg():
         )
 
 
+def unblock_file(path: str):
+    """Quita la marca de zona (Zone.Identifier) que activa Vista Protegida."""
+    try:
+        subprocess.run(
+            ['powershell', '-Command', f'Unblock-File -LiteralPath "{path}"'],
+            capture_output=True, check=True
+        )
+        print("  Archivo desbloqueado (Unblock-File).")
+    except Exception:
+        pass  # No crítico; PowerPoint intentará abrir de todas formas
+
+
 def export_slides_ppt(pptx_path: str, out_dir: str,
                       width: int, height: int) -> list:
     """Exporta cada lámina a PNG usando PowerPoint COM."""
@@ -74,10 +86,12 @@ def export_slides_ppt(pptx_path: str, out_dir: str,
     out_abs  = str(Path(out_dir).resolve())
     os.makedirs(out_abs, exist_ok=True)
 
+    # Quitar marca de zona antes de abrir (evita Vista Protegida en COM)
+    unblock_file(pptx_abs)
+
     print("  Abriendo PowerPoint...")
     ppt = comtypes.client.CreateObject("PowerPoint.Application")
     ppt.Visible = True
-    # WithWindow=True evita el error "could not open the file" en modo protegido
     prs = ppt.Presentations.Open(pptx_abs, ReadOnly=True, WithWindow=True)
     total = prs.Slides.Count
     paths = []
